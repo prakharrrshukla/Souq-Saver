@@ -48,6 +48,7 @@ Questions emailed to the organisers on 7 Nov got no reply; ask in person.
 | 14 Nov | Store comparison on screen prices the **final** basket at every store; the store is chosen on this week's full candidate list before fitting |
 | 14 Nov | Sandbox cart is stateless: after approval the subtotal is our planned basket, fees and promo come from `cart_get_basket_price`. Fee estimates before approval use the same read-only call per store |
 | 14 Nov | Bedrock session was expired on the build machine, so a clearly marked rule-based stub model stands in until `aws login`; the backend switches by itself. Tests always use the stub |
+| 14 Nov | All code moved into the folder `sap v1/` (version 1), with `sap v1/PROJECT_EXPLAINED.md` explaining the whole project. Paths in the build prompts (`/server`, `/web`, ...) are now under `sap v1/` |
 
 ## After the event
 
