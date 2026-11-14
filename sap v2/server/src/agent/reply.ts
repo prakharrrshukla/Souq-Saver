@@ -26,6 +26,8 @@ export function compose(tool: string, result: any, language: Language): string {
       saving: result.monthlySavingEstimate,
       engine: result.engine?.basket === 'ai' ? 'ai' : result.engine?.profile === 'ai' ? 'fallback' : 'rules',
       approvable: result.approval?.allowed !== false,
+      routing: result.routing?.rule,
+      focus: result.focus,
     });
   }
   if (tool === 'compare_stores') return t.stores((result.stores ?? []).map((s: any) => ({ name: s.name, total: s.estTotal, valid: s.valid, missing: s.missing, chosen: s.chosen })));

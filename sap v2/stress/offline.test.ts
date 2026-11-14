@@ -99,7 +99,7 @@ const defaultLearn: LearnHook = (products) => ({
   likes: [], dislikes: [], switches: [], persona: { summary: 'Looks like a small household.', routines: [] },
 });
 const defaultBasket: BasketHook = (brief) => {
-  const store = brief.stores.find((s: any) => s.name === 'Marina Fresh Market');
+  const store = brief.stores[0];
   const lines: any[] = []; const cuts: any[] = [];
   for (const need of brief.needs) {
     if (need.tier === 'T5' && !need.pinned) { cuts.push({ need: need.key, note: 'treat' }); continue; }

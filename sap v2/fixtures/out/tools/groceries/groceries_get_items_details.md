@@ -992,7 +992,7 @@ Careem Quik Dubai Marina items 4000102 to 4000222 (batch 1 of the household's hi
 
 ## Scenario: household-items-2
 
-Careem Quik Dubai Marina items 4000223 to 4000228 (batch 2 of the household's history, ids ascending).
+Careem Quik Dubai Marina items 4000223 to 4000251 (batch 2 of the household's history, ids ascending).
 
 ```json match
 {
@@ -1288,6 +1288,342 @@ Careem Quik Dubai Marina items 4000223 to 4000228 (batch 2 of the household's hi
         },
         "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_sunny_juice_1500.png",
         "master_product_id": "sku_sunny_juice_1500",
+        "is_near_expiry": false,
+        "is_ad": false,
+        "is_available": true,
+        "item_type": "product",
+        "tags": []
+      }
+    },
+    {
+      "item_id": 4000242,
+      "data": {
+        "id": 4000242,
+        "item": "Green Valley Chicken Breast 500g",
+        "item_localized": "Green Valley Chicken Breast 500g",
+        "upc": "6290004000242",
+        "images_urls": [
+          "https://careem-catalog-media.media.careem.com/quik/sku_chicken_breast_500.png"
+        ],
+        "description": "Green Valley Chicken Breast 500g (500 g)",
+        "description_localized": "Green Valley Chicken Breast 500g (500 g)",
+        "price": {
+          "original": 17.5,
+          "original_formatted": "17.50",
+          "discount": 0,
+          "discount_percentage": 0,
+          "total": 17.5,
+          "total_formatted": "17.50",
+          "tax_percentage": 5
+        },
+        "active": true,
+        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000242",
+        "catalog_id": 40001,
+        "currency": {
+          "label_localized": "AED"
+        },
+        "unit_of_measure": {
+          "value": "500 g",
+          "value_localized": "500 g"
+        },
+        "core_category": {
+          "id": 7934,
+          "name": "Chicken Breast",
+          "name_localized": "Chicken Breast",
+          "parent_category_id": 7900,
+          "parent_category_name": "Meat & Poultry",
+          "parent_category_name_localized": "Meat & Poultry"
+        },
+        "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_chicken_breast_500.png",
+        "master_product_id": "sku_chicken_breast_500",
+        "is_near_expiry": false,
+        "is_ad": false,
+        "is_available": true,
+        "item_type": "product",
+        "tags": []
+      }
+    },
+    {
+      "item_id": 4000244,
+      "data": {
+        "id": 4000244,
+        "item": "Baby Spinach 200g",
+        "item_localized": "Baby Spinach 200g",
+        "upc": "6290004000244",
+        "images_urls": [
+          "https://careem-catalog-media.media.careem.com/quik/sku_spinach_200.png"
+        ],
+        "description": "Baby Spinach 200g (200 g)",
+        "description_localized": "Baby Spinach 200g (200 g)",
+        "price": {
+          "original": 8.5,
+          "original_formatted": "8.50",
+          "discount": 0,
+          "discount_percentage": 0,
+          "total": 8.5,
+          "total_formatted": "8.50",
+          "tax_percentage": 5
+        },
+        "active": true,
+        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000244",
+        "catalog_id": 40001,
+        "currency": {
+          "label_localized": "AED"
+        },
+        "unit_of_measure": {
+          "value": "200 g",
+          "value_localized": "200 g"
+        },
+        "core_category": {
+          "id": 7736,
+          "name": "Leafy Greens",
+          "name_localized": "Leafy Greens",
+          "parent_category_id": 7700,
+          "parent_category_name": "Fruits & Vegetables",
+          "parent_category_name_localized": "Fruits & Vegetables"
+        },
+        "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_spinach_200.png",
+        "master_product_id": "sku_spinach_200",
+        "is_near_expiry": false,
+        "is_ad": false,
+        "is_available": true,
+        "item_type": "product",
+        "tags": []
+      }
+    },
+    {
+      "item_id": 4000247,
+      "data": {
+        "id": 4000247,
+        "item": "Royal Gala Apples 1kg",
+        "item_localized": "Royal Gala Apples 1kg",
+        "upc": "6290004000247",
+        "images_urls": [
+          "https://careem-catalog-media.media.careem.com/quik/sku_apples_1kg.png"
+        ],
+        "description": "Royal Gala Apples 1kg (1 kg)",
+        "description_localized": "Royal Gala Apples 1kg (1 kg)",
+        "price": {
+          "original": 9.5,
+          "original_formatted": "9.50",
+          "discount": 0,
+          "discount_percentage": 0,
+          "total": 9.5,
+          "total_formatted": "9.50",
+          "tax_percentage": 5
+        },
+        "active": true,
+        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000247",
+        "catalog_id": 40001,
+        "currency": {
+          "label_localized": "AED"
+        },
+        "unit_of_measure": {
+          "value": "1 kg",
+          "value_localized": "1 kg"
+        },
+        "core_category": {
+          "id": 7739,
+          "name": "Apples",
+          "name_localized": "Apples",
+          "parent_category_id": 7700,
+          "parent_category_name": "Fruits & Vegetables",
+          "parent_category_name_localized": "Fruits & Vegetables"
+        },
+        "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_apples_1kg.png",
+        "master_product_id": "sku_apples_1kg",
+        "is_near_expiry": false,
+        "is_ad": false,
+        "is_available": true,
+        "item_type": "product",
+        "tags": []
+      }
+    },
+    {
+      "item_id": 4000248,
+      "data": {
+        "id": 4000248,
+        "item": "Cucumbers 1kg",
+        "item_localized": "Cucumbers 1kg",
+        "upc": "6290004000248",
+        "images_urls": [
+          "https://careem-catalog-media.media.careem.com/quik/sku_cucumbers_1kg.png"
+        ],
+        "description": "Cucumbers 1kg (1 kg)",
+        "description_localized": "Cucumbers 1kg (1 kg)",
+        "price": {
+          "original": 5.25,
+          "original_formatted": "5.25",
+          "discount": 0,
+          "discount_percentage": 0,
+          "total": 5.25,
+          "total_formatted": "5.25",
+          "tax_percentage": 5
+        },
+        "active": true,
+        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000248",
+        "catalog_id": 40001,
+        "currency": {
+          "label_localized": "AED"
+        },
+        "unit_of_measure": {
+          "value": "1 kg",
+          "value_localized": "1 kg"
+        },
+        "core_category": {
+          "id": 7740,
+          "name": "Cucumbers",
+          "name_localized": "Cucumbers",
+          "parent_category_id": 7700,
+          "parent_category_name": "Fruits & Vegetables",
+          "parent_category_name_localized": "Fruits & Vegetables"
+        },
+        "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_cucumbers_1kg.png",
+        "master_product_id": "sku_cucumbers_1kg",
+        "is_near_expiry": false,
+        "is_ad": false,
+        "is_available": true,
+        "item_type": "product",
+        "tags": []
+      }
+    },
+    {
+      "item_id": 4000249,
+      "data": {
+        "id": 4000249,
+        "item": "Carrots 1kg",
+        "item_localized": "Carrots 1kg",
+        "upc": "6290004000249",
+        "images_urls": [
+          "https://careem-catalog-media.media.careem.com/quik/sku_carrots_1kg.png"
+        ],
+        "description": "Carrots 1kg (1 kg)",
+        "description_localized": "Carrots 1kg (1 kg)",
+        "price": {
+          "original": 4.5,
+          "original_formatted": "4.50",
+          "discount": 0,
+          "discount_percentage": 0,
+          "total": 4.5,
+          "total_formatted": "4.50",
+          "tax_percentage": 5
+        },
+        "active": true,
+        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000249",
+        "catalog_id": 40001,
+        "currency": {
+          "label_localized": "AED"
+        },
+        "unit_of_measure": {
+          "value": "1 kg",
+          "value_localized": "1 kg"
+        },
+        "core_category": {
+          "id": 7741,
+          "name": "Carrots",
+          "name_localized": "Carrots",
+          "parent_category_id": 7700,
+          "parent_category_name": "Fruits & Vegetables",
+          "parent_category_name_localized": "Fruits & Vegetables"
+        },
+        "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_carrots_1kg.png",
+        "master_product_id": "sku_carrots_1kg",
+        "is_near_expiry": false,
+        "is_ad": false,
+        "is_available": true,
+        "item_type": "product",
+        "tags": []
+      }
+    },
+    {
+      "item_id": 4000250,
+      "data": {
+        "id": 4000250,
+        "item": "Strawberries 250g",
+        "item_localized": "Strawberries 250g",
+        "upc": "6290004000250",
+        "images_urls": [
+          "https://careem-catalog-media.media.careem.com/quik/sku_strawberries_250.png"
+        ],
+        "description": "Strawberries 250g (250 g)",
+        "description_localized": "Strawberries 250g (250 g)",
+        "price": {
+          "original": 12.5,
+          "original_formatted": "12.50",
+          "discount": 0,
+          "discount_percentage": 0,
+          "total": 12.5,
+          "total_formatted": "12.50",
+          "tax_percentage": 5
+        },
+        "active": true,
+        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000250",
+        "catalog_id": 40001,
+        "currency": {
+          "label_localized": "AED"
+        },
+        "unit_of_measure": {
+          "value": "250 g",
+          "value_localized": "250 g"
+        },
+        "core_category": {
+          "id": 7742,
+          "name": "Berries",
+          "name_localized": "Berries",
+          "parent_category_id": 7700,
+          "parent_category_name": "Fruits & Vegetables",
+          "parent_category_name_localized": "Fruits & Vegetables"
+        },
+        "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_strawberries_250.png",
+        "master_product_id": "sku_strawberries_250",
+        "is_near_expiry": false,
+        "is_ad": false,
+        "is_available": true,
+        "item_type": "product",
+        "tags": []
+      }
+    },
+    {
+      "item_id": 4000251,
+      "data": {
+        "id": 4000251,
+        "item": "Fresh Norwegian Salmon Fillet 300g",
+        "item_localized": "Fresh Norwegian Salmon Fillet 300g",
+        "upc": "6290004000251",
+        "images_urls": [
+          "https://careem-catalog-media.media.careem.com/quik/sku_salmon_300.png"
+        ],
+        "description": "Fresh Norwegian Salmon Fillet 300g (300 g)",
+        "description_localized": "Fresh Norwegian Salmon Fillet 300g (300 g)",
+        "price": {
+          "original": 29,
+          "original_formatted": "29.00",
+          "discount": 0,
+          "discount_percentage": 0,
+          "total": 29,
+          "total_formatted": "29.00",
+          "tax_percentage": 5
+        },
+        "active": true,
+        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000251",
+        "catalog_id": 40001,
+        "currency": {
+          "label_localized": "AED"
+        },
+        "unit_of_measure": {
+          "value": "300 g",
+          "value_localized": "300 g"
+        },
+        "core_category": {
+          "id": 8543,
+          "name": "Fresh Fish",
+          "name_localized": "Fresh Fish",
+          "parent_category_id": 8500,
+          "parent_category_name": "Fish & Seafood",
+          "parent_category_name_localized": "Fish & Seafood"
+        },
+        "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_salmon_300.png",
+        "master_product_id": "sku_salmon_300",
         "is_near_expiry": false,
         "is_ad": false,
         "is_available": true,

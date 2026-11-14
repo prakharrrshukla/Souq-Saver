@@ -15,8 +15,10 @@ The Future (powered by AWS)**, 14 Nov 2026, Careem HQ, Dubai. Team: Sameer Pahwa
 You type a request in your own words, for example *"Same as last week, but cut 15%"* or *"I only have
 120 dirhams, keep my chips, add 2 kg of bananas"*, in English, Arabic, Hindi, Urdu or Tagalog.
 Souq Saver reads the household's Careem order history, an **AI household engine** learns what this
-household likes, dislikes, has switched away from and needs this week, and builds the basket at the
-**cheapest suitable store** (Careem Quik or a Careem Shops supermarket), filling it by priority (water
+household likes, dislikes, has switched away from and needs this week, and builds the basket at **one
+store chosen by shelf life**: if the order has fresh produce the whole basket goes to **Careem Quik**
+(fast delivery keeps it fresh); if it is only long-shelf-life items it goes to the **cheapest Careem Shops
+supermarket**. It fills the basket by priority (water
 and staples first, treats last). A **calculator** written in code checks every number. Nothing is
 charged: the user approves, a cart is built, and checkout is never called.
 
@@ -96,7 +98,7 @@ Three processes, started together by `scripts/dev.mjs`:
 
 ## 5. One request, in time order
 
-1. **User** types a request (or clicks an example) and presses send.
+1. **User** types a request (or clicks an example) and presses send. A budget on its own is enough: "150" in the message, or only the weekly budget field filled in (the app then sends "Plan this week's basket within my budget of AED 150"), builds the whole basket.
 2. **Web** posts `/api/chat` and listens to Server-Sent Events. The API checks the request first (message length, budget range) and answers a structured 400 error if it is invalid.
 3. **Request check (code):** explicit values in the user's own words are checked before any planning: "cut 150%", "budget -50 AED", "500 bags of rice" are refused with a clear message and the previous budget is kept.
 4. **Orchestrator** (gpt-oss-120b) reads the system prompt (Careem's playbook + Souq Saver rules) and calls the planning tool `plan_basket` with the budget, cut %, items to keep, add or drop. Every tool call is validated against a runtime schema before it runs; a bad call goes back to the model as a structured error so it can fix it (up to 3 corrections). A budget the user never gave is refused.
@@ -105,13 +107,14 @@ Three processes, started together by `scripts/dev.mjs`:
 7. **Careem MCP, stores:** `search_groceries_items` (Quik) → `global_search` (Shops supermarkets) → `search_groceries_items` per Shops store → `cart_get_basket_price` per store (fees).
 8. **AI engine, learn:** one record per product across stores with purchases (date, weekday, qty, price, store) plus calculator facts (purchase gaps in days, days since last). It returns, per product, due / not_due / stopped / occasional, tier, usual qty, loyalty, evidence; plus likes, dislikes, switches and a household profile. **The answer is validated against the history rules** (`brain/history.ts`): duplicates, unknown products, invalid tiers and quantities the history does not support are corrected; a product clearly replaced by another (cow milk → oat milk) stays stopped; an alternative tried and dropped makes the household loyal.
 9. **Calculator:** prices the whole needs list at every store (missing items, essentials). For each need it lists only products that really satisfy it (same product, or same category and a compatible pack size).
-10. **AI engine, build:** picks one store, keeps/swaps/reduces/cuts each need within the outcomes allowed for it, writes a note per item.
-11. **Calculator, check:** prices, fees, budget, loyalty, essentials, need/product compatibility, discontinued products, honest labels, limits, every need once. If rejected, the reasons go back to the AI, which revises (up to 3 tries). An over-budget plan is accepted only when nothing allowed is left to cut, and the shortfall is shown.
-12. **Fallback (only if the AI's basket still fails):** the rule-based planner (`brain/fallback.ts`) builds a basket from the **same needs and household profile**, and it goes through the same calculator. The plan, the chat reply and the basket card say so. Without Bedrock, the household is read by the history rules instead.
-13. **Backend** builds the plan: basket lines, cuts, unavailable items, deferred (with next due date), stopped items, store comparison (calculator), monthly saving estimate, household profile, `engine` (who built it) and `approval` (whether it can be approved). A one-time approval token is issued **only if the plan is valid and within budget**, bound to a fingerprint of the exact plan.
-14. **Reply:** facts (budget, store, totals, fees, savings, item changes, approval status) are rendered from the validated plan with fixed sentences in the user's language; model prose that cites amounts the plan does not contain is replaced. The conversation stored for the next turn is always valid for Bedrock.
-15. **Web** shows the reply, the household profile, store comparison, basket, insights, and the Approve button (turned off with the reason when the plan is over budget).
-16. **Approve:** `/api/approve` with the token → token checked, burned and matched to the plan fingerprint → plan re-checked → `create_grocery_cart_with_quantities` (the only mutating call, never retried) → `cart_get_basket_price` → calculator prices the cart → "cart ready, nothing charged". Checkout is never called.
+10. **Store routing (code, `brain/routing.ts`):** each need's shelf life comes from its Careem parent category (fruit and vegetables, dairy and eggs, bakery, meat and fish are fresh produce; orange juice, ice cream, rice, ghee, diapers are not). Any fresh produce in the order sends the **whole basket to Careem Quik**; only long-shelf-life items send it to the **cheapest Careem Shops supermarket** that sells every essential. A fresh item Quik does not sell is marked not available, it is not moved to another store. The calculator rejects a basket at any other store.
+11. **AI engine, build:** at the routed store (the only one it is shown), keeps/swaps/reduces/cuts each need within the outcomes allowed for it, writes a note per item.
+12. **Calculator, check:** prices, fees, budget, loyalty, essentials, need/product compatibility, discontinued products, honest labels, limits, every need once. If rejected, the reasons go back to the AI, which revises (up to 3 tries). An over-budget plan is accepted only when nothing allowed is left to cut, and the shortfall is shown.
+13. **Fallback (only if the AI's basket still fails):** the rule-based planner (`brain/fallback.ts`) builds a basket from the **same needs and household profile**, and it goes through the same calculator. The plan, the chat reply and the basket card say so. Without Bedrock, the household is read by the history rules instead.
+14. **Backend** builds the plan: basket lines, cuts, unavailable items, deferred (with next due date), stopped items, store comparison (calculator), monthly saving estimate, household profile, `engine` (who built it) and `approval` (whether it can be approved). A one-time approval token is issued **only if the plan is valid and within budget**, bound to a fingerprint of the exact plan.
+15. **Reply:** facts (budget, store, totals, fees, savings, item changes, approval status) are rendered from the validated plan with fixed sentences in the user's language; model prose that cites amounts the plan does not contain is replaced. The conversation stored for the next turn is always valid for Bedrock.
+16. **Web** shows the reply, the household profile, store comparison, basket, insights, and the Approve button (turned off with the reason when the plan is over budget).
+17. **Approve:** `/api/approve` with the token → token checked, burned and matched to the plan fingerprint → plan re-checked → `create_grocery_cart_with_quantities` (the only mutating call, never retried) → `cart_get_basket_price` → calculator prices the cart → "cart ready, nothing charged". Checkout is never called.
 
 If the model loops past 8 turns, a request passes 240 s, or the browser disconnects, the turn stops cleanly: the user gets a clear message (when still connected), nothing half-done is saved, the session is released, and the next message works without Reset.
 
@@ -158,7 +161,8 @@ If the model loops past 8 turns, a request passes 240 s, or the browser disconne
 | `src/brain/brain.ts` | `productHistory()` reshapes orders into one record per product (by Careem `master_product_id`) across stores; `learnHousehold()` (tool `household_insights`, answer validated); `buildBasket()` (tool `basket_plan`) with the revise loop and per-need allowed outcomes; `brainPlan()` runs the whole pipeline (profile → needs → AI basket → fallback) and assembles the plan with `engine`; `weeklySpend()` averages calendar weeks |
 | `src/brain/check.ts` | The calculator used by every path: `checkPlan()` returns ok/issues, items total, total with fees, within budget, shortfall; `compatibleItems()` decides from catalogue data which products satisfy a need; `budgetVerdict()` is the one wording for within / over by / cannot meet |
 | `src/brain/history.ts` | Household facts by plain rules from the order history: due/not due, replaced products (switches), lapsed habits, "tried and went back" loyalty. The profile without Bedrock, and the validator of the AI's profile |
-| `src/brain/fallback.ts` | The rule-based basket planner: chooses the store (all essentials, then the user's additions, then price) and fits the budget (treats first, swaps only where not loyal and never into a stopped product, reduce fresh, then cut) from the same needs as the AI |
+| `src/brain/routing.ts` | Store routing and household focus: `householdFocus()` measures the share of spend on fresh produce (fresh-focused from 45%, long-shelf-life focused up to 20%; the planner then treats the food of that kind bought about every week as essential); `shelfLife()` from the Careem parent category (long-life milk and formula are long-shelf-life); `routeBasket()` sends a basket with fresh produce to Careem Quik and a long-shelf-life-only basket to the cheapest Careem Shops supermarket with every essential |
+| `src/brain/fallback.ts` | The rule-based basket planner: prices every store (all essentials, then the user's additions, then price), uses the routed store, and fits the budget (treats first, swaps only where not loyal and never into a stopped product, reduce fresh, then cut) from the same needs as the AI |
 | `src/brain/brain.test.ts` | Offline tests with a scripted model |
 
 **What the AI decides:** likes and brand loyalty, dislikes (an alternative tried and dropped), switches (one product or a whole group replaced), what is due this week (ignoring bulk buys, guest weeks, holidays), priority tier (T1 water, T2 staples incl. baby essentials and basics bought nearly every order, T3 fresh, T4 household, T5 treats), usual quantity, the store, cuts, swaps, quantities, item notes, and a household profile ("looks like…", routines). It is told never to calculate totals and never to guess religion, ethnicity or income.
@@ -204,7 +208,7 @@ Base `http://localhost:8080/api`. Types in `server/src/contract.ts`.
 | `POST /reset { sessionId }` | Clears the session and its tokens |
 | `GET /xray`, `GET /xray/:runId` | Saved runs, ordered steps and a tree (session ids shown as `…last4`) |
 
-**Plan** (what the screen shows): store quotes, items (`kept / swapped / reduced / deferred / cut / unavailable`, tier, note, next due), estimated total, budget, within budget, shortfall, monthly saving estimate, insights (category spend, price drift, **household profile**), `engine` (`basket: ai | rules`, `profile: ai | history`, model, fallback reason), `approval` (`allowed`, and `code` + `message` when not: `over_budget`, `invalid_plan`, `no_store`, `limits`), approval token (empty when approval is not allowed).
+**Plan** (what the screen shows): store quotes, items (`kept / swapped / reduced / deferred / cut / unavailable`, tier, note, next due), estimated total, budget, within budget, shortfall, monthly saving estimate, insights (category spend, price drift, **household profile**), `engine` (`basket: ai | rules`, `profile: ai | history`, model, fallback reason), `routing` (`rule: fresh_to_quik | long_shelf_to_shops | no_quik | no_shops`, store, reason, the fresh items), `approval` (`allowed`, and `code` + `message` when not: `over_budget`, `invalid_plan`, `no_store`, `limits`), approval token (empty when approval is not allowed).
 
 **Errors.** Every 4xx/5xx body is `{ error, code, kind, field?, sampleData }`; SSE `error` events carry `code` and `kind` too. `kind` is `validation`, `model`, `careem`, `timeout`, `approval`, `busy` or `internal`; the web app says "backend not reachable" only when the request could not be sent at all.
 
@@ -240,8 +244,8 @@ From Careem: Leonardo's identity and saved places, store ids (Quik 40001, Marina
 
 | Household | Story the AI must discover from orders alone |
 |---|---|
-| **Leonardo DiCappuccino**, Dubai Marina, 16 weeks, 19 orders | Loyal to Royal Mahal rice (even at +10.5%) and Noor oil; tried Golden Sella once; cow milk → oat milk from week 11; monthly atta and dal at Marina Fresh Market; bulk water buy; away in week 12; treats creeping in. Last week AED 186.15 |
-| **The Khan family** (Ayesha Khan), Al Barsha, 14 weeks, 18 orders | Six people; new baby from week 8 (diapers every 2 weeks, more milk and eggs); monthly bulk rice, atta, dal at Marina; ghee every 8 weeks; guest week with double chicken and cola. Last week AED 434.65 |
+| **Leonardo DiCappuccino**, Dubai Marina, 16 weeks, 19 orders | **Fresh-focused** (about 58% of spend on fresh produce): bananas, apples, spinach, cucumbers, carrots, tomatoes, onions, chicken breast and Greek yogurt every week, salmon every two weeks, strawberries since week 9. Loyal to Royal Mahal rice (even at +10.5%) and Noor oil; tried Golden Sella once; cow milk → oat milk from week 11; monthly atta and dal at Marina Fresh Market; bulk water buy; away in week 12; treats creeping in. Last week AED 290.90. Basket → Careem Quik, fresh produce treated as essential |
+| **The Khan family** (Ayesha Khan), Al Barsha, 14 weeks | **Long-shelf-life focused** (about 93% of spend): six people who stock the pantry through Careem every week at Marina Fresh Market (water, canned chickpeas and tuna, pasta, tomato paste, dates; bulk rice, atta and dal monthly, bought last week) and buy fresh food at the local market. New baby from week 8: fresh milk replaced by long-life milk, formula and diapers every 2 weeks; ghee every 8 weeks; guests in week 10. Last week AED 568.90. Basket → cheapest supermarket, pantry staples treated as essential |
 | **Joy Dela Cruz**, JLT, 12 weeks, 15 orders | Lives alone, no bottled water; noodles, cola and chips stopped in week 7, healthy items started; coffee beans only from JLT Organic Pantry; away in week 9. Last week AED 172.25 |
 
 **Switching:** the header buttons **Household: Leonardo | Khan family | Joy** (calls `POST /api/persona`, starts a fresh chat), or `npm run persona -- <key>` then Reset. `npm test` resets to Leonardo.
@@ -262,10 +266,10 @@ React + Vite, plain CSS. The UI holds no business logic: it shows what the backe
 | `components/Chat.tsx` | Messages (right-to-left for Arabic and Urdu), example chips, input, optional weekly budget field, inline validation message (the field in question is marked) |
 | `components/ToolSteps.tsx` | Live tool steps: every Careem call, `ai:learn_household`, `ai:build_basket`, `calculator:check_plan`, guards |
 | `components/HouseholdProfile.tsx` | **"What the AI learned about this household"**: profile, routines, loves, tried and dropped, switched, model name. Shown whenever the AI learned the household, also when the fallback built the basket |
-| `components/StoreComparison.tsx` | Each store: items + delivery + service = total; cheapest marked; stores missing essentials flagged |
+| `components/StoreComparison.tsx` | Each store: items + delivery + service = total; the chosen store marked ("Chosen: fresh produce" for Careem Quik) with the routing reason; stores missing essentials flagged |
 | `components/Basket.tsx` | Each item with chip (Kept, Swapped, Reduced, Not due till…, Cut, Not available), tier, note, price; totals; "Cannot meet this budget" notice; rule-based planner notice when the fallback built the basket; Approve button, turned off with the reason when the plan cannot be approved |
 | `components/CartResult.tsx` | After Approve: exact total, promo, "nothing charged" (no pay button exists) |
-| `components/Insights.tsx` | Prices that went up; weekly spend by category |
+| `components/Insights.tsx` | Shopping focus (fresh produce or long-shelf-life pantry, % of spend); prices that went up; weekly spend by category |
 | `components/XRay.tsx` | Every backend step with full input and output |
 | `components/Footer.tsx` | Model id and provider, Careem MCP mode, health dots, "Nothing is ever charged" |
 | `src/styles.css` | All styling |
@@ -341,7 +345,7 @@ No database. Careem is the system of record: each request reads the history from
 
 ## 16. Tests
 
-`npm test` regenerates Leonardo, then runs Vitest: **102 pass, 5 skipped** (the 5 are v1 demo-story tests superseded by v2).
+`npm test` regenerates Leonardo, then runs Vitest: **110 pass, 5 skipped** (the 5 are v1 demo-story tests superseded by v2).
 
 | Suite | Covers |
 |---|---|
@@ -349,17 +353,18 @@ No database. Careem is the system of record: each request reads the history from
 | `server/test/api.test.ts` | Endpoints, SSE, X-ray completeness and redaction, approval (single-use, wrong session), five languages, outage handling, checkout block, grants, no mutating retry |
 | `server/src/engine/engine.test.ts` | Analysis, sizes, store validity, planner; 4 v1-story tests skipped as superseded |
 | `server/src/brain/brain.test.ts` | Product history across stores, revise loop, switch respected, calendar-week saving, calculator rules, honest shortfall, household profile |
-| `server/test/regressions.test.ts` | The stress-test findings, with a scripted model playing Bedrock: preferences through fallback ("120 dirhams, keep chips, add bananas"), limits and approval, need/product compatibility, malformed tool calls, turn limit and timeout recovery checked against Bedrock's message-order rules, disconnects, structured errors, honest budget wording, grounded replies, invalid budgets and cuts, "1,000 AED" |
+| `server/test/regressions.test.ts` | The stress-test findings, with a scripted model playing Bedrock: preferences through fallback ("120 dirhams, keep chips, add bananas"), limits and approval, need/product compatibility, malformed tool calls, turn limit and timeout recovery checked against Bedrock's message-order rules, disconnects, structured errors, honest budget wording, grounded replies, invalid budgets and cuts, "1,000 AED", store routing (fresh produce → Careem Quik, long-shelf-life only → cheapest supermarket) |
 
-**Stress suites** (`stress/`, `npx vitest run --config stress/vitest.config.ts`): 94 tests. `offline.test.ts` feeds the calculator, AI engine and chat loop hostile model output; `http.test.ts` attacks the live API (hostile bodies, cross-site requests, token replay and races, 40 parallel sessions, disconnects, household switching, X-ray redaction, Careem outage); `round2.test.ts` attacks the safety net itself (number parsing in all scripts, limit boundaries, tiny configured limits, grounding loopholes, timeouts mid-planning, 30 parallel AI-path sessions, the Khan and Joy households). `live-ai.ts` runs hostile prompts against the real model.
+**Stress suites** (`stress/`, `npx vitest run --config stress/vitest.config.ts`): 96 tests. `offline.test.ts` feeds the calculator, AI engine and chat loop hostile model output; `http.test.ts` attacks the live API (hostile bodies, cross-site requests, token replay and races, 40 parallel sessions, disconnects, household switching, X-ray redaction, Careem outage); `round2.test.ts` attacks the safety net itself (number parsing in all scripts, limit boundaries, tiny configured limits, grounding loopholes, timeouts mid-planning, 30 parallel AI-path sessions, the Khan and Joy households). `live-ai.ts` runs hostile prompts against the real model.
 
-Live checks were done in the browser on all three households with gpt-oss-120b before the safety-net changes. The safety-net changes were verified with scripted models, the stress suites and the browser on the rules-only path; a live Bedrock run of `stress/live-ai.ts` is still to do with fresh AWS keys.
+Live checks were done in the browser on all three households with gpt-oss-120b before the safety-net changes. After them, `stress/live-ai.ts` ran against gpt-oss-120b on Bedrock (14 Nov): every basket was built by the AI engine (no fallback needed), Royal Mahal and the oat-milk switch held, fresh baskets went to Careem Quik, "no fresh food this week" went to Marina Fresh Market, totals matched, out-of-range requests were refused, and no cart or checkout was touched from chat.
 
 ## 17. Demo guide
 
 - Before going on stage: paste fresh AWS keys into `.env`, start `npm run dev`, check the footer says `openai.gpt-oss-120b-1:0 on AWS Bedrock`, keep the backup video ready.
 - Pick a household with the header buttons; the chat resets.
-- Type live; good requests: "I only have 120 dirhams, keep my chips", "cut 20%", "no cola this week", "add 2 bananas", "why no chocolate?", "which store is cheapest?", in any of the 5 languages.
+- Show the two phones side by side: Leonardo's basket is fresh produce at Careem Quik ("Fresh produce is 58% of this household's spend"), the Khan family's is pantry staples at Marina Fresh Market ("Long-shelf-life pantry food is 93%"). Good budgets: Leonardo "250" or "cut 15%" (his fresh essentials cost about AED 217, so a lower budget shows an honest shortfall), the Khan family "400" or "cut 15%".
+- Type live; good requests: "250" (a budget alone builds the basket), "keep my chips", "cut 20%", "no cola this week", "add 2 bananas", "why no chocolate?", "which store is cheapest?", in any of the 5 languages.
 - While it thinks (20–60 s), talk through the live tool steps; then show the household profile, store comparison and basket notes; press Approve to show the cart and "nothing charged".
 - Rehearse exact sentences twice: borderline items can be judged differently between runs. If the AI's basket fails the checks, the basket card says the rule-based planner built it from the AI's profile: say so, it is the safety net working.
 - Good safety moments to show: "cut 150%" (refused, budget kept), "add 500 bags of rice" (refused with the limit), a 20 AED budget (honest shortfall, Approve turned off), typing "approve" (nothing happens to the cart).
@@ -387,6 +392,7 @@ Live checks were done in the browser on all three households with gpt-oss-120b b
 | Tier T1–T5 | Water, staples, fresh, household, treats |
 | Switch | A product (or group) replaced by another |
 | Calculator | The code that checks every plan's numbers and rules, for the AI and the fallback alike |
+| Routing | Fresh produce in the order → the whole basket to Careem Quik; only long-shelf-life items → the cheapest Careem Shops supermarket |
 | Fallback | The rule-based planner that builds the basket when the AI's basket fails the checks (or Bedrock is off), from the same household profile, disclosed on screen |
 | Grounded reply | A reply whose facts come from the validated plan, not from model prose |
 | Limits | The bounds on quantities, products, totals, budgets, cuts, messages and turns (section 14) |

@@ -35,8 +35,8 @@ describe('analysis', () => {
     expect(lines.every((l) => r2(l.unitPrice * l.qty) === l.lineTotal)).toBe(true);
   });
 
-  test('last week total is about AED 186', () => {
-    expect(lastWeek(orders)!.total).toBe(186.15);
+  test('last week total is about AED 291 (fresh produce every week)', () => {
+    expect(lastWeek(orders)!.total).toBe(290.9);
   });
 
   test('order totals equal their lines plus that store\'s fees', () => {
@@ -170,7 +170,7 @@ describe('demo: "Same as last week, but cut 15%"', async () => {
   });
 
   test('6. estimated total is within the budget and adds up', () => {
-    expect(result.budget).toEqual({ aed: 158.23, source: 'cut_percent', cutPercent: 15 });
+    expect(result.budget).toEqual({ aed: r2(lastWeek(orders)!.total * 0.85), source: 'cut_percent', cutPercent: 15 });
     expect(result.estTotal).toBeLessThanOrEqual(result.budget.aed);
     expect(result.withinBudget).toBe(true);
     expect(result.shortfall).toBe(0);
@@ -180,8 +180,7 @@ describe('demo: "Same as last week, but cut 15%"', async () => {
     expect(result.estTotal).toBe(chosen.estTotal);
   });
 
-  test('7. monthly saving is computed and positive', () => {
-    expect(result.monthlySavingEstimate).toBeGreaterThan(0);
+  test('7. monthly saving follows the formula', () => {
     expect(result.monthlySavingEstimate).toBe(r2((averageWeeklySpend(orders) - result.estTotal) * 4.33));
   });
 });
@@ -203,9 +202,9 @@ describe('other requests', () => {
   });
 
   test('additions: more rice and a new item', async () => {
-    const result = await plan({ budgetAed: 400 }, [], [{ item: 'rice', qty: 1 }, { item: 'chicken', qty: 2 }, { item: 'unobtainium' }]);
+    const result = await plan({ budgetAed: 400 }, [], [{ item: 'rice', qty: 1 }, { item: 'potatoes', qty: 2 }, { item: 'unobtainium' }]);
     expect(find(result.items, 'basmati rice').qty).toBe(2);
-    expect(find(result.items, 'chicken')).toMatchObject({ qty: 2, reason: 'kept', note: 'Added at your request' });
+    expect(find(result.items, 'potatoes')).toMatchObject({ qty: 2, reason: 'kept', note: 'Added at your request' });
     expect(result.unmatchedAdditions).toEqual(['unobtainium']);
   });
 

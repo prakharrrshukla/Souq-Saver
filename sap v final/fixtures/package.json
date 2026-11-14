@@ -1,0 +1,6 @@
+{
+  "name": "souq-saver-fixtures",
+  "private": true,
+  "type": "module",
+  "scripts": { "generate": "node generate.ts" }
+}

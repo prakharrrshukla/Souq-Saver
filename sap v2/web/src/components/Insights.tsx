@@ -7,6 +7,13 @@ export function Insights({ insights }: { insights: Plan['insights'] }) {
   return (
     <section className="card" aria-label="Spend and price drift">
       <h2>Spend and price drift</h2>
+      {insights.focus && insights.focus.label !== 'mixed' && (
+        <p className="notice success">
+          Shopping focus: {insights.focus.label === 'fresh'
+            ? `fresh produce (${Math.round(insights.focus.freshShare * 100)}% of spend), so fresh produce is treated as essential`
+            : `long-shelf-life pantry food (${Math.round((1 - insights.focus.freshShare) * 100)}% of spend), so pantry staples are treated as essential`}
+        </p>
+      )}
       <div className="insights">
         <div>
           <h3>Prices that went up</h3>

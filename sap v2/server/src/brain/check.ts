@@ -11,6 +11,8 @@ import { limits, type Limits } from '../limits.ts';
 export type Need = {
   key: string; name: string; category: string; size: string; sku: string; qty: number; tier: Tier;
   loyal: boolean; pinned: boolean; reason: string;
+  /** Careem parent category (e.g. "Dairy & Eggs"), used to decide shelf life. */
+  parentCategory?: string;
   /** For user additions with no history: which store items could satisfy it. */
   matches?: (catalogue: StoreCatalogue) => CatalogueItem[];
 };
@@ -29,6 +31,9 @@ export type CheckContext = {
   /** Products the household stopped buying or the user asked to leave out (sku -> why). They cannot come back as a swap. */
   blockedSkus?: Map<string, string>;
   limits?: Limits;
+  /** The store the routing rule chose (fresh produce -> Careem Quik). Items it does not sell are unavailable, not a reason to switch store. */
+  requiredMerchantId?: string;
+  routingReason?: string;
 };
 
 /** Store items that can satisfy a need: the same product, or the same category with a compatible pack size. */
@@ -37,6 +42,12 @@ export function compatibleItems(need: Need, catalogue: StoreCatalogue): Catalogu
   const sellable = catalogue.items.filter(priced);
   if (!need.category) return need.matches?.(catalogue).filter(priced) ?? [];
   return sellable.filter((i) => (need.sku && i.sku === need.sku) || (i.category === need.category.toLowerCase() && similarSize(need.size, i.size)));
+}
+
+/** Whether a store can supply a need at all: for a brand-loyal need only the exact product counts. */
+export function canSupply(need: Need, catalogue: StoreCatalogue): boolean {
+  const options = compatibleItems(need, catalogue);
+  return need.loyal && need.sku ? options.some((i) => i.sku === need.sku) : options.length > 0;
 }
 
 /** One wording for every summary (trace, X-ray, chat): within budget, over by X, or cannot meet it. */
@@ -54,6 +65,10 @@ export function checkPlan(draft: BasketDraft, needs: Need[], catalogues: StoreCa
   const fail = (issue: string): Check => ({ ok: false, issues: [issue], itemsTotal: 0, estTotal: 0, withinBudget: false, shortfall: 0 });
   const catalogue = catalogues.find((c) => c.merchantId === String(draft.merchantId));
   if (!catalogue) return fail(`merchantId ${draft.merchantId} is not one of the stores`);
+  if (context.requiredMerchantId && catalogue.merchantId !== context.requiredMerchantId) {
+    const required = catalogues.find((c) => c.merchantId === context.requiredMerchantId);
+    return fail(`the basket must go to ${required?.name ?? context.requiredMerchantId} (merchantId ${context.requiredMerchantId}): ${context.routingReason ?? 'store routing rule'}`);
+  }
   if (!Array.isArray(draft.lines) || !Array.isArray(draft.cuts)) return fail('lines and cuts must both be lists');
 
   const itemOf = new Map(catalogue.items.map((i) => [i.itemId, i]));
@@ -100,8 +115,8 @@ export function checkPlan(draft: BasketDraft, needs: Need[], catalogues: StoreCa
     const need = needOf.get(cut.need);
     seen.set(cut.need, (seen.get(cut.need) ?? 0) + 1);
     if (!need) { issues.push(`cut for unknown need "${cut.need}"`); continue; }
-    const soldHere = compatibleItems(need, catalogue).length > 0;
-    if (!soldHere && (need.tier === 'T1' || need.tier === 'T2') && catalogues.some((c) => compatibleItems(need, c).length > 0)) {
+    const soldHere = canSupply(need, catalogue);
+    if (!soldHere && !context.requiredMerchantId && (need.tier === 'T1' || need.tier === 'T2') && catalogues.some((c) => canSupply(need, c))) {
       issues.push(`${need.name}: ${catalogue.name} does not sell it; choose a store that sells every essential`);
       continue;
     }

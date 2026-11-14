@@ -84,8 +84,8 @@ All invented, all in Careem's exact response format, all served by the local Car
 
 | Switch with | Household | What the AI has to work out |
 |---|---|---|
-| `npm run persona -- leonardo` | Leonardo DiCappuccino, Dubai Marina (Careem's sandbox user), 16 weeks | Loyal to Royal Mahal rice and Noor oil; tried Golden Sella once and dropped it; cow milk to oat milk in week 11; monthly atta and dal at Marina Fresh Market; bulk water buy; away in week 12 |
-| `npm run persona -- family` | The Khan family (6), Al Barsha, 14 weeks | New baby from week 8 (diapers, more milk and eggs); monthly bulk rice, atta and dal at Marina; guest week with double chicken and cola |
+| `npm run persona -- leonardo` | Leonardo DiCappuccino, Dubai Marina (Careem's sandbox user), 16 weeks | Fresh-focused: fruit, vegetables, chicken and fish every week (basket to Careem Quik); loyal to Royal Mahal rice and Noor oil; tried Golden Sella once and dropped it; cow milk to oat milk in week 11; monthly atta and dal at Marina Fresh Market; bulk water buy; away in week 12 |
+| `npm run persona -- family` | The Khan family (6), Al Barsha, 14 weeks | Long-shelf-life focused: weekly pantry stock-ups at Marina (canned food, pasta, long-life milk), fresh food bought elsewhere (basket to the cheapest supermarket); new baby from week 8 (fresh milk → long-life milk, formula, diapers); monthly bulk rice, atta and dal; guests in week 10 |
 | `npm run persona -- single` | Joy Dela Cruz, JLT, 12 weeks | Switched from noodles, cola and chips to healthy food in week 7; coffee beans only from JLT Organic Pantry; away in week 9 |
 
 **In the app:** click **Household: Leonardo | Khan family | Joy** in the header (sandbox only). It switches the household and starts a fresh chat. From a terminal, `npm run persona -- <name>` does the same (then press Reset). `npm test` always regenerates Leonardo.

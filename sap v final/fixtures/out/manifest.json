@@ -1,0 +1,43 @@
+{
+  "seed": 20261114,
+  "generatedBy": "fixtures/generate.ts",
+  "sampleData": true,
+  "household": "Sample household: Leonardo DiCappuccino, Marina Gate 1, Dubai Marina. Invented data in Careem MCP response format.",
+  "persona": "leonardo",
+  "story": "Leonardo DiCappuccino (Careem's own sandbox user): Dubai Marina, 16 weeks, fresh produce in every order (fruit, salad, chicken, fish), brand-loyal staples, cow milk to oat milk, monthly Marina top-ups, away in week 12.",
+  "user": "Leonardo DiCappuccino",
+  "home": {
+    "latitude": 25.0866,
+    "longitude": 55.1474,
+    "address": "Marina Gate 1, Dubai Marina"
+  },
+  "orders": 19,
+  "weeks": 16,
+  "lastWeekTotal": 290.9,
+  "products": 63,
+  "stores": [
+    {
+      "merchantId": 40001,
+      "name": "Careem Quik Dubai Marina",
+      "items": 60
+    },
+    {
+      "merchantId": 40101,
+      "name": "Marina Fresh Market",
+      "items": 60
+    },
+    {
+      "merchantId": 40201,
+      "name": "JLT Organic Pantry",
+      "items": 50
+    }
+  ],
+  "files": [
+    "tools/user/get_activities.md",
+    "tools/user/user_info.md",
+    "tools/groceries/groceries_get_items_details.md",
+    "tools/groceries/search_groceries_items.md",
+    "tools/groceries/global_search.md",
+    "tools/cart/cart_get_basket_price.md"
+  ]
+}

@@ -18,7 +18,7 @@ import { XRay } from './components/XRay';
 const newId = () => Math.random().toString(36).slice(2, 10);
 const upsert = <T,>(list: T[], item: T, same: (a: T) => boolean) => (list.some(same) ? list.map((x) => (same(x) ? item : x)) : [...list, item]);
 
-export default function App() {
+export default function Desk() {
   const [config, setConfig] = useState<Config | null>(null);
   const [health, setHealth] = useState<Health | null>(null);
   const [unreachable, setUnreachable] = useState(false);
@@ -86,7 +86,8 @@ export default function App() {
   };
 
   const send = async () => {
-    const message = input.trim();
+    // The budget field alone is enough: it plans the whole basket within it.
+    const message = input.trim() || (budget.trim() ? `Plan this week's basket within my budget of AED ${budget.trim()}` : '');
     if (!message || busy) return;
     const lineId = newId();
     sent.current = { lineId, message, budget };
@@ -165,7 +166,7 @@ export default function App() {
         <div className="stack">
           <ToolSteps steps={steps} />
           {plan && <HouseholdProfile household={plan.insights.household} />}
-          {plan && <StoreComparison stores={plan.stores} />}
+          {plan && <StoreComparison stores={plan.stores} routing={plan.routing} />}
           {plan && <Basket plan={plan} approving={approving} approved={!!cart} onApprove={onApprove} />}
           {cart && <CartResult cart={cart} />}
           {plan && <Insights insights={plan.insights} />}

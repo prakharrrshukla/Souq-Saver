@@ -78,6 +78,8 @@ export type Plan = {
   monthlySavingEstimate: number;
   insights: {
     categorySpend: { category: string; weeklyAvg: number }[];
+    /** Share of the household's Careem spend on fresh produce, computed from its orders. */
+    focus?: { freshShare: number; label: 'fresh' | 'long_shelf' | 'mixed' };
     priceDrift: { name: string; driftPct: number }[];
     /** v2: how the AI engine describes this household, learned from its Careem orders. Absent on the rule-based engine. */
     household?: { summary: string; routines: string[]; likes: string[]; dislikes: string[]; switches: string[]; model: string };
@@ -88,6 +90,8 @@ export type Plan = {
   approval?: { allowed: boolean; code?: 'over_budget' | 'invalid_plan' | 'no_store' | 'limits'; message?: string };
   /** Who built the basket. basket "rules" means the AI's basket failed the checks (or Bedrock is off) and the rule-based planner was used. */
   engine?: { basket: 'ai' | 'rules'; profile: 'ai' | 'history'; model?: string; fallbackReason?: string };
+  /** Why the chosen store: fresh produce sends the whole basket to Careem Quik; long-shelf-life-only baskets go to the cheapest supermarket. */
+  routing?: { merchantId: string; storeName: string; rule: 'fresh_to_quik' | 'long_shelf_to_shops' | 'no_quik' | 'no_shops'; reason: string; fresh: string[] };
 };
 
 export type Cart = {

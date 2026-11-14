@@ -129,13 +129,21 @@ export function extractRequest(message: string): Extracted {
     const e = checkCut(value);
     if (e) add(e); else out.cutPercent ??= value;
   }
-  const budgetContext = BUDGET_CONTEXT.test(text);
+  // A message that is only an amount ("150", "AED 150") is the weekly budget.
+  const bare = new RegExp(String.raw`^\s*(?:aed|dhs?)?\s*${NUM}\s*${CURRENCY}?\s*$`, 'i').exec(text);
+  const budgetContext = !!bare || BUDGET_CONTEXT.test(text);
+  if (bare) {
+    const value = toNumber(bare[1]);
+    out.numbers.push(value);
+    const e = checkBudget(value);
+    if (e) add(e); else out.budgetAed = value;
+  }
   for (const m of [...text.matchAll(MONEY), ...text.matchAll(BUDGET_NUMBER)]) {
     const value = toNumber(m[1] ?? m[2]);
     out.numbers.push(value);
     const e = checkBudget(value);
     if (!e) out.budgetAed ??= value;
-    else if (value <= 0 || budgetContext) add(e); // "I spent 9000 AED last year" is not a budget
+    else if (budgetContext) add(e); // "I spent 9000 AED last year" or "it costs AED 0" is not a budget
   }
   for (const m of text.matchAll(QTY)) {
     const value = Number(m[1] ?? m[2]);

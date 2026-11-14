@@ -66,7 +66,7 @@ class ScriptedModel implements ModelAdapter {
       input = { products: brief.products.map((p: any) => ({ sku: p.sku, reason: 'scripted', loyal: false, nextDue: null, ...(SCRIPT[p.sku] ?? { decision: 'occasional', tier: 'T4', qty: 1 }) })), likes: ['Royal Mahal rice'], dislikes: ['Golden Sella rice'], switches: ['Cow milk to oat milk in week 11'], persona: { summary: 'Looks like a small household in Dubai Marina that shops weekly at Careem Quik.', routines: ['Weekly Saturday shop at Careem Quik', 'Monthly staples at Marina Fresh Market', 'Extra 1', 'Extra 2', 'Extra 3'] } };
     } else {
       this.basketCalls++;
-      const store = brief.stores.find((s: any) => s.name === 'Marina Fresh Market');
+      const store = brief.stores[0]; // the routed store, the only one offered
       const cutTreats = this.basketCalls > 1;
       const lines: any[] = [];
       const cuts: any[] = [];
@@ -83,8 +83,8 @@ class ScriptedModel implements ModelAdapter {
   }
 }
 
-const run = (model: ScriptedModel, overrides: any[] = []) => brainPlan({
-  model, orders, catalogues, today: TODAY, lastWeekTotal: lastWeek(orders)!.total, budget: { cutPercent: 15 }, overrides, additions: [],
+const run = (model: ScriptedModel, overrides: any[] = [], budget: { cutPercent?: number; budgetAed?: number } = { cutPercent: 15 }) => brainPlan({
+  model, orders, catalogues, today: TODAY, lastWeekTotal: lastWeek(orders)!.total, budget, overrides, additions: [],
   insights: { categorySpend: categorySpend(orders.flatMap((o) => o.lines)).categories, priceDrift: [] },
 });
 
@@ -99,12 +99,12 @@ describe('V2 AI engine', () => {
 
   test('an over-budget plan is rejected by the calculator and the AI revises it', async () => {
     const model = new ScriptedModel();
-    const plan = await run(model);
+    const plan = await run(model, [], { budgetAed: 170 });
     expect(model.basketCalls).toBe(2);
     expect(plan.withinBudget).toBe(true);
-    expect(plan.estTotal).toBeLessThanOrEqual(158.23);
-    expect(plan.stores.find((s) => s.chosen)!.name).toBe('Marina Fresh Market');
-    const sum = plan.items.reduce((s, i) => s + i.lineTotal, 0) + 7 + 1;
+    expect(plan.estTotal).toBeLessThanOrEqual(170);
+    expect(plan.stores.find((s) => s.chosen)!.name).toBe('Careem Quik Dubai Marina'); // fresh produce in the basket
+    const sum = plan.items.reduce((s, i) => s + i.lineTotal, 0) + 4 + 1.5;
     expect(plan.estTotal).toBeCloseTo(sum, 2);
   });
 

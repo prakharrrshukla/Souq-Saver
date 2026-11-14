@@ -15,43 +15,52 @@ const weeksOf = (total: number, skipped: number[]) => {
 };
 
 // ---------- 2. The Khan family: six people in Al Barsha, a baby arrived two months ago ----------
+// Long-shelf-life shoppers: every week they stock the pantry through Careem (Careem Shops, Marina Fresh
+// Market) and buy their fresh food at the neighbourhood market, so fresh produce barely shows in their
+// Careem orders.
 
 const F = weeksOf(14, []);
+const M = 'marina' as const;
 const FAMILY_HISTORY: HistoryLine[] = [
-  { sku: 'sku_oasis_water_6x1500', weeks: F.every, qty: 4 },
-  // Monthly bulk staples run at Marina Fresh Market, always the same brands. Due again this week.
-  { sku: 'sku_royal_basmati_10kg', weeks: [2, 6, 10], store: 'marina' },
-  { sku: 'sku_chakki_atta_10kg', weeks: [2, 6, 10], store: 'marina' },
-  { sku: 'sku_chana_dal_1kg', weeks: [2, 6, 10], qty: 2, store: 'marina' },
-  { sku: 'sku_ghee_1l', weeks: [6, 14], store: 'marina' }, // every 8 weeks, bought last week: not due
-  // Dislike: tried the cheaper Golden Sella rice once at Quik, never again.
+  { sku: 'sku_oasis_water_6x1500', weeks: F.every, qty: 4, store: M },
+  // Monthly bulk staples, always the same brands. Bought last week: not due again for about a month.
+  { sku: 'sku_royal_basmati_10kg', weeks: [2, 6, 10, 14], store: M },
+  { sku: 'sku_chakki_atta_10kg', weeks: [2, 6, 10, 14], store: M },
+  { sku: 'sku_chana_dal_1kg', weeks: [2, 6, 10, 14], qty: 2, store: M },
+  { sku: 'sku_ghee_1l', weeks: [6, 14], store: M }, // every 8 weeks, bought last week: not due
+  { sku: 'sku_noor_sunflower_1800', weeks: F.stepping(2, 2), store: M },
+  { sku: 'sku_wadi_sugar_2kg', weeks: F.stepping(2, 2), store: M },
+  { sku: 'sku_tea_dust_900', weeks: F.stepping(2, 3), store: M }, // every 3 weeks
+  // Dislike: tried the cheaper Golden Sella rice once (a small Quik order), never again.
   { sku: 'sku_golden_sella_5kg', weeks: [5] },
-  // The household grew in week 8 (new baby): more milk and eggs every week since.
-  { sku: 'sku_marmoom_milk_2l', weeks: F.every, qty: 3, qtyByWeek: Object.fromEntries(F.from(8).map((w) => [w, 4])) },
-  { sku: 'sku_golden_eggs_30', weeks: F.every, qty: 1, qtyByWeek: Object.fromEntries(F.from(8).map((w) => [w, 2])) },
-  { sku: 'sku_diapers_44', weeks: [8, 10, 12, 14] }, // new need since the baby: every 2 weeks
-  { sku: 'sku_khayma_bread_6', weeks: F.every, qty: 3 },
-  { sku: 'sku_red_onions_1kg', weeks: F.every, qty: 2, wobble: 0.5 },
-  { sku: 'sku_tomatoes_1kg', weeks: F.every, qty: 2, wobble: 0.5 },
-  { sku: 'sku_potatoes_2kg', weeks: F.every },
-  // Chicken every week; week 10 had guests (double order), not a new habit.
-  { sku: 'sku_valley_chicken_1kg', weeks: F.every, qty: 3, qtyByWeek: { 10: 6 } },
-  { sku: 'sku_laban_yogurt_2kg', weeks: F.every },
-  { sku: 'sku_tea_dust_900', weeks: F.stepping(2, 3) }, // every 3 weeks, bought last week
-  { sku: 'sku_sparkle_dish_750', weeks: F.stepping(1, 3) },
-  { sku: 'sku_brightwash_3l', weeks: [2, 6, 10, 14] },
-  { sku: 'sku_softcloud_12', weeks: F.stepping(2, 2) },
-  // Treats: cola and mango drink every week (doubled for the guests), biscuits, ice cream creeping in.
-  { sku: 'sku_fizzup_cola_6', weeks: F.every, qty: 2, qtyByWeek: { 10: 4 } },
-  { sku: 'sku_mango_drink_6', weeks: F.every },
-  { sku: 'sku_teatime_biscuits_400', weeks: F.every, qty: 2 },
-  { sku: 'sku_chocojoy_4', weeks: [4, 9, 13] },
-  { sku: 'sku_polar_icecream_1l', weeks: [12, 13, 14] },
+  // The weekly pantry run: canned food, pasta and dates for six people.
+  { sku: 'sku_chickpeas_can_400', weeks: F.every, qty: 4, store: M },
+  { sku: 'sku_tuna_can_160', weeks: F.every, qty: 3, store: M },
+  { sku: 'sku_spaghetti_500', weeks: F.every, qty: 3, store: M },
+  { sku: 'sku_tomato_paste_400', weeks: F.every, qty: 2, store: M },
+  { sku: 'sku_dates_1kg', weeks: F.stepping(1, 2), store: M },
+  // Switch when the baby arrived in week 8: fresh milk (small Quik orders) replaced by long-life milk,
+  // plus formula and diapers every two weeks.
+  { sku: 'sku_marmoom_milk_2l', weeks: F.until(7), qty: 3 },
+  { sku: 'sku_uht_milk_6x1l', weeks: F.from(8), qty: 2, store: M },
+  { sku: 'sku_baby_formula_800', weeks: [8, 10, 12, 14], store: M },
+  { sku: 'sku_diapers_44', weeks: [8, 10, 12, 14], store: M },
+  { sku: 'sku_sparkle_dish_750', weeks: F.stepping(1, 3), store: M },
+  { sku: 'sku_brightwash_3l', weeks: [2, 6, 10, 14], store: M },
+  { sku: 'sku_softcloud_12', weeks: F.stepping(2, 2), store: M },
+  // Treats: cola and mango drink every week (doubled for guests in week 10), biscuits, ice cream creeping in.
+  { sku: 'sku_fizzup_cola_6', weeks: F.every, qty: 2, qtyByWeek: { 10: 4 }, store: M },
+  { sku: 'sku_mango_drink_6', weeks: F.every, store: M },
+  { sku: 'sku_teatime_biscuits_400', weeks: F.every, qty: 2, store: M },
+  { sku: 'sku_chocojoy_4', weeks: [4, 9, 13], store: M },
+  { sku: 'sku_polar_icecream_1l', weeks: [12, 13, 14], store: M },
+  // Guests in week 10: the only time fresh chicken came through Careem.
+  { sku: 'sku_valley_chicken_1kg', weeks: [10], qty: 3 },
 ];
 
 export const FAMILY: Persona = {
   key: 'family',
-  story: 'The Khan family: six people in Al Barsha, a new baby since week 8, monthly bulk staples run at Marina Fresh Market, guests in week 10.',
+  story: 'The Khan family: six people in Al Barsha who stock the pantry through Careem every week (bulk rice, atta, dal, canned food, long-life milk) and buy fresh food at the local market; new baby since week 8 (long-life milk, formula, diapers), guests in week 10.',
   user: { given: 'Ayesha', family: 'Khan', email: 'ayesha.khan@family-of-six.example', gender: 'FEMALE' },
   home: {
     name: 'Home', locationUuid: 'LOC-60001', latitude: 25.1124, longitude: 55.2003,

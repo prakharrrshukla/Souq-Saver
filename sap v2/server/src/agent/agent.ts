@@ -132,6 +132,9 @@ export async function runChat(session: Session, request: ChatRequest, model: Mod
   else if (refused) {
     text = t.invalid(refused.result.code, L);
     deps.emit({ event: 'error', data: { message: text, retryable: false, code: refused.result.code, kind: 'validation', field: refused.result.issues?.[0]?.field } });
+  } else if (stop === 'answered' && outcomes.length) {
+    // Every tool call failed: the model's prose would describe an action that did not happen.
+    text = outcomes.some((o) => o.failed === 'careem') ? t.careemDown : outcomes.some((o) => o.failed === 'internal') ? t.genericError : t.loopExhausted;
   } else if (stop === 'answered') text = await modelReply(modelText, language, session, model);
   else text = stop === 'timeout' ? t.timeout : stop === 'model' ? t.modelDown : t.loopExhausted;
   const stopError = STOP_ERRORS[stop]?.(t);

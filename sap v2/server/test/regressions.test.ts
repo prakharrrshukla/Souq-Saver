@@ -6,7 +6,8 @@ import { mkdtempSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { startHttp } from '../../sandbox/careem-mcp-ts/src/server.ts';
-import { build, fixedTime } from '../../fixtures/generate.ts';
+import { build, fixedTime, writeFixtures } from '../../fixtures/generate.ts';
+import { StubModel } from '../src/agent/stub.ts';
 import type { ChatMessage, ModelAdapter, ToolSpec, Turn } from '../src/agent/bedrock.ts';
 import { buildApp } from '../src/api/server.ts';
 import { postSse } from '../src/api/sseClient.ts';
@@ -14,6 +15,7 @@ import type { Plan, SseEvent, XrayStep } from '../src/contract.ts';
 import { normaliseOrders } from '../src/engine/analysis.ts';
 import { parseFees, parseSearch, type StoreCatalogue } from '../src/engine/stores.ts';
 import { checkPlan, type Need } from '../src/brain/check.ts';
+import { shelfLife } from '../src/brain/routing.ts';
 import { CareemMcp } from '../src/mcp/client.ts';
 
 // ---------- an independent oracle for Bedrock Converse message sequencing ----------
@@ -99,7 +101,7 @@ class Scripted implements ModelAdapter {
 }
 /** A correct basket: cheapest store option per need, cut treats until the calculator is happy. */
 const goodBasket: Basket = (brief) => {
-  const store = brief.stores.find((s: any) => s.name === 'Marina Fresh Market');
+  const store = brief.stores[0]; // the routed store, the only one offered
   const lines: any[] = []; const cuts: any[] = [];
   for (const need of brief.needs) {
     const option = store.options[need.key]?.[0];
@@ -146,6 +148,7 @@ const traces = (ev: SseEvent[]) => [...new Map(all(ev, 'trace').map((t) => [t.id
 const chat = (sessionId: string, message: string, extra: Record<string, unknown> = {}) => postSse(`${api}/chat`, { sessionId, message, ...extra });
 const approve = (sessionId: string, plan: Plan) => postSse(`${api}/approve`, { sessionId, planId: plan.planId, approvalToken: plan.approvalToken || 'tok_none' });
 const inBasket = (plan: Plan) => plan.items.filter((i) => i.lineTotal > 0);
+const basket = inBasket;
 /** Tool results in the latest conversation the model saw (each snapshot already includes the earlier turns). */
 const toolResults = (m: Scripted) => (m.conversations.at(-1) ?? []).flatMap((msg) => msg.content.flatMap((b) => ('toolResult' in b ? [b.toolResult] : [])));
 
@@ -185,7 +188,7 @@ describe('1. household preferences survive AI failure ("120 dirhams, keep chips,
   test('loyal Royal Mahal rice is never swapped, cow milk does not come back, chips are kept', () => {
     const basket = inBasket(plan);
     expect(basket.some((i) => /store brand/i.test(i.name) || /Royal Mahal/i.test(i.replaces ?? ''))).toBe(false);
-    expect(basket.some((i) => /Marmoom/i.test(i.name))).toBe(false);
+    expect(basket.some((i) => /Fresh Milk Full Cream/i.test(i.name))).toBe(false);
     expect(basket.find((i) => /Chips/i.test(i.name))).toMatchObject({ reason: 'kept' });
   });
 
@@ -210,7 +213,7 @@ describe('1. household preferences survive AI failure ("120 dirhams, keep chips,
     current = new (class extends Scripted { readonly isBedrock = false as any; structured = undefined as any; })(once('plan_basket', { cutPercent: 15 }));
     const p = one(await chat(sid(), 'cut 15%'), 'plan');
     expect(p.engine).toMatchObject({ basket: 'rules', profile: 'history' });
-    expect(inBasket(p).some((i) => /store brand/i.test(i.name) || /Marmoom/i.test(i.name))).toBe(false);
+    expect(inBasket(p).some((i) => /store brand/i.test(i.name) || /Fresh Milk Full Cream/i.test(i.name))).toBe(false);
   });
 });
 
@@ -383,6 +386,122 @@ describe('5c. limits that make the essentials impossible give an honest answer, 
 });
 
 // ======================================================================================
+describe('10. store routing: fresh produce -> Careem Quik, long-shelf-life only -> cheapest supermarket', () => {
+  const FRESH = ['eggs', 'milk', 'onions', 'tomatoes', 'bread'];
+
+  test('shelf life comes from the Careem category, not product words', () => {
+    const n = (name: string, category: string, parentCategory?: string) => ({ name, category, parentCategory });
+    expect(shelfLife(n('GreenOat Oat Milk 1L', 'Plant Milk', 'Dairy & Eggs'))).toBe('fresh');
+    expect(shelfLife(n('Red Onions 1kg', 'Onions', 'Fruits & Vegetables'))).toBe('fresh');
+    expect(shelfLife(n('Polar Scoop Vanilla Ice Cream 1L', 'Ice Cream', 'Snacks & Sweets'))).toBe('long'); // frozen is not fresh produce
+    expect(shelfLife(n('Sunny Grove Orange Juice 1.5L', 'Juice', 'Water & Beverages'))).toBe('long');
+    expect(shelfLife(n('Royal Mahal Basmati Rice 5kg', 'Basmati Rice', 'Rice, Flour & Pulses'))).toBe('long');
+    expect(shelfLife(n('Ghee 1L', 'Ghee', 'Cooking Essentials'))).toBe('long');
+    expect(shelfLife(n('TinyCare Baby Diapers', 'Diapers', 'Baby Care'))).toBe('long');
+    expect(shelfLife(n('bananas', ''))).toBe('fresh');
+    expect(shelfLife(n('mango drink', ''))).toBe('long');
+  });
+
+  test('a basket with fresh produce goes to Careem Quik, and the reply says why', async () => {
+    current = new Scripted(once('plan_basket', { cutPercent: 15 }));
+    const ev = await chat(sid(), 'cut 15%');
+    const p = one(ev, 'plan');
+    expect(p.routing).toMatchObject({ rule: 'fresh_to_quik' });
+    expect(p.stores.find((s) => s.chosen)).toMatchObject({ type: 'quik' });
+    expect(one(ev, 'message').text).toMatch(/fresh produce/);
+  });
+
+  test('only long-shelf-life items: the cheapest supermarket, and approval builds the cart there', async () => {
+    const s = sid();
+    current = new Scripted(once('plan_basket', { cutPercent: 15, overrides: FRESH.map((item) => ({ item, drop: true })) }));
+    const p = one(await chat(s, 'cut 15%, no fresh food this week'), 'plan');
+    expect(p.routing).toMatchObject({ rule: 'long_shelf_to_shops' });
+    const store = p.stores.find((x) => x.chosen)!;
+    expect(store.type).toBe('shops');
+    const validShops = p.stores.filter((x) => x.type === 'shops' && x.valid);
+    expect(store.estTotal).toBe(Math.min(...validShops.map((x) => x.estTotal)));
+    if (p.approval?.allowed) {
+      const ev = await approve(s, p);
+      expect(one(ev, 'cart')).toMatchObject({ merchantId: store.merchantId });
+      expect(steps(ev).find((x) => x.name === 'create_grocery_cart_with_quantities')?.input).toMatchObject({ merchant_id: Number(store.merchantId) });
+    }
+  });
+
+  test('adding one fresh item to a long-shelf-life basket moves it to Careem Quik', async () => {
+    current = new Scripted(once('plan_basket', { cutPercent: 15, overrides: FRESH.map((item) => ({ item, drop: true })), additions: [{ item: 'bananas', qty: 1 }] }));
+    const p = one(await chat(sid(), 'cut 15%, no fresh food, but add bananas'), 'plan');
+    expect(p.routing).toMatchObject({ rule: 'fresh_to_quik' });
+  });
+
+  test('the calculator rejects a basket at another store than the routed one', () => {
+    const c = checkPlan({ merchantId: marina.merchantId, lines: [{ need: 'water', itemId: bySku('sku_oasis_water_6x1500').itemId, qty: 2, reason: 'kept', note: '' }], cuts: [], summary: '' },
+      [water], catalogues, 999, { requiredMerchantId: catalogues[0].merchantId, routingReason: 'fresh produce' });
+    expect(c.ok).toBe(false);
+    expect(c.issues[0]).toMatch(/must go to Careem Quik/);
+  });
+
+  test('an AI that ignores the routing is rejected; the plan still goes to Careem Quik', async () => {
+    const atMarina: Basket = (brief) => ({ ...goodBasket(brief, 1), merchantId: '40101' });
+    current = new Scripted(once('plan_basket', { cutPercent: 15 }), atMarina);
+    const p = one(await chat(sid(), 'cut 15%'), 'plan');
+    expect(p.stores.find((s) => s.chosen)).toMatchObject({ type: 'quik' });
+    expect(p.engine).toMatchObject({ basket: 'rules' });
+  });
+
+  test('a fresh item Careem Quik does not sell is marked not available, not moved to another store', () => {
+    const quik = catalogues[0];
+    const organicMilk = marina.items.find((i) => i.sku === 'sku_org_milk_1l')!;
+    expect(quik.items.some((i) => i.sku === organicMilk.sku)).toBe(false);
+    const need: Need = { key: 'org', name: organicMilk.name, category: organicMilk.category, parentCategory: 'Dairy & Eggs', size: organicMilk.size, sku: organicMilk.sku, qty: 1, tier: 'T2', loyal: true, pinned: false, reason: '' };
+    const c = checkPlan({ merchantId: quik.merchantId, lines: [], cuts: [{ need: 'org', note: 'not sold here' }], summary: '' }, [need], catalogues, 999, { requiredMerchantId: quik.merchantId });
+    expect(c.ok).toBe(true);
+  });
+});
+
+// ======================================================================================
+describe('11. a budget on its own builds the whole basket', () => {
+  test('a message that is only an amount ("150", "AED 220", "١٥٠") is the weekly budget', async () => {
+    for (const [message, aed] of [['150', 150], ['AED 220', 220], ['١٥٠', 150]] as const) {
+      current = new Scripted(once('plan_basket', { budgetAed: aed }));
+      const p = one(await chat(sid(), message), 'plan');
+      expect(p?.budget, message).toEqual({ aed, source: 'absolute' });
+    }
+  });
+  test('the budget field alone (the app sends a short message for it) builds the basket, also without Bedrock', async () => {
+    current = new StubModel();
+    const p = one(await chat(sid(), "Plan this week's basket within my budget of AED 260", { budgetAed: 260 }), 'plan');
+    expect(p.budget).toEqual({ aed: 260, source: 'absolute' });
+    expect(basket(p).length).toBeGreaterThan(5);
+  });
+});
+
+describe('12. each household gets a basket shaped by how it shops', () => {
+  afterAll(() => writeFixtures('leonardo'));
+  test('Leonardo is fresh-focused: fresh produce is essential and the basket goes to Careem Quik', async () => {
+    writeFixtures('leonardo');
+    current = new StubModel();
+    const ev = await chat(sid(), 'cut 15%');
+    const p = one(ev, 'plan');
+    expect(p.insights.focus).toMatchObject({ label: 'fresh' });
+    expect(p.routing).toMatchObject({ rule: 'fresh_to_quik' });
+    for (const name of ['Bananas', 'Apples', 'Spinach', 'Chicken Breast']) expect(basket(p).find((i) => i.name.includes(name)), name).toMatchObject({ tier: 'T2' });
+    expect(one(ev, 'message').text).toMatch(/Fresh produce is \d+% of this household's spend/);
+  });
+  test('the Khan family is long-shelf-life focused: pantry staples are essential and the basket goes to a supermarket', async () => {
+    writeFixtures('family');
+    current = new StubModel();
+    const ev = await chat(sid(), 'cut 15%');
+    const p = one(ev, 'plan');
+    expect(p.insights.focus).toMatchObject({ label: 'long_shelf' });
+    expect(p.routing).toMatchObject({ rule: 'long_shelf_to_shops' });
+    expect(p.stores.find((s) => s.chosen)).toMatchObject({ type: 'shops' });
+    for (const name of ['Chickpeas', 'Spaghetti', 'Long Life']) expect(basket(p).find((i) => i.name.includes(name)), name).toMatchObject({ tier: 'T2' });
+    expect(basket(p).some((i) => /Bananas|Apples|Spinach|Salmon/.test(i.name))).toBe(false);
+    expect(one(ev, 'message').text).toMatch(/pantry food is \d+% of this household's spend/);
+  });
+});
+
+// ======================================================================================
 describe('6. structured API errors', () => {
   const post = async (body: unknown) => { const r = await fetch(`${api}/chat`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(body) }); return { status: r.status, body: await r.json() }; };
   test('too-long message and excessive budget are validation errors with a code and a field', async () => {
@@ -417,6 +536,15 @@ describe('8. the reply is grounded in the validated plan', () => {
     expect(text).not.toMatch(/1000|AED 50\b|saved AED 50/);
     expect(text).toContain(p.estTotal.toFixed(2));
     if (!p.items.some((i) => i.reason === 'swapped')) expect(text).not.toMatch(/swapp/i);
+  });
+
+  test('when every tool call was refused, the model cannot claim it did something (live finding)', async () => {
+    const script: Orchestrate = (_m, call) => (call === 1 ? toolTurn('plan_basket', { cutPercent: 25, overrides: [{ item: 'chips', keep: true }] })
+      : textTurn("I've kept the chips as you asked."));
+    current = new Scripted(script);
+    const ev = await chat(sid(), 'actually keep the chips');
+    expect(all(ev, 'plan')).toEqual([]);
+    expect(one(ev, 'message').text).not.toMatch(/kept the chips/);
   });
 
   test('a greeting with a quoted example ("cut 15%") is not mistaken for a claim', async () => {

@@ -95,6 +95,19 @@ export const PRODUCTS: Product[] = [
   p('sku_spinach_200', 'Baby Spinach 200g', '200 g', 'Leafy Greens', 'Fruits & Vegetables', 8.5, 7.95, 7.5),
   p('sku_instant_noodles_5', 'Quickbowl Instant Noodles 5pk', '5 pcs', 'Instant Noodles', 'Pantry', 7.0, 6.5),
   p('sku_coffee_beans_250', 'Roastery Arabica Coffee Beans 250g', '250 g', 'Coffee', 'Coffee & Tea', 32.0, 30.0, 27.5),
+  // Added for the fresh-focused Leonardo and the long-shelf-life Khan family. Appended so existing item ids stay the same.
+  p('sku_apples_1kg', 'Royal Gala Apples 1kg', '1 kg', 'Apples', 'Fruits & Vegetables', 9.5, 8.75, 11.0),
+  p('sku_cucumbers_1kg', 'Cucumbers 1kg', '1 kg', 'Cucumbers', 'Fruits & Vegetables', 5.25, 4.75, 7.0),
+  p('sku_carrots_1kg', 'Carrots 1kg', '1 kg', 'Carrots', 'Fruits & Vegetables', 4.5, 3.95, 6.0),
+  p('sku_strawberries_250', 'Strawberries 250g', '250 g', 'Berries', 'Fruits & Vegetables', 12.5, 11.75, 14.0),
+  p('sku_salmon_300', 'Fresh Norwegian Salmon Fillet 300g', '300 g', 'Fresh Fish', 'Fish & Seafood', 29.0, 27.5, 34.0),
+  p('sku_uht_milk_6x1l', 'Marmoom Long Life Full Cream Milk 6x1L', '6 x 1 L', 'Long Life Milk', 'Dairy & Eggs', 27.0, 24.5, 31.0),
+  p('sku_baby_formula_800', 'TinyCare Infant Formula Stage 2 800g', '800 g', 'Baby Formula', 'Baby Care', 69.0, 64.5, 75.0),
+  p('sku_chickpeas_can_400', 'Desi Harvest Chickpeas Can 400g', '400 g', 'Canned Chickpeas', 'Pantry', 3.25, 2.95, 4.5),
+  p('sku_tuna_can_160', 'Ocean Gold Tuna Chunks in Oil 160g', '160 g', 'Canned Tuna', 'Pantry', 6.5, 5.95, 8.0),
+  p('sku_spaghetti_500', 'Bella Spaghetti 500g', '500 g', 'Pasta', 'Pantry', 4.25, 3.95, 5.5),
+  p('sku_tomato_paste_400', 'Sun Valley Tomato Paste Can 400g', '400 g', 'Tomato Paste', 'Pantry', 4.75, 4.25, 6.0),
+  p('sku_dates_1kg', 'Khalas Dates 1kg', '1 kg', 'Dates', 'Pantry', 22.0, 19.95, 26.0),
 ];
 
 const WEEKS = 16; // week 1 is the oldest order, week 16 was placed 7 days ago
@@ -140,6 +153,16 @@ const HISTORY: HistoryLine[] = [
   { sku: 'sku_red_onions_1kg', weeks: every, wobble: 0.5 },
   { sku: 'sku_tomatoes_1kg', weeks: every, wobble: 0.5 },
   { sku: 'sku_khayma_bread_6', weeks: every, qty: 2 },
+  // Fresh produce is the centre of every order: fruit, salad and vegetables, chicken and fish every week.
+  { sku: 'sku_bananas_1kg', weeks: every, wobble: 0.5 },
+  { sku: 'sku_apples_1kg', weeks: every, wobble: 0.5 },
+  { sku: 'sku_spinach_200', weeks: every, wobble: 0.5 },
+  { sku: 'sku_cucumbers_1kg', weeks: every, wobble: 0.5 },
+  { sku: 'sku_carrots_1kg', weeks: except(4, 8, 13) },
+  { sku: 'sku_chicken_breast_500', weeks: every },
+  { sku: 'sku_yogurt_500', weeks: every },
+  { sku: 'sku_salmon_300', weeks: [1, 3, 5, 7, 9, 11, 14, 16] }, // every two weeks
+  { sku: 'sku_strawberries_250', weeks: from(9) }, // berries joined the weekly shop two months ago
   // Household items on slow cycles. Dish soap every 4 weeks (delayed a week by the holiday), bought last week: not due.
   { sku: 'sku_sparkle_dish_750', weeks: [4, 8, 13, 16] },
   { sku: 'sku_brightwash_3l', weeks: [3, 9, 15] },
@@ -154,9 +177,7 @@ const HISTORY: HistoryLine[] = [
   { sku: 'sku_sunny_juice_1500', weeks: [13, 14, 15, 16] },
   // One-off purchases: natural noise, no cycle can be learned from a single order.
   { sku: 'sku_sea_salt_1kg', weeks: [1] },
-  { sku: 'sku_bananas_1kg', weeks: [3] },
   { sku: 'sku_valley_chicken_1kg', weeks: [6] },
-  { sku: 'sku_yogurt_500', weeks: [9] },
   { sku: 'sku_karak_tea_100', weeks: [10] },
 ];
 
@@ -172,7 +193,7 @@ export type Persona = {
 
 const LEONARDO: Persona = {
   key: 'leonardo',
-  story: 'Leonardo DiCappuccino (Careem\'s own sandbox user): Dubai Marina, 16 weeks, brand-loyal staples, cow milk to oat milk, monthly Marina top-ups, away in week 12.',
+  story: 'Leonardo DiCappuccino (Careem\'s own sandbox user): Dubai Marina, 16 weeks, fresh produce in every order (fruit, salad, chicken, fish), brand-loyal staples, cow milk to oat milk, monthly Marina top-ups, away in week 12.',
   user: { given: 'Leonardo', family: 'DiCappuccino', email: 'leo.dicappuccino@finally-won-an-oscar.coffee', gender: 'MALE' },
   home: {
     name: 'Home', locationUuid: 'LOC-50001', latitude: 25.0866, longitude: 55.1474,

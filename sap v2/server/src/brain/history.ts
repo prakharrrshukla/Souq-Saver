@@ -107,6 +107,11 @@ export function validateLearned(ai: any, products: ProductHistory[], history: Hi
       corrections.push(`${p.name}: marked ${insight.decision}, but it was replaced by ${s.replacedBy}; treated as stopped`);
       Object.assign(insight, { decision: 'stopped', nextDue: null, reason: h.reason });
     }
+    // Running out of water or a staple is worse than buying it a few days early.
+    if (insight.decision === 'not_due' && h.decision === 'due' && (insight.tier === 'T1' || insight.tier === 'T2')) {
+      corrections.push(`${p.name}: an essential that runs out this week by its own rhythm (${h.reason}); treated as due`);
+      Object.assign(insight, { decision: 'due', nextDue: null });
+    }
     if (s.triedAndReturned && !insight.loyal) { corrections.push(`${p.name}: an alternative was tried and dropped, so the household is loyal to it`); insight.loyal = true; }
     out.set(sku, insight);
   }

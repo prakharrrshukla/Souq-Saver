@@ -103,8 +103,11 @@ exact total. `cart_checkout` and `cart_grocery_checkout` are never called.
   automatically; "keep the chips" pins them.
 - Fit order: cut T5 (most expensive first) → cheaper swaps (same category, size within 25%, biggest saving
   first) → reduce T3 → remove T4, then T3. If it still does not fit, the shortfall is shown.
-- Store choice: whole basket at each store, items + delivery + service fee. A store missing a T1 or T2
-  item is not valid. One store per order.
+- Store choice (`brain/routing.ts`), one store per order: if the order has fresh produce (fruit and
+  vegetables, dairy and eggs, bakery, meat, fish, by Careem parent category; not frozen food), the whole basket goes
+  to Careem Quik; if it is only long-shelf-life items, it goes to the cheapest Careem Shops supermarket that
+  sells every essential. A fresh item Quik does not sell is shown as not available. The store table still
+  prices the basket at every store, items + delivery + service fee.
 - Monthly saving = (average of the last 4 weekly orders − planned week) × 4.33. It is an estimate and
   is labelled as one (the planned week leaves out items that are not due yet).
 

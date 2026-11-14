@@ -40,7 +40,7 @@ export const TOOL_SPECS: ToolSpec[] = [
   { name: 'analyse_history', description: "Read the household's past Careem grocery orders and return spend by category, price drift per item and reorder cycles. Sample data in the demo.", inputSchema: { type: 'object', properties: {} } },
   {
     name: 'plan_basket',
-    description: "Build this week's grocery basket to a budget, fill it by necessity tier, and pick the cheapest store for the whole basket. Analyses history itself if needed. Budget, additions and overrides from earlier calls are remembered; pass only what changed. Returns the plan; the app shows it with an Approve button.",
+    description: "Build this week's grocery basket to a budget and fill it by necessity tier, at one store chosen by code: fresh produce in the order sends the whole basket to Careem Quik; long-shelf-life-only baskets go to the cheapest supermarket. Analyses history itself if needed. Budget, additions and overrides from earlier calls are remembered; pass only what changed. Returns the plan; the app shows it with an Approve button.",
     inputSchema: {
       type: 'object',
       properties: {
@@ -182,13 +182,13 @@ async function plan(session: Session, rawInput: unknown, deps: Deps) {
   }
   if (deps.signal?.aborted) throw new Error('request cancelled before the plan was saved');
 
-  const { chosenMerchantId, unmatchedAdditions, learned, summary: aiSummary, check: _check, engine, ...shape } = result;
+  const { chosenMerchantId, unmatchedAdditions, learned, summary: aiSummary, check: _check, engine, routing, ...shape } = result;
   if (engine.profile === 'ai') {
     shape.insights = { ...shape.insights, household: { summary: learned.persona.summary, routines: learned.persona.routines, likes: learned.likes, dislikes: learned.dislikes, switches: learned.switches, model: engine.model ?? '' } };
   }
   const chosen = shape.stores.find((s) => s.merchantId === chosenMerchantId && s.chosen) ?? null;
   const planId = `plan_${randomUUID().slice(0, 8)}`;
-  const draftPlan: Plan = { planId, sampleData: deps.sampleData, ...shape, approvalToken: '', engine };
+  const draftPlan: Plan = { planId, sampleData: deps.sampleData, ...shape, approvalToken: '', engine, ...(routing && { routing }) };
   const approval = await step('approval', 'plan_verdict', 'api:approval-gate', { planId, estTotal: shape.estTotal, budget: shape.budget, withinBudget: shape.withinBudget }, () => planVerdict(draftPlan),
     { summary: (v) => (v.allowed ? `approvable: ${budgetVerdict({ ok: true, ...shape }, shape.budget.aed)}` : `approval blocked (${v.code}): ${v.message}`) });
   const approvalToken = approval.allowed ? await issueToken(session.id, planId, planFingerprint(draftPlan)) : '';
@@ -201,7 +201,7 @@ async function plan(session: Session, rawInput: unknown, deps: Deps) {
     items: shape.items.map(({ name, qty, unitPrice, lineTotal, tier, reason, note, replaces, nextDue }) => ({ name, qty, unitPrice, lineTotal, tier, reason, note, replaces, nextDue })),
     stores: shape.stores.map(({ name, estTotal, itemsTotal, deliveryFee, serviceFee, valid, missing, chosen: isChosen }) => ({ name, estTotal, itemsTotal, deliveryFee, serviceFee, valid, missing, chosen: isChosen })),
     priceDrift: shape.insights.priceDrift, itemsNotFound: unmatchedAdditions,
-    engine, approval,
+    engine, approval, routing, focus: shape.insights.focus,
     ...(engine.profile === 'ai' && { learned: { likes: learned.likes, dislikes: learned.dislikes, switches: learned.switches } }),
     ...(engine.basket === 'ai' && { aiSummary }),
     sampleData: deps.sampleData, charged: false,
@@ -222,7 +222,7 @@ const HANDLERS: Record<string, (session: Session, input: any, deps: Deps) => Pro
   plan_basket: plan,
   compare_stores: async (session, _input, deps) => {
     if (!session.plan) await plan(session, {}, deps);
-    return { stores: session.plan!.stores, rule: 'A store missing water or a staple is not valid. One store per order. Totals include delivery and service fees.', sampleData: deps.sampleData };
+    return { stores: session.plan!.stores, routing: session.plan!.routing, rule: 'One store per order. Fresh produce in the order sends the whole basket to Careem Quik; long-shelf-life-only baskets go to the cheapest supermarket with every essential. Totals include delivery and service fees.', sampleData: deps.sampleData };
   },
   explain_change: async (session, input, deps) => {
     if (!session.plan) await plan(session, {}, deps);

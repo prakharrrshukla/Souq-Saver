@@ -1,0 +1,179 @@
+// Page layout and state. No business logic here: everything shown comes from the backend.
+import { useCallback, useEffect, useRef, useState } from 'react';
+import type { Cart, Config, Health, Language, PersonaInfo, PersonaKey, Plan, SseEvent, TraceEvent, XrayStep } from '../../server/src/contract.ts';
+import { ApiError, MOCK, UNREACHABLE, approve, chat, getConfig, getHealth, getPersonas, reset, switchPersona } from './api';
+import { DEFAULT_MESSAGE } from './examples';
+import { Basket } from './components/Basket';
+import { CartResult } from './components/CartResult';
+import { Chat, type ChatLine, type FormError } from './components/Chat';
+import { Footer } from './components/Footer';
+import { Header } from './components/Header';
+import { HouseholdProfile } from './components/HouseholdProfile';
+import { Insights } from './components/Insights';
+import { SampleBanner } from './components/SampleBanner';
+import { StoreComparison } from './components/StoreComparison';
+import { ToolSteps } from './components/ToolSteps';
+import { XRay } from './components/XRay';
+
+const newId = () => Math.random().toString(36).slice(2, 10);
+const upsert = <T,>(list: T[], item: T, same: (a: T) => boolean) => (list.some(same) ? list.map((x) => (same(x) ? item : x)) : [...list, item]);
+
+export default function Desk() {
+  const [config, setConfig] = useState<Config | null>(null);
+  const [health, setHealth] = useState<Health | null>(null);
+  const [unreachable, setUnreachable] = useState(false);
+  const [sessionId, setSessionId] = useState(newId);
+  const [language, setLanguage] = useState<Language>('en');
+  const [input, setInput] = useState(DEFAULT_MESSAGE);
+  const [budget, setBudget] = useState('');
+  const [lines, setLines] = useState<ChatLine[]>([]);
+  const [steps, setSteps] = useState<TraceEvent[]>([]);
+  const [plan, setPlan] = useState<Plan | null>(null);
+  const [cart, setCart] = useState<Cart | null>(null);
+  const [busy, setBusy] = useState(false);
+  const [approving, setApproving] = useState(false);
+  const [xrayOpen, setXrayOpen] = useState(false);
+  const [xraySteps, setXraySteps] = useState<XrayStep[]>([]);
+  const [runId, setRunId] = useState<string | null>(null);
+  const [personas, setPersonas] = useState<PersonaInfo | null>(null);
+  const [switching, setSwitching] = useState(false);
+  const [formError, setFormError] = useState<FormError | null>(null);
+  /** What was just sent, so a rejected message goes back into the box instead of being lost. */
+  const sent = useRef<{ lineId: string; message: string; budget: string } | null>(null);
+
+  const load = useCallback(async () => {
+    try {
+      setConfig(await getConfig());
+      setUnreachable(false);
+      setHealth(await getHealth().catch(() => null));
+      setPersonas(await getPersonas().catch(() => null));
+    } catch {
+      setUnreachable(true);
+    }
+  }, []);
+  useEffect(() => { load(); }, [load]);
+
+  const addError = (text: string) => setLines((current) => [...current, { id: newId(), role: 'error', text }]);
+  /** The input was refused: give the user their text back with the reason next to the field. `notSent`: the request never reached the chat. */
+  const rejectInput = (error: FormError, notSent = false) => {
+    const last = sent.current;
+    if (last) {
+      if (notSent) setLines((current) => current.filter((l) => l.id !== last.lineId));
+      setInput(last.message);
+      setBudget(last.budget);
+    }
+    setFormError(error);
+  };
+  const showFailure = (e: unknown) => {
+    if (e instanceof ApiError && e.kind === 'validation') rejectInput({ message: e.message, field: e.field }, true);
+    else addError(e instanceof ApiError ? e.message : UNREACHABLE);
+  };
+
+  const onEvent = (e: SseEvent) => {
+    if (e.event === 'run') { setRunId(e.data.runId); setXraySteps([]); }
+    else if (e.event === 'trace') setSteps((current) => upsert(current, e.data, (s) => s.id === e.data.id));
+    else if (e.event === 'xray') setXraySteps((current) => upsert(current, e.data.step, (s) => s.stepId === e.data.step.stepId));
+    else if (e.event === 'message') {
+      // Chunks with the same id extend the same bubble.
+      setLines((current) => {
+        const existing = current.find((l) => l.id === e.data.id);
+        const line: ChatLine = { id: e.data.id, role: 'assistant', text: (existing?.text ?? '') + e.data.text, rtl: e.data.rtl };
+        return upsert(current, line, (l) => l.id === e.data.id);
+      });
+    } else if (e.event === 'plan') { setPlan(e.data); setCart(null); }
+    else if (e.event === 'cart') setCart(e.data);
+    else if (e.event === 'error') { if (e.data.kind === 'validation') rejectInput({ message: e.data.message, field: e.data.field }); else addError(e.data.message); }
+  };
+
+  const send = async () => {
+    // The budget field alone is enough: it plans the whole basket within it.
+    const message = input.trim() || (budget.trim() ? `Plan this week's basket within my budget of AED ${budget.trim()}` : '');
+    if (!message || busy) return;
+    const lineId = newId();
+    sent.current = { lineId, message, budget };
+    setLines((current) => [...current, { id: lineId, role: 'user', text: message }]);
+    setInput('');
+    setFormError(null);
+    setSteps([]);
+    setBusy(true);
+    try {
+      const budgetAed = budget.trim() === '' ? undefined : Number(budget);
+      await chat({ sessionId, message, language, ...(budgetAed !== undefined && { budgetAed }) }, onEvent);
+    } catch (e) {
+      showFailure(e);
+    } finally {
+      setBusy(false);
+      getHealth().then(setHealth).catch(() => {});
+    }
+  };
+
+  const onApprove = async () => {
+    if (!plan || approving) return;
+    setApproving(true);
+    try {
+      await approve({ sessionId, planId: plan.planId, approvalToken: plan.approvalToken }, onEvent);
+    } catch (e) {
+      addError(e instanceof ApiError ? e.message : UNREACHABLE);
+    } finally {
+      setApproving(false);
+    }
+  };
+
+  const onReset = async () => {
+    await reset(sessionId).catch(() => {});
+    setSessionId(newId());
+    setLines([]); setSteps([]); setPlan(null); setCart(null); setXraySteps([]); setRunId(null); setFormError(null);
+    setInput(DEFAULT_MESSAGE); setBudget('');
+  };
+
+  /** Demo: serve another household from the Careem MCP sandbox, then start a fresh chat. */
+  const onPersona = async (key: PersonaKey) => {
+    if (busy || switching || key === personas?.current) return;
+    setSwitching(true);
+    try {
+      await switchPersona(key);
+      await onReset();
+      setPersonas(await getPersonas().catch(() => personas));
+    } catch (e) {
+      setLines((current) => [...current, { id: newId(), role: 'error', text: (e as Error).message } as ChatLine]);
+    } finally {
+      setSwitching(false);
+    }
+  };
+
+  if (unreachable) {
+    return (
+      <main className="page">
+        <div className="card unreachable" role="alert">
+          <h1>Souq Saver</h1>
+          <p>Backend not reachable on localhost:8080.</p>
+          <p className="muted">Start it with <code>npm run dev:backend</code> from the repo root, then retry.</p>
+          <button className="primary" onClick={load}>Retry</button>
+        </div>
+      </main>
+    );
+  }
+  if (!config) return <main className="page"><p className="muted">Loading…</p></main>;
+
+  return (
+    <main className="page">
+      <Header languages={config.languages} language={language} onLanguage={setLanguage} xrayOpen={xrayOpen} onToggleXray={() => setXrayOpen((open) => !open)} onReset={onReset}
+        personas={personas} onPersona={onPersona} personaDisabled={busy || switching} />
+      <SampleBanner sampleData={config.sampleData} mock={MOCK} />
+      <div className="columns">
+        <Chat lines={lines} input={input} onInput={setInput} budget={budget} onBudget={setBudget} busy={busy} onSend={send} formError={formError}
+          onExample={(text, exampleLanguage) => { setInput(text); if (exampleLanguage) setLanguage(exampleLanguage); }} />
+        <div className="stack">
+          <ToolSteps steps={steps} />
+          {plan && <HouseholdProfile household={plan.insights.household} />}
+          {plan && <StoreComparison stores={plan.stores} routing={plan.routing} />}
+          {plan && <Basket plan={plan} approving={approving} approved={!!cart} onApprove={onApprove} />}
+          {cart && <CartResult cart={cart} />}
+          {plan && <Insights insights={plan.insights} />}
+        </div>
+      </div>
+      {xrayOpen && <XRay liveSteps={xraySteps} liveRunId={runId} />}
+      <Footer config={config} health={health} />
+    </main>
+  );
+}

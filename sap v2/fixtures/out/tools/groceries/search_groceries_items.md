@@ -2422,6 +2422,618 @@ Careem's own scenarios for this tool.
           "superapp_link": "careem://shops/merchant/40101/item/4010246"
         }
       ]
+    },
+    {
+      "name": "apples",
+      "items": [
+        {
+          "id": 4010247,
+          "item": "Royal Gala Apples 1kg",
+          "item_localized": "Royal Gala Apples 1kg",
+          "upc": "6290004010247",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_apples_1kg.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_apples_1kg.png"
+          ],
+          "description": "Royal Gala Apples 1kg (1 kg)",
+          "description_localized": "Royal Gala Apples 1kg (1 kg)",
+          "price": {
+            "original": 8.75,
+            "original_formatted": "8.75",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 8.75,
+            "total_formatted": "8.75",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010247",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40101,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_apples_1kg",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40101/item/4010247"
+        }
+      ]
+    },
+    {
+      "name": "cucumbers",
+      "items": [
+        {
+          "id": 4010248,
+          "item": "Cucumbers 1kg",
+          "item_localized": "Cucumbers 1kg",
+          "upc": "6290004010248",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_cucumbers_1kg.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_cucumbers_1kg.png"
+          ],
+          "description": "Cucumbers 1kg (1 kg)",
+          "description_localized": "Cucumbers 1kg (1 kg)",
+          "price": {
+            "original": 4.75,
+            "original_formatted": "4.75",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 4.75,
+            "total_formatted": "4.75",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010248",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40101,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_cucumbers_1kg",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40101/item/4010248"
+        }
+      ]
+    },
+    {
+      "name": "carrots",
+      "items": [
+        {
+          "id": 4010249,
+          "item": "Carrots 1kg",
+          "item_localized": "Carrots 1kg",
+          "upc": "6290004010249",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_carrots_1kg.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_carrots_1kg.png"
+          ],
+          "description": "Carrots 1kg (1 kg)",
+          "description_localized": "Carrots 1kg (1 kg)",
+          "price": {
+            "original": 3.95,
+            "original_formatted": "3.95",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 3.95,
+            "total_formatted": "3.95",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010249",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40101,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_carrots_1kg",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40101/item/4010249"
+        }
+      ]
+    },
+    {
+      "name": "berries",
+      "items": [
+        {
+          "id": 4010250,
+          "item": "Strawberries 250g",
+          "item_localized": "Strawberries 250g",
+          "upc": "6290004010250",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_strawberries_250.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_strawberries_250.png"
+          ],
+          "description": "Strawberries 250g (250 g)",
+          "description_localized": "Strawberries 250g (250 g)",
+          "price": {
+            "original": 11.75,
+            "original_formatted": "11.75",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 11.75,
+            "total_formatted": "11.75",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010250",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40101,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_strawberries_250",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40101/item/4010250"
+        }
+      ]
+    },
+    {
+      "name": "fresh fish",
+      "items": [
+        {
+          "id": 4010251,
+          "item": "Fresh Norwegian Salmon Fillet 300g",
+          "item_localized": "Fresh Norwegian Salmon Fillet 300g",
+          "upc": "6290004010251",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_salmon_300.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_salmon_300.png"
+          ],
+          "description": "Fresh Norwegian Salmon Fillet 300g (300 g)",
+          "description_localized": "Fresh Norwegian Salmon Fillet 300g (300 g)",
+          "price": {
+            "original": 27.5,
+            "original_formatted": "27.50",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 27.5,
+            "total_formatted": "27.50",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010251",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40101,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_salmon_300",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40101/item/4010251"
+        }
+      ]
+    },
+    {
+      "name": "long life milk",
+      "items": [
+        {
+          "id": 4010252,
+          "item": "Marmoom Long Life Full Cream Milk 6x1L",
+          "item_localized": "Marmoom Long Life Full Cream Milk 6x1L",
+          "upc": "6290004010252",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_uht_milk_6x1l.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_uht_milk_6x1l.png"
+          ],
+          "description": "Marmoom Long Life Full Cream Milk 6x1L (6 x 1 L)",
+          "description_localized": "Marmoom Long Life Full Cream Milk 6x1L (6 x 1 L)",
+          "price": {
+            "original": 24.5,
+            "original_formatted": "24.50",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 24.5,
+            "total_formatted": "24.50",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010252",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40101,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_uht_milk_6x1l",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40101/item/4010252"
+        }
+      ]
+    },
+    {
+      "name": "baby formula",
+      "items": [
+        {
+          "id": 4010253,
+          "item": "TinyCare Infant Formula Stage 2 800g",
+          "item_localized": "TinyCare Infant Formula Stage 2 800g",
+          "upc": "6290004010253",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_baby_formula_800.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_baby_formula_800.png"
+          ],
+          "description": "TinyCare Infant Formula Stage 2 800g (800 g)",
+          "description_localized": "TinyCare Infant Formula Stage 2 800g (800 g)",
+          "price": {
+            "original": 64.5,
+            "original_formatted": "64.50",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 64.5,
+            "total_formatted": "64.50",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010253",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40101,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_baby_formula_800",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40101/item/4010253"
+        }
+      ]
+    },
+    {
+      "name": "canned chickpeas",
+      "items": [
+        {
+          "id": 4010254,
+          "item": "Desi Harvest Chickpeas Can 400g",
+          "item_localized": "Desi Harvest Chickpeas Can 400g",
+          "upc": "6290004010254",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_chickpeas_can_400.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_chickpeas_can_400.png"
+          ],
+          "description": "Desi Harvest Chickpeas Can 400g (400 g)",
+          "description_localized": "Desi Harvest Chickpeas Can 400g (400 g)",
+          "price": {
+            "original": 2.95,
+            "original_formatted": "2.95",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 2.95,
+            "total_formatted": "2.95",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010254",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40101,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_chickpeas_can_400",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40101/item/4010254"
+        }
+      ]
+    },
+    {
+      "name": "canned tuna",
+      "items": [
+        {
+          "id": 4010255,
+          "item": "Ocean Gold Tuna Chunks in Oil 160g",
+          "item_localized": "Ocean Gold Tuna Chunks in Oil 160g",
+          "upc": "6290004010255",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_tuna_can_160.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_tuna_can_160.png"
+          ],
+          "description": "Ocean Gold Tuna Chunks in Oil 160g (160 g)",
+          "description_localized": "Ocean Gold Tuna Chunks in Oil 160g (160 g)",
+          "price": {
+            "original": 5.95,
+            "original_formatted": "5.95",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 5.95,
+            "total_formatted": "5.95",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010255",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40101,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_tuna_can_160",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40101/item/4010255"
+        }
+      ]
+    },
+    {
+      "name": "pasta",
+      "items": [
+        {
+          "id": 4010256,
+          "item": "Bella Spaghetti 500g",
+          "item_localized": "Bella Spaghetti 500g",
+          "upc": "6290004010256",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_spaghetti_500.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_spaghetti_500.png"
+          ],
+          "description": "Bella Spaghetti 500g (500 g)",
+          "description_localized": "Bella Spaghetti 500g (500 g)",
+          "price": {
+            "original": 3.95,
+            "original_formatted": "3.95",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 3.95,
+            "total_formatted": "3.95",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010256",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40101,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_spaghetti_500",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40101/item/4010256"
+        }
+      ]
+    },
+    {
+      "name": "tomato paste",
+      "items": [
+        {
+          "id": 4010257,
+          "item": "Sun Valley Tomato Paste Can 400g",
+          "item_localized": "Sun Valley Tomato Paste Can 400g",
+          "upc": "6290004010257",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_tomato_paste_400.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_tomato_paste_400.png"
+          ],
+          "description": "Sun Valley Tomato Paste Can 400g (400 g)",
+          "description_localized": "Sun Valley Tomato Paste Can 400g (400 g)",
+          "price": {
+            "original": 4.25,
+            "original_formatted": "4.25",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 4.25,
+            "total_formatted": "4.25",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010257",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40101,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_tomato_paste_400",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40101/item/4010257"
+        }
+      ]
+    },
+    {
+      "name": "dates",
+      "items": [
+        {
+          "id": 4010258,
+          "item": "Khalas Dates 1kg",
+          "item_localized": "Khalas Dates 1kg",
+          "upc": "6290004010258",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_dates_1kg.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_dates_1kg.png"
+          ],
+          "description": "Khalas Dates 1kg (1 kg)",
+          "description_localized": "Khalas Dates 1kg (1 kg)",
+          "price": {
+            "original": 19.95,
+            "original_formatted": "19.95",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 19.95,
+            "total_formatted": "19.95",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010258",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40101,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_dates_1kg",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40101/item/4010258"
+        }
+      ]
     }
   ]
 }
@@ -4358,6 +4970,618 @@ Careem's own scenarios for this tool.
           "item_type": "REGULAR",
           "bundle_details": null,
           "superapp_link": "careem://shops/merchant/40201/item/4020238"
+        }
+      ]
+    },
+    {
+      "name": "apples",
+      "items": [
+        {
+          "id": 4020239,
+          "item": "Royal Gala Apples 1kg",
+          "item_localized": "Royal Gala Apples 1kg",
+          "upc": "6290004020239",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_apples_1kg.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_apples_1kg.png"
+          ],
+          "description": "Royal Gala Apples 1kg (1 kg)",
+          "description_localized": "Royal Gala Apples 1kg (1 kg)",
+          "price": {
+            "original": 11,
+            "original_formatted": "11.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 11,
+            "total_formatted": "11.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020239",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40201,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_apples_1kg",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40201/item/4020239"
+        }
+      ]
+    },
+    {
+      "name": "cucumbers",
+      "items": [
+        {
+          "id": 4020240,
+          "item": "Cucumbers 1kg",
+          "item_localized": "Cucumbers 1kg",
+          "upc": "6290004020240",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_cucumbers_1kg.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_cucumbers_1kg.png"
+          ],
+          "description": "Cucumbers 1kg (1 kg)",
+          "description_localized": "Cucumbers 1kg (1 kg)",
+          "price": {
+            "original": 7,
+            "original_formatted": "7.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 7,
+            "total_formatted": "7.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020240",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40201,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_cucumbers_1kg",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40201/item/4020240"
+        }
+      ]
+    },
+    {
+      "name": "carrots",
+      "items": [
+        {
+          "id": 4020241,
+          "item": "Carrots 1kg",
+          "item_localized": "Carrots 1kg",
+          "upc": "6290004020241",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_carrots_1kg.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_carrots_1kg.png"
+          ],
+          "description": "Carrots 1kg (1 kg)",
+          "description_localized": "Carrots 1kg (1 kg)",
+          "price": {
+            "original": 6,
+            "original_formatted": "6.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 6,
+            "total_formatted": "6.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020241",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40201,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_carrots_1kg",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40201/item/4020241"
+        }
+      ]
+    },
+    {
+      "name": "berries",
+      "items": [
+        {
+          "id": 4020242,
+          "item": "Strawberries 250g",
+          "item_localized": "Strawberries 250g",
+          "upc": "6290004020242",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_strawberries_250.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_strawberries_250.png"
+          ],
+          "description": "Strawberries 250g (250 g)",
+          "description_localized": "Strawberries 250g (250 g)",
+          "price": {
+            "original": 14,
+            "original_formatted": "14.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 14,
+            "total_formatted": "14.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020242",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40201,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_strawberries_250",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40201/item/4020242"
+        }
+      ]
+    },
+    {
+      "name": "fresh fish",
+      "items": [
+        {
+          "id": 4020243,
+          "item": "Fresh Norwegian Salmon Fillet 300g",
+          "item_localized": "Fresh Norwegian Salmon Fillet 300g",
+          "upc": "6290004020243",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_salmon_300.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_salmon_300.png"
+          ],
+          "description": "Fresh Norwegian Salmon Fillet 300g (300 g)",
+          "description_localized": "Fresh Norwegian Salmon Fillet 300g (300 g)",
+          "price": {
+            "original": 34,
+            "original_formatted": "34.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 34,
+            "total_formatted": "34.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020243",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40201,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_salmon_300",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40201/item/4020243"
+        }
+      ]
+    },
+    {
+      "name": "long life milk",
+      "items": [
+        {
+          "id": 4020244,
+          "item": "Marmoom Long Life Full Cream Milk 6x1L",
+          "item_localized": "Marmoom Long Life Full Cream Milk 6x1L",
+          "upc": "6290004020244",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_uht_milk_6x1l.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_uht_milk_6x1l.png"
+          ],
+          "description": "Marmoom Long Life Full Cream Milk 6x1L (6 x 1 L)",
+          "description_localized": "Marmoom Long Life Full Cream Milk 6x1L (6 x 1 L)",
+          "price": {
+            "original": 31,
+            "original_formatted": "31.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 31,
+            "total_formatted": "31.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020244",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40201,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_uht_milk_6x1l",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40201/item/4020244"
+        }
+      ]
+    },
+    {
+      "name": "baby formula",
+      "items": [
+        {
+          "id": 4020245,
+          "item": "TinyCare Infant Formula Stage 2 800g",
+          "item_localized": "TinyCare Infant Formula Stage 2 800g",
+          "upc": "6290004020245",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_baby_formula_800.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_baby_formula_800.png"
+          ],
+          "description": "TinyCare Infant Formula Stage 2 800g (800 g)",
+          "description_localized": "TinyCare Infant Formula Stage 2 800g (800 g)",
+          "price": {
+            "original": 75,
+            "original_formatted": "75.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 75,
+            "total_formatted": "75.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020245",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40201,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_baby_formula_800",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40201/item/4020245"
+        }
+      ]
+    },
+    {
+      "name": "canned chickpeas",
+      "items": [
+        {
+          "id": 4020246,
+          "item": "Desi Harvest Chickpeas Can 400g",
+          "item_localized": "Desi Harvest Chickpeas Can 400g",
+          "upc": "6290004020246",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_chickpeas_can_400.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_chickpeas_can_400.png"
+          ],
+          "description": "Desi Harvest Chickpeas Can 400g (400 g)",
+          "description_localized": "Desi Harvest Chickpeas Can 400g (400 g)",
+          "price": {
+            "original": 4.5,
+            "original_formatted": "4.50",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 4.5,
+            "total_formatted": "4.50",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020246",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40201,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_chickpeas_can_400",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40201/item/4020246"
+        }
+      ]
+    },
+    {
+      "name": "canned tuna",
+      "items": [
+        {
+          "id": 4020247,
+          "item": "Ocean Gold Tuna Chunks in Oil 160g",
+          "item_localized": "Ocean Gold Tuna Chunks in Oil 160g",
+          "upc": "6290004020247",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_tuna_can_160.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_tuna_can_160.png"
+          ],
+          "description": "Ocean Gold Tuna Chunks in Oil 160g (160 g)",
+          "description_localized": "Ocean Gold Tuna Chunks in Oil 160g (160 g)",
+          "price": {
+            "original": 8,
+            "original_formatted": "8.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 8,
+            "total_formatted": "8.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020247",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40201,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_tuna_can_160",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40201/item/4020247"
+        }
+      ]
+    },
+    {
+      "name": "pasta",
+      "items": [
+        {
+          "id": 4020248,
+          "item": "Bella Spaghetti 500g",
+          "item_localized": "Bella Spaghetti 500g",
+          "upc": "6290004020248",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_spaghetti_500.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_spaghetti_500.png"
+          ],
+          "description": "Bella Spaghetti 500g (500 g)",
+          "description_localized": "Bella Spaghetti 500g (500 g)",
+          "price": {
+            "original": 5.5,
+            "original_formatted": "5.50",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 5.5,
+            "total_formatted": "5.50",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020248",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40201,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_spaghetti_500",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40201/item/4020248"
+        }
+      ]
+    },
+    {
+      "name": "tomato paste",
+      "items": [
+        {
+          "id": 4020249,
+          "item": "Sun Valley Tomato Paste Can 400g",
+          "item_localized": "Sun Valley Tomato Paste Can 400g",
+          "upc": "6290004020249",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_tomato_paste_400.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_tomato_paste_400.png"
+          ],
+          "description": "Sun Valley Tomato Paste Can 400g (400 g)",
+          "description_localized": "Sun Valley Tomato Paste Can 400g (400 g)",
+          "price": {
+            "original": 6,
+            "original_formatted": "6.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 6,
+            "total_formatted": "6.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020249",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40201,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_tomato_paste_400",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40201/item/4020249"
+        }
+      ]
+    },
+    {
+      "name": "dates",
+      "items": [
+        {
+          "id": 4020250,
+          "item": "Khalas Dates 1kg",
+          "item_localized": "Khalas Dates 1kg",
+          "upc": "6290004020250",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_dates_1kg.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_dates_1kg.png"
+          ],
+          "description": "Khalas Dates 1kg (1 kg)",
+          "description_localized": "Khalas Dates 1kg (1 kg)",
+          "price": {
+            "original": 26,
+            "original_formatted": "26.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 26,
+            "total_formatted": "26.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020250",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40201,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_dates_1kg",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40201/item/4020250"
         }
       ]
     }
@@ -6780,6 +8004,618 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
           "item_type": "REGULAR",
           "bundle_details": null,
           "superapp_link": "careem://shops/merchant/40001/item/4000246"
+        }
+      ]
+    },
+    {
+      "name": "apples",
+      "items": [
+        {
+          "id": 4000247,
+          "item": "Royal Gala Apples 1kg",
+          "item_localized": "Royal Gala Apples 1kg",
+          "upc": "6290004000247",
+          "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_apples_1kg.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/quik/sku_apples_1kg.png"
+          ],
+          "description": "Royal Gala Apples 1kg (1 kg)",
+          "description_localized": "Royal Gala Apples 1kg (1 kg)",
+          "price": {
+            "original": 9.5,
+            "original_formatted": "9.50",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 9.5,
+            "total_formatted": "9.50",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000247",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40001,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_apples_1kg",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40001/item/4000247"
+        }
+      ]
+    },
+    {
+      "name": "cucumbers",
+      "items": [
+        {
+          "id": 4000248,
+          "item": "Cucumbers 1kg",
+          "item_localized": "Cucumbers 1kg",
+          "upc": "6290004000248",
+          "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_cucumbers_1kg.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/quik/sku_cucumbers_1kg.png"
+          ],
+          "description": "Cucumbers 1kg (1 kg)",
+          "description_localized": "Cucumbers 1kg (1 kg)",
+          "price": {
+            "original": 5.25,
+            "original_formatted": "5.25",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 5.25,
+            "total_formatted": "5.25",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000248",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40001,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_cucumbers_1kg",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40001/item/4000248"
+        }
+      ]
+    },
+    {
+      "name": "carrots",
+      "items": [
+        {
+          "id": 4000249,
+          "item": "Carrots 1kg",
+          "item_localized": "Carrots 1kg",
+          "upc": "6290004000249",
+          "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_carrots_1kg.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/quik/sku_carrots_1kg.png"
+          ],
+          "description": "Carrots 1kg (1 kg)",
+          "description_localized": "Carrots 1kg (1 kg)",
+          "price": {
+            "original": 4.5,
+            "original_formatted": "4.50",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 4.5,
+            "total_formatted": "4.50",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000249",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40001,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_carrots_1kg",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40001/item/4000249"
+        }
+      ]
+    },
+    {
+      "name": "berries",
+      "items": [
+        {
+          "id": 4000250,
+          "item": "Strawberries 250g",
+          "item_localized": "Strawberries 250g",
+          "upc": "6290004000250",
+          "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_strawberries_250.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/quik/sku_strawberries_250.png"
+          ],
+          "description": "Strawberries 250g (250 g)",
+          "description_localized": "Strawberries 250g (250 g)",
+          "price": {
+            "original": 12.5,
+            "original_formatted": "12.50",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 12.5,
+            "total_formatted": "12.50",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000250",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40001,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_strawberries_250",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40001/item/4000250"
+        }
+      ]
+    },
+    {
+      "name": "fresh fish",
+      "items": [
+        {
+          "id": 4000251,
+          "item": "Fresh Norwegian Salmon Fillet 300g",
+          "item_localized": "Fresh Norwegian Salmon Fillet 300g",
+          "upc": "6290004000251",
+          "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_salmon_300.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/quik/sku_salmon_300.png"
+          ],
+          "description": "Fresh Norwegian Salmon Fillet 300g (300 g)",
+          "description_localized": "Fresh Norwegian Salmon Fillet 300g (300 g)",
+          "price": {
+            "original": 29,
+            "original_formatted": "29.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 29,
+            "total_formatted": "29.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000251",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40001,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_salmon_300",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40001/item/4000251"
+        }
+      ]
+    },
+    {
+      "name": "long life milk",
+      "items": [
+        {
+          "id": 4000252,
+          "item": "Marmoom Long Life Full Cream Milk 6x1L",
+          "item_localized": "Marmoom Long Life Full Cream Milk 6x1L",
+          "upc": "6290004000252",
+          "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_uht_milk_6x1l.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/quik/sku_uht_milk_6x1l.png"
+          ],
+          "description": "Marmoom Long Life Full Cream Milk 6x1L (6 x 1 L)",
+          "description_localized": "Marmoom Long Life Full Cream Milk 6x1L (6 x 1 L)",
+          "price": {
+            "original": 27,
+            "original_formatted": "27.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 27,
+            "total_formatted": "27.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000252",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40001,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_uht_milk_6x1l",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40001/item/4000252"
+        }
+      ]
+    },
+    {
+      "name": "baby formula",
+      "items": [
+        {
+          "id": 4000253,
+          "item": "TinyCare Infant Formula Stage 2 800g",
+          "item_localized": "TinyCare Infant Formula Stage 2 800g",
+          "upc": "6290004000253",
+          "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_baby_formula_800.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/quik/sku_baby_formula_800.png"
+          ],
+          "description": "TinyCare Infant Formula Stage 2 800g (800 g)",
+          "description_localized": "TinyCare Infant Formula Stage 2 800g (800 g)",
+          "price": {
+            "original": 69,
+            "original_formatted": "69.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 69,
+            "total_formatted": "69.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000253",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40001,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_baby_formula_800",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40001/item/4000253"
+        }
+      ]
+    },
+    {
+      "name": "canned chickpeas",
+      "items": [
+        {
+          "id": 4000254,
+          "item": "Desi Harvest Chickpeas Can 400g",
+          "item_localized": "Desi Harvest Chickpeas Can 400g",
+          "upc": "6290004000254",
+          "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_chickpeas_can_400.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/quik/sku_chickpeas_can_400.png"
+          ],
+          "description": "Desi Harvest Chickpeas Can 400g (400 g)",
+          "description_localized": "Desi Harvest Chickpeas Can 400g (400 g)",
+          "price": {
+            "original": 3.25,
+            "original_formatted": "3.25",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 3.25,
+            "total_formatted": "3.25",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000254",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40001,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_chickpeas_can_400",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40001/item/4000254"
+        }
+      ]
+    },
+    {
+      "name": "canned tuna",
+      "items": [
+        {
+          "id": 4000255,
+          "item": "Ocean Gold Tuna Chunks in Oil 160g",
+          "item_localized": "Ocean Gold Tuna Chunks in Oil 160g",
+          "upc": "6290004000255",
+          "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_tuna_can_160.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/quik/sku_tuna_can_160.png"
+          ],
+          "description": "Ocean Gold Tuna Chunks in Oil 160g (160 g)",
+          "description_localized": "Ocean Gold Tuna Chunks in Oil 160g (160 g)",
+          "price": {
+            "original": 6.5,
+            "original_formatted": "6.50",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 6.5,
+            "total_formatted": "6.50",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000255",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40001,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_tuna_can_160",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40001/item/4000255"
+        }
+      ]
+    },
+    {
+      "name": "pasta",
+      "items": [
+        {
+          "id": 4000256,
+          "item": "Bella Spaghetti 500g",
+          "item_localized": "Bella Spaghetti 500g",
+          "upc": "6290004000256",
+          "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_spaghetti_500.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/quik/sku_spaghetti_500.png"
+          ],
+          "description": "Bella Spaghetti 500g (500 g)",
+          "description_localized": "Bella Spaghetti 500g (500 g)",
+          "price": {
+            "original": 4.25,
+            "original_formatted": "4.25",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 4.25,
+            "total_formatted": "4.25",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000256",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40001,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_spaghetti_500",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40001/item/4000256"
+        }
+      ]
+    },
+    {
+      "name": "tomato paste",
+      "items": [
+        {
+          "id": 4000257,
+          "item": "Sun Valley Tomato Paste Can 400g",
+          "item_localized": "Sun Valley Tomato Paste Can 400g",
+          "upc": "6290004000257",
+          "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_tomato_paste_400.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/quik/sku_tomato_paste_400.png"
+          ],
+          "description": "Sun Valley Tomato Paste Can 400g (400 g)",
+          "description_localized": "Sun Valley Tomato Paste Can 400g (400 g)",
+          "price": {
+            "original": 4.75,
+            "original_formatted": "4.75",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 4.75,
+            "total_formatted": "4.75",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000257",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40001,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_tomato_paste_400",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40001/item/4000257"
+        }
+      ]
+    },
+    {
+      "name": "dates",
+      "items": [
+        {
+          "id": 4000258,
+          "item": "Khalas Dates 1kg",
+          "item_localized": "Khalas Dates 1kg",
+          "upc": "6290004000258",
+          "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_dates_1kg.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/quik/sku_dates_1kg.png"
+          ],
+          "description": "Khalas Dates 1kg (1 kg)",
+          "description_localized": "Khalas Dates 1kg (1 kg)",
+          "price": {
+            "original": 22,
+            "original_formatted": "22.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 22,
+            "total_formatted": "22.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000258",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40001,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_dates_1kg",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40001/item/4000258"
         }
       ]
     }

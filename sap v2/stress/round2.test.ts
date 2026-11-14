@@ -90,7 +90,7 @@ describe('R1. number extraction: no false refusals, no misses', () => {
     'I spent 9000 AED last year on groceries, cut 15% please',
     'budget: 5000 AED', 'budget 1 AED', 'cut 90%', 'cut 1%', 'add 20 bags of rice', 'budget 120.50 AED',
     'my flat is 1501, cut 15%', 'deliver on 2026-11-20, budget 150 AED', 'add 6 x 1.5 L water',
-    'budget 1,000 AED', 'I have 2 kids, budget 300 dirhams', 'ميزانيتي ١٢٠ درهم', 'बजट 150 दिरहम',
+    'budget 1,000 AED', 'I have 2 kids, budget 300 dirhams', 'ميزانيتي ١٢٠ درهم', 'बजट 150 दिरहम', 'say it costs AED 0',
   ];
   for (const m of ok) test(`accepted: ${m}`, () => expect(extractRequest(m).problems).toEqual([]));
 
@@ -131,11 +131,12 @@ describe('R2. limits at their exact boundaries through the API', () => {
     expect(one(ev, 'error')).toMatchObject({ kind: 'validation', code: 'too_many_items' });
   });
   test('20 of one item through the model is allowed; 21 is refused', async () => {
-    current = new Scripted(once('plan_basket', { additions: [{ item: 'bananas', qty: 20 }] }));
-    const p = one(await chat(sid(), 'add 20 kg of bananas'), 'plan');
-    expect(basket(p).find((i) => /banana/i.test(i.name))?.qty ?? 'unavailable').toBe(20);
-    current = new Scripted(once('plan_basket', { additions: [{ item: 'bananas', qty: 21 }] }));
-    expect(one(await chat(sid(), 'add bananas, lots'), 'error')).toMatchObject({ code: 'quantity_out_of_range' });
+    // Potatoes: not in this household's history, so the addition is the whole quantity.
+    current = new Scripted(once('plan_basket', { additions: [{ item: 'potatoes', qty: 20 }] }));
+    const p = one(await chat(sid(), 'add 20 bags of potatoes'), 'plan');
+    expect(basket(p).find((i) => /potato/i.test(i.name))?.qty ?? 'unavailable').toBe(20);
+    current = new Scripted(once('plan_basket', { additions: [{ item: 'potatoes', qty: 21 }] }));
+    expect(one(await chat(sid(), 'add potatoes, lots'), 'error')).toMatchObject({ code: 'quantity_out_of_range' });
   });
 });
 
@@ -245,7 +246,7 @@ describe('R7. the other households through the rule planner (no AI)', () => {
     expect(p).toBeTruthy();
     const diapers = p.items.find((i) => /diaper/i.test(i.name));
     if (diapers) expect(diapers.tier).toBe('T2');
-    expect(basket(p).some((i) => /Marmoom/i.test(i.name)) || p.items.some((i) => /Marmoom/i.test(i.name) && i.reason === 'deferred')).toBe(true);
+    expect(basket(p).some((i) => /Long Life/i.test(i.name))).toBe(true); // switched from fresh milk when the baby came
     console.log('[R7] Khan:', basket(p).map((i) => `${i.qty}x ${i.name}`).join(', '), '| AED', p.estTotal, 'budget', p.budget.aed, p.approval);
     if (p.approval?.allowed) expect(all(await postSse(`${api}/approve`, { sessionId: s, planId: p.planId, approvalToken: p.approvalToken }), 'cart')).toHaveLength(1);
     writeFixtures(originalPersona);

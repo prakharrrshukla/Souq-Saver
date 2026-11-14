@@ -102,7 +102,8 @@ describe('POST /api/chat: "Same as last week, but cut 15%"', () => {
   test('assistant message is English, left to right, and honest', () => {
     const message = one(events, 'message');
     expect(message).toMatchObject({ role: 'assistant', language: 'en', rtl: false });
-    expect(message.text).toContain('Marina Fresh Market');
+    expect(message.text).toContain('Careem Quik Dubai Marina');
+    expect(message.text).toMatch(/fresh produce/);
     expect(message.text).toMatch(/sample data/i);
     expect(message.text).toMatch(/nothing has been charged/i);
   });
@@ -183,7 +184,7 @@ describe('POST /api/chat: "Same as last week, but cut 15%"', () => {
     const why = await chat(sessionId, 'Why did you drop the chocolate?');
     expect(one(why, 'message').text).toMatch(/ChocoJoy.*cut first/i);
     const stores = await chat(sessionId, 'Which store is cheapest?');
-    expect(one(stores, 'message').text).toMatch(/Cheapest for the whole basket: Marina Fresh Market/);
+    expect(one(stores, 'message').text).toMatch(/Chosen for the whole basket: Careem Quik Dubai Marina/);
     const keep = await chat(sessionId, 'Keep the chips.');
     const kept = one(keep, 'plan');
     expect(kept.items.find((i) => i.name.includes('Chips'))).toMatchObject({ reason: 'kept', note: 'Kept because you asked' });
@@ -204,16 +205,15 @@ describe('POST /api/approve', () => {
     expect(events[events.length - 1].event).toBe('done');
     const cart: Cart = one(events, 'cart');
     const store = plan.stores.find((s) => s.chosen)!;
-    expect(cart).toEqual({
-      merchantId: '40101', storeName: 'Marina Fresh Market', basketId: '6000003', subtotal: store.itemsTotal, deliveryFee: 7, serviceFee: 1,
-      promo: { code: 'FREEDEL', saving: 7 }, total: Math.round((store.itemsTotal + 7 + 1 - 7) * 100) / 100, charged: false, sampleData: true,
-    });
+    expect(store).toMatchObject({ type: 'quik' }); // fresh produce in the basket: Careem Quik
+    expect(cart).toMatchObject({ merchantId: store.merchantId, storeName: store.name, subtotal: store.itemsTotal, deliveryFee: store.deliveryFee, serviceFee: store.serviceFee, charged: false, sampleData: true });
+    expect(cart.total).toBeCloseTo(store.itemsTotal + store.deliveryFee + store.serviceFee - (cart.promo?.saving ?? 0), 2);
     const steps = finalSteps(events);
     expect(steps.filter((s) => s.kind === 'mcp').map((s) => s.name)).toEqual(['create_grocery_cart_with_quantities', 'cart_get_basket_price']);
     expect(steps.some((s) => BLOCKED_TOOLS.has(s.name) && s.kind === 'mcp')).toBe(false); // checkout is never called
     expect(steps.find((s) => s.name === 'check_token')).toMatchObject({ kind: 'approval', status: 'ok', source: 'api:approval-gate' });
     const sent = steps.find((s) => s.name === 'create_grocery_cart_with_quantities')!.input as any;
-    expect(sent.merchant_id).toBe(40101);
+    expect(sent.merchant_id).toBe(Number(store.merchantId));
     expect(sent.items).toHaveLength(plan.items.filter((i) => i.lineTotal > 0).length);
 
     // Same token again: refused, and nothing mutating runs.
@@ -228,8 +228,9 @@ describe('POST /api/approve', () => {
 
   test('an invalid token, or a token for another session, runs nothing', async () => {
     const sessionId = session();
-    const plan = one(await chat(sessionId, 'My budget this week is 170 dirhams'), 'plan');
-    expect(plan.budget).toEqual({ aed: 170, source: 'absolute' });
+    const plan = one(await chat(sessionId, 'My budget this week is 300 dirhams'), 'plan');
+    expect(plan.budget).toEqual({ aed: 300, source: 'absolute' });
+    expect(plan.approvalToken).toMatch(/^tok_/);
     for (const events of [await approve(sessionId, plan, 'tok_0000000000000000'), await postSse(`${api}/approve`, { sessionId: session(), planId: plan.planId, approvalToken: plan.approvalToken })]) {
       expect(one(events, 'error')).toBeTruthy();
       expect(all(events, 'cart')).toEqual([]);
@@ -273,7 +274,8 @@ describe('five languages', () => {
   ];
   test.each(cases)('%s: plan returned and reply in that language', async (language, message, script, rtl) => {
     const events = await chat(session(), message); // no language hint: detected from the text
-    expect(one(events, 'plan').budget).toEqual({ aed: 158.23, source: 'cut_percent', cutPercent: 15 });
+    const plan = one(events, 'plan');
+    expect(plan.budget).toEqual({ aed: Math.round(plan.lastWeekTotal * 0.85 * 100) / 100, source: 'cut_percent', cutPercent: 15 });
     const reply = one(events, 'message');
     expect(reply).toMatchObject({ language, rtl });
     expect(reply.text).toMatch(script);

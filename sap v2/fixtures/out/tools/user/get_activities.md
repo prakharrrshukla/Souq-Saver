@@ -107,6 +107,60 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "amount": 6
           },
           {
+            "item_id": 4000216,
+            "name": "Bananas 1kg",
+            "quantity": 1,
+            "amount": 6.5
+          },
+          {
+            "item_id": 4000247,
+            "name": "Royal Gala Apples 1kg",
+            "quantity": 1,
+            "amount": 9.5
+          },
+          {
+            "item_id": 4000244,
+            "name": "Baby Spinach 200g",
+            "quantity": 1,
+            "amount": 8.5
+          },
+          {
+            "item_id": 4000248,
+            "name": "Cucumbers 1kg",
+            "quantity": 1,
+            "amount": 5.25
+          },
+          {
+            "item_id": 4000249,
+            "name": "Carrots 1kg",
+            "quantity": 1,
+            "amount": 4.5
+          },
+          {
+            "item_id": 4000242,
+            "name": "Green Valley Chicken Breast 500g",
+            "quantity": 1,
+            "amount": 17.5
+          },
+          {
+            "item_id": 4000213,
+            "name": "Marmoom Farms Greek Style Yogurt 500g",
+            "quantity": 1,
+            "amount": 11.5
+          },
+          {
+            "item_id": 4000251,
+            "name": "Fresh Norwegian Salmon Fillet 300g",
+            "quantity": 1,
+            "amount": 29
+          },
+          {
+            "item_id": 4000250,
+            "name": "Strawberries 250g",
+            "quantity": 1,
+            "amount": 12.5
+          },
+          {
             "item_id": 4000220,
             "name": "Sparkle Lemon Dishwashing Liquid 750ml",
             "quantity": 1,
@@ -176,13 +230,13 @@ Kept ahead of the household scenarios so the magic trigger still works.
       },
       "pricing": {
         "currency": "AED",
-        "total_price": "186.15"
+        "total_price": "290.90"
       },
       "presentation_data": {
         "title": "Careem Quik",
         "subtitle": "Oasis Springs Drinking Water 6x1.5L, Al Wadi White Sugar 2kg, GreenOat Oat Milk 1L",
         "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/quik.png",
-        "trailing": "AED 186.15",
+        "trailing": "AED 290.90",
         "thirdline": "Delivered to Home"
       }
     },
@@ -195,9 +249,9 @@ Kept ahead of the household scenarios so the magic trigger still works.
       "user_id": 900000001,
       "status": "completed",
       "country": "AE",
-      "activity_time": "{{now-336h}}",
-      "created_at": "{{now-336h}}",
-      "updated_at": "{{now-335h}}",
+      "activity_time": "{{now-335h}}",
+      "created_at": "{{now-335h}}",
+      "updated_at": "{{now-334h}}",
       "data": {
         "status": "DELIVERED",
         "basket_id": 6000315,
@@ -207,7 +261,7 @@ Kept ahead of the household scenarios so the magic trigger still works.
         "merchant_type": "ufd",
         "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9315&provider_id=3&partner=shops",
         "payment_type": "CARD",
-        "completed_at": {{unixms-335h}},
+        "completed_at": {{unixms-334h}},
         "items": [
           {
             "item_id": 4000201,
@@ -231,19 +285,67 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "item_id": 4000214,
             "name": "Red Onions 1kg",
             "quantity": 1,
-            "amount": 4.5
+            "amount": 4
           },
           {
             "item_id": 4000215,
             "name": "Tomatoes 1kg",
             "quantity": 1,
-            "amount": 5.75
+            "amount": 5.5
           },
           {
             "item_id": 4000217,
             "name": "Al Khayma Arabic Bread Large 6pcs",
             "quantity": 2,
             "amount": 6
+          },
+          {
+            "item_id": 4000216,
+            "name": "Bananas 1kg",
+            "quantity": 1,
+            "amount": 7
+          },
+          {
+            "item_id": 4000247,
+            "name": "Royal Gala Apples 1kg",
+            "quantity": 1,
+            "amount": 9.75
+          },
+          {
+            "item_id": 4000244,
+            "name": "Baby Spinach 200g",
+            "quantity": 1,
+            "amount": 8.75
+          },
+          {
+            "item_id": 4000248,
+            "name": "Cucumbers 1kg",
+            "quantity": 1,
+            "amount": 5.75
+          },
+          {
+            "item_id": 4000249,
+            "name": "Carrots 1kg",
+            "quantity": 1,
+            "amount": 4.5
+          },
+          {
+            "item_id": 4000242,
+            "name": "Green Valley Chicken Breast 500g",
+            "quantity": 1,
+            "amount": 17.5
+          },
+          {
+            "item_id": 4000213,
+            "name": "Marmoom Farms Greek Style Yogurt 500g",
+            "quantity": 1,
+            "amount": 11.5
+          },
+          {
+            "item_id": 4000250,
+            "name": "Strawberries 250g",
+            "quantity": 1,
+            "amount": 12.5
           },
           {
             "item_id": 4000221,
@@ -309,13 +411,13 @@ Kept ahead of the household scenarios so the magic trigger still works.
       },
       "pricing": {
         "currency": "AED",
-        "total_price": "180.00"
+        "total_price": "256.50"
       },
       "presentation_data": {
         "title": "Careem Quik",
         "subtitle": "Oasis Springs Drinking Water 6x1.5L, GreenOat Oat Milk 1L, Golden Yolk Eggs Tray 30",
         "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/quik.png",
-        "trailing": "AED 180.00",
+        "trailing": "AED 256.50",
         "thirdline": "Delivered to Home"
       }
     },
@@ -328,9 +430,9 @@ Kept ahead of the household scenarios so the magic trigger still works.
       "user_id": 900000001,
       "status": "completed",
       "country": "AE",
-      "activity_time": "{{now-504h}}",
-      "created_at": "{{now-504h}}",
-      "updated_at": "{{now-503h}}",
+      "activity_time": "{{now-505h}}",
+      "created_at": "{{now-505h}}",
+      "updated_at": "{{now-504h}}",
       "data": {
         "status": "DELIVERED",
         "basket_id": 6000314,
@@ -340,7 +442,7 @@ Kept ahead of the household scenarios so the magic trigger still works.
         "merchant_type": "ufd",
         "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9314&provider_id=3&partner=shops",
         "payment_type": "CARD",
-        "completed_at": {{unixms-503h}},
+        "completed_at": {{unixms-504h}},
         "items": [
           {
             "item_id": 4000201,
@@ -376,19 +478,73 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "item_id": 4000214,
             "name": "Red Onions 1kg",
             "quantity": 1,
-            "amount": 4
+            "amount": 4.5
           },
           {
             "item_id": 4000215,
             "name": "Tomatoes 1kg",
             "quantity": 1,
-            "amount": 6
+            "amount": 5
           },
           {
             "item_id": 4000217,
             "name": "Al Khayma Arabic Bread Large 6pcs",
             "quantity": 2,
             "amount": 6
+          },
+          {
+            "item_id": 4000216,
+            "name": "Bananas 1kg",
+            "quantity": 1,
+            "amount": 6.25
+          },
+          {
+            "item_id": 4000247,
+            "name": "Royal Gala Apples 1kg",
+            "quantity": 1,
+            "amount": 9.5
+          },
+          {
+            "item_id": 4000244,
+            "name": "Baby Spinach 200g",
+            "quantity": 1,
+            "amount": 8.25
+          },
+          {
+            "item_id": 4000248,
+            "name": "Cucumbers 1kg",
+            "quantity": 1,
+            "amount": 5
+          },
+          {
+            "item_id": 4000249,
+            "name": "Carrots 1kg",
+            "quantity": 1,
+            "amount": 4.5
+          },
+          {
+            "item_id": 4000242,
+            "name": "Green Valley Chicken Breast 500g",
+            "quantity": 1,
+            "amount": 17.5
+          },
+          {
+            "item_id": 4000213,
+            "name": "Marmoom Farms Greek Style Yogurt 500g",
+            "quantity": 1,
+            "amount": 11.5
+          },
+          {
+            "item_id": 4000251,
+            "name": "Fresh Norwegian Salmon Fillet 300g",
+            "quantity": 1,
+            "amount": 29
+          },
+          {
+            "item_id": 4000250,
+            "name": "Strawberries 250g",
+            "quantity": 1,
+            "amount": 12.5
           },
           {
             "item_id": 4000223,
@@ -448,13 +604,13 @@ Kept ahead of the household scenarios so the magic trigger still works.
       },
       "pricing": {
         "currency": "AED",
-        "total_price": "204.00"
+        "total_price": "307.50"
       },
       "presentation_data": {
         "title": "Careem Quik",
         "subtitle": "Oasis Springs Drinking Water 6x1.5L, Royal Mahal Basmati Rice 5kg, Noor Al Sahra Sunflower Oil 1.8L",
         "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/quik.png",
-        "trailing": "AED 204.00",
+        "trailing": "AED 307.50",
         "thirdline": "Delivered to Home"
       }
     },
@@ -467,9 +623,9 @@ Kept ahead of the household scenarios so the magic trigger still works.
       "user_id": 900000001,
       "status": "completed",
       "country": "AE",
-      "activity_time": "{{now-673h}}",
-      "created_at": "{{now-673h}}",
-      "updated_at": "{{now-672h}}",
+      "activity_time": "{{now-670h}}",
+      "created_at": "{{now-670h}}",
+      "updated_at": "{{now-669h}}",
       "data": {
         "status": "DELIVERED",
         "basket_id": 6000313,
@@ -479,7 +635,7 @@ Kept ahead of the household scenarios so the magic trigger still works.
         "merchant_type": "ufd",
         "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9313&provider_id=3&partner=shops",
         "payment_type": "CARD",
-        "completed_at": {{unixms-672h}},
+        "completed_at": {{unixms-669h}},
         "items": [
           {
             "item_id": 4000201,
@@ -503,19 +659,61 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "item_id": 4000214,
             "name": "Red Onions 1kg",
             "quantity": 1,
-            "amount": 4.5
+            "amount": 4.25
           },
           {
             "item_id": 4000215,
             "name": "Tomatoes 1kg",
             "quantity": 1,
-            "amount": 6
+            "amount": 5.25
           },
           {
             "item_id": 4000217,
             "name": "Al Khayma Arabic Bread Large 6pcs",
             "quantity": 2,
             "amount": 6
+          },
+          {
+            "item_id": 4000216,
+            "name": "Bananas 1kg",
+            "quantity": 1,
+            "amount": 7
+          },
+          {
+            "item_id": 4000247,
+            "name": "Royal Gala Apples 1kg",
+            "quantity": 1,
+            "amount": 9.5
+          },
+          {
+            "item_id": 4000244,
+            "name": "Baby Spinach 200g",
+            "quantity": 1,
+            "amount": 8.5
+          },
+          {
+            "item_id": 4000248,
+            "name": "Cucumbers 1kg",
+            "quantity": 1,
+            "amount": 5.5
+          },
+          {
+            "item_id": 4000242,
+            "name": "Green Valley Chicken Breast 500g",
+            "quantity": 1,
+            "amount": 17.5
+          },
+          {
+            "item_id": 4000213,
+            "name": "Marmoom Farms Greek Style Yogurt 500g",
+            "quantity": 1,
+            "amount": 11.5
+          },
+          {
+            "item_id": 4000250,
+            "name": "Strawberries 250g",
+            "quantity": 1,
+            "amount": 12.5
           },
           {
             "item_id": 4000220,
@@ -575,13 +773,13 @@ Kept ahead of the household scenarios so the magic trigger still works.
       },
       "pricing": {
         "currency": "AED",
-        "total_price": "146.50"
+        "total_price": "217.50"
       },
       "presentation_data": {
         "title": "Careem Quik",
         "subtitle": "Oasis Springs Drinking Water 6x1.5L, GreenOat Oat Milk 1L, Golden Yolk Eggs Tray 30",
         "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/quik.png",
-        "trailing": "AED 146.50",
+        "trailing": "AED 217.50",
         "thirdline": "Delivered to Home"
       }
     },
@@ -594,9 +792,9 @@ Kept ahead of the household scenarios so the magic trigger still works.
       "user_id": 900000001,
       "status": "completed",
       "country": "AE",
-      "activity_time": "{{now-1008h}}",
-      "created_at": "{{now-1008h}}",
-      "updated_at": "{{now-1007h}}",
+      "activity_time": "{{now-1005h}}",
+      "created_at": "{{now-1005h}}",
+      "updated_at": "{{now-1004h}}",
       "data": {
         "status": "DELIVERED",
         "basket_id": 6000311,
@@ -606,7 +804,7 @@ Kept ahead of the household scenarios so the magic trigger still works.
         "merchant_type": "ufd",
         "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9311&provider_id=3&partner=shops",
         "payment_type": "CARD",
-        "completed_at": {{unixms-1007h}},
+        "completed_at": {{unixms-1004h}},
         "items": [
           {
             "item_id": 4000201,
@@ -648,19 +846,73 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "item_id": 4000214,
             "name": "Red Onions 1kg",
             "quantity": 1,
-            "amount": 3.75
+            "amount": 4
           },
           {
             "item_id": 4000215,
             "name": "Tomatoes 1kg",
             "quantity": 1,
-            "amount": 5
+            "amount": 6
           },
           {
             "item_id": 4000217,
             "name": "Al Khayma Arabic Bread Large 6pcs",
             "quantity": 2,
             "amount": 6
+          },
+          {
+            "item_id": 4000216,
+            "name": "Bananas 1kg",
+            "quantity": 1,
+            "amount": 7
+          },
+          {
+            "item_id": 4000247,
+            "name": "Royal Gala Apples 1kg",
+            "quantity": 1,
+            "amount": 9.25
+          },
+          {
+            "item_id": 4000244,
+            "name": "Baby Spinach 200g",
+            "quantity": 1,
+            "amount": 8.25
+          },
+          {
+            "item_id": 4000248,
+            "name": "Cucumbers 1kg",
+            "quantity": 1,
+            "amount": 5.75
+          },
+          {
+            "item_id": 4000249,
+            "name": "Carrots 1kg",
+            "quantity": 1,
+            "amount": 4.5
+          },
+          {
+            "item_id": 4000242,
+            "name": "Green Valley Chicken Breast 500g",
+            "quantity": 1,
+            "amount": 17.5
+          },
+          {
+            "item_id": 4000213,
+            "name": "Marmoom Farms Greek Style Yogurt 500g",
+            "quantity": 1,
+            "amount": 11.5
+          },
+          {
+            "item_id": 4000251,
+            "name": "Fresh Norwegian Salmon Fillet 300g",
+            "quantity": 1,
+            "amount": 29
+          },
+          {
+            "item_id": 4000250,
+            "name": "Strawberries 250g",
+            "quantity": 1,
+            "amount": 12.5
           },
           {
             "item_id": 4000223,
@@ -708,13 +960,13 @@ Kept ahead of the household scenarios so the magic trigger still works.
       },
       "pricing": {
         "currency": "AED",
-        "total_price": "180.00"
+        "total_price": "286.50"
       },
       "presentation_data": {
         "title": "Careem Quik",
         "subtitle": "Oasis Springs Drinking Water 6x1.5L, Royal Mahal Basmati Rice 5kg, Noor Al Sahra Sunflower Oil 1.8L",
         "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/quik.png",
-        "trailing": "AED 180.00",
+        "trailing": "AED 286.50",
         "thirdline": "Delivered to Home"
       }
     },
@@ -763,19 +1015,67 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "item_id": 4000214,
             "name": "Red Onions 1kg",
             "quantity": 1,
-            "amount": 4
+            "amount": 4.25
           },
           {
             "item_id": 4000215,
             "name": "Tomatoes 1kg",
             "quantity": 1,
-            "amount": 5.75
+            "amount": 5
           },
           {
             "item_id": 4000217,
             "name": "Al Khayma Arabic Bread Large 6pcs",
             "quantity": 2,
             "amount": 6
+          },
+          {
+            "item_id": 4000216,
+            "name": "Bananas 1kg",
+            "quantity": 1,
+            "amount": 7
+          },
+          {
+            "item_id": 4000247,
+            "name": "Royal Gala Apples 1kg",
+            "quantity": 1,
+            "amount": 9
+          },
+          {
+            "item_id": 4000244,
+            "name": "Baby Spinach 200g",
+            "quantity": 1,
+            "amount": 9
+          },
+          {
+            "item_id": 4000248,
+            "name": "Cucumbers 1kg",
+            "quantity": 1,
+            "amount": 4.75
+          },
+          {
+            "item_id": 4000249,
+            "name": "Carrots 1kg",
+            "quantity": 1,
+            "amount": 4.5
+          },
+          {
+            "item_id": 4000242,
+            "name": "Green Valley Chicken Breast 500g",
+            "quantity": 1,
+            "amount": 17.5
+          },
+          {
+            "item_id": 4000213,
+            "name": "Marmoom Farms Greek Style Yogurt 500g",
+            "quantity": 1,
+            "amount": 11.5
+          },
+          {
+            "item_id": 4000250,
+            "name": "Strawberries 250g",
+            "quantity": 1,
+            "amount": 12.5
           },
           {
             "item_id": 4000222,
@@ -823,13 +1123,13 @@ Kept ahead of the household scenarios so the magic trigger still works.
       },
       "pricing": {
         "currency": "AED",
-        "total_price": "141.15"
+        "total_price": "216.40"
       },
       "presentation_data": {
         "title": "Careem Quik",
         "subtitle": "Oasis Springs Drinking Water 6x1.5L, Marmoom Farms Fresh Milk Full Cream 2L, Golden Yolk Eggs Tray 30",
         "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/quik.png",
-        "trailing": "AED 141.15",
+        "trailing": "AED 216.40",
         "thirdline": "Delivered to Home"
       }
     },
@@ -842,9 +1142,9 @@ Kept ahead of the household scenarios so the magic trigger still works.
       "user_id": 900000001,
       "status": "completed",
       "country": "AE",
-      "activity_time": "{{now-1345h}}",
-      "created_at": "{{now-1345h}}",
-      "updated_at": "{{now-1344h}}",
+      "activity_time": "{{now-1347h}}",
+      "created_at": "{{now-1347h}}",
+      "updated_at": "{{now-1346h}}",
       "data": {
         "status": "DELIVERED",
         "basket_id": 6000309,
@@ -854,7 +1154,7 @@ Kept ahead of the household scenarios so the magic trigger still works.
         "merchant_type": "ufd",
         "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9309&provider_id=3&partner=shops",
         "payment_type": "CARD",
-        "completed_at": {{unixms-1344h}},
+        "completed_at": {{unixms-1346h}},
         "items": [
           {
             "item_id": 4000201,
@@ -878,19 +1178,73 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "item_id": 4000214,
             "name": "Red Onions 1kg",
             "quantity": 1,
-            "amount": 4.5
+            "amount": 4
           },
           {
             "item_id": 4000215,
             "name": "Tomatoes 1kg",
             "quantity": 1,
-            "amount": 5
+            "amount": 5.75
           },
           {
             "item_id": 4000217,
             "name": "Al Khayma Arabic Bread Large 6pcs",
             "quantity": 2,
             "amount": 6
+          },
+          {
+            "item_id": 4000216,
+            "name": "Bananas 1kg",
+            "quantity": 1,
+            "amount": 6.5
+          },
+          {
+            "item_id": 4000247,
+            "name": "Royal Gala Apples 1kg",
+            "quantity": 1,
+            "amount": 9.75
+          },
+          {
+            "item_id": 4000244,
+            "name": "Baby Spinach 200g",
+            "quantity": 1,
+            "amount": 8.25
+          },
+          {
+            "item_id": 4000248,
+            "name": "Cucumbers 1kg",
+            "quantity": 1,
+            "amount": 5.25
+          },
+          {
+            "item_id": 4000249,
+            "name": "Carrots 1kg",
+            "quantity": 1,
+            "amount": 4.5
+          },
+          {
+            "item_id": 4000242,
+            "name": "Green Valley Chicken Breast 500g",
+            "quantity": 1,
+            "amount": 17.5
+          },
+          {
+            "item_id": 4000213,
+            "name": "Marmoom Farms Greek Style Yogurt 500g",
+            "quantity": 1,
+            "amount": 11.5
+          },
+          {
+            "item_id": 4000251,
+            "name": "Fresh Norwegian Salmon Fillet 300g",
+            "quantity": 1,
+            "amount": 29
+          },
+          {
+            "item_id": 4000250,
+            "name": "Strawberries 250g",
+            "quantity": 1,
+            "amount": 12.5
           },
           {
             "item_id": 4000221,
@@ -909,12 +1263,6 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "name": "ChocoJoy Milk Chocolate Bars 4 Pack",
             "quantity": 1,
             "amount": 9.75
-          },
-          {
-            "item_id": 4000213,
-            "name": "Marmoom Farms Greek Style Yogurt 500g",
-            "quantity": 1,
-            "amount": 11.5
           }
         ],
         "order_delivery": {
@@ -938,13 +1286,13 @@ Kept ahead of the household scenarios so the magic trigger still works.
       },
       "pricing": {
         "currency": "AED",
-        "total_price": "147.65"
+        "total_price": "241.15"
       },
       "presentation_data": {
         "title": "Careem Quik",
         "subtitle": "Oasis Springs Drinking Water 6x1.5L, Marmoom Farms Fresh Milk Full Cream 2L, Golden Yolk Eggs Tray 30",
         "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/quik.png",
-        "trailing": "AED 147.65",
+        "trailing": "AED 241.15",
         "thirdline": "Delivered to Home"
       }
     },
@@ -1005,19 +1353,55 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "item_id": 4000214,
             "name": "Red Onions 1kg",
             "quantity": 1,
-            "amount": 4.5
+            "amount": 4
           },
           {
             "item_id": 4000215,
             "name": "Tomatoes 1kg",
             "quantity": 1,
-            "amount": 5
+            "amount": 5.5
           },
           {
             "item_id": 4000217,
             "name": "Al Khayma Arabic Bread Large 6pcs",
             "quantity": 2,
             "amount": 6
+          },
+          {
+            "item_id": 4000216,
+            "name": "Bananas 1kg",
+            "quantity": 1,
+            "amount": 6
+          },
+          {
+            "item_id": 4000247,
+            "name": "Royal Gala Apples 1kg",
+            "quantity": 1,
+            "amount": 9.25
+          },
+          {
+            "item_id": 4000244,
+            "name": "Baby Spinach 200g",
+            "quantity": 1,
+            "amount": 8.5
+          },
+          {
+            "item_id": 4000248,
+            "name": "Cucumbers 1kg",
+            "quantity": 1,
+            "amount": 5
+          },
+          {
+            "item_id": 4000242,
+            "name": "Green Valley Chicken Breast 500g",
+            "quantity": 1,
+            "amount": 17.5
+          },
+          {
+            "item_id": 4000213,
+            "name": "Marmoom Farms Greek Style Yogurt 500g",
+            "quantity": 1,
+            "amount": 11.5
           },
           {
             "item_id": 4000220,
@@ -1059,13 +1443,13 @@ Kept ahead of the household scenarios so the magic trigger still works.
       },
       "pricing": {
         "currency": "AED",
-        "total_price": "163.15"
+        "total_price": "220.90"
       },
       "presentation_data": {
         "title": "Careem Quik",
         "subtitle": "Oasis Springs Drinking Water 6x1.5L, Golden Sella Basmati Rice 5kg, Noor Al Sahra Sunflower Oil 1.8L",
         "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/quik.png",
-        "trailing": "AED 163.15",
+        "trailing": "AED 220.90",
         "thirdline": "Delivered to Home"
       }
     },
@@ -1108,19 +1492,67 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "item_id": 4000214,
             "name": "Red Onions 1kg",
             "quantity": 1,
-            "amount": 4.75
+            "amount": 4
           },
           {
             "item_id": 4000215,
             "name": "Tomatoes 1kg",
             "quantity": 1,
-            "amount": 5.75
+            "amount": 6
           },
           {
             "item_id": 4000217,
             "name": "Al Khayma Arabic Bread Large 6pcs",
             "quantity": 2,
             "amount": 6
+          },
+          {
+            "item_id": 4000216,
+            "name": "Bananas 1kg",
+            "quantity": 1,
+            "amount": 6
+          },
+          {
+            "item_id": 4000247,
+            "name": "Royal Gala Apples 1kg",
+            "quantity": 1,
+            "amount": 9.5
+          },
+          {
+            "item_id": 4000244,
+            "name": "Baby Spinach 200g",
+            "quantity": 1,
+            "amount": 8
+          },
+          {
+            "item_id": 4000248,
+            "name": "Cucumbers 1kg",
+            "quantity": 1,
+            "amount": 4.75
+          },
+          {
+            "item_id": 4000249,
+            "name": "Carrots 1kg",
+            "quantity": 1,
+            "amount": 4.5
+          },
+          {
+            "item_id": 4000242,
+            "name": "Green Valley Chicken Breast 500g",
+            "quantity": 1,
+            "amount": 17.5
+          },
+          {
+            "item_id": 4000213,
+            "name": "Marmoom Farms Greek Style Yogurt 500g",
+            "quantity": 1,
+            "amount": 11.5
+          },
+          {
+            "item_id": 4000251,
+            "name": "Fresh Norwegian Salmon Fillet 300g",
+            "quantity": 1,
+            "amount": 29
           },
           {
             "item_id": 4000223,
@@ -1156,13 +1588,13 @@ Kept ahead of the household scenarios so the magic trigger still works.
       },
       "pricing": {
         "currency": "AED",
-        "total_price": "81.40"
+        "total_price": "171.65"
       },
       "presentation_data": {
         "title": "Careem Quik",
         "subtitle": "Marmoom Farms Fresh Milk Full Cream 2L, Golden Yolk Eggs Tray 30, Red Onions 1kg",
         "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/quik.png",
-        "trailing": "AED 81.40",
+        "trailing": "AED 171.65",
         "thirdline": "Delivered to Home"
       }
     },
@@ -1175,9 +1607,9 @@ Kept ahead of the household scenarios so the magic trigger still works.
       "user_id": 900000001,
       "status": "completed",
       "country": "AE",
-      "activity_time": "{{now-1822h}}",
-      "created_at": "{{now-1822h}}",
-      "updated_at": "{{now-1821h}}",
+      "activity_time": "{{now-1826h}}",
+      "created_at": "{{now-1826h}}",
+      "updated_at": "{{now-1825h}}",
       "data": {
         "status": "DELIVERED",
         "basket_id": 6000306,
@@ -1187,7 +1619,7 @@ Kept ahead of the household scenarios so the magic trigger still works.
         "merchant_type": "ufd",
         "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9306&provider_id=3&partner=shops",
         "payment_type": "CARD",
-        "completed_at": {{unixms-1821h}},
+        "completed_at": {{unixms-1825h}},
         "items": [
           {
             "item_id": 4000208,
@@ -1211,19 +1643,61 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "item_id": 4000214,
             "name": "Red Onions 1kg",
             "quantity": 1,
-            "amount": 4.25
+            "amount": 4.5
           },
           {
             "item_id": 4000215,
             "name": "Tomatoes 1kg",
             "quantity": 1,
-            "amount": 5.75
+            "amount": 5.25
           },
           {
             "item_id": 4000217,
             "name": "Al Khayma Arabic Bread Large 6pcs",
             "quantity": 2,
             "amount": 6
+          },
+          {
+            "item_id": 4000216,
+            "name": "Bananas 1kg",
+            "quantity": 1,
+            "amount": 6.5
+          },
+          {
+            "item_id": 4000247,
+            "name": "Royal Gala Apples 1kg",
+            "quantity": 1,
+            "amount": 10
+          },
+          {
+            "item_id": 4000244,
+            "name": "Baby Spinach 200g",
+            "quantity": 1,
+            "amount": 8.75
+          },
+          {
+            "item_id": 4000248,
+            "name": "Cucumbers 1kg",
+            "quantity": 1,
+            "amount": 5
+          },
+          {
+            "item_id": 4000249,
+            "name": "Carrots 1kg",
+            "quantity": 1,
+            "amount": 4.5
+          },
+          {
+            "item_id": 4000242,
+            "name": "Green Valley Chicken Breast 500g",
+            "quantity": 1,
+            "amount": 17.5
+          },
+          {
+            "item_id": 4000213,
+            "name": "Marmoom Farms Greek Style Yogurt 500g",
+            "quantity": 1,
+            "amount": 11.5
           },
           {
             "item_id": 4000223,
@@ -1265,13 +1739,13 @@ Kept ahead of the household scenarios so the magic trigger still works.
       },
       "pricing": {
         "currency": "AED",
-        "total_price": "106.75"
+        "total_price": "170.25"
       },
       "presentation_data": {
         "title": "Careem Quik",
         "subtitle": "Al Wadi White Sugar 2kg, Marmoom Farms Fresh Milk Full Cream 2L, Golden Yolk Eggs Tray 30",
         "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/quik.png",
-        "trailing": "AED 106.75",
+        "trailing": "AED 170.25",
         "thirdline": "Delivered to Home"
       }
     },
@@ -1284,9 +1758,9 @@ Kept ahead of the household scenarios so the magic trigger still works.
       "user_id": 900000001,
       "status": "completed",
       "country": "AE",
-      "activity_time": "{{now-2017h}}",
-      "created_at": "{{now-2017h}}",
-      "updated_at": "{{now-2016h}}",
+      "activity_time": "{{now-2013h}}",
+      "created_at": "{{now-2013h}}",
+      "updated_at": "{{now-2012h}}",
       "data": {
         "status": "DELIVERED",
         "basket_id": 6000305,
@@ -1296,7 +1770,7 @@ Kept ahead of the household scenarios so the magic trigger still works.
         "merchant_type": "ufd",
         "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9305&provider_id=3&partner=shops",
         "payment_type": "CARD",
-        "completed_at": {{unixms-2016h}},
+        "completed_at": {{unixms-2012h}},
         "items": [
           {
             "item_id": 4000201,
@@ -1338,13 +1812,61 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "item_id": 4000215,
             "name": "Tomatoes 1kg",
             "quantity": 1,
-            "amount": 5.75
+            "amount": 5.25
           },
           {
             "item_id": 4000217,
             "name": "Al Khayma Arabic Bread Large 6pcs",
             "quantity": 2,
             "amount": 6
+          },
+          {
+            "item_id": 4000216,
+            "name": "Bananas 1kg",
+            "quantity": 1,
+            "amount": 6.5
+          },
+          {
+            "item_id": 4000247,
+            "name": "Royal Gala Apples 1kg",
+            "quantity": 1,
+            "amount": 9.75
+          },
+          {
+            "item_id": 4000244,
+            "name": "Baby Spinach 200g",
+            "quantity": 1,
+            "amount": 8
+          },
+          {
+            "item_id": 4000248,
+            "name": "Cucumbers 1kg",
+            "quantity": 1,
+            "amount": 5.75
+          },
+          {
+            "item_id": 4000249,
+            "name": "Carrots 1kg",
+            "quantity": 1,
+            "amount": 4.5
+          },
+          {
+            "item_id": 4000242,
+            "name": "Green Valley Chicken Breast 500g",
+            "quantity": 1,
+            "amount": 17.5
+          },
+          {
+            "item_id": 4000213,
+            "name": "Marmoom Farms Greek Style Yogurt 500g",
+            "quantity": 1,
+            "amount": 11.5
+          },
+          {
+            "item_id": 4000251,
+            "name": "Fresh Norwegian Salmon Fillet 300g",
+            "quantity": 1,
+            "amount": 29
           },
           {
             "item_id": 4000223,
@@ -1386,13 +1908,13 @@ Kept ahead of the household scenarios so the magic trigger still works.
       },
       "pricing": {
         "currency": "AED",
-        "total_price": "201.25"
+        "total_price": "293.25"
       },
       "presentation_data": {
         "title": "Careem Quik",
         "subtitle": "Oasis Springs Drinking Water 6x1.5L, Royal Mahal Basmati Rice 5kg, Noor Al Sahra Sunflower Oil 1.8L",
         "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/quik.png",
-        "trailing": "AED 201.25",
+        "trailing": "AED 293.25",
         "thirdline": "Delivered to Home"
       }
     },
@@ -1405,9 +1927,9 @@ Kept ahead of the household scenarios so the magic trigger still works.
       "user_id": 900000001,
       "status": "completed",
       "country": "AE",
-      "activity_time": "{{now-2186h}}",
-      "created_at": "{{now-2186h}}",
-      "updated_at": "{{now-2185h}}",
+      "activity_time": "{{now-2184h}}",
+      "created_at": "{{now-2184h}}",
+      "updated_at": "{{now-2183h}}",
       "data": {
         "status": "DELIVERED",
         "basket_id": 6000304,
@@ -1417,7 +1939,7 @@ Kept ahead of the household scenarios so the magic trigger still works.
         "merchant_type": "ufd",
         "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9304&provider_id=3&partner=shops",
         "payment_type": "CARD",
-        "completed_at": {{unixms-2185h}},
+        "completed_at": {{unixms-2183h}},
         "items": [
           {
             "item_id": 4000201,
@@ -1441,19 +1963,55 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "item_id": 4000214,
             "name": "Red Onions 1kg",
             "quantity": 1,
-            "amount": 3.75
+            "amount": 4
           },
           {
             "item_id": 4000215,
             "name": "Tomatoes 1kg",
             "quantity": 1,
-            "amount": 5.25
+            "amount": 5.5
           },
           {
             "item_id": 4000217,
             "name": "Al Khayma Arabic Bread Large 6pcs",
             "quantity": 2,
             "amount": 6
+          },
+          {
+            "item_id": 4000216,
+            "name": "Bananas 1kg",
+            "quantity": 1,
+            "amount": 6.75
+          },
+          {
+            "item_id": 4000247,
+            "name": "Royal Gala Apples 1kg",
+            "quantity": 1,
+            "amount": 9.5
+          },
+          {
+            "item_id": 4000244,
+            "name": "Baby Spinach 200g",
+            "quantity": 1,
+            "amount": 8.75
+          },
+          {
+            "item_id": 4000248,
+            "name": "Cucumbers 1kg",
+            "quantity": 1,
+            "amount": 4.75
+          },
+          {
+            "item_id": 4000242,
+            "name": "Green Valley Chicken Breast 500g",
+            "quantity": 1,
+            "amount": 17.5
+          },
+          {
+            "item_id": 4000213,
+            "name": "Marmoom Farms Greek Style Yogurt 500g",
+            "quantity": 1,
+            "amount": 11.5
           },
           {
             "item_id": 4000220,
@@ -1501,13 +2059,13 @@ Kept ahead of the household scenarios so the magic trigger still works.
       },
       "pricing": {
         "currency": "AED",
-        "total_price": "125.40"
+        "total_price": "184.65"
       },
       "presentation_data": {
         "title": "Careem Quik",
         "subtitle": "Oasis Springs Drinking Water 6x1.5L, Marmoom Farms Fresh Milk Full Cream 2L, Free Range Eggs 12pk",
         "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/quik.png",
-        "trailing": "AED 125.40",
+        "trailing": "AED 184.65",
         "thirdline": "Delivered to Home"
       }
     },
@@ -1520,9 +2078,9 @@ Kept ahead of the household scenarios so the magic trigger still works.
       "user_id": 900000001,
       "status": "completed",
       "country": "AE",
-      "activity_time": "{{now-2353h}}",
-      "created_at": "{{now-2353h}}",
-      "updated_at": "{{now-2352h}}",
+      "activity_time": "{{now-2354h}}",
+      "created_at": "{{now-2354h}}",
+      "updated_at": "{{now-2353h}}",
       "data": {
         "status": "DELIVERED",
         "basket_id": 6000303,
@@ -1532,7 +2090,7 @@ Kept ahead of the household scenarios so the magic trigger still works.
         "merchant_type": "ufd",
         "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9303&provider_id=3&partner=shops",
         "payment_type": "CARD",
-        "completed_at": {{unixms-2352h}},
+        "completed_at": {{unixms-2353h}},
         "items": [
           {
             "item_id": 4000201,
@@ -1556,19 +2114,67 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "item_id": 4000214,
             "name": "Red Onions 1kg",
             "quantity": 1,
-            "amount": 4
+            "amount": 3.75
           },
           {
             "item_id": 4000215,
             "name": "Tomatoes 1kg",
             "quantity": 1,
-            "amount": 5.25
+            "amount": 5
           },
           {
             "item_id": 4000217,
             "name": "Al Khayma Arabic Bread Large 6pcs",
             "quantity": 2,
             "amount": 6
+          },
+          {
+            "item_id": 4000216,
+            "name": "Bananas 1kg",
+            "quantity": 1,
+            "amount": 6.5
+          },
+          {
+            "item_id": 4000247,
+            "name": "Royal Gala Apples 1kg",
+            "quantity": 1,
+            "amount": 9.25
+          },
+          {
+            "item_id": 4000244,
+            "name": "Baby Spinach 200g",
+            "quantity": 1,
+            "amount": 8.5
+          },
+          {
+            "item_id": 4000248,
+            "name": "Cucumbers 1kg",
+            "quantity": 1,
+            "amount": 5
+          },
+          {
+            "item_id": 4000249,
+            "name": "Carrots 1kg",
+            "quantity": 1,
+            "amount": 4.5
+          },
+          {
+            "item_id": 4000242,
+            "name": "Green Valley Chicken Breast 500g",
+            "quantity": 1,
+            "amount": 17.5
+          },
+          {
+            "item_id": 4000213,
+            "name": "Marmoom Farms Greek Style Yogurt 500g",
+            "quantity": 1,
+            "amount": 11.5
+          },
+          {
+            "item_id": 4000251,
+            "name": "Fresh Norwegian Salmon Fillet 300g",
+            "quantity": 1,
+            "amount": 29
           },
           {
             "item_id": 4000221,
@@ -1587,12 +2193,6 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "name": "FizzUp Cola 6x330ml",
             "quantity": 1,
             "amount": 11
-          },
-          {
-            "item_id": 4000216,
-            "name": "Bananas 1kg",
-            "quantity": 1,
-            "amount": 6.5
           }
         ],
         "order_delivery": {
@@ -1616,13 +2216,13 @@ Kept ahead of the household scenarios so the magic trigger still works.
       },
       "pricing": {
         "currency": "AED",
-        "total_price": "139.25"
+        "total_price": "224.00"
       },
       "presentation_data": {
         "title": "Careem Quik",
         "subtitle": "Oasis Springs Drinking Water 6x1.5L, Marmoom Farms Fresh Milk Full Cream 2L, Golden Yolk Eggs Tray 30",
         "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/quik.png",
-        "trailing": "AED 139.25",
+        "trailing": "AED 224.00",
         "thirdline": "Delivered to Home"
       }
     },
@@ -1635,9 +2235,9 @@ Kept ahead of the household scenarios so the magic trigger still works.
       "user_id": 900000001,
       "status": "completed",
       "country": "AE",
-      "activity_time": "{{now-2517h}}",
-      "created_at": "{{now-2517h}}",
-      "updated_at": "{{now-2516h}}",
+      "activity_time": "{{now-2518h}}",
+      "created_at": "{{now-2518h}}",
+      "updated_at": "{{now-2517h}}",
       "data": {
         "status": "DELIVERED",
         "basket_id": 6000302,
@@ -1647,7 +2247,7 @@ Kept ahead of the household scenarios so the magic trigger still works.
         "merchant_type": "ufd",
         "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9302&provider_id=3&partner=shops",
         "payment_type": "CARD",
-        "completed_at": {{unixms-2516h}},
+        "completed_at": {{unixms-2517h}},
         "items": [
           {
             "item_id": 4000201,
@@ -1683,19 +2283,61 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "item_id": 4000214,
             "name": "Red Onions 1kg",
             "quantity": 1,
-            "amount": 4.25
+            "amount": 4
           },
           {
             "item_id": 4000215,
             "name": "Tomatoes 1kg",
             "quantity": 1,
-            "amount": 5.75
+            "amount": 5.5
           },
           {
             "item_id": 4000217,
             "name": "Al Khayma Arabic Bread Large 6pcs",
             "quantity": 2,
             "amount": 6
+          },
+          {
+            "item_id": 4000216,
+            "name": "Bananas 1kg",
+            "quantity": 1,
+            "amount": 6.25
+          },
+          {
+            "item_id": 4000247,
+            "name": "Royal Gala Apples 1kg",
+            "quantity": 1,
+            "amount": 9.75
+          },
+          {
+            "item_id": 4000244,
+            "name": "Baby Spinach 200g",
+            "quantity": 1,
+            "amount": 8.25
+          },
+          {
+            "item_id": 4000248,
+            "name": "Cucumbers 1kg",
+            "quantity": 1,
+            "amount": 5
+          },
+          {
+            "item_id": 4000249,
+            "name": "Carrots 1kg",
+            "quantity": 1,
+            "amount": 4.5
+          },
+          {
+            "item_id": 4000242,
+            "name": "Green Valley Chicken Breast 500g",
+            "quantity": 1,
+            "amount": 17.5
+          },
+          {
+            "item_id": 4000213,
+            "name": "Marmoom Farms Greek Style Yogurt 500g",
+            "quantity": 1,
+            "amount": 11.5
           },
           {
             "item_id": 4000223,
@@ -1737,13 +2379,13 @@ Kept ahead of the household scenarios so the magic trigger still works.
       },
       "pricing": {
         "currency": "AED",
-        "total_price": "163.50"
+        "total_price": "225.75"
       },
       "presentation_data": {
         "title": "Careem Quik",
         "subtitle": "Oasis Springs Drinking Water 6x1.5L, Royal Mahal Basmati Rice 5kg, Noor Al Sahra Sunflower Oil 1.8L",
         "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/quik.png",
-        "trailing": "AED 163.50",
+        "trailing": "AED 225.75",
         "thirdline": "Delivered to Home"
       }
     },
@@ -1807,6 +2449,54 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "amount": 6
           },
           {
+            "item_id": 4000216,
+            "name": "Bananas 1kg",
+            "quantity": 1,
+            "amount": 6.5
+          },
+          {
+            "item_id": 4000247,
+            "name": "Royal Gala Apples 1kg",
+            "quantity": 1,
+            "amount": 9.75
+          },
+          {
+            "item_id": 4000244,
+            "name": "Baby Spinach 200g",
+            "quantity": 1,
+            "amount": 8.25
+          },
+          {
+            "item_id": 4000248,
+            "name": "Cucumbers 1kg",
+            "quantity": 1,
+            "amount": 4.75
+          },
+          {
+            "item_id": 4000249,
+            "name": "Carrots 1kg",
+            "quantity": 1,
+            "amount": 4.5
+          },
+          {
+            "item_id": 4000242,
+            "name": "Green Valley Chicken Breast 500g",
+            "quantity": 1,
+            "amount": 17.5
+          },
+          {
+            "item_id": 4000213,
+            "name": "Marmoom Farms Greek Style Yogurt 500g",
+            "quantity": 1,
+            "amount": 11.5
+          },
+          {
+            "item_id": 4000251,
+            "name": "Fresh Norwegian Salmon Fillet 300g",
+            "quantity": 1,
+            "amount": 29
+          },
+          {
             "item_id": 4000223,
             "name": "Crunchos Salted Potato Chips Family Pack 150g",
             "quantity": 1,
@@ -1846,13 +2536,13 @@ Kept ahead of the household scenarios so the magic trigger still works.
       },
       "pricing": {
         "currency": "AED",
-        "total_price": "100.75"
+        "total_price": "192.50"
       },
       "presentation_data": {
         "title": "Careem Quik",
         "subtitle": "Oasis Springs Drinking Water 6x1.5L, Marmoom Farms Fresh Milk Full Cream 2L, Golden Yolk Eggs Tray 30",
         "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/quik.png",
-        "trailing": "AED 100.75",
+        "trailing": "AED 192.50",
         "thirdline": "Delivered to Home"
       }
     }
@@ -1885,9 +2575,9 @@ Kept ahead of the household scenarios so the magic trigger still works.
       "user_id": 900000001,
       "status": "completed",
       "country": "AE",
-      "activity_time": "{{now-408h}}",
-      "created_at": "{{now-408h}}",
-      "updated_at": "{{now-407h}}",
+      "activity_time": "{{now-407h}}",
+      "created_at": "{{now-407h}}",
+      "updated_at": "{{now-406h}}",
       "data": {
         "status": "DELIVERED",
         "basket_id": 6000515,
@@ -1897,7 +2587,7 @@ Kept ahead of the household scenarios so the magic trigger still works.
         "merchant_type": "retail",
         "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9515&provider_id=3&partner=shops",
         "payment_type": "CARD",
-        "completed_at": {{unixms-407h}},
+        "completed_at": {{unixms-406h}},
         "items": [
           {
             "item_id": 4010205,
@@ -1952,9 +2642,9 @@ Kept ahead of the household scenarios so the magic trigger still works.
       "user_id": 900000001,
       "status": "completed",
       "country": "AE",
-      "activity_time": "{{now-1080h}}",
-      "created_at": "{{now-1080h}}",
-      "updated_at": "{{now-1079h}}",
+      "activity_time": "{{now-1077h}}",
+      "created_at": "{{now-1077h}}",
+      "updated_at": "{{now-1076h}}",
       "data": {
         "status": "DELIVERED",
         "basket_id": 6000511,
@@ -1964,7 +2654,7 @@ Kept ahead of the household scenarios so the magic trigger still works.
         "merchant_type": "retail",
         "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9511&provider_id=3&partner=shops",
         "payment_type": "CARD",
-        "completed_at": {{unixms-1079h}},
+        "completed_at": {{unixms-1076h}},
         "items": [
           {
             "item_id": 4010205,
@@ -2086,9 +2776,9 @@ Kept ahead of the household scenarios so the magic trigger still works.
       "user_id": 900000001,
       "status": "completed",
       "country": "AE",
-      "activity_time": "{{now-2425h}}",
-      "created_at": "{{now-2425h}}",
-      "updated_at": "{{now-2424h}}",
+      "activity_time": "{{now-2426h}}",
+      "created_at": "{{now-2426h}}",
+      "updated_at": "{{now-2425h}}",
       "data": {
         "status": "DELIVERED",
         "basket_id": 6000503,
@@ -2098,7 +2788,7 @@ Kept ahead of the household scenarios so the magic trigger still works.
         "merchant_type": "retail",
         "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9503&provider_id=3&partner=shops",
         "payment_type": "CARD",
-        "completed_at": {{unixms-2424h}},
+        "completed_at": {{unixms-2425h}},
         "items": [
           {
             "item_id": 4010205,

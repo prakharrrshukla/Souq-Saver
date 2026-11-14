@@ -184,6 +184,13 @@ describe('H6. household switching', () => {
     expect(user).toMatch(/Khan/);
     expect((await raw('/persona', json({ persona: originalPersona }))).status).toBe(200);
   });
+  test('one phone per household: a basket survives another household running and can be approved after switching back', async () => {
+    const s = sid('phone1'); const p = await planFor(s);
+    expect((await raw('/persona', json({ persona: 'family' }))).status).toBe(200);
+    expect(steps(await chat(sid('phone2'), 'cut 15%')).find((x) => x.name === 'user_info' && x.status === 'ok')?.summary).toMatch(/Khan/);
+    expect((await raw('/persona', json({ persona: originalPersona }))).status).toBe(200);
+    expect(all(await approve(s, p.planId, p.approvalToken), 'cart')).toHaveLength(1);
+  });
   test('10 concurrent switches to different households leave a consistent state', async () => {
     const keys = ['leonardo', 'family', 'single'];
     await Promise.all(Array.from({ length: 10 }, (_, i) => raw('/persona', json({ persona: keys[i % 3] }))));

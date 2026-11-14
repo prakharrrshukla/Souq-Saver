@@ -60,7 +60,8 @@ export function decide(message: string): Decision {
   const items = ITEM_WORDS.filter(([, pattern]) => pattern.test(text)).map(([term]) => term);
   const percent = /(\d+(?:\.\d+)?)\s*(?:%|٪|percent|في المئة|بالمئة|प्रतिशत|فیصد|فی صد|porsyento)/i.exec(text);
   const amount = /(\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+(?:\.\d+)?)\s*(?:aed|dhs?|dirhams?|درهم|दिरहम|درہم)|(?:aed|dhs?)\s*(\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+(?:\.\d+)?)/i.exec(text);
-  const budget: Record<string, unknown> = percent ? { cutPercent: Number(percent[1]) } : amount ? { budgetAed: Number((amount[1] ?? amount[2]).replace(/,/g, '')) } : {};
+  const bare = /^\s*(\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+(?:\.\d+)?)\s*$/.exec(text); // only an amount: the weekly budget
+  const budget: Record<string, unknown> = percent ? { cutPercent: Number(percent[1]) } : amount ? { budgetAed: Number((amount[1] ?? amount[2]).replace(/,/g, '')) } : bare ? { budgetAed: Number(bare[1].replace(/,/g, '')) } : {};
 
   if (INTENT.approve.test(text)) return { tool: { name: 'request_approval', input: {} } };
   if (INTENT.why.test(text) && items.length) return { tool: { name: 'explain_change', input: { item: items[0] } } };
@@ -71,7 +72,7 @@ export function decide(message: string): Decision {
   const qty = items.length === 1 && counts.length === 1 ? counts[0] : 1;
   if (items.length && INTENT.add.test(text)) return { tool: { name: 'plan_basket', input: { ...budget, additions: items.map((item) => ({ item, qty })) } } };
   if (items.length && INTENT.drop.test(text)) return { tool: { name: 'plan_basket', input: { ...budget, overrides: items.map((item) => ({ item, drop: true })) } } };
-  if (percent || amount || INTENT.plan.test(text)) return { tool: { name: 'plan_basket', input: Object.keys(budget).length ? budget : note ? { budgetAed: Number(note[1]) } : {} } };
+  if (percent || amount || bare || INTENT.plan.test(text)) return { tool: { name: 'plan_basket', input: Object.keys(budget).length ? budget : note ? { budgetAed: Number(note[1]) } : {} } };
   if (INTENT.history.test(text)) return { tool: { name: 'analyse_history', input: {} } };
   return {};
 }

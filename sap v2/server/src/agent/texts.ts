@@ -28,7 +28,12 @@ export type PlanFacts = {
   /** ai: the AI built the basket; fallback: the AI's basket failed the checks; rules: no AI model. */
   engine: 'ai' | 'fallback' | 'rules';
   approvable: boolean;
+  /** Why this store: fresh produce goes to Careem Quik, long-shelf-life baskets to the cheapest supermarket. */
+  routing?: 'fresh_to_quik' | 'long_shelf_to_shops' | 'no_quik' | 'no_shops';
+  /** The household's shopping focus, from its orders: what it treats as essential. */
+  focus?: { label: 'fresh' | 'long_shelf' | 'mixed'; freshShare: number };
 };
+const pct = (n: number) => Math.round(n * 100);
 export type StoreFacts = { name: string; total: number; valid: boolean; missing: string[]; chosen: boolean }[];
 export type LimitFacts = { maxQtyPerLine: number; minBudgetAed: number; maxBudgetAed: number; minCutPercent: number; maxCutPercent: number; maxDistinctItems: number; maxBasketAed: number };
 
@@ -61,6 +66,8 @@ export const TEXTS: Record<Language, Texts> = {
       f.withinBudget
         ? `Here is this week's basket at ${f.store}: estimated AED ${aed(f.total)}, within your budget of AED ${aed(f.budget)}.`
         : `Here is this week's basket at ${f.store}: estimated AED ${aed(f.total)}, which is AED ${aed(f.shortfall)} over your budget of AED ${aed(f.budget)}. I kept water and staples and will not cut them.`,
+      f.focus?.label === 'fresh' ? `Fresh produce is ${pct(f.focus.freshShare)}% of this household's spend, so it is treated as essential.` : f.focus?.label === 'long_shelf' ? `Long-shelf-life pantry food is ${pct(1 - f.focus.freshShare)}% of this household's spend, so the pantry staples are treated as essential.` : '',
+      f.routing === 'fresh_to_quik' ? `Your basket has fresh produce, so the whole order goes to ${f.store} (Careem Quik) for fast, fresh delivery.` : f.routing === 'long_shelf_to_shops' ? `Everything this week keeps well, so it goes to ${f.store}, the cheapest supermarket for it.` : '',
       f.cut.length ? `Cut first (treats): ${list(f.cut)}.` : '',
       f.removed.length ? `Also removed to fit the budget: ${list(f.removed)}.` : '',
       f.swapped.length ? `Swapped: ${list(f.swapped)}.` : '',
@@ -82,7 +89,7 @@ export const TEXTS: Record<Language, Texts> = {
     loopExhausted: 'I could not finish this request. Nothing was changed. Please try again or rephrase it.',
     timeout: 'This took too long, so I stopped. Nothing was changed. Please try again.',
     noStore: 'No store nearby has all your essentials (water and staples) right now, so I did not build a basket. Nothing has been charged.',
-    stores: (s) => `${s.map((x) => `${x.name}: ${x.valid ? `AED ${aed(x.total)}` : `missing ${list(x.missing)}`}`).join('. ')}. Cheapest for the whole basket: ${s.find((x) => x.chosen)?.name ?? 'none'}. Fees are included.`,
+    stores: (s) => `${s.map((x) => `${x.name}: ${x.valid ? `AED ${aed(x.total)}` : `missing ${list(x.missing)}`}`).join('. ')}. Chosen for the whole basket: ${s.find((x) => x.chosen)?.name ?? 'none'}. Fees are included.`,
     explain: (item, note) => `${item}: ${note}.`,
     explainUnknown: (item) => `I could not find "${item}" in this week's plan.`,
     approval: (store) => `Press the Approve button to build the cart at ${store}. Nothing is charged: I never check out, and I cannot change your cart from chat.`,
@@ -99,6 +106,8 @@ export const TEXTS: Record<Language, Texts> = {
       f.withinBudget
         ? `هذه سلة هذا الأسبوع من ${f.store}: المجموع التقديري ${aed(f.total)} درهم، ضمن ميزانيتك البالغة ${aed(f.budget)} درهم.`
         : `هذه سلة هذا الأسبوع من ${f.store}: المجموع التقديري ${aed(f.total)} درهم، وهو يتجاوز ميزانيتك (${aed(f.budget)} درهم) بمقدار ${aed(f.shortfall)} درهم. أبقيتُ الماء والمواد الأساسية ولن أحذفها.`,
+      f.focus?.label === 'fresh' ? `المنتجات الطازجة تمثل ${pct(f.focus.freshShare)}% من إنفاق هذه الأسرة، لذلك تُعامل كأساسيات.` : f.focus?.label === 'long_shelf' ? `أطعمة المؤونة طويلة الصلاحية تمثل ${pct(1 - f.focus.freshShare)}% من إنفاق هذه الأسرة، لذلك تُعامل مواد المؤونة كأساسيات.` : '',
+      f.routing === 'fresh_to_quik' ? `سلتك فيها منتجات طازجة، لذلك يذهب الطلب كله إلى ${f.store} (كريم كويك) لتوصيل سريع وطازج.` : f.routing === 'long_shelf_to_shops' ? `كل منتجات هذا الأسبوع تدوم طويلاً، لذلك تذهب إلى ${f.store}، أرخص سوبرماركت لها.` : '',
       f.cut.length ? `حذفتُ الكماليات أولاً: ${list(f.cut)}.` : '',
       f.removed.length ? `حذفتُ أيضاً لتناسب الميزانية: ${list(f.removed)}.` : '',
       f.swapped.length ? `استبدلتُ: ${list(f.swapped)}.` : '',
@@ -120,7 +129,7 @@ export const TEXTS: Record<Language, Texts> = {
     loopExhausted: 'لم أتمكن من إكمال هذا الطلب. لم يتغيّر شيء. حاول مرة أخرى أو أعد صياغته.',
     timeout: 'استغرق الأمر وقتاً طويلاً فتوقفت. لم يتغيّر شيء. حاول مرة أخرى.',
     noStore: 'لا يوجد متجر قريب يوفّر كل الأساسيات (الماء والمواد الأساسية) الآن، لذلك لم أُنشئ سلة. لم يتم خصم أي مبلغ.',
-    stores: (s) => `${s.map((x) => `${x.name}: ${x.valid ? `${aed(x.total)} درهم` : `ينقصه ${list(x.missing)}`}`).join('. ')}. الأرخص للسلة كاملة: ${s.find((x) => x.chosen)?.name ?? 'لا يوجد'}. الرسوم مشمولة.`,
+    stores: (s) => `${s.map((x) => `${x.name}: ${x.valid ? `${aed(x.total)} درهم` : `ينقصه ${list(x.missing)}`}`).join('. ')}. المتجر المختار للسلة كاملة: ${s.find((x) => x.chosen)?.name ?? 'لا يوجد'}. الرسوم مشمولة.`,
     explain: (item, note) => `${item}: السبب: ${note}.`,
     explainUnknown: (item) => `لم أجد «${item}» في خطة هذا الأسبوع.`,
     approval: (store) => `اضغط زر «موافقة» لإنشاء السلة في ${store}. لن يتم خصم أي مبلغ: أنا لا أُتمّ الدفع أبداً، ولا أستطيع تغيير سلتك من المحادثة.`,
@@ -137,6 +146,8 @@ export const TEXTS: Record<Language, Texts> = {
       f.withinBudget
         ? `इस हफ़्ते की टोकरी ${f.store} से: अनुमानित कुल AED ${aed(f.total)}, आपके AED ${aed(f.budget)} के बजट के भीतर।`
         : `इस हफ़्ते की टोकरी ${f.store} से: अनुमानित कुल AED ${aed(f.total)}, जो आपके AED ${aed(f.budget)} के बजट से AED ${aed(f.shortfall)} ज़्यादा है। पानी और ज़रूरी राशन नहीं हटाया गया।`,
+      f.focus?.label === 'fresh' ? `ताज़ा सामान इस घर के खर्च का ${pct(f.focus.freshShare)}% है, इसलिए उसे ज़रूरी माना गया है।` : f.focus?.label === 'long_shelf' ? `लंबे समय तक चलने वाला राशन इस घर के खर्च का ${pct(1 - f.focus.freshShare)}% है, इसलिए राशन का सामान ज़रूरी माना गया है।` : '',
+      f.routing === 'fresh_to_quik' ? `आपकी टोकरी में ताज़ा सामान है, इसलिए पूरा ऑर्डर जल्दी और ताज़ा डिलीवरी के लिए ${f.store} (Careem Quik) से आएगा।` : f.routing === 'long_shelf_to_shops' ? `इस हफ़्ते का सारा सामान लंबे समय तक चलने वाला है, इसलिए यह ${f.store} से आएगा, जो इसके लिए सबसे सस्ता सुपरमार्केट है।` : '',
       f.cut.length ? `सबसे पहले हटाया (शौक़ की चीज़ें): ${list(f.cut)}।` : '',
       f.removed.length ? `बजट में लाने के लिए यह भी हटाया: ${list(f.removed)}।` : '',
       f.swapped.length ? `बदला गया: ${list(f.swapped)}।` : '',
@@ -158,7 +169,7 @@ export const TEXTS: Record<Language, Texts> = {
     loopExhausted: 'मैं यह अनुरोध पूरा नहीं कर सका। कुछ भी नहीं बदला गया। फिर कोशिश करें या दूसरे शब्दों में लिखें।',
     timeout: 'इसमें बहुत समय लगा, इसलिए मैंने रोक दिया। कुछ भी नहीं बदला गया। फिर कोशिश करें।',
     noStore: 'पास की किसी दुकान में अभी सारा ज़रूरी सामान (पानी और राशन) नहीं है, इसलिए टोकरी नहीं बनाई। कोई पैसा नहीं काटा गया है।',
-    stores: (s) => `${s.map((x) => `${x.name}: ${x.valid ? `AED ${aed(x.total)}` : `नहीं मिला: ${list(x.missing)}`}`).join('। ')}। पूरी टोकरी के लिए सबसे सस्ता: ${s.find((x) => x.chosen)?.name ?? 'कोई नहीं'}। शुल्क शामिल हैं।`,
+    stores: (s) => `${s.map((x) => `${x.name}: ${x.valid ? `AED ${aed(x.total)}` : `नहीं मिला: ${list(x.missing)}`}`).join('। ')}। पूरी टोकरी के लिए चुनी गई दुकान: ${s.find((x) => x.chosen)?.name ?? 'कोई नहीं'}। शुल्क शामिल हैं।`,
     explain: (item, note) => `${item}: कारण: ${note}।`,
     explainUnknown: (item) => `इस हफ़्ते की योजना में "${item}" नहीं मिला।`,
     approval: (store) => `${store} पर कार्ट बनाने के लिए Approve बटन दबाएँ। कोई पैसा नहीं कटेगा: मैं कभी चेकआउट नहीं करता, और चैट से आपका कार्ट नहीं बदल सकता।`,
@@ -175,6 +186,8 @@ export const TEXTS: Record<Language, Texts> = {
       f.withinBudget
         ? `اس ہفتے کی ٹوکری ${f.store} سے: تخمینی کل ${aed(f.total)} درہم، آپ کے ${aed(f.budget)} درہم کے بجٹ کے اندر۔`
         : `اس ہفتے کی ٹوکری ${f.store} سے: تخمینی کل ${aed(f.total)} درہم، جو آپ کے ${aed(f.budget)} درہم کے بجٹ سے ${aed(f.shortfall)} درہم زیادہ ہے۔ پانی اور بنیادی راشن نہیں ہٹایا گیا۔`,
+      f.focus?.label === 'fresh' ? `تازہ سامان اس گھر کے خرچ کا ${pct(f.focus.freshShare)}٪ ہے، اس لیے اسے ضروری سمجھا گیا ہے۔` : f.focus?.label === 'long_shelf' ? `دیر تک چلنے والا راشن اس گھر کے خرچ کا ${pct(1 - f.focus.freshShare)}٪ ہے، اس لیے راشن کا سامان ضروری سمجھا گیا ہے۔` : '',
+      f.routing === 'fresh_to_quik' ? `آپ کی ٹوکری میں تازہ سامان ہے، اس لیے پورا آرڈر جلد اور تازہ ڈیلیوری کے لیے ${f.store} (Careem Quik) سے آئے گا۔` : f.routing === 'long_shelf_to_shops' ? `اس ہفتے کا سارا سامان دیر تک چلنے والا ہے، اس لیے یہ ${f.store} سے آئے گا، جو اس کے لیے سب سے سستا سپر مارکیٹ ہے۔` : '',
       f.cut.length ? `سب سے پہلے ہٹائی گئی چیزیں (شوقیہ): ${list(f.cut)}۔` : '',
       f.removed.length ? `بجٹ میں لانے کے لیے یہ بھی ہٹایا: ${list(f.removed)}۔` : '',
       f.swapped.length ? `تبدیل کیا گیا: ${list(f.swapped)}۔` : '',
@@ -196,7 +209,7 @@ export const TEXTS: Record<Language, Texts> = {
     loopExhausted: 'میں یہ درخواست مکمل نہیں کر سکا۔ کچھ نہیں بدلا گیا۔ دوبارہ کوشش کریں یا دوسرے الفاظ میں لکھیں۔',
     timeout: 'اس میں بہت وقت لگا، اس لیے میں نے روک دیا۔ کچھ نہیں بدلا گیا۔ دوبارہ کوشش کریں۔',
     noStore: 'قریب کی کسی دکان میں ابھی تمام ضروری سامان (پانی اور راشن) نہیں ہے، اس لیے ٹوکری نہیں بنائی گئی۔ کوئی رقم نہیں کاٹی گئی۔',
-    stores: (s) => `${s.map((x) => `${x.name}: ${x.valid ? `${aed(x.total)} درہم` : `دستیاب نہیں: ${list(x.missing)}`}`).join('۔ ')}۔ پوری ٹوکری کے لیے سب سے سستا: ${s.find((x) => x.chosen)?.name ?? 'کوئی نہیں'}۔ فیس شامل ہے۔`,
+    stores: (s) => `${s.map((x) => `${x.name}: ${x.valid ? `${aed(x.total)} درہم` : `دستیاب نہیں: ${list(x.missing)}`}`).join('۔ ')}۔ پوری ٹوکری کے لیے منتخب دکان: ${s.find((x) => x.chosen)?.name ?? 'کوئی نہیں'}۔ فیس شامل ہے۔`,
     explain: (item, note) => `${item}: وجہ: ${note}۔`,
     explainUnknown: (item) => `اس ہفتے کے منصوبے میں "${item}" نہیں ملا۔`,
     approval: (store) => `${store} پر کارٹ بنانے کے لیے Approve کا بٹن دبائیں۔ کوئی رقم نہیں کٹے گی: میں کبھی چیک آؤٹ نہیں کرتا، اور چیٹ سے آپ کا کارٹ نہیں بدل سکتا۔`,
@@ -213,6 +226,8 @@ export const TEXTS: Record<Language, Texts> = {
       f.withinBudget
         ? `Narito ang basket ngayong linggo sa ${f.store}: tinatayang AED ${aed(f.total)}, pasok sa budget mong AED ${aed(f.budget)}.`
         : `Narito ang basket ngayong linggo sa ${f.store}: tinatayang AED ${aed(f.total)}, lampas ng AED ${aed(f.shortfall)} sa budget mong AED ${aed(f.budget)}. Hindi ko inalis ang tubig at mga pangunahing bilihin.`,
+      f.focus?.label === 'fresh' ? `${pct(f.focus.freshShare)}% ng gastos ng sambahayang ito ay sariwang produkto, kaya itinuturing itong mahalaga.` : f.focus?.label === 'long_shelf' ? `${pct(1 - f.focus.freshShare)}% ng gastos ng sambahayang ito ay pangmatagalang pagkain, kaya itinuturing na mahalaga ang mga ito.` : '',
+      f.routing === 'fresh_to_quik' ? `May sariwang produkto sa basket mo, kaya buong order ay sa ${f.store} (Careem Quik) para sa mabilis at sariwang delivery.` : f.routing === 'long_shelf_to_shops' ? `Pangmatagalan ang lahat ng items ngayong linggo, kaya sa ${f.store} ito, ang pinakamurang supermarket para dito.` : '',
       f.cut.length ? `Unang inalis (mga pampalipas-gana): ${list(f.cut)}.` : '',
       f.removed.length ? `Inalis din para pumasok sa budget: ${list(f.removed)}.` : '',
       f.swapped.length ? `Pinalitan: ${list(f.swapped)}.` : '',
@@ -234,7 +249,7 @@ export const TEXTS: Record<Language, Texts> = {
     loopExhausted: 'Hindi ko natapos ang request na ito. Walang nabago. Pakisubukan ulit o sabihin ito sa ibang paraan.',
     timeout: 'Masyadong natagalan, kaya itinigil ko. Walang nabago. Pakisubukan ulit.',
     noStore: 'Walang malapit na tindahan na kumpleto sa mga pangunahing bilihin (tubig at staples) ngayon, kaya hindi ako bumuo ng basket. Walang siningil.',
-    stores: (s) => `${s.map((x) => `${x.name}: ${x.valid ? `AED ${aed(x.total)}` : `kulang ng ${list(x.missing)}`}`).join('. ')}. Pinakamura para sa buong basket: ${s.find((x) => x.chosen)?.name ?? 'wala'}. Kasama na ang mga bayarin.`,
+    stores: (s) => `${s.map((x) => `${x.name}: ${x.valid ? `AED ${aed(x.total)}` : `kulang ng ${list(x.missing)}`}`).join('. ')}. Napiling tindahan para sa buong basket: ${s.find((x) => x.chosen)?.name ?? 'wala'}. Kasama na ang mga bayarin.`,
     explain: (item, note) => `${item}: ang dahilan: ${note}.`,
     explainUnknown: (item) => `Hindi ko nakita ang "${item}" sa plano ngayong linggo.`,
     approval: (store) => `Pindutin ang Approve button para buuin ang cart sa ${store}. Walang sisingilin: hindi ako nagche-checkout kailanman, at hindi ko mababago ang cart mo mula sa chat.`,

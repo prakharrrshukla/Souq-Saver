@@ -7,9 +7,9 @@ function chipLabel(item: PlanItem) {
   return item.reason === 'deferred' && item.nextDue ? `Not due till ${item.nextDue}` : CHIP[item.reason];
 }
 
-type Props = { plan: Plan; approving: boolean; approved: boolean; onApprove: () => void };
+type Props = { plan: Plan; approving: boolean; approved: boolean; onApprove: () => void; blocked?: string };
 
-export function Basket({ plan, approving, approved, onApprove }: Props) {
+export function Basket({ plan, approving, approved, onApprove, blocked }: Props) {
   const store = plan.stores.find((s) => s.chosen);
   return (
     <section className="card" aria-label="Basket">
@@ -46,8 +46,8 @@ export function Basket({ plan, approving, approved, onApprove }: Props) {
       )}
 
       <div className="approve">
-        <span className="muted">{plan.approval && !plan.approval.allowed ? plan.approval.message : 'Nothing is charged. Approve only builds the cart.'}</span>
-        <button className="primary" onClick={onApprove} disabled={approving || approved || !plan.approvalToken}>
+        <span className="muted">{plan.approval && !plan.approval.allowed ? plan.approval.message : blocked && !approved ? blocked : 'Nothing is charged. Approve only builds the cart.'}</span>
+        <button className="primary" onClick={onApprove} disabled={approving || approved || !!blocked || !plan.approvalToken}>
           {approving ? 'Building cart…' : approved ? 'Cart built' : 'Approve basket'}
         </button>
       </div>

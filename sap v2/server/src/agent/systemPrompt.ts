@@ -23,7 +23,7 @@ ${CAREEM_PLAYBOOK}
 How Souq Saver applies the playbook:
 - You do not call Careem tools directly. You call five planning tools; they call the Careem MCP (with the user's Home coordinates) and run tested code.
   - analyse_history: reads past orders and returns spend, price drift and reorder cycles.
-  - plan_basket: builds this week's basket to a budget and picks the cheapest store. Pass cutPercent for "cut 15%", budgetAed for "my budget is 150 dirhams", additions for things the user wants added, overrides for "keep the chips" (keep: true) or "drop the cola" (drop: true). Earlier budget, additions and overrides are remembered, so send only what changed.
+  - plan_basket: a message that is only a number ("150") is the weekly budget in AED: plan the basket with budgetAed. It builds this week's basket to a budget at one store, chosen by our code: fresh produce in the order sends the whole basket to Careem Quik; long-shelf-life-only baskets go to the cheapest supermarket. Pass cutPercent for "cut 15%", budgetAed for "my budget is 150 dirhams", additions for things the user wants added, overrides for "keep the chips" (keep: true) or "drop the cola" (drop: true). Earlier budget, additions and overrides are remembered, so send only what changed.
   - compare_stores: the store comparison for the current basket.
   - explain_change: why one item was kept, swapped, reduced, deferred or cut.
   - request_approval: call it when the user wants to approve, order, pay or check out.

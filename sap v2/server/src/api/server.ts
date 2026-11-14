@@ -29,6 +29,13 @@ export function buildApp(options: AppOptions) {
   const sampleData = mcp.mode === 'sandbox' || (options.demoMode ?? process.env.DEMO_MODE !== 'false');
   const sessions = new Map<string, Session>();
   const busy = new Set<string>(); // one request at a time per session
+  /** The demo household each session was built on, so switching households no longer wipes every session. */
+  const households = new Map<string, PersonaKey | null>();
+  /** A session only runs on the household it started on; if the sandbox now serves another one, it is dropped with its tokens. */
+  const sessionFor = (id: string): Session | undefined => {
+    if (sessions.has(id) && households.get(id) !== currentPersona()) { sessions.delete(id); households.delete(id); clearTokens(id); }
+    return sessions.get(id);
+  };
   const app = Fastify({ logger: false });
   app.register(cors, { origin: [origin, origin.replace('localhost', '127.0.0.1')] });
 
@@ -100,7 +107,7 @@ export function buildApp(options: AppOptions) {
     if (body.language !== undefined && !LANGUAGES.includes(body.language)) return bad(reply, 'invalid_language', `language must be one of ${LANGUAGES.join(', ')}.`, 'language');
     if (body.budgetAed !== undefined) { const e = checkBudget(body.budgetAed); if (e) return bad(reply, e.code, e.message, e.field); }
     const chat: ChatRequest = { sessionId: body.sessionId, message: body.message.trim(), language: body.language, budgetAed: body.budgetAed };
-    if (!sessions.has(chat.sessionId)) sessions.set(chat.sessionId, newSession(chat.sessionId));
+    if (!sessionFor(chat.sessionId)) { sessions.set(chat.sessionId, newSession(chat.sessionId)); households.set(chat.sessionId, currentPersona()); }
     await stream(reply, '/api/chat', chat, (deps) => runChat(sessions.get(chat.sessionId)!, chat, options.model(), deps));
   });
 
@@ -111,13 +118,14 @@ export function buildApp(options: AppOptions) {
     if (!isId(planId)) return bad(reply, 'missing_field', 'planId is required.', 'planId');
     if (!isId(approvalToken)) return bad(reply, 'missing_field', 'approvalToken is required.', 'approvalToken');
     const approve: ApproveRequest = { sessionId, planId, approvalToken };
-    await stream(reply, '/api/approve', approve, (deps) => runApprove(sessions.get(approve.sessionId), approve, deps));
+    await stream(reply, '/api/approve', approve, (deps) => runApprove(sessionFor(approve.sessionId), approve, deps));
   });
 
   app.post('/api/reset', async (request, reply) => {
     const body = (isObject(request.body) ? request.body : {}) as Partial<ResetRequest>;
     if (!isId(body.sessionId)) return bad(reply, 'missing_field', 'sessionId is required.', 'sessionId');
     sessions.delete(body.sessionId);
+    households.delete(body.sessionId);
     clearTokens(body.sessionId);
     return { ok: true, sampleData };
   });
@@ -140,9 +148,9 @@ export function buildApp(options: AppOptions) {
     if (mcp.mode !== 'sandbox') return fail(reply, 403, 'validation', 'not_sandbox', 'Households can only be switched on the sandbox.');
     if (!PERSONAS.some((p) => p.key === key)) return bad(reply, 'invalid_persona', `persona must be one of ${PERSONAS.map((p) => p.key).join(', ')}.`, 'persona');
     if (busy.size) return fail(reply, 409, 'busy', 'busy', 'A request is still running. Try again in a moment.');
+    if (key === currentPersona()) return { ok: true, current: key, sampleData };
+    // Sessions are kept: each is bound to its own household (sessionFor), so a plan for another household still cannot be approved here.
     const result = writeFixtures(key as PersonaKey);
-    for (const id of sessions.keys()) clearTokens(id); // a plan for the previous household can no longer be approved
-    sessions.clear();
     console.log(`[persona] switched to ${result.user} (${result.persona})`);
     return { ok: true, current: result.persona, user: result.user, sampleData };
   });

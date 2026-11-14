@@ -16,17 +16,20 @@ type Props = {
   onSend: () => void;
   onExample: (text: string, language?: Language) => void;
   formError?: FormError | null;
+  /** Why sending is not possible right now (another phone is running), shown under the input. */
+  blocked?: string;
 };
 
-export function Chat({ lines, input, onInput, budget, onBudget, busy, onSend, onExample, formError }: Props) {
+export function Chat({ lines, input, onInput, budget, onBudget, busy, onSend, onExample, formError, blocked }: Props) {
   const budgetError = formError?.field === 'budgetAed';
-  const end = useRef<HTMLDivElement>(null);
-  useEffect(() => { end.current?.scrollIntoView({ block: 'nearest' }); }, [lines]);
+  // Scroll only the message list: scrollIntoView would also scroll every ancestor (the page, or a phone screen).
+  const list = useRef<HTMLDivElement>(null);
+  useEffect(() => { list.current?.scrollTo({ top: list.current.scrollHeight }); }, [lines, busy]);
 
   return (
     <section className="card chat" aria-label="Chat">
       <h2>Chat</h2>
-      <div className="chat-lines">
+      <div className="chat-lines" ref={list}>
         {lines.length === 0 && <p className="muted">Ask for this week's basket. The first example is ready to send.</p>}
         {lines.map((line) =>
           line.role === 'error' ? (
@@ -38,7 +41,6 @@ export function Chat({ lines, input, onInput, budget, onBudget, busy, onSend, on
           ),
         )}
         {busy && <p className="muted">Working…</p>}
-        <div ref={end} />
       </div>
 
       <div className="examples" aria-label="Example messages">
@@ -50,8 +52,9 @@ export function Chat({ lines, input, onInput, budget, onBudget, busy, onSend, on
       <form className="chat-form" onSubmit={(e) => { e.preventDefault(); onSend(); }}>
         <input className="chat-input" dir="auto" value={input} onChange={(e) => onInput(e.target.value)} placeholder="Type a message" aria-label="Message"
           aria-invalid={!!formError && !budgetError} aria-describedby={formError ? 'form-error' : undefined} />
-        <button className="primary" type="submit" disabled={busy || !input.trim()} aria-label="Send">→</button>
+        <button className="primary" type="submit" disabled={busy || !!blocked || (!input.trim() && !budget.trim())} aria-label="Send">→</button>
       </form>
+      {blocked && !busy && <p className="muted small" role="status">{blocked}</p>}
       {formError && <p id="form-error" className="field-error" dir="auto" role="alert">{formError.message}</p>}
       <label className="budget">
         Weekly budget (optional)
