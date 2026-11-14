@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 // Careem MCP client wrapper. Every call goes through call(): it adds Home coordinates,
 // blocks checkout, requires an approval grant for mutating tools, retries read-only calls
 // once (never mutating ones) and records an X-ray step with the full arguments and raw response.
@@ -6,7 +7,19 @@ import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/
 import { BlockedError, step } from '../xray.ts';
 import { useGrant, type Grant } from './approval.ts';
 
-export const HOME = { latitude: 25.0866, longitude: 55.1474 };
+/**
+ * The signed-in household's Home coordinates. In the sandbox they come from the generated sample
+ * household (fixtures/out/manifest.json, switched with `npm run persona -- <name>`); Leonardo's otherwise.
+ */
+const LEONARDO_HOME = { latitude: 25.0866, longitude: 55.1474 };
+const MANIFEST = new URL('../../../fixtures/out/manifest.json', import.meta.url);
+export function home(): { latitude: number; longitude: number } {
+  try {
+    const h = JSON.parse(readFileSync(MANIFEST, 'utf8')).home;
+    return typeof h?.latitude === 'number' ? { latitude: h.latitude, longitude: h.longitude } : LEONARDO_HOME;
+  } catch { return LEONARDO_HOME; }
+}
+export const HOME = LEONARDO_HOME;
 
 /** Never called. Not in the demo, not in tests, not ever. */
 export const BLOCKED_TOOLS = new Set(['cart_checkout', 'cart_grocery_checkout']);
@@ -90,7 +103,7 @@ export class CareemMcp {
   /** The only way to reach Careem. `grant` comes from the approval gate and is needed for mutating tools. */
   async call<T = any>(tool: string, args: Record<string, unknown> = {}, options: { grant?: Grant } = {}): Promise<T> {
     if (!this.client) await this.connect();
-    const input = this.tools.get(tool)?.takesCoordinates ? { ...HOME, ...args } : { ...args };
+    const input = this.tools.get(tool)?.takesCoordinates ? { ...home(), ...args } : { ...args };
 
     if (BLOCKED_TOOLS.has(tool)) {
       return step('guard', tool, 'mcp:guard', input, () => { throw new BlockedError(`${tool} is blocked: Souq Saver never checks out`); });

@@ -9,6 +9,7 @@
     "dev:backend": "node scripts/dev.mjs sandbox server",
     "test": "npm run generate:data && vitest run",
     "generate:data": "node fixtures/generate.ts",
+    "persona": "node fixtures/generate.ts --persona",
     "demo:cli": "node server/scripts/demo-cli.ts",
     "xray": "node server/scripts/xray-print.ts",
     "sandbox": "node sandbox/careem-mcp-ts/src/cli.ts"

@@ -10,16 +10,20 @@ import { parseFees, parseSearch, type StoreCatalogue } from '../engine/stores.ts
 import { issueToken } from '../mcp/approval.ts';
 import { McpToolError, type CareemMcp } from '../mcp/client.ts';
 import { step } from '../xray.ts';
-import type { ChatMessage, ToolSpec } from './bedrock.ts';
+import type { ChatMessage, ModelAdapter, ToolSpec } from './bedrock.ts';
+import { brainPlan, type Learned } from '../brain/brain.ts';
 
 export type Analysis = { orders: Order[]; history: HistoryItem[]; drift: Drift[]; spend: CategorySpend; lastWeekTotal: number; lastWeekDate: string; averageWeeklySpend: number };
 export type Session = {
   id: string; language: Language; messages: ChatMessage[];
   analysis?: Analysis; budget: BudgetRequest; overrides: Override[]; additions: Addition[]; plan?: Plan;
+  /** What the AI engine learned about the household (V2). */
+  learned?: Learned; engine?: 'ai' | 'rules';
 };
 export const newSession = (id: string): Session => ({ id, language: 'en', messages: [], budget: {}, overrides: [], additions: [] });
 
-export type Deps = { mcp: CareemMcp; emit: (event: SseEvent) => void; sampleData: boolean; today?: () => Date };
+/** `brain`: the AI household engine's model (Claude on Bedrock). Without it the rule-based engine runs, labelled as such. */
+export type Deps = { mcp: CareemMcp; emit: (event: SseEvent) => void; sampleData: boolean; today?: () => Date; brain?: ModelAdapter };
 
 const TIER = { type: 'string', enum: ['T1', 'T2', 'T3', 'T4', 'T5'] };
 export const TOOL_SPECS: ToolSpec[] = [
@@ -130,23 +134,54 @@ async function plan(session: Session, input: any, deps: Deps) {
 
   const terms = [...new Set([...analysis.history.map((h) => h.category.toLowerCase()), ...session.additions.map((a) => a.item.toLowerCase())])];
   const catalogues = await loadCatalogues(terms, deps.mcp);
-  const result = await planBasket({
-    history: analysis.history, lastWeekTotal: analysis.lastWeekTotal, averageWeeklySpend: analysis.averageWeeklySpend, catalogues,
-    budget: session.budget, overrides: session.overrides, additions: session.additions, categorySpend: analysis.spend.categories,
-  }, engine);
+  const insights = {
+    categorySpend: analysis.spend.categories,
+    priceDrift: analysis.history.filter((h) => (h.driftPct ?? 0) > 5).map((h) => ({ name: h.name, driftPct: h.driftPct! })).sort((a, b) => b.driftPct - a.driftPct),
+  };
 
-  const { chosen, unmatchedAdditions, actions: _actions, ...shape } = result;
+  // V2: the AI household engine decides, the calculator checks. Rules only if the AI is unavailable or fails.
+  let result: { chosenMerchantId: string | null; unmatchedAdditions: string[] } & Omit<Plan, 'planId' | 'approvalToken' | 'sampleData'>;
+  let aiSummary: string | undefined;
+  session.engine = 'rules';
+  if (deps.brain?.structured) {
+    try {
+      const ai = await brainPlan({
+        model: deps.brain, orders: analysis.orders, catalogues, today: deps.today?.() ?? new Date(), lastWeekTotal: analysis.lastWeekTotal,
+        budget: session.budget, overrides: session.overrides, additions: session.additions, insights,
+      });
+      const { learned, summary, ...rest } = ai;
+      session.learned = learned;
+      session.engine = 'ai';
+      aiSummary = summary;
+      result = rest;
+    } catch (e) {
+      await step('guard', 'ai_engine_fallback', 'ai-engine:guard', { reason: (e as Error).message }, () => ({ usingRules: true }),
+        { summary: () => `AI engine unavailable (${(e as Error).message.slice(0, 80)}), using the rule-based engine` });
+    }
+  }
+  if (session.engine === 'rules') {
+    const rules = await planBasket({
+      history: analysis.history, lastWeekTotal: analysis.lastWeekTotal, averageWeeklySpend: analysis.averageWeeklySpend, catalogues,
+      budget: session.budget, overrides: session.overrides, additions: session.additions, categorySpend: analysis.spend.categories,
+    }, engine);
+    const { chosen: chosenQuote, actions: _actions, ...shape } = rules;
+    result = { ...shape, chosenMerchantId: chosenQuote?.merchantId ?? null };
+  }
+
+  const { chosenMerchantId, unmatchedAdditions, ...shape } = result!;
+  const chosen = shape.stores.find((s) => s.merchantId === chosenMerchantId && s.chosen) ?? null;
   const planId = `plan_${randomUUID().slice(0, 8)}`;
   const approvalToken = chosen ? await issueToken(session.id, planId) : '';
   session.plan = { planId, sampleData: deps.sampleData, ...shape, approvalToken };
   deps.emit({ event: 'plan', data: session.plan });
-
   return {
-    planId, store: chosen?.name ?? null, estTotal: result.estTotal, budget: result.budget, withinBudget: result.withinBudget, shortfall: result.shortfall,
-    lastWeekTotal: result.lastWeekTotal, monthlySavingEstimate: result.monthlySavingEstimate,
-    items: result.items.map(({ name, qty, unitPrice, lineTotal, tier, reason, note, replaces, nextDue }) => ({ name, qty, unitPrice, lineTotal, tier, reason, note, replaces, nextDue })),
-    stores: result.stores.map(({ name, estTotal, itemsTotal, deliveryFee, serviceFee, valid, missing, chosen: isChosen }) => ({ name, estTotal, itemsTotal, deliveryFee, serviceFee, valid, missing, chosen: isChosen })),
-    priceDrift: result.insights.priceDrift, itemsNotFound: unmatchedAdditions,
+    planId, store: chosen?.name ?? null, estTotal: result!.estTotal, budget: result!.budget, withinBudget: result!.withinBudget, shortfall: result!.shortfall,
+    lastWeekTotal: result!.lastWeekTotal, monthlySavingEstimate: result!.monthlySavingEstimate,
+    items: result!.items.map(({ name, qty, unitPrice, lineTotal, tier, reason, note, replaces, nextDue }) => ({ name, qty, unitPrice, lineTotal, tier, reason, note, replaces, nextDue })),
+    stores: result!.stores.map(({ name, estTotal, itemsTotal, deliveryFee, serviceFee, valid, missing, chosen: isChosen }) => ({ name, estTotal, itemsTotal, deliveryFee, serviceFee, valid, missing, chosen: isChosen })),
+    priceDrift: result!.insights.priceDrift, itemsNotFound: unmatchedAdditions,
+    engine: session.engine === 'ai' ? 'AI household engine (Claude on Bedrock), totals checked by the calculator' : 'rule-based engine',
+    ...(session.learned && session.engine === 'ai' && { learned: { likes: session.learned.likes, dislikes: session.learned.dislikes, switches: session.learned.switches }, aiSummary }),
     sampleData: deps.sampleData, charged: false, next: 'The app shows this basket with an Approve button. Nothing has been charged.',
   };
 }

@@ -39,7 +39,8 @@ export function buildApp(options: AppOptions) {
         id = runId;
         emit({ event: 'run', data: { runId } });
         let events = 0;
-        const deps: Deps = { mcp, sampleData, today: options.today, emit: (e) => { events++; emit(e); } };
+        const current = options.model();
+        const deps: Deps = { mcp, sampleData, today: options.today, brain: current.isBedrock ? current : undefined, emit: (e) => { events++; emit(e); } };
         await step('api', `POST ${path}`, `api:${path}`, body, async () => {
           if (busy.has(body.sessionId)) {
             deps.emit({ event: 'error', data: { message: 'The previous request for this session is still running. Please wait a moment.', retryable: true } });

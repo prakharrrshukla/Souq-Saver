@@ -79,7 +79,8 @@ describe('POST /api/chat: "Same as last week, but cut 15%"', () => {
     expect(all(events, 'error')).toEqual([]);
   });
 
-  test('plan follows the contract and tells the demo story', () => {
+  // V1 rule-engine demo story (10-week household). Superseded by the V2 AI engine on Leonardo's 16-week history (see server/src/brain/brain.test.ts); the rule engine is now only the labelled backup.
+  test.skip('plan follows the contract and tells the demo story', () => {
     expect(plan).toMatchObject({ sampleData: true, lastWeekTotal: 186.15, budget: { aed: 158.23, source: 'cut_percent', cutPercent: 15 }, withinBudget: true, shortfall: 0 });
     expect(plan.planId).toBeTruthy();
     expect(plan.approvalToken).toMatch(/^tok_/);
@@ -151,7 +152,7 @@ describe('POST /api/chat: "Same as last week, but cut 15%"', () => {
   test('MCP steps carry full arguments (with Home coordinates) and the raw response', () => {
     const activities = steps.find((s) => s.name === 'get_activities')!;
     expect(activities.input).toEqual({ activity_status: 'past', activity_type: 'groceries' });
-    expect((activities.output as any).past_activities).toHaveLength(10);
+    expect((activities.output as any).past_activities).toHaveLength(15);
     expect(steps.find((s) => s.name === 'global_search')!.input).toMatchObject({ latitude: 25.0866, longitude: 55.1474 });
   });
 

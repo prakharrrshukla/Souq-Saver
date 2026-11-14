@@ -163,6 +163,26 @@ acceptance checks (output schema, no hint of being a local copy).
 The household: 10 weekly Quik orders; rice up 10.5% (38.00 to 42.00); dish soap every 4 weeks and
 bought last week; treats creeping in over the last month; last week AED 186.15.
 
+
+## Demo users (three households)
+
+All invented, all in Careem's response format, all served by the local Careem MCP sandbox.
+
+| Switch with | Household | What the AI engine has to work out from the orders |
+|---|---|---|
+| `npm run persona -- leonardo` | Leonardo DiCappuccino, Dubai Marina (Careem's sandbox user) | Brand-loyal rice and oil, cow milk to oat milk, monthly Marina top-ups, holiday week |
+| `npm run persona -- family` | The Khan family (6), Al Barsha | New baby (diapers, more milk and eggs), monthly bulk staples at Marina, guest week |
+| `npm run persona -- single` | Joy Dela Cruz, JLT | Switched from noodles, cola and chips to healthy food, coffee beans from JLT Organic Pantry, away one week |
+
+After switching, press Reset in the app. `npm test` always regenerates Leonardo.
+
+## AI engine (V2)
+
+`server/src/brain/`: the model (Bedrock, `BEDROCK_MODEL_ID`) learns the household and builds the basket;
+`check.ts` (the calculator) adds up every plan and sends problems back for the AI to fix. Chosen model:
+`openai.gpt-oss-120b-1:0` (backup `mistral.ministral-3-8b-instruct`), picked with
+`server/scripts/eval-models.ts` as the lightest model that read all three households correctly.
+
 ## Repository
 
 ```

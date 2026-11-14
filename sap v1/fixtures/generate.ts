@@ -9,7 +9,11 @@
 import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { HISTORY, PRODUCTS, SEED, STORES, WEEKS, type Product, type StoreKey } from './household.config.ts';
+import { readFileSync } from 'node:fs';
+import { PERSONAS, PRODUCTS, SEED, STORES, type HistoryLine, type Persona, type Product, type StoreKey } from './household.config.ts';
+
+/** The household being generated. build() and main() set it; the default is Leonardo. */
+let P: Persona = PERSONAS.leonardo;
 
 /** How timestamps are written: placeholders for the MCP server, real dates for offline tests. */
 export type Time = { iso(hoursAgo: number): string; ms(hoursAgo: number): number | string };
@@ -23,10 +27,6 @@ export const fixedTime = (now: Date): Time => ({
 const r2 = (n: number) => Math.round(n * 100) / 100;
 const money = (n: number) => n.toFixed(2);
 const MEDIA = 'https://careem-catalog-media.media.careem.com';
-const HOME = {
-  name: 'Home', locationUuid: 'LOC-50001', latitude: 25.0866, longitude: 55.1474,
-  addressDetails: { buildingName: 'Marina Gate 1', area: 'Dubai Marina', city: 'Dubai', country: 'AE', formattedName: 'Marina Gate 1, Dubai Marina', savedName: 'Home' },
-};
 
 function mulberry32(seed: number) {
   return () => {
@@ -184,65 +184,111 @@ function basketPriceResponse(store: StoreKey) {
 
 // ---------- order history ----------
 
+const storeOf = (h: HistoryLine): StoreKey => h.store ?? 'quik';
+const qtyOf = (h: HistoryLine, week: number) => h.qtyByWeek?.[week] ?? h.qty ?? 1;
+
+/** One order record in Careem's get_activities shape (Quik orders are `groceries`, Shops orders `shops`). */
+function orderRecord(store: StoreKey, week: number, hoursAgo: number, items: { item_id: number; name: string; quantity: number; amount: number }[], time: Time) {
+  const s = STORES[store];
+  const quik = s.kind === 'quik';
+  const total = r2(items.reduce((sum, i) => sum + i.amount, 0) + s.deliveryFee + s.serviceFee);
+  const num = ({ quik: 9300, marina: 9500, jlt: 9700 } as const)[store] + week;
+  const ref = `order_${num}`;
+  return {
+    id: `${quik ? 'act_groc' : 'act_shops'}_${num}`, provider_id: 3, provider: 'careem-grocery', type: quik ? 'groceries' : 'shops', reference_id: ref,
+    user_id: 900000001, status: 'completed', country: 'AE',
+    activity_time: time.iso(hoursAgo), created_at: time.iso(hoursAgo), updated_at: time.iso(hoursAgo - 1),
+    data: {
+      status: 'DELIVERED', basket_id: ({ quik: 6000300, marina: 6000500, jlt: 6000700 } as const)[store] + week, brand_id: s.brandId, merchant_id: s.merchantId, merchant_name: s.name,
+      merchant_type: quik ? 'ufd' : 'retail', care_deep_link: `careem://care.careem.com/issueTypes?reference_id=${ref}&provider_id=3&partner=shops`,
+      payment_type: 'CARD', completed_at: time.ms(hoursAgo - 1), items,
+      order_delivery: { type: 'CAREEM', eta: quik ? 18 : 35 }, dropoff_location: P.home,
+    },
+    pricing: { currency: 'AED', total_price: money(total) },
+    presentation_data: {
+      title: quik ? 'Careem Quik' : s.name,
+      subtitle: quik ? items.slice(0, 3).map((i) => i.name).join(', ') : items.map((i) => `${i.quantity}x ${i.name}`).join(', '),
+      main_icon_url: `${MEDIA}/icons/${quik ? 'quik' : 'shops'}.png`, trailing: `AED ${money(total)}`, thirdline: 'Delivered to Home',
+    },
+  };
+}
+
 function orders(time: Time) {
   const rand = mulberry32(SEED);
-  const quik = STORES.quik;
-  const list = [];
-  for (let week = 1; week <= WEEKS; week++) {
-    // Saturdays, with a few hours of noise; the week 6 order slipped to Sunday.
-    const hoursAgo = (WEEKS - week + 1) * 168 + Math.round(rand() * 6 - 3) - (week === 6 ? 24 : 0);
-    const items = HISTORY.filter((h) => h.weeks.includes(week)).map((h) => {
-      const product = bySku(h.sku);
-      let unit = h.prices?.[week] ?? product.price.quik!;
-      const noise = rand(); // always drawn, so adding a wobble to one item does not shift the others
-      if (h.wobble && week < WEEKS) unit = r2(unit + Math.round((noise * 2 - 1) * h.wobble * 4) / 4);
-      const quantity = h.qty ?? 1;
-      return { item_id: itemId('quik', h.sku), name: product.name, quantity, amount: r2(unit * quantity) };
-    });
-    const total = r2(items.reduce((sum, i) => sum + i.amount, 0) + quik.deliveryFee + quik.serviceFee);
-    const ref = `order_${9300 + week}`;
-    list.push({
-      id: `act_groc_${9300 + week}`, provider_id: 3, provider: 'careem-grocery', type: 'groceries', reference_id: ref,
-      user_id: 900000001, status: 'completed', country: 'AE',
-      activity_time: time.iso(hoursAgo), created_at: time.iso(hoursAgo), updated_at: time.iso(hoursAgo - 1),
-      data: {
-        status: 'DELIVERED', basket_id: 6000300 + week, brand_id: quik.brandId, merchant_id: quik.merchantId, merchant_name: quik.name,
-        merchant_type: 'ufd', care_deep_link: `careem://care.careem.com/issueTypes?reference_id=${ref}&provider_id=3&partner=shops`,
-        payment_type: 'CARD', completed_at: time.ms(hoursAgo - 1), items,
-        order_delivery: { type: 'CAREEM', eta: 18 }, dropoff_location: HOME,
-      },
-      pricing: { currency: 'AED', total_price: money(total) },
-      presentation_data: {
-        title: 'Careem Quik', subtitle: items.slice(0, 3).map((i) => i.name).join(', '),
-        main_icon_url: `${MEDIA}/icons/quik.png`, trailing: `AED ${money(total)}`, thirdline: 'Delivered to Home',
-      },
-    });
+  const groceries = [];
+  const shops: { hoursAgo: number; record: ReturnType<typeof orderRecord> }[] = [];
+  for (let week = 1; week <= P.weeks; week++) {
+    // Quik on Saturdays, with a few hours of noise; the week 6 order slipped to Sunday.
+    const hoursAgo = (P.weeks - week + 1) * 168 + Math.round(rand() * 6 - 3) - (week === 6 ? 24 : 0);
+    if (P.skippedWeeks.includes(week)) continue; // away: no order that week
+    for (const store of ['quik', 'marina', 'jlt'] as StoreKey[]) {
+      const lines = P.history.filter((h) => storeOf(h) === store && h.weeks.includes(week));
+      if (!lines.length) continue;
+      const items = lines.map((h) => {
+        const product = bySku(h.sku);
+        let unit = h.prices?.[week] ?? product.price[store]!;
+        const noise = rand(); // always drawn, so adding a wobble to one item does not shift the others
+        if (h.wobble && week < P.weeks) unit = r2(unit + Math.round((noise * 2 - 1) * h.wobble * 4) / 4);
+        const quantity = qtyOf(h, week);
+        return { item_id: itemId(store, h.sku), name: product.name, quantity, amount: r2(unit * quantity) };
+      });
+      // Shops orders go out midweek before that week's Saturday Quik shop (Marina Wednesday, JLT Thursday).
+      if (store === 'quik') groceries.push(orderRecord(store, week, hoursAgo, items, time));
+      else { const h = hoursAgo + (store === 'marina' ? 72 : 48); shops.push({ hoursAgo: h, record: orderRecord(store, week, h, items, time) }); }
+    }
   }
-  return list.reverse(); // newest first, like the activity feed
+  return { groceries: groceries.reverse(), shops: shops.sort((a, b) => a.hoursAgo - b.hoursAgo).map((s) => s.record) }; // newest first, like the activity feed
 }
 
 /** Every generated response, as plain objects. Offline engine tests call this with a fixed clock. */
-export function build(time: Time) {
+export function build(time: Time, persona: Persona['key'] = 'leonardo') {
+  P = PERSONAS[persona];
   const past = orders(time);
-  const historyIds = [...new Set(HISTORY.map((h) => itemId('quik', h.sku)))].sort((a, b) => a - b);
-  const skuOfQuikId = new Map(PRODUCTS.filter((p) => p.price.quik !== undefined).map((p) => [itemId('quik', p.sku), p]));
-  const details = [];
-  for (let i = 0; i < historyIds.length; i += 20) { // the tool takes at most 20 ids per call
-    const ids = historyIds.slice(i, i + 20);
-    details.push({ ids, response: { page: 'groceries_get_items_details', items: ids.map((id) => detailsItem('quik', skuOfQuikId.get(id)!)) } });
+  const details: { store: StoreKey; ids: number[]; response: unknown }[] = [];
+  for (const store of ['quik', 'marina', 'jlt'] as StoreKey[]) {
+    const ids = [...new Set(P.history.filter((h) => storeOf(h) === store).map((h) => itemId(store, h.sku)))].sort((x, y) => x - y);
+    const productOfId = new Map(PRODUCTS.filter((p) => p.price[store] !== undefined).map((p) => [itemId(store, p.sku), p]));
+    for (let i = 0; i < ids.length; i += 20) { // the tool takes at most 20 ids per call
+      const batch = ids.slice(i, i + 20);
+      details.push({ store, ids: batch, response: { page: 'groceries_get_items_details', items: batch.map((id) => detailsItem(store, productOfId.get(id)!)) } });
+    }
   }
   return {
     seed: SEED,
     activities: {
-      pastGroceries: { page: 'get_activities', past_activities: past, paging: {} },
-      pastShops: { page: 'get_activities', paging: {} },
+      pastGroceries: { page: 'get_activities', past_activities: past.groceries, paging: {} },
+      pastShops: { page: 'get_activities', past_activities: past.shops, paging: {} },
     },
     details,
     search: { quik: searchResponse('quik'), marina: searchResponse('marina'), jlt: searchResponse('jlt') },
     globalSearch: globalSearchResponse(),
     basketPrice: { marina: basketPriceResponse('marina'), jlt: basketPriceResponse('jlt') },
-    lastWeekTotal: Number(past[0].pricing.total_price),
+    lastWeekTotal: Number(past.groceries[0].pricing.total_price),
+    userInfo: userInfoResponses(),
+    orderCount: past.groceries.length + past.shops.length,
   };
+}
+
+// ---------- user_info: Careem's own response, with this household's person and Home ----------
+
+const USER_INFO_SPEC = join(dirname(fileURLToPath(import.meta.url)), '..', 'sandbox', 'careem-mcp-sandbox', 'spec', 'tools', 'user', 'user_info.md');
+
+function careemScenario(name: string): any {
+  const text = readFileSync(USER_INFO_SPEC, 'utf8');
+  const section = text.split('## Scenario: ')[text.split('## Scenario: ').findIndex((part) => part.startsWith(`${name}\n`))];
+  const raw = /```json response\n([\s\S]*?)\n```/.exec(section)![1];
+  return JSON.parse(raw.replace(/\{\{[^}]+\}\}/g, '"__placeholder__"'));
+}
+
+function userInfoResponses() {
+  const swap = (response: any) => {
+    const r = structuredClone(response);
+    Object.assign(r.user_info, { name: `${P.user.given} ${P.user.family}`, given_name: P.user.given, family_name: P.user.family, preferred_username: P.user.email, gender: P.user.gender });
+    const home = (r.saved_bookmarks ?? []).find((b: any) => b.location_tag === 'home');
+    if (home) Object.assign(home, { id: P.home.locationUuid, subTitle: `${P.home.addressDetails.formattedName}, Dubai`, latitude: P.home.latitude, longitude: P.home.longitude, bookmark_id: P.home.locationUuid.replace('LOC-', '') });
+    return r;
+  };
+  return { withLocation: swap(careemScenario('with-location')) };
 }
 
 // ---------- write tool files ----------
@@ -264,7 +310,10 @@ function toolFile(tool: string, domain: string, scenarios: Scenario[]) {
 }
 
 function main() {
-  const data = build(placeholderTime);
+  const flag = process.argv.indexOf('--persona');
+  const key = (flag > 0 ? process.argv[flag + 1] : process.env.PERSONA) ?? 'leonardo';
+  if (!(key in PERSONAS)) { console.error(`unknown persona "${key}": use ${Object.keys(PERSONAS).join(', ')}`); process.exit(1); }
+  const data = build(placeholderTime, key as Persona['key']);
   const outDir = join(dirname(fileURLToPath(import.meta.url)), 'out');
   rmSync(outDir, { recursive: true, force: true });
   const { quik, marina, jlt } = STORES;
@@ -272,13 +321,16 @@ function main() {
   const files: Record<string, string> = {
     'tools/user/get_activities.md': toolFile('get_activities', 'user', [
       { name: 'upstream-unavailable', note: 'Kept ahead of the household scenarios so the magic trigger still works.', match: { next_cursor: '~trigger_upstream_down' }, response: { page: 'get_activities', error: 'upstream service error: upstream temporarily unavailable' } },
-      { name: 'household-past-groceries', note: `\`past\` + \`groceries\`: ${WEEKS} weekly Quik orders, newest first, one page.`, match: { activity_status: 'past', activity_type: 'groceries' }, response: data.activities.pastGroceries },
-      { name: 'household-past-shops', note: '`past` + `shops`: this household has not ordered from a Careem Shops merchant yet.', match: { activity_status: 'past', activity_type: 'shops' }, response: data.activities.pastShops },
+      { name: 'household-past-groceries', note: `\`past\` + \`groceries\`: ${data.activities.pastGroceries.past_activities.length} weekly Quik orders over ${P.weeks} weeks${P.skippedWeeks.length ? ` (none in week ${P.skippedWeeks.join(', ')})` : ''}, newest first, one page.`, match: { activity_status: 'past', activity_type: 'groceries' }, response: data.activities.pastGroceries },
+      { name: 'household-past-shops', note: `\`past\` + \`shops\`: ${data.activities.pastShops.past_activities.length} Careem Shops orders, newest first, one page.`, match: { activity_status: 'past', activity_type: 'shops' }, response: data.activities.pastShops },
+    ]),
+    'tools/user/user_info.md': toolFile('user_info', 'user', [
+      { name: 'household-with-location', note: `Coordinates passed: Careem's with-location response for ${P.user.given} ${P.user.family}.`, match: { latitude: '*', longitude: '*' }, response: data.userInfo.withLocation },
     ]),
     'tools/groceries/groceries_get_items_details.md': toolFile('groceries_get_items_details', 'groceries',
       data.details.map((batch, i) => ({
-        name: `household-items-${i + 1}`, note: `Quik items ${batch.ids[0]} to ${batch.ids[batch.ids.length - 1]} (batch ${i + 1} of the household's history, ids ascending).`,
-        match: { merchant_id: quik.merchantId, item_ids: [batch.ids[0]] }, response: batch.response,
+        name: `household-items-${i + 1}`, note: `${STORES[batch.store].name} items ${batch.ids[0]} to ${batch.ids[batch.ids.length - 1]} (batch ${i + 1} of the household's history, ids ascending).`,
+        match: { merchant_id: STORES[batch.store].merchantId, item_ids: [batch.ids[0]] }, response: batch.response,
       }))),
     'tools/groceries/search_groceries_items.md': toolFile('search_groceries_items', 'groceries', [
       { name: 'household-marina-fresh', note: `\`merchant_id: ${marina.merchantId}\`: the full Marina Fresh Market range, one group per category.`, match: { merchant_id: marina.merchantId }, response: data.search.marina },
@@ -295,8 +347,9 @@ function main() {
   };
   const manifest = {
     seed: SEED, generatedBy: 'fixtures/generate.ts', sampleData: true,
-    household: 'Sample household at Home (LOC-50001), Dubai Marina. Invented data in Careem MCP response format.',
-    orders: WEEKS, lastWeekTotal: data.lastWeekTotal, products: PRODUCTS.length,
+    household: `Sample household: ${P.user.given} ${P.user.family}, ${P.home.addressDetails.formattedName}. Invented data in Careem MCP response format.`,
+    persona: P.key, story: P.story, user: `${P.user.given} ${P.user.family}`, home: { latitude: P.home.latitude, longitude: P.home.longitude, address: P.home.addressDetails.formattedName },
+    orders: data.orderCount, weeks: P.weeks, lastWeekTotal: data.lastWeekTotal, products: PRODUCTS.length,
     stores: Object.values(STORES).map((s) => ({ merchantId: s.merchantId, name: s.name, items: PRODUCTS.filter((p) => p.price[(Object.keys(STORES) as StoreKey[]).find((k) => STORES[k] === s)!] !== undefined).length })),
     files: Object.keys(files),
   };
@@ -306,7 +359,7 @@ function main() {
     mkdirSync(dirname(join(outDir, path)), { recursive: true });
     writeFileSync(join(outDir, path), content);
   }
-  console.log(`fixtures: seed ${SEED}, ${WEEKS} orders, last week AED ${money(data.lastWeekTotal)}, ${Object.keys(files).length} files in fixtures/out`);
+  console.log(`fixtures: ${P.user.given} ${P.user.family} (${P.key}), ${data.orderCount} orders over ${P.weeks} weeks, last week AED ${money(data.lastWeekTotal)}, ${Object.keys(files).length} files in fixtures/out`);
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) main();

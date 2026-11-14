@@ -2,7 +2,7 @@
 // followed by Souq Saver's own rules.
 import type { Language } from '../contract.ts';
 
-const LANGUAGE_NAME: Record<Language, string> = { en: 'English', ar: 'Arabic', hi: 'Hindi', ur: 'Urdu', tl: 'Tagalog' };
+export const LANGUAGE_NAME: Record<Language, string> = { en: 'English', ar: 'Arabic', hi: 'Hindi', ur: 'Urdu', tl: 'Tagalog' };
 
 const CAREEM_PLAYBOOK = `Careem agent playbook (from Careem):
 1. Always pass the user's coordinates (latitude/longitude): nearly every tool is location-scoped. Get saved addresses from user_info if the user says "home" or "work".

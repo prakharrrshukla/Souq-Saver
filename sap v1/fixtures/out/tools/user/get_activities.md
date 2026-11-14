@@ -28,7 +28,7 @@ Kept ahead of the household scenarios so the magic trigger still works.
 
 ## Scenario: household-past-groceries
 
-`past` + `groceries`: 10 weekly Quik orders, newest first, one page.
+`past` + `groceries`: 15 weekly Quik orders over 16 weeks (none in week 12), newest first, one page.
 
 ```json match
 {
@@ -42,27 +42,27 @@ Kept ahead of the household scenarios so the magic trigger still works.
   "page": "get_activities",
   "past_activities": [
     {
-      "id": "act_groc_9310",
+      "id": "act_groc_9316",
       "provider_id": 3,
       "provider": "careem-grocery",
       "type": "groceries",
-      "reference_id": "order_9310",
+      "reference_id": "order_9316",
       "user_id": 900000001,
       "status": "completed",
       "country": "AE",
-      "activity_time": "{{now-168h}}",
-      "created_at": "{{now-168h}}",
-      "updated_at": "{{now-167h}}",
+      "activity_time": "{{now-171h}}",
+      "created_at": "{{now-171h}}",
+      "updated_at": "{{now-170h}}",
       "data": {
         "status": "DELIVERED",
-        "basket_id": 6000310,
+        "basket_id": 6000316,
         "brand_id": 40000,
         "merchant_id": 40001,
         "merchant_name": "Careem Quik Dubai Marina",
         "merchant_type": "ufd",
-        "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9310&provider_id=3&partner=shops",
+        "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9316&provider_id=3&partner=shops",
         "payment_type": "CARD",
-        "completed_at": {{unixms-167h}},
+        "completed_at": {{unixms-170h}},
         "items": [
           {
             "item_id": 4000201,
@@ -77,79 +77,79 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "amount": 7.25
           },
           {
-            "item_id": 4000210,
-            "name": "Marmoom Farms Fresh Milk Full Cream 2L",
+            "item_id": 4000211,
+            "name": "GreenOat Oat Milk 1L",
             "quantity": 2,
             "amount": 21
           },
           {
-            "item_id": 4000211,
+            "item_id": 4000212,
             "name": "Golden Yolk Eggs Tray 30",
             "quantity": 1,
             "amount": 21
           },
           {
-            "item_id": 4000213,
+            "item_id": 4000214,
             "name": "Red Onions 1kg",
             "quantity": 1,
             "amount": 4.25
           },
           {
-            "item_id": 4000214,
+            "item_id": 4000215,
             "name": "Tomatoes 1kg",
             "quantity": 1,
             "amount": 5.5
           },
           {
-            "item_id": 4000216,
+            "item_id": 4000217,
             "name": "Al Khayma Arabic Bread Large 6pcs",
             "quantity": 2,
             "amount": 6
           },
           {
-            "item_id": 4000219,
+            "item_id": 4000220,
             "name": "Sparkle Lemon Dishwashing Liquid 750ml",
             "quantity": 1,
             "amount": 8.25
           },
           {
-            "item_id": 4000221,
+            "item_id": 4000222,
             "name": "SoftCloud Toilet Tissue 12 Rolls",
             "quantity": 1,
             "amount": 25.65
           },
           {
-            "item_id": 4000222,
+            "item_id": 4000223,
             "name": "Crunchos Salted Potato Chips Family Pack 150g",
             "quantity": 1,
             "amount": 7.5
           },
           {
-            "item_id": 4000223,
+            "item_id": 4000224,
             "name": "FizzUp Cola 6x330ml",
             "quantity": 1,
             "amount": 11
           },
           {
-            "item_id": 4000224,
+            "item_id": 4000225,
             "name": "ChocoJoy Milk Chocolate Bars 4 Pack",
             "quantity": 1,
             "amount": 9.75
           },
           {
-            "item_id": 4000225,
+            "item_id": 4000226,
             "name": "Polar Scoop Vanilla Ice Cream 1L",
             "quantity": 1,
             "amount": 18.5
           },
           {
-            "item_id": 4000226,
+            "item_id": 4000227,
             "name": "Tea Time Butter Biscuits 400g",
             "quantity": 1,
             "amount": 6.5
           },
           {
-            "item_id": 4000227,
+            "item_id": 4000228,
             "name": "Sunny Grove Orange Juice 1.5L",
             "quantity": 1,
             "amount": 9.5
@@ -180,34 +180,34 @@ Kept ahead of the household scenarios so the magic trigger still works.
       },
       "presentation_data": {
         "title": "Careem Quik",
-        "subtitle": "Oasis Springs Drinking Water 6x1.5L, Al Wadi White Sugar 2kg, Marmoom Farms Fresh Milk Full Cream 2L",
+        "subtitle": "Oasis Springs Drinking Water 6x1.5L, Al Wadi White Sugar 2kg, GreenOat Oat Milk 1L",
         "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/quik.png",
         "trailing": "AED 186.15",
         "thirdline": "Delivered to Home"
       }
     },
     {
-      "id": "act_groc_9309",
+      "id": "act_groc_9315",
       "provider_id": 3,
       "provider": "careem-grocery",
       "type": "groceries",
-      "reference_id": "order_9309",
+      "reference_id": "order_9315",
       "user_id": 900000001,
       "status": "completed",
       "country": "AE",
-      "activity_time": "{{now-334h}}",
-      "created_at": "{{now-334h}}",
-      "updated_at": "{{now-333h}}",
+      "activity_time": "{{now-336h}}",
+      "created_at": "{{now-336h}}",
+      "updated_at": "{{now-335h}}",
       "data": {
         "status": "DELIVERED",
-        "basket_id": 6000309,
+        "basket_id": 6000315,
         "brand_id": 40000,
         "merchant_id": 40001,
         "merchant_name": "Careem Quik Dubai Marina",
         "merchant_type": "ufd",
-        "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9309&provider_id=3&partner=shops",
+        "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9315&provider_id=3&partner=shops",
         "payment_type": "CARD",
-        "completed_at": {{unixms-333h}},
+        "completed_at": {{unixms-335h}},
         "items": [
           {
             "item_id": 4000201,
@@ -216,85 +216,73 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "amount": 19
           },
           {
-            "item_id": 4000205,
-            "name": "Chakki Gold Atta Wheat Flour 5kg",
-            "quantity": 1,
-            "amount": 18.5
-          },
-          {
-            "item_id": 4000207,
-            "name": "Desi Harvest Toor Dal 1kg",
-            "quantity": 1,
-            "amount": 9.25
-          },
-          {
-            "item_id": 4000210,
-            "name": "Marmoom Farms Fresh Milk Full Cream 2L",
+            "item_id": 4000211,
+            "name": "GreenOat Oat Milk 1L",
             "quantity": 2,
             "amount": 21
           },
           {
-            "item_id": 4000211,
+            "item_id": 4000212,
             "name": "Golden Yolk Eggs Tray 30",
             "quantity": 1,
             "amount": 21
           },
           {
-            "item_id": 4000213,
+            "item_id": 4000214,
             "name": "Red Onions 1kg",
             "quantity": 1,
-            "amount": 4
+            "amount": 4.5
           },
           {
-            "item_id": 4000214,
+            "item_id": 4000215,
             "name": "Tomatoes 1kg",
             "quantity": 1,
-            "amount": 5.25
+            "amount": 5.75
           },
           {
-            "item_id": 4000216,
+            "item_id": 4000217,
             "name": "Al Khayma Arabic Bread Large 6pcs",
             "quantity": 2,
             "amount": 6
           },
           {
-            "item_id": 4000220,
+            "item_id": 4000221,
             "name": "BrightWash Laundry Detergent Liquid 3L",
             "quantity": 1,
             "amount": 34.5
           },
           {
-            "item_id": 4000222,
+            "item_id": 4000223,
             "name": "Crunchos Salted Potato Chips Family Pack 150g",
             "quantity": 1,
             "amount": 7.5
           },
           {
-            "item_id": 4000223,
+            "item_id": 4000224,
             "name": "FizzUp Cola 6x330ml",
             "quantity": 1,
             "amount": 11
           },
           {
-            "item_id": 4000224,
+            "item_id": 4000225,
             "name": "ChocoJoy Milk Chocolate Bars 4 Pack",
             "quantity": 1,
             "amount": 9.75
           },
           {
-            "item_id": 4000225,
+            "item_id": 4000226,
             "name": "Polar Scoop Vanilla Ice Cream 1L",
             "quantity": 1,
             "amount": 18.5
           },
           {
-            "item_id": 4000226,
+            "item_id": 4000227,
             "name": "Tea Time Butter Biscuits 400g",
             "quantity": 1,
             "amount": 6.5
           },
           {
-            "item_id": 4000227,
+            "item_id": 4000228,
             "name": "Sunny Grove Orange Juice 1.5L",
             "quantity": 1,
             "amount": 9.5
@@ -321,38 +309,38 @@ Kept ahead of the household scenarios so the magic trigger still works.
       },
       "pricing": {
         "currency": "AED",
-        "total_price": "206.75"
+        "total_price": "180.00"
       },
       "presentation_data": {
         "title": "Careem Quik",
-        "subtitle": "Oasis Springs Drinking Water 6x1.5L, Chakki Gold Atta Wheat Flour 5kg, Desi Harvest Toor Dal 1kg",
+        "subtitle": "Oasis Springs Drinking Water 6x1.5L, GreenOat Oat Milk 1L, Golden Yolk Eggs Tray 30",
         "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/quik.png",
-        "trailing": "AED 206.75",
+        "trailing": "AED 180.00",
         "thirdline": "Delivered to Home"
       }
     },
     {
-      "id": "act_groc_9308",
+      "id": "act_groc_9314",
       "provider_id": 3,
       "provider": "careem-grocery",
       "type": "groceries",
-      "reference_id": "order_9308",
+      "reference_id": "order_9314",
       "user_id": 900000001,
       "status": "completed",
       "country": "AE",
-      "activity_time": "{{now-505h}}",
-      "created_at": "{{now-505h}}",
-      "updated_at": "{{now-504h}}",
+      "activity_time": "{{now-504h}}",
+      "created_at": "{{now-504h}}",
+      "updated_at": "{{now-503h}}",
       "data": {
         "status": "DELIVERED",
-        "basket_id": 6000308,
+        "basket_id": 6000314,
         "brand_id": 40000,
         "merchant_id": 40001,
         "merchant_name": "Careem Quik Dubai Marina",
         "merchant_type": "ufd",
-        "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9308&provider_id=3&partner=shops",
+        "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9314&provider_id=3&partner=shops",
         "payment_type": "CARD",
-        "completed_at": {{unixms-504h}},
+        "completed_at": {{unixms-503h}},
         "items": [
           {
             "item_id": 4000201,
@@ -373,67 +361,67 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "amount": 16.75
           },
           {
-            "item_id": 4000210,
-            "name": "Marmoom Farms Fresh Milk Full Cream 2L",
+            "item_id": 4000211,
+            "name": "GreenOat Oat Milk 1L",
             "quantity": 2,
             "amount": 21
           },
           {
-            "item_id": 4000211,
+            "item_id": 4000212,
             "name": "Golden Yolk Eggs Tray 30",
             "quantity": 1,
             "amount": 21
           },
           {
-            "item_id": 4000213,
+            "item_id": 4000214,
             "name": "Red Onions 1kg",
             "quantity": 1,
-            "amount": 4.5
+            "amount": 4
           },
           {
-            "item_id": 4000214,
+            "item_id": 4000215,
             "name": "Tomatoes 1kg",
             "quantity": 1,
-            "amount": 5.25
+            "amount": 6
           },
           {
-            "item_id": 4000216,
+            "item_id": 4000217,
             "name": "Al Khayma Arabic Bread Large 6pcs",
             "quantity": 2,
             "amount": 6
           },
           {
-            "item_id": 4000222,
+            "item_id": 4000223,
             "name": "Crunchos Salted Potato Chips Family Pack 150g",
             "quantity": 1,
             "amount": 7.5
           },
           {
-            "item_id": 4000223,
+            "item_id": 4000224,
             "name": "FizzUp Cola 6x330ml",
             "quantity": 1,
             "amount": 11
           },
           {
-            "item_id": 4000224,
+            "item_id": 4000225,
             "name": "ChocoJoy Milk Chocolate Bars 4 Pack",
             "quantity": 1,
             "amount": 9.75
           },
           {
-            "item_id": 4000225,
+            "item_id": 4000226,
             "name": "Polar Scoop Vanilla Ice Cream 1L",
             "quantity": 1,
             "amount": 18.5
           },
           {
-            "item_id": 4000226,
+            "item_id": 4000227,
             "name": "Tea Time Butter Biscuits 400g",
             "quantity": 1,
             "amount": 6.5
           },
           {
-            "item_id": 4000227,
+            "item_id": 4000228,
             "name": "Sunny Grove Orange Juice 1.5L",
             "quantity": 1,
             "amount": 9.5
@@ -460,38 +448,38 @@ Kept ahead of the household scenarios so the magic trigger still works.
       },
       "pricing": {
         "currency": "AED",
-        "total_price": "203.75"
+        "total_price": "204.00"
       },
       "presentation_data": {
         "title": "Careem Quik",
         "subtitle": "Oasis Springs Drinking Water 6x1.5L, Royal Mahal Basmati Rice 5kg, Noor Al Sahra Sunflower Oil 1.8L",
         "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/quik.png",
-        "trailing": "AED 203.75",
+        "trailing": "AED 204.00",
         "thirdline": "Delivered to Home"
       }
     },
     {
-      "id": "act_groc_9307",
+      "id": "act_groc_9313",
       "provider_id": 3,
       "provider": "careem-grocery",
       "type": "groceries",
-      "reference_id": "order_9307",
+      "reference_id": "order_9313",
       "user_id": 900000001,
       "status": "completed",
       "country": "AE",
-      "activity_time": "{{now-670h}}",
-      "created_at": "{{now-670h}}",
-      "updated_at": "{{now-669h}}",
+      "activity_time": "{{now-673h}}",
+      "created_at": "{{now-673h}}",
+      "updated_at": "{{now-672h}}",
       "data": {
         "status": "DELIVERED",
-        "basket_id": 6000307,
+        "basket_id": 6000313,
         "brand_id": 40000,
         "merchant_id": 40001,
         "merchant_name": "Careem Quik Dubai Marina",
         "merchant_type": "ufd",
-        "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9307&provider_id=3&partner=shops",
+        "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9313&provider_id=3&partner=shops",
         "payment_type": "CARD",
-        "completed_at": {{unixms-669h}},
+        "completed_at": {{unixms-672h}},
         "items": [
           {
             "item_id": 4000201,
@@ -500,16 +488,264 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "amount": 19
           },
           {
-            "item_id": 4000205,
-            "name": "Chakki Gold Atta Wheat Flour 5kg",
+            "item_id": 4000211,
+            "name": "GreenOat Oat Milk 1L",
+            "quantity": 2,
+            "amount": 21
+          },
+          {
+            "item_id": 4000212,
+            "name": "Golden Yolk Eggs Tray 30",
+            "quantity": 1,
+            "amount": 21
+          },
+          {
+            "item_id": 4000214,
+            "name": "Red Onions 1kg",
+            "quantity": 1,
+            "amount": 4.5
+          },
+          {
+            "item_id": 4000215,
+            "name": "Tomatoes 1kg",
+            "quantity": 1,
+            "amount": 6
+          },
+          {
+            "item_id": 4000217,
+            "name": "Al Khayma Arabic Bread Large 6pcs",
+            "quantity": 2,
+            "amount": 6
+          },
+          {
+            "item_id": 4000220,
+            "name": "Sparkle Lemon Dishwashing Liquid 750ml",
+            "quantity": 1,
+            "amount": 8.25
+          },
+          {
+            "item_id": 4000224,
+            "name": "FizzUp Cola 6x330ml",
+            "quantity": 1,
+            "amount": 11
+          },
+          {
+            "item_id": 4000225,
+            "name": "ChocoJoy Milk Chocolate Bars 4 Pack",
+            "quantity": 1,
+            "amount": 9.75
+          },
+          {
+            "item_id": 4000226,
+            "name": "Polar Scoop Vanilla Ice Cream 1L",
             "quantity": 1,
             "amount": 18.5
           },
           {
-            "item_id": 4000207,
-            "name": "Desi Harvest Toor Dal 1kg",
+            "item_id": 4000227,
+            "name": "Tea Time Butter Biscuits 400g",
             "quantity": 1,
-            "amount": 9.25
+            "amount": 6.5
+          },
+          {
+            "item_id": 4000228,
+            "name": "Sunny Grove Orange Juice 1.5L",
+            "quantity": 1,
+            "amount": 9.5
+          }
+        ],
+        "order_delivery": {
+          "type": "CAREEM",
+          "eta": 18
+        },
+        "dropoff_location": {
+          "name": "Home",
+          "locationUuid": "LOC-50001",
+          "latitude": 25.0866,
+          "longitude": 55.1474,
+          "addressDetails": {
+            "buildingName": "Marina Gate 1",
+            "area": "Dubai Marina",
+            "city": "Dubai",
+            "country": "AE",
+            "formattedName": "Marina Gate 1, Dubai Marina",
+            "savedName": "Home"
+          }
+        }
+      },
+      "pricing": {
+        "currency": "AED",
+        "total_price": "146.50"
+      },
+      "presentation_data": {
+        "title": "Careem Quik",
+        "subtitle": "Oasis Springs Drinking Water 6x1.5L, GreenOat Oat Milk 1L, Golden Yolk Eggs Tray 30",
+        "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/quik.png",
+        "trailing": "AED 146.50",
+        "thirdline": "Delivered to Home"
+      }
+    },
+    {
+      "id": "act_groc_9311",
+      "provider_id": 3,
+      "provider": "careem-grocery",
+      "type": "groceries",
+      "reference_id": "order_9311",
+      "user_id": 900000001,
+      "status": "completed",
+      "country": "AE",
+      "activity_time": "{{now-1008h}}",
+      "created_at": "{{now-1008h}}",
+      "updated_at": "{{now-1007h}}",
+      "data": {
+        "status": "DELIVERED",
+        "basket_id": 6000311,
+        "brand_id": 40000,
+        "merchant_id": 40001,
+        "merchant_name": "Careem Quik Dubai Marina",
+        "merchant_type": "ufd",
+        "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9311&provider_id=3&partner=shops",
+        "payment_type": "CARD",
+        "completed_at": {{unixms-1007h}},
+        "items": [
+          {
+            "item_id": 4000201,
+            "name": "Oasis Springs Drinking Water 6x1.5L",
+            "quantity": 2,
+            "amount": 19
+          },
+          {
+            "item_id": 4000202,
+            "name": "Royal Mahal Basmati Rice 5kg",
+            "quantity": 1,
+            "amount": 40
+          },
+          {
+            "item_id": 4000206,
+            "name": "Noor Al Sahra Sunflower Oil 1.8L",
+            "quantity": 1,
+            "amount": 16.75
+          },
+          {
+            "item_id": 4000208,
+            "name": "Al Wadi White Sugar 2kg",
+            "quantity": 1,
+            "amount": 7.25
+          },
+          {
+            "item_id": 4000211,
+            "name": "GreenOat Oat Milk 1L",
+            "quantity": 2,
+            "amount": 21
+          },
+          {
+            "item_id": 4000212,
+            "name": "Golden Yolk Eggs Tray 30",
+            "quantity": 1,
+            "amount": 21
+          },
+          {
+            "item_id": 4000214,
+            "name": "Red Onions 1kg",
+            "quantity": 1,
+            "amount": 3.75
+          },
+          {
+            "item_id": 4000215,
+            "name": "Tomatoes 1kg",
+            "quantity": 1,
+            "amount": 5
+          },
+          {
+            "item_id": 4000217,
+            "name": "Al Khayma Arabic Bread Large 6pcs",
+            "quantity": 2,
+            "amount": 6
+          },
+          {
+            "item_id": 4000223,
+            "name": "Crunchos Salted Potato Chips Family Pack 150g",
+            "quantity": 1,
+            "amount": 7.5
+          },
+          {
+            "item_id": 4000224,
+            "name": "FizzUp Cola 6x330ml",
+            "quantity": 1,
+            "amount": 11
+          },
+          {
+            "item_id": 4000225,
+            "name": "ChocoJoy Milk Chocolate Bars 4 Pack",
+            "quantity": 1,
+            "amount": 9.75
+          },
+          {
+            "item_id": 4000227,
+            "name": "Tea Time Butter Biscuits 400g",
+            "quantity": 1,
+            "amount": 6.5
+          }
+        ],
+        "order_delivery": {
+          "type": "CAREEM",
+          "eta": 18
+        },
+        "dropoff_location": {
+          "name": "Home",
+          "locationUuid": "LOC-50001",
+          "latitude": 25.0866,
+          "longitude": 55.1474,
+          "addressDetails": {
+            "buildingName": "Marina Gate 1",
+            "area": "Dubai Marina",
+            "city": "Dubai",
+            "country": "AE",
+            "formattedName": "Marina Gate 1, Dubai Marina",
+            "savedName": "Home"
+          }
+        }
+      },
+      "pricing": {
+        "currency": "AED",
+        "total_price": "180.00"
+      },
+      "presentation_data": {
+        "title": "Careem Quik",
+        "subtitle": "Oasis Springs Drinking Water 6x1.5L, Royal Mahal Basmati Rice 5kg, Noor Al Sahra Sunflower Oil 1.8L",
+        "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/quik.png",
+        "trailing": "AED 180.00",
+        "thirdline": "Delivered to Home"
+      }
+    },
+    {
+      "id": "act_groc_9310",
+      "provider_id": 3,
+      "provider": "careem-grocery",
+      "type": "groceries",
+      "reference_id": "order_9310",
+      "user_id": 900000001,
+      "status": "completed",
+      "country": "AE",
+      "activity_time": "{{now-1177h}}",
+      "created_at": "{{now-1177h}}",
+      "updated_at": "{{now-1176h}}",
+      "data": {
+        "status": "DELIVERED",
+        "basket_id": 6000310,
+        "brand_id": 40000,
+        "merchant_id": 40001,
+        "merchant_name": "Careem Quik Dubai Marina",
+        "merchant_type": "ufd",
+        "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9310&provider_id=3&partner=shops",
+        "payment_type": "CARD",
+        "completed_at": {{unixms-1176h}},
+        "items": [
+          {
+            "item_id": 4000201,
+            "name": "Oasis Springs Drinking Water 6x1.5L",
+            "quantity": 2,
+            "amount": 19
           },
           {
             "item_id": 4000210,
@@ -518,61 +754,49 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "amount": 21
           },
           {
-            "item_id": 4000211,
+            "item_id": 4000212,
             "name": "Golden Yolk Eggs Tray 30",
             "quantity": 1,
             "amount": 21
           },
           {
-            "item_id": 4000213,
+            "item_id": 4000214,
             "name": "Red Onions 1kg",
             "quantity": 1,
-            "amount": 4.25
+            "amount": 4
           },
           {
-            "item_id": 4000214,
+            "item_id": 4000215,
             "name": "Tomatoes 1kg",
             "quantity": 1,
             "amount": 5.75
           },
           {
-            "item_id": 4000216,
+            "item_id": 4000217,
             "name": "Al Khayma Arabic Bread Large 6pcs",
             "quantity": 2,
             "amount": 6
           },
           {
+            "item_id": 4000222,
+            "name": "SoftCloud Toilet Tissue 12 Rolls",
+            "quantity": 1,
+            "amount": 25.65
+          },
+          {
             "item_id": 4000223,
+            "name": "Crunchos Salted Potato Chips Family Pack 150g",
+            "quantity": 1,
+            "amount": 7.5
+          },
+          {
+            "item_id": 4000224,
             "name": "FizzUp Cola 6x330ml",
             "quantity": 1,
             "amount": 11
           },
           {
-            "item_id": 4000224,
-            "name": "ChocoJoy Milk Chocolate Bars 4 Pack",
-            "quantity": 1,
-            "amount": 9.75
-          },
-          {
-            "item_id": 4000225,
-            "name": "Polar Scoop Vanilla Ice Cream 1L",
-            "quantity": 1,
-            "amount": 18.5
-          },
-          {
-            "item_id": 4000226,
-            "name": "Tea Time Butter Biscuits 400g",
-            "quantity": 1,
-            "amount": 6.5
-          },
-          {
-            "item_id": 4000227,
-            "name": "Sunny Grove Orange Juice 1.5L",
-            "quantity": 1,
-            "amount": 9.5
-          },
-          {
-            "item_id": 4000218,
+            "item_id": 4000219,
             "name": "Karak Chai Black Tea Bags 100",
             "quantity": 1,
             "amount": 14.75
@@ -599,38 +823,38 @@ Kept ahead of the household scenarios so the magic trigger still works.
       },
       "pricing": {
         "currency": "AED",
-        "total_price": "180.25"
+        "total_price": "141.15"
       },
       "presentation_data": {
         "title": "Careem Quik",
-        "subtitle": "Oasis Springs Drinking Water 6x1.5L, Chakki Gold Atta Wheat Flour 5kg, Desi Harvest Toor Dal 1kg",
+        "subtitle": "Oasis Springs Drinking Water 6x1.5L, Marmoom Farms Fresh Milk Full Cream 2L, Golden Yolk Eggs Tray 30",
         "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/quik.png",
-        "trailing": "AED 180.25",
+        "trailing": "AED 141.15",
         "thirdline": "Delivered to Home"
       }
     },
     {
-      "id": "act_groc_9306",
+      "id": "act_groc_9309",
       "provider_id": 3,
       "provider": "careem-grocery",
       "type": "groceries",
-      "reference_id": "order_9306",
+      "reference_id": "order_9309",
       "user_id": 900000001,
       "status": "completed",
       "country": "AE",
-      "activity_time": "{{now-817h}}",
-      "created_at": "{{now-817h}}",
-      "updated_at": "{{now-816h}}",
+      "activity_time": "{{now-1345h}}",
+      "created_at": "{{now-1345h}}",
+      "updated_at": "{{now-1344h}}",
       "data": {
         "status": "DELIVERED",
-        "basket_id": 6000306,
+        "basket_id": 6000309,
         "brand_id": 40000,
         "merchant_id": 40001,
         "merchant_name": "Careem Quik Dubai Marina",
         "merchant_type": "ufd",
-        "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9306&provider_id=3&partner=shops",
+        "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9309&provider_id=3&partner=shops",
         "payment_type": "CARD",
-        "completed_at": {{unixms-816h}},
+        "completed_at": {{unixms-1344h}},
         "items": [
           {
             "item_id": 4000201,
@@ -645,61 +869,49 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "amount": 19.9
           },
           {
-            "item_id": 4000211,
+            "item_id": 4000212,
             "name": "Golden Yolk Eggs Tray 30",
             "quantity": 1,
             "amount": 21
           },
           {
-            "item_id": 4000213,
+            "item_id": 4000214,
             "name": "Red Onions 1kg",
             "quantity": 1,
-            "amount": 4.25
+            "amount": 4.5
           },
           {
-            "item_id": 4000214,
+            "item_id": 4000215,
             "name": "Tomatoes 1kg",
             "quantity": 1,
             "amount": 5
           },
           {
-            "item_id": 4000216,
+            "item_id": 4000217,
             "name": "Al Khayma Arabic Bread Large 6pcs",
             "quantity": 2,
             "amount": 6
           },
           {
-            "item_id": 4000219,
-            "name": "Sparkle Lemon Dishwashing Liquid 750ml",
+            "item_id": 4000221,
+            "name": "BrightWash Laundry Detergent Liquid 3L",
             "quantity": 1,
-            "amount": 8.25
+            "amount": 34.5
           },
           {
-            "item_id": 4000222,
-            "name": "Crunchos Salted Potato Chips Family Pack 150g",
-            "quantity": 1,
-            "amount": 7.5
-          },
-          {
-            "item_id": 4000223,
+            "item_id": 4000224,
             "name": "FizzUp Cola 6x330ml",
             "quantity": 1,
             "amount": 11
           },
           {
             "item_id": 4000225,
-            "name": "Polar Scoop Vanilla Ice Cream 1L",
+            "name": "ChocoJoy Milk Chocolate Bars 4 Pack",
             "quantity": 1,
-            "amount": 18.5
+            "amount": 9.75
           },
           {
-            "item_id": 4000227,
-            "name": "Sunny Grove Orange Juice 1.5L",
-            "quantity": 1,
-            "amount": 9.5
-          },
-          {
-            "item_id": 4000212,
+            "item_id": 4000213,
             "name": "Marmoom Farms Greek Style Yogurt 500g",
             "quantity": 1,
             "amount": 11.5
@@ -726,38 +938,38 @@ Kept ahead of the household scenarios so the magic trigger still works.
       },
       "pricing": {
         "currency": "AED",
-        "total_price": "146.90"
+        "total_price": "147.65"
       },
       "presentation_data": {
         "title": "Careem Quik",
         "subtitle": "Oasis Springs Drinking Water 6x1.5L, Marmoom Farms Fresh Milk Full Cream 2L, Golden Yolk Eggs Tray 30",
         "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/quik.png",
-        "trailing": "AED 146.90",
+        "trailing": "AED 147.65",
         "thirdline": "Delivered to Home"
       }
     },
     {
-      "id": "act_groc_9305",
+      "id": "act_groc_9308",
       "provider_id": 3,
       "provider": "careem-grocery",
       "type": "groceries",
-      "reference_id": "order_9305",
+      "reference_id": "order_9308",
       "user_id": 900000001,
       "status": "completed",
       "country": "AE",
-      "activity_time": "{{now-1010h}}",
-      "created_at": "{{now-1010h}}",
-      "updated_at": "{{now-1009h}}",
+      "activity_time": "{{now-1513h}}",
+      "created_at": "{{now-1513h}}",
+      "updated_at": "{{now-1512h}}",
       "data": {
         "status": "DELIVERED",
-        "basket_id": 6000305,
+        "basket_id": 6000308,
         "brand_id": 40000,
         "merchant_id": 40001,
         "merchant_name": "Careem Quik Dubai Marina",
         "merchant_type": "ufd",
-        "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9305&provider_id=3&partner=shops",
+        "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9308&provider_id=3&partner=shops",
         "payment_type": "CARD",
-        "completed_at": {{unixms-1009h}},
+        "completed_at": {{unixms-1512h}},
         "items": [
           {
             "item_id": 4000201,
@@ -766,16 +978,10 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "amount": 19
           },
           {
-            "item_id": 4000202,
-            "name": "Royal Mahal Basmati Rice 5kg",
+            "item_id": 4000203,
+            "name": "Golden Sella Basmati Rice 5kg",
             "quantity": 1,
-            "amount": 40
-          },
-          {
-            "item_id": 4000205,
-            "name": "Chakki Gold Atta Wheat Flour 5kg",
-            "quantity": 1,
-            "amount": 18.5
+            "amount": 38.75
           },
           {
             "item_id": 4000206,
@@ -784,70 +990,52 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "amount": 16.75
           },
           {
-            "item_id": 4000207,
-            "name": "Desi Harvest Toor Dal 1kg",
-            "quantity": 1,
-            "amount": 9.25
-          },
-          {
-            "item_id": 4000208,
-            "name": "Al Wadi White Sugar 2kg",
-            "quantity": 1,
-            "amount": 7.25
-          },
-          {
             "item_id": 4000210,
             "name": "Marmoom Farms Fresh Milk Full Cream 2L",
             "quantity": 2,
             "amount": 19.9
           },
           {
-            "item_id": 4000211,
+            "item_id": 4000212,
             "name": "Golden Yolk Eggs Tray 30",
             "quantity": 1,
             "amount": 21
           },
           {
-            "item_id": 4000213,
+            "item_id": 4000214,
             "name": "Red Onions 1kg",
             "quantity": 1,
-            "amount": 4.25
+            "amount": 4.5
           },
           {
-            "item_id": 4000214,
+            "item_id": 4000215,
             "name": "Tomatoes 1kg",
             "quantity": 1,
             "amount": 5
           },
           {
-            "item_id": 4000216,
+            "item_id": 4000217,
             "name": "Al Khayma Arabic Bread Large 6pcs",
             "quantity": 2,
             "amount": 6
           },
           {
-            "item_id": 4000222,
+            "item_id": 4000220,
+            "name": "Sparkle Lemon Dishwashing Liquid 750ml",
+            "quantity": 1,
+            "amount": 8.25
+          },
+          {
+            "item_id": 4000223,
             "name": "Crunchos Salted Potato Chips Family Pack 150g",
             "quantity": 1,
             "amount": 7.5
           },
           {
-            "item_id": 4000223,
+            "item_id": 4000224,
             "name": "FizzUp Cola 6x330ml",
             "quantity": 1,
             "amount": 11
-          },
-          {
-            "item_id": 4000224,
-            "name": "ChocoJoy Milk Chocolate Bars 4 Pack",
-            "quantity": 1,
-            "amount": 9.75
-          },
-          {
-            "item_id": 4000226,
-            "name": "Tea Time Butter Biscuits 400g",
-            "quantity": 1,
-            "amount": 6.5
           }
         ],
         "order_delivery": {
@@ -871,45 +1059,39 @@ Kept ahead of the household scenarios so the magic trigger still works.
       },
       "pricing": {
         "currency": "AED",
-        "total_price": "207.15"
+        "total_price": "163.15"
       },
       "presentation_data": {
         "title": "Careem Quik",
-        "subtitle": "Oasis Springs Drinking Water 6x1.5L, Royal Mahal Basmati Rice 5kg, Chakki Gold Atta Wheat Flour 5kg",
+        "subtitle": "Oasis Springs Drinking Water 6x1.5L, Golden Sella Basmati Rice 5kg, Noor Al Sahra Sunflower Oil 1.8L",
         "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/quik.png",
-        "trailing": "AED 207.15",
+        "trailing": "AED 163.15",
         "thirdline": "Delivered to Home"
       }
     },
     {
-      "id": "act_groc_9304",
+      "id": "act_groc_9307",
       "provider_id": 3,
       "provider": "careem-grocery",
       "type": "groceries",
-      "reference_id": "order_9304",
+      "reference_id": "order_9307",
       "user_id": 900000001,
       "status": "completed",
       "country": "AE",
-      "activity_time": "{{now-1178h}}",
-      "created_at": "{{now-1178h}}",
-      "updated_at": "{{now-1177h}}",
+      "activity_time": "{{now-1680h}}",
+      "created_at": "{{now-1680h}}",
+      "updated_at": "{{now-1679h}}",
       "data": {
         "status": "DELIVERED",
-        "basket_id": 6000304,
+        "basket_id": 6000307,
         "brand_id": 40000,
         "merchant_id": 40001,
         "merchant_name": "Careem Quik Dubai Marina",
         "merchant_type": "ufd",
-        "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9304&provider_id=3&partner=shops",
+        "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9307&provider_id=3&partner=shops",
         "payment_type": "CARD",
-        "completed_at": {{unixms-1177h}},
+        "completed_at": {{unixms-1679h}},
         "items": [
-          {
-            "item_id": 4000201,
-            "name": "Oasis Springs Drinking Water 6x1.5L",
-            "quantity": 2,
-            "amount": 19
-          },
           {
             "item_id": 4000210,
             "name": "Marmoom Farms Fresh Milk Full Cream 2L",
@@ -917,49 +1099,146 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "amount": 19.9
           },
           {
-            "item_id": 4000211,
+            "item_id": 4000212,
             "name": "Golden Yolk Eggs Tray 30",
             "quantity": 1,
             "amount": 21
           },
           {
-            "item_id": 4000213,
+            "item_id": 4000214,
             "name": "Red Onions 1kg",
             "quantity": 1,
-            "amount": 3.75
+            "amount": 4.75
           },
           {
-            "item_id": 4000214,
+            "item_id": 4000215,
             "name": "Tomatoes 1kg",
             "quantity": 1,
-            "amount": 5
+            "amount": 5.75
           },
           {
-            "item_id": 4000216,
+            "item_id": 4000217,
             "name": "Al Khayma Arabic Bread Large 6pcs",
             "quantity": 2,
             "amount": 6
           },
           {
-            "item_id": 4000221,
-            "name": "SoftCloud Toilet Tissue 12 Rolls",
-            "quantity": 1,
-            "amount": 25.65
-          },
-          {
-            "item_id": 4000222,
+            "item_id": 4000223,
             "name": "Crunchos Salted Potato Chips Family Pack 150g",
             "quantity": 1,
             "amount": 7.5
           },
           {
+            "item_id": 4000224,
+            "name": "FizzUp Cola 6x330ml",
+            "quantity": 1,
+            "amount": 11
+          }
+        ],
+        "order_delivery": {
+          "type": "CAREEM",
+          "eta": 18
+        },
+        "dropoff_location": {
+          "name": "Home",
+          "locationUuid": "LOC-50001",
+          "latitude": 25.0866,
+          "longitude": 55.1474,
+          "addressDetails": {
+            "buildingName": "Marina Gate 1",
+            "area": "Dubai Marina",
+            "city": "Dubai",
+            "country": "AE",
+            "formattedName": "Marina Gate 1, Dubai Marina",
+            "savedName": "Home"
+          }
+        }
+      },
+      "pricing": {
+        "currency": "AED",
+        "total_price": "81.40"
+      },
+      "presentation_data": {
+        "title": "Careem Quik",
+        "subtitle": "Marmoom Farms Fresh Milk Full Cream 2L, Golden Yolk Eggs Tray 30, Red Onions 1kg",
+        "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/quik.png",
+        "trailing": "AED 81.40",
+        "thirdline": "Delivered to Home"
+      }
+    },
+    {
+      "id": "act_groc_9306",
+      "provider_id": 3,
+      "provider": "careem-grocery",
+      "type": "groceries",
+      "reference_id": "order_9306",
+      "user_id": 900000001,
+      "status": "completed",
+      "country": "AE",
+      "activity_time": "{{now-1822h}}",
+      "created_at": "{{now-1822h}}",
+      "updated_at": "{{now-1821h}}",
+      "data": {
+        "status": "DELIVERED",
+        "basket_id": 6000306,
+        "brand_id": 40000,
+        "merchant_id": 40001,
+        "merchant_name": "Careem Quik Dubai Marina",
+        "merchant_type": "ufd",
+        "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9306&provider_id=3&partner=shops",
+        "payment_type": "CARD",
+        "completed_at": {{unixms-1821h}},
+        "items": [
+          {
+            "item_id": 4000208,
+            "name": "Al Wadi White Sugar 2kg",
+            "quantity": 1,
+            "amount": 7.25
+          },
+          {
+            "item_id": 4000210,
+            "name": "Marmoom Farms Fresh Milk Full Cream 2L",
+            "quantity": 2,
+            "amount": 19
+          },
+          {
+            "item_id": 4000212,
+            "name": "Golden Yolk Eggs Tray 30",
+            "quantity": 1,
+            "amount": 21
+          },
+          {
+            "item_id": 4000214,
+            "name": "Red Onions 1kg",
+            "quantity": 1,
+            "amount": 4.25
+          },
+          {
+            "item_id": 4000215,
+            "name": "Tomatoes 1kg",
+            "quantity": 1,
+            "amount": 5.75
+          },
+          {
+            "item_id": 4000217,
+            "name": "Al Khayma Arabic Bread Large 6pcs",
+            "quantity": 2,
+            "amount": 6
+          },
+          {
             "item_id": 4000223,
+            "name": "Crunchos Salted Potato Chips Family Pack 150g",
+            "quantity": 1,
+            "amount": 7.5
+          },
+          {
+            "item_id": 4000224,
             "name": "FizzUp Cola 6x330ml",
             "quantity": 1,
             "amount": 11
           },
           {
-            "item_id": 4000217,
+            "item_id": 4000218,
             "name": "Green Valley Fresh Whole Chicken 1kg",
             "quantity": 1,
             "amount": 19.5
@@ -986,13 +1265,249 @@ Kept ahead of the household scenarios so the magic trigger still works.
       },
       "pricing": {
         "currency": "AED",
-        "total_price": "143.80"
+        "total_price": "106.75"
       },
       "presentation_data": {
         "title": "Careem Quik",
-        "subtitle": "Oasis Springs Drinking Water 6x1.5L, Marmoom Farms Fresh Milk Full Cream 2L, Golden Yolk Eggs Tray 30",
+        "subtitle": "Al Wadi White Sugar 2kg, Marmoom Farms Fresh Milk Full Cream 2L, Golden Yolk Eggs Tray 30",
         "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/quik.png",
-        "trailing": "AED 143.80",
+        "trailing": "AED 106.75",
+        "thirdline": "Delivered to Home"
+      }
+    },
+    {
+      "id": "act_groc_9305",
+      "provider_id": 3,
+      "provider": "careem-grocery",
+      "type": "groceries",
+      "reference_id": "order_9305",
+      "user_id": 900000001,
+      "status": "completed",
+      "country": "AE",
+      "activity_time": "{{now-2017h}}",
+      "created_at": "{{now-2017h}}",
+      "updated_at": "{{now-2016h}}",
+      "data": {
+        "status": "DELIVERED",
+        "basket_id": 6000305,
+        "brand_id": 40000,
+        "merchant_id": 40001,
+        "merchant_name": "Careem Quik Dubai Marina",
+        "merchant_type": "ufd",
+        "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9305&provider_id=3&partner=shops",
+        "payment_type": "CARD",
+        "completed_at": {{unixms-2016h}},
+        "items": [
+          {
+            "item_id": 4000201,
+            "name": "Oasis Springs Drinking Water 6x1.5L",
+            "quantity": 6,
+            "amount": 57
+          },
+          {
+            "item_id": 4000202,
+            "name": "Royal Mahal Basmati Rice 5kg",
+            "quantity": 1,
+            "amount": 38
+          },
+          {
+            "item_id": 4000206,
+            "name": "Noor Al Sahra Sunflower Oil 1.8L",
+            "quantity": 1,
+            "amount": 16.75
+          },
+          {
+            "item_id": 4000210,
+            "name": "Marmoom Farms Fresh Milk Full Cream 2L",
+            "quantity": 2,
+            "amount": 19
+          },
+          {
+            "item_id": 4000212,
+            "name": "Golden Yolk Eggs Tray 30",
+            "quantity": 1,
+            "amount": 21
+          },
+          {
+            "item_id": 4000214,
+            "name": "Red Onions 1kg",
+            "quantity": 1,
+            "amount": 4
+          },
+          {
+            "item_id": 4000215,
+            "name": "Tomatoes 1kg",
+            "quantity": 1,
+            "amount": 5.75
+          },
+          {
+            "item_id": 4000217,
+            "name": "Al Khayma Arabic Bread Large 6pcs",
+            "quantity": 2,
+            "amount": 6
+          },
+          {
+            "item_id": 4000223,
+            "name": "Crunchos Salted Potato Chips Family Pack 150g",
+            "quantity": 1,
+            "amount": 7.5
+          },
+          {
+            "item_id": 4000224,
+            "name": "FizzUp Cola 6x330ml",
+            "quantity": 1,
+            "amount": 11
+          },
+          {
+            "item_id": 4000225,
+            "name": "ChocoJoy Milk Chocolate Bars 4 Pack",
+            "quantity": 1,
+            "amount": 9.75
+          }
+        ],
+        "order_delivery": {
+          "type": "CAREEM",
+          "eta": 18
+        },
+        "dropoff_location": {
+          "name": "Home",
+          "locationUuid": "LOC-50001",
+          "latitude": 25.0866,
+          "longitude": 55.1474,
+          "addressDetails": {
+            "buildingName": "Marina Gate 1",
+            "area": "Dubai Marina",
+            "city": "Dubai",
+            "country": "AE",
+            "formattedName": "Marina Gate 1, Dubai Marina",
+            "savedName": "Home"
+          }
+        }
+      },
+      "pricing": {
+        "currency": "AED",
+        "total_price": "201.25"
+      },
+      "presentation_data": {
+        "title": "Careem Quik",
+        "subtitle": "Oasis Springs Drinking Water 6x1.5L, Royal Mahal Basmati Rice 5kg, Noor Al Sahra Sunflower Oil 1.8L",
+        "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/quik.png",
+        "trailing": "AED 201.25",
+        "thirdline": "Delivered to Home"
+      }
+    },
+    {
+      "id": "act_groc_9304",
+      "provider_id": 3,
+      "provider": "careem-grocery",
+      "type": "groceries",
+      "reference_id": "order_9304",
+      "user_id": 900000001,
+      "status": "completed",
+      "country": "AE",
+      "activity_time": "{{now-2186h}}",
+      "created_at": "{{now-2186h}}",
+      "updated_at": "{{now-2185h}}",
+      "data": {
+        "status": "DELIVERED",
+        "basket_id": 6000304,
+        "brand_id": 40000,
+        "merchant_id": 40001,
+        "merchant_name": "Careem Quik Dubai Marina",
+        "merchant_type": "ufd",
+        "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9304&provider_id=3&partner=shops",
+        "payment_type": "CARD",
+        "completed_at": {{unixms-2185h}},
+        "items": [
+          {
+            "item_id": 4000201,
+            "name": "Oasis Springs Drinking Water 6x1.5L",
+            "quantity": 2,
+            "amount": 19
+          },
+          {
+            "item_id": 4000210,
+            "name": "Marmoom Farms Fresh Milk Full Cream 2L",
+            "quantity": 2,
+            "amount": 19
+          },
+          {
+            "item_id": 4000102,
+            "name": "Free Range Eggs 12pk",
+            "quantity": 1,
+            "amount": 14.5
+          },
+          {
+            "item_id": 4000214,
+            "name": "Red Onions 1kg",
+            "quantity": 1,
+            "amount": 3.75
+          },
+          {
+            "item_id": 4000215,
+            "name": "Tomatoes 1kg",
+            "quantity": 1,
+            "amount": 5.25
+          },
+          {
+            "item_id": 4000217,
+            "name": "Al Khayma Arabic Bread Large 6pcs",
+            "quantity": 2,
+            "amount": 6
+          },
+          {
+            "item_id": 4000220,
+            "name": "Sparkle Lemon Dishwashing Liquid 750ml",
+            "quantity": 1,
+            "amount": 8.25
+          },
+          {
+            "item_id": 4000222,
+            "name": "SoftCloud Toilet Tissue 12 Rolls",
+            "quantity": 1,
+            "amount": 25.65
+          },
+          {
+            "item_id": 4000223,
+            "name": "Crunchos Salted Potato Chips Family Pack 150g",
+            "quantity": 1,
+            "amount": 7.5
+          },
+          {
+            "item_id": 4000224,
+            "name": "FizzUp Cola 6x330ml",
+            "quantity": 1,
+            "amount": 11
+          }
+        ],
+        "order_delivery": {
+          "type": "CAREEM",
+          "eta": 18
+        },
+        "dropoff_location": {
+          "name": "Home",
+          "locationUuid": "LOC-50001",
+          "latitude": 25.0866,
+          "longitude": 55.1474,
+          "addressDetails": {
+            "buildingName": "Marina Gate 1",
+            "area": "Dubai Marina",
+            "city": "Dubai",
+            "country": "AE",
+            "formattedName": "Marina Gate 1, Dubai Marina",
+            "savedName": "Home"
+          }
+        }
+      },
+      "pricing": {
+        "currency": "AED",
+        "total_price": "125.40"
+      },
+      "presentation_data": {
+        "title": "Careem Quik",
+        "subtitle": "Oasis Springs Drinking Water 6x1.5L, Marmoom Farms Fresh Milk Full Cream 2L, Free Range Eggs 12pk",
+        "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/quik.png",
+        "trailing": "AED 125.40",
         "thirdline": "Delivered to Home"
       }
     },
@@ -1005,9 +1520,9 @@ Kept ahead of the household scenarios so the magic trigger still works.
       "user_id": 900000001,
       "status": "completed",
       "country": "AE",
-      "activity_time": "{{now-1343h}}",
-      "created_at": "{{now-1343h}}",
-      "updated_at": "{{now-1342h}}",
+      "activity_time": "{{now-2353h}}",
+      "created_at": "{{now-2353h}}",
+      "updated_at": "{{now-2352h}}",
       "data": {
         "status": "DELIVERED",
         "basket_id": 6000303,
@@ -1017,7 +1532,7 @@ Kept ahead of the household scenarios so the magic trigger still works.
         "merchant_type": "ufd",
         "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9303&provider_id=3&partner=shops",
         "payment_type": "CARD",
-        "completed_at": {{unixms-1342h}},
+        "completed_at": {{unixms-2352h}},
         "items": [
           {
             "item_id": 4000201,
@@ -1026,67 +1541,55 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "amount": 19
           },
           {
-            "item_id": 4000205,
-            "name": "Chakki Gold Atta Wheat Flour 5kg",
-            "quantity": 1,
-            "amount": 18.5
-          },
-          {
-            "item_id": 4000207,
-            "name": "Desi Harvest Toor Dal 1kg",
-            "quantity": 1,
-            "amount": 9.25
-          },
-          {
             "item_id": 4000210,
             "name": "Marmoom Farms Fresh Milk Full Cream 2L",
             "quantity": 2,
             "amount": 19
           },
           {
-            "item_id": 4000211,
+            "item_id": 4000212,
             "name": "Golden Yolk Eggs Tray 30",
             "quantity": 1,
             "amount": 21
           },
           {
-            "item_id": 4000213,
+            "item_id": 4000214,
             "name": "Red Onions 1kg",
             "quantity": 1,
             "amount": 4
           },
           {
-            "item_id": 4000214,
+            "item_id": 4000215,
             "name": "Tomatoes 1kg",
             "quantity": 1,
-            "amount": 5.75
+            "amount": 5.25
           },
           {
-            "item_id": 4000216,
+            "item_id": 4000217,
             "name": "Al Khayma Arabic Bread Large 6pcs",
             "quantity": 2,
             "amount": 6
           },
           {
-            "item_id": 4000220,
+            "item_id": 4000221,
             "name": "BrightWash Laundry Detergent Liquid 3L",
             "quantity": 1,
             "amount": 34.5
           },
           {
             "item_id": 4000223,
+            "name": "Crunchos Salted Potato Chips Family Pack 150g",
+            "quantity": 1,
+            "amount": 7.5
+          },
+          {
+            "item_id": 4000224,
             "name": "FizzUp Cola 6x330ml",
             "quantity": 1,
             "amount": 11
           },
           {
-            "item_id": 4000224,
-            "name": "ChocoJoy Milk Chocolate Bars 4 Pack",
-            "quantity": 1,
-            "amount": 9.75
-          },
-          {
-            "item_id": 4000215,
+            "item_id": 4000216,
             "name": "Bananas 1kg",
             "quantity": 1,
             "amount": 6.5
@@ -1113,13 +1616,13 @@ Kept ahead of the household scenarios so the magic trigger still works.
       },
       "pricing": {
         "currency": "AED",
-        "total_price": "169.75"
+        "total_price": "139.25"
       },
       "presentation_data": {
         "title": "Careem Quik",
-        "subtitle": "Oasis Springs Drinking Water 6x1.5L, Chakki Gold Atta Wheat Flour 5kg, Desi Harvest Toor Dal 1kg",
+        "subtitle": "Oasis Springs Drinking Water 6x1.5L, Marmoom Farms Fresh Milk Full Cream 2L, Golden Yolk Eggs Tray 30",
         "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/quik.png",
-        "trailing": "AED 169.75",
+        "trailing": "AED 139.25",
         "thirdline": "Delivered to Home"
       }
     },
@@ -1132,9 +1635,9 @@ Kept ahead of the household scenarios so the magic trigger still works.
       "user_id": 900000001,
       "status": "completed",
       "country": "AE",
-      "activity_time": "{{now-1509h}}",
-      "created_at": "{{now-1509h}}",
-      "updated_at": "{{now-1508h}}",
+      "activity_time": "{{now-2517h}}",
+      "created_at": "{{now-2517h}}",
+      "updated_at": "{{now-2516h}}",
       "data": {
         "status": "DELIVERED",
         "basket_id": 6000302,
@@ -1144,7 +1647,7 @@ Kept ahead of the household scenarios so the magic trigger still works.
         "merchant_type": "ufd",
         "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9302&provider_id=3&partner=shops",
         "payment_type": "CARD",
-        "completed_at": {{unixms-1508h}},
+        "completed_at": {{unixms-2516h}},
         "items": [
           {
             "item_id": 4000201,
@@ -1171,46 +1674,46 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "amount": 19
           },
           {
-            "item_id": 4000211,
+            "item_id": 4000212,
             "name": "Golden Yolk Eggs Tray 30",
             "quantity": 1,
             "amount": 21
           },
           {
-            "item_id": 4000213,
+            "item_id": 4000214,
             "name": "Red Onions 1kg",
             "quantity": 1,
-            "amount": 4
+            "amount": 4.25
           },
           {
-            "item_id": 4000214,
+            "item_id": 4000215,
             "name": "Tomatoes 1kg",
             "quantity": 1,
-            "amount": 5.25
+            "amount": 5.75
           },
           {
-            "item_id": 4000216,
+            "item_id": 4000217,
             "name": "Al Khayma Arabic Bread Large 6pcs",
             "quantity": 2,
             "amount": 6
           },
           {
-            "item_id": 4000219,
-            "name": "Sparkle Lemon Dishwashing Liquid 750ml",
-            "quantity": 1,
-            "amount": 8.25
-          },
-          {
-            "item_id": 4000222,
+            "item_id": 4000223,
             "name": "Crunchos Salted Potato Chips Family Pack 150g",
             "quantity": 1,
             "amount": 7.5
           },
           {
-            "item_id": 4000223,
+            "item_id": 4000224,
             "name": "FizzUp Cola 6x330ml",
             "quantity": 1,
             "amount": 11
+          },
+          {
+            "item_id": 4000225,
+            "name": "ChocoJoy Milk Chocolate Bars 4 Pack",
+            "quantity": 1,
+            "amount": 9.75
           }
         ],
         "order_delivery": {
@@ -1234,13 +1737,13 @@ Kept ahead of the household scenarios so the magic trigger still works.
       },
       "pricing": {
         "currency": "AED",
-        "total_price": "161.25"
+        "total_price": "163.50"
       },
       "presentation_data": {
         "title": "Careem Quik",
         "subtitle": "Oasis Springs Drinking Water 6x1.5L, Royal Mahal Basmati Rice 5kg, Noor Al Sahra Sunflower Oil 1.8L",
         "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/quik.png",
-        "trailing": "AED 161.25",
+        "trailing": "AED 163.50",
         "thirdline": "Delivered to Home"
       }
     },
@@ -1253,9 +1756,9 @@ Kept ahead of the household scenarios so the magic trigger still works.
       "user_id": 900000001,
       "status": "completed",
       "country": "AE",
-      "activity_time": "{{now-1678h}}",
-      "created_at": "{{now-1678h}}",
-      "updated_at": "{{now-1677h}}",
+      "activity_time": "{{now-2686h}}",
+      "created_at": "{{now-2686h}}",
+      "updated_at": "{{now-2685h}}",
       "data": {
         "status": "DELIVERED",
         "basket_id": 6000301,
@@ -1265,7 +1768,7 @@ Kept ahead of the household scenarios so the magic trigger still works.
         "merchant_type": "ufd",
         "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9301&provider_id=3&partner=shops",
         "payment_type": "CARD",
-        "completed_at": {{unixms-1677h}},
+        "completed_at": {{unixms-2685h}},
         "items": [
           {
             "item_id": 4000201,
@@ -1274,55 +1777,43 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "amount": 19
           },
           {
-            "item_id": 4000205,
-            "name": "Chakki Gold Atta Wheat Flour 5kg",
-            "quantity": 1,
-            "amount": 18.5
-          },
-          {
-            "item_id": 4000207,
-            "name": "Desi Harvest Toor Dal 1kg",
-            "quantity": 1,
-            "amount": 9.25
-          },
-          {
             "item_id": 4000210,
             "name": "Marmoom Farms Fresh Milk Full Cream 2L",
             "quantity": 2,
             "amount": 19
           },
           {
-            "item_id": 4000211,
+            "item_id": 4000212,
             "name": "Golden Yolk Eggs Tray 30",
             "quantity": 1,
             "amount": 21
           },
           {
-            "item_id": 4000213,
+            "item_id": 4000214,
             "name": "Red Onions 1kg",
             "quantity": 1,
-            "amount": 4.5
+            "amount": 4
           },
           {
-            "item_id": 4000214,
+            "item_id": 4000215,
             "name": "Tomatoes 1kg",
             "quantity": 1,
-            "amount": 5.5
+            "amount": 5.25
           },
           {
-            "item_id": 4000216,
+            "item_id": 4000217,
             "name": "Al Khayma Arabic Bread Large 6pcs",
             "quantity": 2,
             "amount": 6
           },
           {
-            "item_id": 4000222,
+            "item_id": 4000223,
             "name": "Crunchos Salted Potato Chips Family Pack 150g",
             "quantity": 1,
             "amount": 7.5
           },
           {
-            "item_id": 4000223,
+            "item_id": 4000224,
             "name": "FizzUp Cola 6x330ml",
             "quantity": 1,
             "amount": 11
@@ -1355,13 +1846,13 @@ Kept ahead of the household scenarios so the magic trigger still works.
       },
       "pricing": {
         "currency": "AED",
-        "total_price": "129.25"
+        "total_price": "100.75"
       },
       "presentation_data": {
         "title": "Careem Quik",
-        "subtitle": "Oasis Springs Drinking Water 6x1.5L, Chakki Gold Atta Wheat Flour 5kg, Desi Harvest Toor Dal 1kg",
+        "subtitle": "Oasis Springs Drinking Water 6x1.5L, Marmoom Farms Fresh Milk Full Cream 2L, Golden Yolk Eggs Tray 30",
         "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/quik.png",
-        "trailing": "AED 129.25",
+        "trailing": "AED 100.75",
         "thirdline": "Delivered to Home"
       }
     }
@@ -1372,7 +1863,7 @@ Kept ahead of the household scenarios so the magic trigger still works.
 
 ## Scenario: household-past-shops
 
-`past` + `shops`: this household has not ordered from a Careem Shops merchant yet.
+`past` + `shops`: 4 Careem Shops orders, newest first, one page.
 
 ```json match
 {
@@ -1384,6 +1875,276 @@ Kept ahead of the household scenarios so the magic trigger still works.
 ```json response
 {
   "page": "get_activities",
+  "past_activities": [
+    {
+      "id": "act_shops_9515",
+      "provider_id": 3,
+      "provider": "careem-grocery",
+      "type": "shops",
+      "reference_id": "order_9515",
+      "user_id": 900000001,
+      "status": "completed",
+      "country": "AE",
+      "activity_time": "{{now-408h}}",
+      "created_at": "{{now-408h}}",
+      "updated_at": "{{now-407h}}",
+      "data": {
+        "status": "DELIVERED",
+        "basket_id": 6000515,
+        "brand_id": 40100,
+        "merchant_id": 40101,
+        "merchant_name": "Marina Fresh Market",
+        "merchant_type": "retail",
+        "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9515&provider_id=3&partner=shops",
+        "payment_type": "CARD",
+        "completed_at": {{unixms-407h}},
+        "items": [
+          {
+            "item_id": 4010205,
+            "name": "Chakki Gold Atta Wheat Flour 5kg",
+            "quantity": 2,
+            "amount": 34.5
+          },
+          {
+            "item_id": 4010207,
+            "name": "Desi Harvest Toor Dal 1kg",
+            "quantity": 2,
+            "amount": 17
+          }
+        ],
+        "order_delivery": {
+          "type": "CAREEM",
+          "eta": 35
+        },
+        "dropoff_location": {
+          "name": "Home",
+          "locationUuid": "LOC-50001",
+          "latitude": 25.0866,
+          "longitude": 55.1474,
+          "addressDetails": {
+            "buildingName": "Marina Gate 1",
+            "area": "Dubai Marina",
+            "city": "Dubai",
+            "country": "AE",
+            "formattedName": "Marina Gate 1, Dubai Marina",
+            "savedName": "Home"
+          }
+        }
+      },
+      "pricing": {
+        "currency": "AED",
+        "total_price": "59.50"
+      },
+      "presentation_data": {
+        "title": "Marina Fresh Market",
+        "subtitle": "2x Chakki Gold Atta Wheat Flour 5kg, 2x Desi Harvest Toor Dal 1kg",
+        "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/shops.png",
+        "trailing": "AED 59.50",
+        "thirdline": "Delivered to Home"
+      }
+    },
+    {
+      "id": "act_shops_9511",
+      "provider_id": 3,
+      "provider": "careem-grocery",
+      "type": "shops",
+      "reference_id": "order_9511",
+      "user_id": 900000001,
+      "status": "completed",
+      "country": "AE",
+      "activity_time": "{{now-1080h}}",
+      "created_at": "{{now-1080h}}",
+      "updated_at": "{{now-1079h}}",
+      "data": {
+        "status": "DELIVERED",
+        "basket_id": 6000511,
+        "brand_id": 40100,
+        "merchant_id": 40101,
+        "merchant_name": "Marina Fresh Market",
+        "merchant_type": "retail",
+        "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9511&provider_id=3&partner=shops",
+        "payment_type": "CARD",
+        "completed_at": {{unixms-1079h}},
+        "items": [
+          {
+            "item_id": 4010205,
+            "name": "Chakki Gold Atta Wheat Flour 5kg",
+            "quantity": 2,
+            "amount": 34.5
+          },
+          {
+            "item_id": 4010207,
+            "name": "Desi Harvest Toor Dal 1kg",
+            "quantity": 2,
+            "amount": 17
+          }
+        ],
+        "order_delivery": {
+          "type": "CAREEM",
+          "eta": 35
+        },
+        "dropoff_location": {
+          "name": "Home",
+          "locationUuid": "LOC-50001",
+          "latitude": 25.0866,
+          "longitude": 55.1474,
+          "addressDetails": {
+            "buildingName": "Marina Gate 1",
+            "area": "Dubai Marina",
+            "city": "Dubai",
+            "country": "AE",
+            "formattedName": "Marina Gate 1, Dubai Marina",
+            "savedName": "Home"
+          }
+        }
+      },
+      "pricing": {
+        "currency": "AED",
+        "total_price": "59.50"
+      },
+      "presentation_data": {
+        "title": "Marina Fresh Market",
+        "subtitle": "2x Chakki Gold Atta Wheat Flour 5kg, 2x Desi Harvest Toor Dal 1kg",
+        "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/shops.png",
+        "trailing": "AED 59.50",
+        "thirdline": "Delivered to Home"
+      }
+    },
+    {
+      "id": "act_shops_9507",
+      "provider_id": 3,
+      "provider": "careem-grocery",
+      "type": "shops",
+      "reference_id": "order_9507",
+      "user_id": 900000001,
+      "status": "completed",
+      "country": "AE",
+      "activity_time": "{{now-1752h}}",
+      "created_at": "{{now-1752h}}",
+      "updated_at": "{{now-1751h}}",
+      "data": {
+        "status": "DELIVERED",
+        "basket_id": 6000507,
+        "brand_id": 40100,
+        "merchant_id": 40101,
+        "merchant_name": "Marina Fresh Market",
+        "merchant_type": "retail",
+        "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9507&provider_id=3&partner=shops",
+        "payment_type": "CARD",
+        "completed_at": {{unixms-1751h}},
+        "items": [
+          {
+            "item_id": 4010205,
+            "name": "Chakki Gold Atta Wheat Flour 5kg",
+            "quantity": 2,
+            "amount": 34.5
+          },
+          {
+            "item_id": 4010207,
+            "name": "Desi Harvest Toor Dal 1kg",
+            "quantity": 2,
+            "amount": 17
+          }
+        ],
+        "order_delivery": {
+          "type": "CAREEM",
+          "eta": 35
+        },
+        "dropoff_location": {
+          "name": "Home",
+          "locationUuid": "LOC-50001",
+          "latitude": 25.0866,
+          "longitude": 55.1474,
+          "addressDetails": {
+            "buildingName": "Marina Gate 1",
+            "area": "Dubai Marina",
+            "city": "Dubai",
+            "country": "AE",
+            "formattedName": "Marina Gate 1, Dubai Marina",
+            "savedName": "Home"
+          }
+        }
+      },
+      "pricing": {
+        "currency": "AED",
+        "total_price": "59.50"
+      },
+      "presentation_data": {
+        "title": "Marina Fresh Market",
+        "subtitle": "2x Chakki Gold Atta Wheat Flour 5kg, 2x Desi Harvest Toor Dal 1kg",
+        "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/shops.png",
+        "trailing": "AED 59.50",
+        "thirdline": "Delivered to Home"
+      }
+    },
+    {
+      "id": "act_shops_9503",
+      "provider_id": 3,
+      "provider": "careem-grocery",
+      "type": "shops",
+      "reference_id": "order_9503",
+      "user_id": 900000001,
+      "status": "completed",
+      "country": "AE",
+      "activity_time": "{{now-2425h}}",
+      "created_at": "{{now-2425h}}",
+      "updated_at": "{{now-2424h}}",
+      "data": {
+        "status": "DELIVERED",
+        "basket_id": 6000503,
+        "brand_id": 40100,
+        "merchant_id": 40101,
+        "merchant_name": "Marina Fresh Market",
+        "merchant_type": "retail",
+        "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9503&provider_id=3&partner=shops",
+        "payment_type": "CARD",
+        "completed_at": {{unixms-2424h}},
+        "items": [
+          {
+            "item_id": 4010205,
+            "name": "Chakki Gold Atta Wheat Flour 5kg",
+            "quantity": 2,
+            "amount": 34.5
+          },
+          {
+            "item_id": 4010207,
+            "name": "Desi Harvest Toor Dal 1kg",
+            "quantity": 2,
+            "amount": 17
+          }
+        ],
+        "order_delivery": {
+          "type": "CAREEM",
+          "eta": 35
+        },
+        "dropoff_location": {
+          "name": "Home",
+          "locationUuid": "LOC-50001",
+          "latitude": 25.0866,
+          "longitude": 55.1474,
+          "addressDetails": {
+            "buildingName": "Marina Gate 1",
+            "area": "Dubai Marina",
+            "city": "Dubai",
+            "country": "AE",
+            "formattedName": "Marina Gate 1, Dubai Marina",
+            "savedName": "Home"
+          }
+        }
+      },
+      "pricing": {
+        "currency": "AED",
+        "total_price": "59.50"
+      },
+      "presentation_data": {
+        "title": "Marina Fresh Market",
+        "subtitle": "2x Chakki Gold Atta Wheat Flour 5kg, 2x Desi Harvest Toor Dal 1kg",
+        "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/shops.png",
+        "trailing": "AED 59.50",
+        "thirdline": "Delivered to Home"
+      }
+    }
+  ],
   "paging": {}
 }
 ```

@@ -6,7 +6,7 @@ import { consumeToken } from '../mcp/approval.ts';
 import { McpToolError } from '../mcp/client.ts';
 import { BlockedError, step, under } from '../xray.ts';
 import type { Block, ModelAdapter } from './bedrock.ts';
-import { systemPrompt } from './systemPrompt.ts';
+import { LANGUAGE_NAME, systemPrompt } from './systemPrompt.ts';
 import { LANGUAGES, TEXTS, detectLanguage, isRtl } from './texts.ts';
 import { TOOL_SPECS, runTool, type Deps, type Session } from './tools.ts';
 
@@ -36,7 +36,17 @@ export async function runChat(session: Session, request: ChatRequest, model: Mod
       const reply = await model.converse(systemPrompt(language), session.messages, TOOL_SPECS, ref);
       session.messages.push({ role: 'assistant', content: reply.content });
       if (!reply.toolCalls.length) {
-        const text = reply.text || TEXTS[language].help;
+        let text = reply.text || TEXTS[language].help;
+        // Some models answer in English whatever the user wrote. One rewrite pass in the user's language.
+        if (model.isBedrock && reply.text && language !== 'en' && detectLanguage(text, 'en') !== language) {
+          try {
+            const rewrite = await model.converse(
+              `Rewrite the assistant reply in ${LANGUAGE_NAME[language]}. Keep every number, store name and product name exactly as written. Plain text, no markdown. Output only the rewritten reply.`,
+              [{ role: 'user', content: [{ text }] }], []);
+            if (rewrite.text) { text = rewrite.text; session.messages[session.messages.length - 1] = { role: 'assistant', content: [{ text }] }; }
+          } catch { /* keep the original reply */ }
+        }
+        text = text.replace(/\*\*(.+?)\*\*/g, '$1');
         const replyLanguage = detectLanguage(text, language);
         deps.emit({ event: 'message', data: { id: randomUUID().slice(0, 8), role: 'assistant', text, language: replyLanguage, rtl: isRtl(replyLanguage) } });
         break;

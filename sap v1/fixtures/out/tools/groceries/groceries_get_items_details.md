@@ -11,13 +11,13 @@ Careem's own scenarios for this tool.
 
 ## Scenario: household-items-1
 
-Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending).
+Careem Quik Dubai Marina items 4000102 to 4000222 (batch 1 of the household's history, ids ascending).
 
 ```json match
 {
   "merchant_id": 40001,
   "item_ids": [
-    4000201
+    4000102
   ]
 }
 ```
@@ -26,6 +26,54 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
 {
   "page": "groceries_get_items_details",
   "items": [
+    {
+      "item_id": 4000102,
+      "data": {
+        "id": 4000102,
+        "item": "Free Range Eggs 12pk",
+        "item_localized": "Free Range Eggs 12pk",
+        "upc": "6290004000102",
+        "images_urls": [
+          "https://careem-catalog-media.media.careem.com/quik/sku_eggs_12.png"
+        ],
+        "description": "Free Range Eggs 12pk (12 pcs)",
+        "description_localized": "Free Range Eggs 12pk (12 pcs)",
+        "price": {
+          "original": 14.5,
+          "original_formatted": "14.50",
+          "discount": 0,
+          "discount_percentage": 0,
+          "total": 14.5,
+          "total_formatted": "14.50",
+          "tax_percentage": 5
+        },
+        "active": true,
+        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000102",
+        "catalog_id": 40001,
+        "currency": {
+          "label_localized": "AED"
+        },
+        "unit_of_measure": {
+          "value": "12 pcs",
+          "value_localized": "12 pcs"
+        },
+        "core_category": {
+          "id": 7610,
+          "name": "Eggs",
+          "name_localized": "Eggs",
+          "parent_category_id": 7600,
+          "parent_category_name": "Dairy & Eggs",
+          "parent_category_name_localized": "Dairy & Eggs"
+        },
+        "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_eggs_12.png",
+        "master_product_id": "sku_eggs_12",
+        "is_near_expiry": false,
+        "is_ad": false,
+        "is_available": true,
+        "item_type": "product",
+        "tags": []
+      }
+    },
     {
       "item_id": 4000201,
       "data": {
@@ -123,28 +171,28 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
       }
     },
     {
-      "item_id": 4000205,
+      "item_id": 4000203,
       "data": {
-        "id": 4000205,
-        "item": "Chakki Gold Atta Wheat Flour 5kg",
-        "item_localized": "Chakki Gold Atta Wheat Flour 5kg",
-        "upc": "6290004000205",
+        "id": 4000203,
+        "item": "Golden Sella Basmati Rice 5kg",
+        "item_localized": "Golden Sella Basmati Rice 5kg",
+        "upc": "6290004000203",
         "images_urls": [
-          "https://careem-catalog-media.media.careem.com/quik/sku_chakki_atta_5kg.png"
+          "https://careem-catalog-media.media.careem.com/quik/sku_golden_sella_5kg.png"
         ],
-        "description": "Chakki Gold Atta Wheat Flour 5kg (5 kg)",
-        "description_localized": "Chakki Gold Atta Wheat Flour 5kg (5 kg)",
+        "description": "Golden Sella Basmati Rice 5kg (5 kg)",
+        "description_localized": "Golden Sella Basmati Rice 5kg (5 kg)",
         "price": {
-          "original": 18.5,
-          "original_formatted": "18.50",
+          "original": 38.75,
+          "original_formatted": "38.75",
           "discount": 0,
           "discount_percentage": 0,
-          "total": 18.5,
-          "total_formatted": "18.50",
+          "total": 38.75,
+          "total_formatted": "38.75",
           "tax_percentage": 5
         },
         "active": true,
-        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000205",
+        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000203",
         "catalog_id": 40001,
         "currency": {
           "label_localized": "AED"
@@ -154,15 +202,15 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
           "value_localized": "5 kg"
         },
         "core_category": {
-          "id": 7403,
-          "name": "Atta Flour",
-          "name_localized": "Atta Flour",
+          "id": 7402,
+          "name": "Basmati Rice",
+          "name_localized": "Basmati Rice",
           "parent_category_id": 7400,
           "parent_category_name": "Rice, Flour & Pulses",
           "parent_category_name_localized": "Rice, Flour & Pulses"
         },
-        "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_chakki_atta_5kg.png",
-        "master_product_id": "sku_chakki_atta_5kg",
+        "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_golden_sella_5kg.png",
+        "master_product_id": "sku_golden_sella_5kg",
         "is_near_expiry": false,
         "is_ad": false,
         "is_available": true,
@@ -211,54 +259,6 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
         },
         "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_noor_sunflower_1800.png",
         "master_product_id": "sku_noor_sunflower_1800",
-        "is_near_expiry": false,
-        "is_ad": false,
-        "is_available": true,
-        "item_type": "product",
-        "tags": []
-      }
-    },
-    {
-      "item_id": 4000207,
-      "data": {
-        "id": 4000207,
-        "item": "Desi Harvest Toor Dal 1kg",
-        "item_localized": "Desi Harvest Toor Dal 1kg",
-        "upc": "6290004000207",
-        "images_urls": [
-          "https://careem-catalog-media.media.careem.com/quik/sku_desi_toor_dal_1kg.png"
-        ],
-        "description": "Desi Harvest Toor Dal 1kg (1 kg)",
-        "description_localized": "Desi Harvest Toor Dal 1kg (1 kg)",
-        "price": {
-          "original": 9.25,
-          "original_formatted": "9.25",
-          "discount": 0,
-          "discount_percentage": 0,
-          "total": 9.25,
-          "total_formatted": "9.25",
-          "tax_percentage": 5
-        },
-        "active": true,
-        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000207",
-        "catalog_id": 40001,
-        "currency": {
-          "label_localized": "AED"
-        },
-        "unit_of_measure": {
-          "value": "1 kg",
-          "value_localized": "1 kg"
-        },
-        "core_category": {
-          "id": 7405,
-          "name": "Lentils & Dal",
-          "name_localized": "Lentils & Dal",
-          "parent_category_id": 7400,
-          "parent_category_name": "Rice, Flour & Pulses",
-          "parent_category_name_localized": "Rice, Flour & Pulses"
-        },
-        "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_desi_toor_dal_1kg.png",
-        "master_product_id": "sku_desi_toor_dal_1kg",
         "is_near_expiry": false,
         "is_ad": false,
         "is_available": true,
@@ -414,9 +414,57 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
       "item_id": 4000211,
       "data": {
         "id": 4000211,
+        "item": "GreenOat Oat Milk 1L",
+        "item_localized": "GreenOat Oat Milk 1L",
+        "upc": "6290004000211",
+        "images_urls": [
+          "https://careem-catalog-media.media.careem.com/quik/sku_greenoat_oat_milk_1l.png"
+        ],
+        "description": "GreenOat Oat Milk 1L (1 L)",
+        "description_localized": "GreenOat Oat Milk 1L (1 L)",
+        "price": {
+          "original": 10.5,
+          "original_formatted": "10.50",
+          "discount": 0,
+          "discount_percentage": 0,
+          "total": 10.5,
+          "total_formatted": "10.50",
+          "tax_percentage": 5
+        },
+        "active": true,
+        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000211",
+        "catalog_id": 40001,
+        "currency": {
+          "label_localized": "AED"
+        },
+        "unit_of_measure": {
+          "value": "1 L",
+          "value_localized": "1 L"
+        },
+        "core_category": {
+          "id": 7609,
+          "name": "Plant Milk",
+          "name_localized": "Plant Milk",
+          "parent_category_id": 7600,
+          "parent_category_name": "Dairy & Eggs",
+          "parent_category_name_localized": "Dairy & Eggs"
+        },
+        "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_greenoat_oat_milk_1l.png",
+        "master_product_id": "sku_greenoat_oat_milk_1l",
+        "is_near_expiry": false,
+        "is_ad": false,
+        "is_available": true,
+        "item_type": "product",
+        "tags": []
+      }
+    },
+    {
+      "item_id": 4000212,
+      "data": {
+        "id": 4000212,
         "item": "Golden Yolk Eggs Tray 30",
         "item_localized": "Golden Yolk Eggs Tray 30",
-        "upc": "6290004000211",
+        "upc": "6290004000212",
         "images_urls": [
           "https://careem-catalog-media.media.careem.com/quik/sku_golden_eggs_30.png"
         ],
@@ -432,7 +480,7 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
           "tax_percentage": 5
         },
         "active": true,
-        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000211",
+        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000212",
         "catalog_id": 40001,
         "currency": {
           "label_localized": "AED"
@@ -442,7 +490,7 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
           "value_localized": "30 pcs"
         },
         "core_category": {
-          "id": 7609,
+          "id": 7610,
           "name": "Eggs",
           "name_localized": "Eggs",
           "parent_category_id": 7600,
@@ -459,12 +507,12 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
       }
     },
     {
-      "item_id": 4000212,
+      "item_id": 4000213,
       "data": {
-        "id": 4000212,
+        "id": 4000213,
         "item": "Marmoom Farms Greek Style Yogurt 500g",
         "item_localized": "Marmoom Farms Greek Style Yogurt 500g",
-        "upc": "6290004000212",
+        "upc": "6290004000213",
         "images_urls": [
           "https://careem-catalog-media.media.careem.com/quik/sku_yogurt_500.png"
         ],
@@ -480,7 +528,7 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
           "tax_percentage": 5
         },
         "active": true,
-        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000212",
+        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000213",
         "catalog_id": 40001,
         "currency": {
           "label_localized": "AED"
@@ -490,7 +538,7 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
           "value_localized": "500 g"
         },
         "core_category": {
-          "id": 7610,
+          "id": 7611,
           "name": "Yogurt",
           "name_localized": "Yogurt",
           "parent_category_id": 7600,
@@ -507,12 +555,12 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
       }
     },
     {
-      "item_id": 4000213,
+      "item_id": 4000214,
       "data": {
-        "id": 4000213,
+        "id": 4000214,
         "item": "Red Onions 1kg",
         "item_localized": "Red Onions 1kg",
-        "upc": "6290004000213",
+        "upc": "6290004000214",
         "images_urls": [
           "https://careem-catalog-media.media.careem.com/quik/sku_red_onions_1kg.png"
         ],
@@ -528,7 +576,7 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
           "tax_percentage": 5
         },
         "active": true,
-        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000213",
+        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000214",
         "catalog_id": 40001,
         "currency": {
           "label_localized": "AED"
@@ -538,7 +586,7 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
           "value_localized": "1 kg"
         },
         "core_category": {
-          "id": 7711,
+          "id": 7712,
           "name": "Onions",
           "name_localized": "Onions",
           "parent_category_id": 7700,
@@ -555,12 +603,12 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
       }
     },
     {
-      "item_id": 4000214,
+      "item_id": 4000215,
       "data": {
-        "id": 4000214,
+        "id": 4000215,
         "item": "Tomatoes 1kg",
         "item_localized": "Tomatoes 1kg",
-        "upc": "6290004000214",
+        "upc": "6290004000215",
         "images_urls": [
           "https://careem-catalog-media.media.careem.com/quik/sku_tomatoes_1kg.png"
         ],
@@ -576,7 +624,7 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
           "tax_percentage": 5
         },
         "active": true,
-        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000214",
+        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000215",
         "catalog_id": 40001,
         "currency": {
           "label_localized": "AED"
@@ -586,7 +634,7 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
           "value_localized": "1 kg"
         },
         "core_category": {
-          "id": 7712,
+          "id": 7713,
           "name": "Tomatoes",
           "name_localized": "Tomatoes",
           "parent_category_id": 7700,
@@ -603,12 +651,12 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
       }
     },
     {
-      "item_id": 4000215,
+      "item_id": 4000216,
       "data": {
-        "id": 4000215,
+        "id": 4000216,
         "item": "Bananas 1kg",
         "item_localized": "Bananas 1kg",
-        "upc": "6290004000215",
+        "upc": "6290004000216",
         "images_urls": [
           "https://careem-catalog-media.media.careem.com/quik/sku_bananas_1kg.png"
         ],
@@ -624,7 +672,7 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
           "tax_percentage": 5
         },
         "active": true,
-        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000215",
+        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000216",
         "catalog_id": 40001,
         "currency": {
           "label_localized": "AED"
@@ -634,7 +682,7 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
           "value_localized": "1 kg"
         },
         "core_category": {
-          "id": 7713,
+          "id": 7714,
           "name": "Bananas",
           "name_localized": "Bananas",
           "parent_category_id": 7700,
@@ -651,12 +699,12 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
       }
     },
     {
-      "item_id": 4000216,
+      "item_id": 4000217,
       "data": {
-        "id": 4000216,
+        "id": 4000217,
         "item": "Al Khayma Arabic Bread Large 6pcs",
         "item_localized": "Al Khayma Arabic Bread Large 6pcs",
-        "upc": "6290004000216",
+        "upc": "6290004000217",
         "images_urls": [
           "https://careem-catalog-media.media.careem.com/quik/sku_khayma_bread_6.png"
         ],
@@ -672,7 +720,7 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
           "tax_percentage": 5
         },
         "active": true,
-        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000216",
+        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000217",
         "catalog_id": 40001,
         "currency": {
           "label_localized": "AED"
@@ -682,7 +730,7 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
           "value_localized": "6 pcs"
         },
         "core_category": {
-          "id": 7814,
+          "id": 7815,
           "name": "Arabic Bread",
           "name_localized": "Arabic Bread",
           "parent_category_id": 7800,
@@ -699,12 +747,12 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
       }
     },
     {
-      "item_id": 4000217,
+      "item_id": 4000218,
       "data": {
-        "id": 4000217,
+        "id": 4000218,
         "item": "Green Valley Fresh Whole Chicken 1kg",
         "item_localized": "Green Valley Fresh Whole Chicken 1kg",
-        "upc": "6290004000217",
+        "upc": "6290004000218",
         "images_urls": [
           "https://careem-catalog-media.media.careem.com/quik/sku_valley_chicken_1kg.png"
         ],
@@ -720,7 +768,7 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
           "tax_percentage": 5
         },
         "active": true,
-        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000217",
+        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000218",
         "catalog_id": 40001,
         "currency": {
           "label_localized": "AED"
@@ -730,7 +778,7 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
           "value_localized": "1 kg"
         },
         "core_category": {
-          "id": 7915,
+          "id": 7916,
           "name": "Fresh Chicken",
           "name_localized": "Fresh Chicken",
           "parent_category_id": 7900,
@@ -747,12 +795,12 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
       }
     },
     {
-      "item_id": 4000218,
+      "item_id": 4000219,
       "data": {
-        "id": 4000218,
+        "id": 4000219,
         "item": "Karak Chai Black Tea Bags 100",
         "item_localized": "Karak Chai Black Tea Bags 100",
-        "upc": "6290004000218",
+        "upc": "6290004000219",
         "images_urls": [
           "https://careem-catalog-media.media.careem.com/quik/sku_karak_tea_100.png"
         ],
@@ -768,7 +816,7 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
           "tax_percentage": 5
         },
         "active": true,
-        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000218",
+        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000219",
         "catalog_id": 40001,
         "currency": {
           "label_localized": "AED"
@@ -778,7 +826,7 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
           "value_localized": "100 pcs"
         },
         "core_category": {
-          "id": 8016,
+          "id": 8017,
           "name": "Tea",
           "name_localized": "Tea",
           "parent_category_id": 8000,
@@ -795,12 +843,12 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
       }
     },
     {
-      "item_id": 4000219,
+      "item_id": 4000220,
       "data": {
-        "id": 4000219,
+        "id": 4000220,
         "item": "Sparkle Lemon Dishwashing Liquid 750ml",
         "item_localized": "Sparkle Lemon Dishwashing Liquid 750ml",
-        "upc": "6290004000219",
+        "upc": "6290004000220",
         "images_urls": [
           "https://careem-catalog-media.media.careem.com/quik/sku_sparkle_dish_750.png"
         ],
@@ -816,7 +864,7 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
           "tax_percentage": 5
         },
         "active": true,
-        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000219",
+        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000220",
         "catalog_id": 40001,
         "currency": {
           "label_localized": "AED"
@@ -826,7 +874,7 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
           "value_localized": "750 ml"
         },
         "core_category": {
-          "id": 8117,
+          "id": 8118,
           "name": "Dishwashing Liquid",
           "name_localized": "Dishwashing Liquid",
           "parent_category_id": 8100,
@@ -843,12 +891,12 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
       }
     },
     {
-      "item_id": 4000220,
+      "item_id": 4000221,
       "data": {
-        "id": 4000220,
+        "id": 4000221,
         "item": "BrightWash Laundry Detergent Liquid 3L",
         "item_localized": "BrightWash Laundry Detergent Liquid 3L",
-        "upc": "6290004000220",
+        "upc": "6290004000221",
         "images_urls": [
           "https://careem-catalog-media.media.careem.com/quik/sku_brightwash_3l.png"
         ],
@@ -864,7 +912,7 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
           "tax_percentage": 5
         },
         "active": true,
-        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000220",
+        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000221",
         "catalog_id": 40001,
         "currency": {
           "label_localized": "AED"
@@ -874,7 +922,7 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
           "value_localized": "3 L"
         },
         "core_category": {
-          "id": 8118,
+          "id": 8119,
           "name": "Laundry Detergent",
           "name_localized": "Laundry Detergent",
           "parent_category_id": 8100,
@@ -891,12 +939,12 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
       }
     },
     {
-      "item_id": 4000221,
+      "item_id": 4000222,
       "data": {
-        "id": 4000221,
+        "id": 4000222,
         "item": "SoftCloud Toilet Tissue 12 Rolls",
         "item_localized": "SoftCloud Toilet Tissue 12 Rolls",
-        "upc": "6290004000221",
+        "upc": "6290004000222",
         "images_urls": [
           "https://careem-catalog-media.media.careem.com/quik/sku_softcloud_12.png"
         ],
@@ -912,7 +960,7 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
           "tax_percentage": 5
         },
         "active": true,
-        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000221",
+        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000222",
         "catalog_id": 40001,
         "currency": {
           "label_localized": "AED"
@@ -922,7 +970,7 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
           "value_localized": "12 pcs"
         },
         "core_category": {
-          "id": 8119,
+          "id": 8120,
           "name": "Toilet Tissue",
           "name_localized": "Toilet Tissue",
           "parent_category_id": 8100,
@@ -937,54 +985,6 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
         "item_type": "product",
         "tags": []
       }
-    },
-    {
-      "item_id": 4000222,
-      "data": {
-        "id": 4000222,
-        "item": "Crunchos Salted Potato Chips Family Pack 150g",
-        "item_localized": "Crunchos Salted Potato Chips Family Pack 150g",
-        "upc": "6290004000222",
-        "images_urls": [
-          "https://careem-catalog-media.media.careem.com/quik/sku_crunchos_150.png"
-        ],
-        "description": "Crunchos Salted Potato Chips Family Pack 150g (150 g)",
-        "description_localized": "Crunchos Salted Potato Chips Family Pack 150g (150 g)",
-        "price": {
-          "original": 7.5,
-          "original_formatted": "7.50",
-          "discount": 0,
-          "discount_percentage": 0,
-          "total": 7.5,
-          "total_formatted": "7.50",
-          "tax_percentage": 5
-        },
-        "active": true,
-        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000222",
-        "catalog_id": 40001,
-        "currency": {
-          "label_localized": "AED"
-        },
-        "unit_of_measure": {
-          "value": "150 g",
-          "value_localized": "150 g"
-        },
-        "core_category": {
-          "id": 8220,
-          "name": "Potato Chips",
-          "name_localized": "Potato Chips",
-          "parent_category_id": 8200,
-          "parent_category_name": "Snacks & Sweets",
-          "parent_category_name_localized": "Snacks & Sweets"
-        },
-        "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_crunchos_150.png",
-        "master_product_id": "sku_crunchos_150",
-        "is_near_expiry": false,
-        "is_ad": false,
-        "is_available": true,
-        "item_type": "product",
-        "tags": []
-      }
     }
   ]
 }
@@ -992,7 +992,7 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
 
 ## Scenario: household-items-2
 
-Quik items 4000223 to 4000227 (batch 2 of the household's history, ids ascending).
+Careem Quik Dubai Marina items 4000223 to 4000228 (batch 2 of the household's history, ids ascending).
 
 ```json match
 {
@@ -1011,9 +1011,57 @@ Quik items 4000223 to 4000227 (batch 2 of the household's history, ids ascending
       "item_id": 4000223,
       "data": {
         "id": 4000223,
+        "item": "Crunchos Salted Potato Chips Family Pack 150g",
+        "item_localized": "Crunchos Salted Potato Chips Family Pack 150g",
+        "upc": "6290004000223",
+        "images_urls": [
+          "https://careem-catalog-media.media.careem.com/quik/sku_crunchos_150.png"
+        ],
+        "description": "Crunchos Salted Potato Chips Family Pack 150g (150 g)",
+        "description_localized": "Crunchos Salted Potato Chips Family Pack 150g (150 g)",
+        "price": {
+          "original": 7.5,
+          "original_formatted": "7.50",
+          "discount": 0,
+          "discount_percentage": 0,
+          "total": 7.5,
+          "total_formatted": "7.50",
+          "tax_percentage": 5
+        },
+        "active": true,
+        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000223",
+        "catalog_id": 40001,
+        "currency": {
+          "label_localized": "AED"
+        },
+        "unit_of_measure": {
+          "value": "150 g",
+          "value_localized": "150 g"
+        },
+        "core_category": {
+          "id": 8221,
+          "name": "Potato Chips",
+          "name_localized": "Potato Chips",
+          "parent_category_id": 8200,
+          "parent_category_name": "Snacks & Sweets",
+          "parent_category_name_localized": "Snacks & Sweets"
+        },
+        "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_crunchos_150.png",
+        "master_product_id": "sku_crunchos_150",
+        "is_near_expiry": false,
+        "is_ad": false,
+        "is_available": true,
+        "item_type": "product",
+        "tags": []
+      }
+    },
+    {
+      "item_id": 4000224,
+      "data": {
+        "id": 4000224,
         "item": "FizzUp Cola 6x330ml",
         "item_localized": "FizzUp Cola 6x330ml",
-        "upc": "6290004000223",
+        "upc": "6290004000224",
         "images_urls": [
           "https://careem-catalog-media.media.careem.com/quik/sku_fizzup_cola_6.png"
         ],
@@ -1029,7 +1077,7 @@ Quik items 4000223 to 4000227 (batch 2 of the household's history, ids ascending
           "tax_percentage": 5
         },
         "active": true,
-        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000223",
+        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000224",
         "catalog_id": 40001,
         "currency": {
           "label_localized": "AED"
@@ -1039,7 +1087,7 @@ Quik items 4000223 to 4000227 (batch 2 of the household's history, ids ascending
           "value_localized": "6 x 330 ml"
         },
         "core_category": {
-          "id": 7321,
+          "id": 7322,
           "name": "Soft Drinks",
           "name_localized": "Soft Drinks",
           "parent_category_id": 7300,
@@ -1056,12 +1104,12 @@ Quik items 4000223 to 4000227 (batch 2 of the household's history, ids ascending
       }
     },
     {
-      "item_id": 4000224,
+      "item_id": 4000225,
       "data": {
-        "id": 4000224,
+        "id": 4000225,
         "item": "ChocoJoy Milk Chocolate Bars 4 Pack",
         "item_localized": "ChocoJoy Milk Chocolate Bars 4 Pack",
-        "upc": "6290004000224",
+        "upc": "6290004000225",
         "images_urls": [
           "https://careem-catalog-media.media.careem.com/quik/sku_chocojoy_4.png"
         ],
@@ -1077,7 +1125,7 @@ Quik items 4000223 to 4000227 (batch 2 of the household's history, ids ascending
           "tax_percentage": 5
         },
         "active": true,
-        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000224",
+        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000225",
         "catalog_id": 40001,
         "currency": {
           "label_localized": "AED"
@@ -1087,7 +1135,7 @@ Quik items 4000223 to 4000227 (batch 2 of the household's history, ids ascending
           "value_localized": "4 pcs"
         },
         "core_category": {
-          "id": 8222,
+          "id": 8223,
           "name": "Chocolate",
           "name_localized": "Chocolate",
           "parent_category_id": 8200,
@@ -1104,12 +1152,12 @@ Quik items 4000223 to 4000227 (batch 2 of the household's history, ids ascending
       }
     },
     {
-      "item_id": 4000225,
+      "item_id": 4000226,
       "data": {
-        "id": 4000225,
+        "id": 4000226,
         "item": "Polar Scoop Vanilla Ice Cream 1L",
         "item_localized": "Polar Scoop Vanilla Ice Cream 1L",
-        "upc": "6290004000225",
+        "upc": "6290004000226",
         "images_urls": [
           "https://careem-catalog-media.media.careem.com/quik/sku_polar_icecream_1l.png"
         ],
@@ -1125,7 +1173,7 @@ Quik items 4000223 to 4000227 (batch 2 of the household's history, ids ascending
           "tax_percentage": 5
         },
         "active": true,
-        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000225",
+        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000226",
         "catalog_id": 40001,
         "currency": {
           "label_localized": "AED"
@@ -1135,7 +1183,7 @@ Quik items 4000223 to 4000227 (batch 2 of the household's history, ids ascending
           "value_localized": "1 L"
         },
         "core_category": {
-          "id": 8223,
+          "id": 8224,
           "name": "Ice Cream",
           "name_localized": "Ice Cream",
           "parent_category_id": 8200,
@@ -1152,12 +1200,12 @@ Quik items 4000223 to 4000227 (batch 2 of the household's history, ids ascending
       }
     },
     {
-      "item_id": 4000226,
+      "item_id": 4000227,
       "data": {
-        "id": 4000226,
+        "id": 4000227,
         "item": "Tea Time Butter Biscuits 400g",
         "item_localized": "Tea Time Butter Biscuits 400g",
-        "upc": "6290004000226",
+        "upc": "6290004000227",
         "images_urls": [
           "https://careem-catalog-media.media.careem.com/quik/sku_teatime_biscuits_400.png"
         ],
@@ -1173,7 +1221,7 @@ Quik items 4000223 to 4000227 (batch 2 of the household's history, ids ascending
           "tax_percentage": 5
         },
         "active": true,
-        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000226",
+        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000227",
         "catalog_id": 40001,
         "currency": {
           "label_localized": "AED"
@@ -1183,7 +1231,7 @@ Quik items 4000223 to 4000227 (batch 2 of the household's history, ids ascending
           "value_localized": "400 g"
         },
         "core_category": {
-          "id": 8224,
+          "id": 8225,
           "name": "Biscuits",
           "name_localized": "Biscuits",
           "parent_category_id": 8200,
@@ -1200,12 +1248,12 @@ Quik items 4000223 to 4000227 (batch 2 of the household's history, ids ascending
       }
     },
     {
-      "item_id": 4000227,
+      "item_id": 4000228,
       "data": {
-        "id": 4000227,
+        "id": 4000228,
         "item": "Sunny Grove Orange Juice 1.5L",
         "item_localized": "Sunny Grove Orange Juice 1.5L",
-        "upc": "6290004000227",
+        "upc": "6290004000228",
         "images_urls": [
           "https://careem-catalog-media.media.careem.com/quik/sku_sunny_juice_1500.png"
         ],
@@ -1221,7 +1269,7 @@ Quik items 4000223 to 4000227 (batch 2 of the household's history, ids ascending
           "tax_percentage": 5
         },
         "active": true,
-        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000227",
+        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000228",
         "catalog_id": 40001,
         "currency": {
           "label_localized": "AED"
@@ -1231,7 +1279,7 @@ Quik items 4000223 to 4000227 (batch 2 of the household's history, ids ascending
           "value_localized": "1.5 L"
         },
         "core_category": {
-          "id": 7325,
+          "id": 7326,
           "name": "Juice",
           "name_localized": "Juice",
           "parent_category_id": 7300,
@@ -1240,6 +1288,123 @@ Quik items 4000223 to 4000227 (batch 2 of the household's history, ids ascending
         },
         "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_sunny_juice_1500.png",
         "master_product_id": "sku_sunny_juice_1500",
+        "is_near_expiry": false,
+        "is_ad": false,
+        "is_available": true,
+        "item_type": "product",
+        "tags": []
+      }
+    }
+  ]
+}
+```
+
+## Scenario: household-items-3
+
+Marina Fresh Market items 4010205 to 4010207 (batch 3 of the household's history, ids ascending).
+
+```json match
+{
+  "merchant_id": 40101,
+  "item_ids": [
+    4010205
+  ]
+}
+```
+
+```json response
+{
+  "page": "groceries_get_items_details",
+  "items": [
+    {
+      "item_id": 4010205,
+      "data": {
+        "id": 4010205,
+        "item": "Chakki Gold Atta Wheat Flour 5kg",
+        "item_localized": "Chakki Gold Atta Wheat Flour 5kg",
+        "upc": "6290004010205",
+        "images_urls": [
+          "https://careem-catalog-media.media.careem.com/shops/sku_chakki_atta_5kg.png"
+        ],
+        "description": "Chakki Gold Atta Wheat Flour 5kg (5 kg)",
+        "description_localized": "Chakki Gold Atta Wheat Flour 5kg (5 kg)",
+        "price": {
+          "original": 17.25,
+          "original_formatted": "17.25",
+          "discount": 0,
+          "discount_percentage": 0,
+          "total": 17.25,
+          "total_formatted": "17.25",
+          "tax_percentage": 5
+        },
+        "active": true,
+        "link": "https://careem-catalog-media.media.careem.com/shops/items/4010205",
+        "catalog_id": 40101,
+        "currency": {
+          "label_localized": "AED"
+        },
+        "unit_of_measure": {
+          "value": "5 kg",
+          "value_localized": "5 kg"
+        },
+        "core_category": {
+          "id": 8403,
+          "name": "Atta Flour",
+          "name_localized": "Atta Flour",
+          "parent_category_id": 8400,
+          "parent_category_name": "Rice, Flour & Pulses",
+          "parent_category_name_localized": "Rice, Flour & Pulses"
+        },
+        "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_chakki_atta_5kg.png",
+        "master_product_id": "sku_chakki_atta_5kg",
+        "is_near_expiry": false,
+        "is_ad": false,
+        "is_available": true,
+        "item_type": "product",
+        "tags": []
+      }
+    },
+    {
+      "item_id": 4010207,
+      "data": {
+        "id": 4010207,
+        "item": "Desi Harvest Toor Dal 1kg",
+        "item_localized": "Desi Harvest Toor Dal 1kg",
+        "upc": "6290004010207",
+        "images_urls": [
+          "https://careem-catalog-media.media.careem.com/shops/sku_desi_toor_dal_1kg.png"
+        ],
+        "description": "Desi Harvest Toor Dal 1kg (1 kg)",
+        "description_localized": "Desi Harvest Toor Dal 1kg (1 kg)",
+        "price": {
+          "original": 8.5,
+          "original_formatted": "8.50",
+          "discount": 0,
+          "discount_percentage": 0,
+          "total": 8.5,
+          "total_formatted": "8.50",
+          "tax_percentage": 5
+        },
+        "active": true,
+        "link": "https://careem-catalog-media.media.careem.com/shops/items/4010207",
+        "catalog_id": 40101,
+        "currency": {
+          "label_localized": "AED"
+        },
+        "unit_of_measure": {
+          "value": "1 kg",
+          "value_localized": "1 kg"
+        },
+        "core_category": {
+          "id": 8405,
+          "name": "Lentils & Dal",
+          "name_localized": "Lentils & Dal",
+          "parent_category_id": 8400,
+          "parent_category_name": "Rice, Flour & Pulses",
+          "parent_category_name_localized": "Rice, Flour & Pulses"
+        },
+        "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_desi_toor_dal_1kg.png",
+        "master_product_id": "sku_desi_toor_dal_1kg",
         "is_near_expiry": false,
         "is_ad": false,
         "is_available": true,

@@ -216,6 +216,52 @@ Careem's own scenarios for this tool.
           "item_type": "REGULAR",
           "bundle_details": null,
           "superapp_link": "careem://shops/merchant/40101/item/4010204"
+        },
+        {
+          "id": 4010229,
+          "item": "Royal Mahal Basmati Rice 10kg",
+          "item_localized": "Royal Mahal Basmati Rice 10kg",
+          "upc": "6290004010229",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_royal_basmati_10kg.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_royal_basmati_10kg.png"
+          ],
+          "description": "Royal Mahal Basmati Rice 10kg (10 kg)",
+          "description_localized": "Royal Mahal Basmati Rice 10kg (10 kg)",
+          "price": {
+            "original": 74.5,
+            "original_formatted": "74.50",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 74.5,
+            "total_formatted": "74.50",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010229",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40101,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_royal_basmati_10kg",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40101/item/4010229"
         }
       ]
     },
@@ -267,6 +313,52 @@ Careem's own scenarios for this tool.
           "item_type": "REGULAR",
           "bundle_details": null,
           "superapp_link": "careem://shops/merchant/40101/item/4010205"
+        },
+        {
+          "id": 4010230,
+          "item": "Chakki Gold Atta Wheat Flour 10kg",
+          "item_localized": "Chakki Gold Atta Wheat Flour 10kg",
+          "upc": "6290004010230",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_chakki_atta_10kg.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_chakki_atta_10kg.png"
+          ],
+          "description": "Chakki Gold Atta Wheat Flour 10kg (10 kg)",
+          "description_localized": "Chakki Gold Atta Wheat Flour 10kg (10 kg)",
+          "price": {
+            "original": 31.5,
+            "original_formatted": "31.50",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 31.5,
+            "total_formatted": "31.50",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010230",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40101,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_chakki_atta_10kg",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40101/item/4010230"
         }
       ]
     },
@@ -369,6 +461,52 @@ Careem's own scenarios for this tool.
           "item_type": "REGULAR",
           "bundle_details": null,
           "superapp_link": "careem://shops/merchant/40101/item/4010207"
+        },
+        {
+          "id": 4010231,
+          "item": "Desi Harvest Chana Dal 1kg",
+          "item_localized": "Desi Harvest Chana Dal 1kg",
+          "upc": "6290004010231",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_chana_dal_1kg.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_chana_dal_1kg.png"
+          ],
+          "description": "Desi Harvest Chana Dal 1kg (1 kg)",
+          "description_localized": "Desi Harvest Chana Dal 1kg (1 kg)",
+          "price": {
+            "original": 7.95,
+            "original_formatted": "7.95",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 7.95,
+            "total_formatted": "7.95",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010231",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40101,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_chana_dal_1kg",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40101/item/4010231"
         }
       ]
     },
@@ -572,13 +710,64 @@ Careem's own scenarios for this tool.
       ]
     },
     {
-      "name": "eggs",
+      "name": "plant milk",
       "items": [
         {
           "id": 4010211,
+          "item": "GreenOat Oat Milk 1L",
+          "item_localized": "GreenOat Oat Milk 1L",
+          "upc": "6290004010211",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_greenoat_oat_milk_1l.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_greenoat_oat_milk_1l.png"
+          ],
+          "description": "GreenOat Oat Milk 1L (1 L)",
+          "description_localized": "GreenOat Oat Milk 1L (1 L)",
+          "price": {
+            "original": 10.25,
+            "original_formatted": "10.25",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 10.25,
+            "total_formatted": "10.25",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010211",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40101,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_greenoat_oat_milk_1l",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40101/item/4010211"
+        }
+      ]
+    },
+    {
+      "name": "eggs",
+      "items": [
+        {
+          "id": 4010212,
           "item": "Golden Yolk Eggs Tray 30",
           "item_localized": "Golden Yolk Eggs Tray 30",
-          "upc": "6290004010211",
+          "upc": "6290004010212",
           "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_golden_eggs_30.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/shops/sku_golden_eggs_30.png"
@@ -596,7 +785,7 @@ Careem's own scenarios for this tool.
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010211",
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010212",
           "attributes": [],
           "tags": [],
           "catalog_id": 40101,
@@ -618,7 +807,7 @@ Careem's own scenarios for this tool.
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40101/item/4010211"
+          "superapp_link": "careem://shops/merchant/40101/item/4010212"
         },
         {
           "id": 4010102,
@@ -672,10 +861,10 @@ Careem's own scenarios for this tool.
       "name": "yogurt",
       "items": [
         {
-          "id": 4010212,
+          "id": 4010213,
           "item": "Marmoom Farms Greek Style Yogurt 500g",
           "item_localized": "Marmoom Farms Greek Style Yogurt 500g",
-          "upc": "6290004010212",
+          "upc": "6290004010213",
           "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_yogurt_500.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/shops/sku_yogurt_500.png"
@@ -693,7 +882,7 @@ Careem's own scenarios for this tool.
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010212",
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010213",
           "attributes": [],
           "tags": [],
           "catalog_id": 40101,
@@ -715,7 +904,53 @@ Careem's own scenarios for this tool.
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40101/item/4010212"
+          "superapp_link": "careem://shops/merchant/40101/item/4010213"
+        },
+        {
+          "id": 4010233,
+          "item": "Marmoom Farms Fresh Yogurt 2kg",
+          "item_localized": "Marmoom Farms Fresh Yogurt 2kg",
+          "upc": "6290004010233",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_laban_yogurt_2kg.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_laban_yogurt_2kg.png"
+          ],
+          "description": "Marmoom Farms Fresh Yogurt 2kg (2 kg)",
+          "description_localized": "Marmoom Farms Fresh Yogurt 2kg (2 kg)",
+          "price": {
+            "original": 12.75,
+            "original_formatted": "12.75",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 12.75,
+            "total_formatted": "12.75",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010233",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40101,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_laban_yogurt_2kg",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40101/item/4010233"
         }
       ]
     },
@@ -723,10 +958,10 @@ Careem's own scenarios for this tool.
       "name": "onions",
       "items": [
         {
-          "id": 4010213,
+          "id": 4010214,
           "item": "Red Onions 1kg",
           "item_localized": "Red Onions 1kg",
-          "upc": "6290004010213",
+          "upc": "6290004010214",
           "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_red_onions_1kg.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/shops/sku_red_onions_1kg.png"
@@ -744,7 +979,7 @@ Careem's own scenarios for this tool.
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010213",
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010214",
           "attributes": [],
           "tags": [],
           "catalog_id": 40101,
@@ -766,7 +1001,7 @@ Careem's own scenarios for this tool.
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40101/item/4010213"
+          "superapp_link": "careem://shops/merchant/40101/item/4010214"
         }
       ]
     },
@@ -774,10 +1009,10 @@ Careem's own scenarios for this tool.
       "name": "tomatoes",
       "items": [
         {
-          "id": 4010214,
+          "id": 4010215,
           "item": "Tomatoes 1kg",
           "item_localized": "Tomatoes 1kg",
-          "upc": "6290004010214",
+          "upc": "6290004010215",
           "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_tomatoes_1kg.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/shops/sku_tomatoes_1kg.png"
@@ -795,7 +1030,7 @@ Careem's own scenarios for this tool.
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010214",
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010215",
           "attributes": [],
           "tags": [],
           "catalog_id": 40101,
@@ -817,7 +1052,7 @@ Careem's own scenarios for this tool.
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40101/item/4010214"
+          "superapp_link": "careem://shops/merchant/40101/item/4010215"
         }
       ]
     },
@@ -825,10 +1060,10 @@ Careem's own scenarios for this tool.
       "name": "bananas",
       "items": [
         {
-          "id": 4010215,
+          "id": 4010216,
           "item": "Bananas 1kg",
           "item_localized": "Bananas 1kg",
-          "upc": "6290004010215",
+          "upc": "6290004010216",
           "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_bananas_1kg.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/shops/sku_bananas_1kg.png"
@@ -846,7 +1081,7 @@ Careem's own scenarios for this tool.
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010215",
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010216",
           "attributes": [],
           "tags": [],
           "catalog_id": 40101,
@@ -868,7 +1103,7 @@ Careem's own scenarios for this tool.
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40101/item/4010215"
+          "superapp_link": "careem://shops/merchant/40101/item/4010216"
         }
       ]
     },
@@ -876,10 +1111,10 @@ Careem's own scenarios for this tool.
       "name": "arabic bread",
       "items": [
         {
-          "id": 4010216,
+          "id": 4010217,
           "item": "Al Khayma Arabic Bread Large 6pcs",
           "item_localized": "Al Khayma Arabic Bread Large 6pcs",
-          "upc": "6290004010216",
+          "upc": "6290004010217",
           "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_khayma_bread_6.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/shops/sku_khayma_bread_6.png"
@@ -897,7 +1132,7 @@ Careem's own scenarios for this tool.
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010216",
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010217",
           "attributes": [],
           "tags": [],
           "catalog_id": 40101,
@@ -919,7 +1154,7 @@ Careem's own scenarios for this tool.
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40101/item/4010216"
+          "superapp_link": "careem://shops/merchant/40101/item/4010217"
         }
       ]
     },
@@ -927,10 +1162,10 @@ Careem's own scenarios for this tool.
       "name": "fresh chicken",
       "items": [
         {
-          "id": 4010217,
+          "id": 4010218,
           "item": "Green Valley Fresh Whole Chicken 1kg",
           "item_localized": "Green Valley Fresh Whole Chicken 1kg",
-          "upc": "6290004010217",
+          "upc": "6290004010218",
           "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_valley_chicken_1kg.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/shops/sku_valley_chicken_1kg.png"
@@ -948,7 +1183,7 @@ Careem's own scenarios for this tool.
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010217",
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010218",
           "attributes": [],
           "tags": [],
           "catalog_id": 40101,
@@ -970,7 +1205,7 @@ Careem's own scenarios for this tool.
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40101/item/4010217"
+          "superapp_link": "careem://shops/merchant/40101/item/4010218"
         }
       ]
     },
@@ -978,10 +1213,10 @@ Careem's own scenarios for this tool.
       "name": "tea",
       "items": [
         {
-          "id": 4010218,
+          "id": 4010219,
           "item": "Karak Chai Black Tea Bags 100",
           "item_localized": "Karak Chai Black Tea Bags 100",
-          "upc": "6290004010218",
+          "upc": "6290004010219",
           "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_karak_tea_100.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/shops/sku_karak_tea_100.png"
@@ -999,7 +1234,7 @@ Careem's own scenarios for this tool.
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010218",
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010219",
           "attributes": [],
           "tags": [],
           "catalog_id": 40101,
@@ -1021,7 +1256,53 @@ Careem's own scenarios for this tool.
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40101/item/4010218"
+          "superapp_link": "careem://shops/merchant/40101/item/4010219"
+        },
+        {
+          "id": 4010235,
+          "item": "Chaiwala Strong Tea Dust 900g",
+          "item_localized": "Chaiwala Strong Tea Dust 900g",
+          "upc": "6290004010235",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_tea_dust_900.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_tea_dust_900.png"
+          ],
+          "description": "Chaiwala Strong Tea Dust 900g (900 g)",
+          "description_localized": "Chaiwala Strong Tea Dust 900g (900 g)",
+          "price": {
+            "original": 22.5,
+            "original_formatted": "22.50",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 22.5,
+            "total_formatted": "22.50",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010235",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40101,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_tea_dust_900",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40101/item/4010235"
         }
       ]
     },
@@ -1029,10 +1310,10 @@ Careem's own scenarios for this tool.
       "name": "dishwashing liquid",
       "items": [
         {
-          "id": 4010219,
+          "id": 4010220,
           "item": "Sparkle Lemon Dishwashing Liquid 750ml",
           "item_localized": "Sparkle Lemon Dishwashing Liquid 750ml",
-          "upc": "6290004010219",
+          "upc": "6290004010220",
           "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_sparkle_dish_750.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/shops/sku_sparkle_dish_750.png"
@@ -1050,7 +1331,7 @@ Careem's own scenarios for this tool.
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010219",
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010220",
           "attributes": [],
           "tags": [],
           "catalog_id": 40101,
@@ -1072,7 +1353,7 @@ Careem's own scenarios for this tool.
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40101/item/4010219"
+          "superapp_link": "careem://shops/merchant/40101/item/4010220"
         }
       ]
     },
@@ -1080,10 +1361,10 @@ Careem's own scenarios for this tool.
       "name": "laundry detergent",
       "items": [
         {
-          "id": 4010220,
+          "id": 4010221,
           "item": "BrightWash Laundry Detergent Liquid 3L",
           "item_localized": "BrightWash Laundry Detergent Liquid 3L",
-          "upc": "6290004010220",
+          "upc": "6290004010221",
           "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_brightwash_3l.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/shops/sku_brightwash_3l.png"
@@ -1101,7 +1382,7 @@ Careem's own scenarios for this tool.
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010220",
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010221",
           "attributes": [],
           "tags": [],
           "catalog_id": 40101,
@@ -1123,7 +1404,7 @@ Careem's own scenarios for this tool.
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40101/item/4010220"
+          "superapp_link": "careem://shops/merchant/40101/item/4010221"
         }
       ]
     },
@@ -1131,10 +1412,10 @@ Careem's own scenarios for this tool.
       "name": "toilet tissue",
       "items": [
         {
-          "id": 4010221,
+          "id": 4010222,
           "item": "SoftCloud Toilet Tissue 12 Rolls",
           "item_localized": "SoftCloud Toilet Tissue 12 Rolls",
-          "upc": "6290004010221",
+          "upc": "6290004010222",
           "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_softcloud_12.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/shops/sku_softcloud_12.png"
@@ -1152,7 +1433,7 @@ Careem's own scenarios for this tool.
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010221",
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010222",
           "attributes": [],
           "tags": [],
           "catalog_id": 40101,
@@ -1174,7 +1455,7 @@ Careem's own scenarios for this tool.
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40101/item/4010221"
+          "superapp_link": "careem://shops/merchant/40101/item/4010222"
         }
       ]
     },
@@ -1182,10 +1463,10 @@ Careem's own scenarios for this tool.
       "name": "potato chips",
       "items": [
         {
-          "id": 4010222,
+          "id": 4010223,
           "item": "Crunchos Salted Potato Chips Family Pack 150g",
           "item_localized": "Crunchos Salted Potato Chips Family Pack 150g",
-          "upc": "6290004010222",
+          "upc": "6290004010223",
           "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_crunchos_150.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/shops/sku_crunchos_150.png"
@@ -1203,7 +1484,7 @@ Careem's own scenarios for this tool.
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010222",
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010223",
           "attributes": [],
           "tags": [],
           "catalog_id": 40101,
@@ -1225,7 +1506,7 @@ Careem's own scenarios for this tool.
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40101/item/4010222"
+          "superapp_link": "careem://shops/merchant/40101/item/4010223"
         }
       ]
     },
@@ -1233,10 +1514,10 @@ Careem's own scenarios for this tool.
       "name": "soft drinks",
       "items": [
         {
-          "id": 4010223,
+          "id": 4010224,
           "item": "FizzUp Cola 6x330ml",
           "item_localized": "FizzUp Cola 6x330ml",
-          "upc": "6290004010223",
+          "upc": "6290004010224",
           "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_fizzup_cola_6.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/shops/sku_fizzup_cola_6.png"
@@ -1254,7 +1535,7 @@ Careem's own scenarios for this tool.
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010223",
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010224",
           "attributes": [],
           "tags": [],
           "catalog_id": 40101,
@@ -1276,7 +1557,7 @@ Careem's own scenarios for this tool.
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40101/item/4010223"
+          "superapp_link": "careem://shops/merchant/40101/item/4010224"
         }
       ]
     },
@@ -1284,10 +1565,10 @@ Careem's own scenarios for this tool.
       "name": "chocolate",
       "items": [
         {
-          "id": 4010224,
+          "id": 4010225,
           "item": "ChocoJoy Milk Chocolate Bars 4 Pack",
           "item_localized": "ChocoJoy Milk Chocolate Bars 4 Pack",
-          "upc": "6290004010224",
+          "upc": "6290004010225",
           "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_chocojoy_4.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/shops/sku_chocojoy_4.png"
@@ -1305,7 +1586,7 @@ Careem's own scenarios for this tool.
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010224",
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010225",
           "attributes": [],
           "tags": [],
           "catalog_id": 40101,
@@ -1327,7 +1608,7 @@ Careem's own scenarios for this tool.
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40101/item/4010224"
+          "superapp_link": "careem://shops/merchant/40101/item/4010225"
         }
       ]
     },
@@ -1335,10 +1616,10 @@ Careem's own scenarios for this tool.
       "name": "ice cream",
       "items": [
         {
-          "id": 4010225,
+          "id": 4010226,
           "item": "Polar Scoop Vanilla Ice Cream 1L",
           "item_localized": "Polar Scoop Vanilla Ice Cream 1L",
-          "upc": "6290004010225",
+          "upc": "6290004010226",
           "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_polar_icecream_1l.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/shops/sku_polar_icecream_1l.png"
@@ -1356,7 +1637,7 @@ Careem's own scenarios for this tool.
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010225",
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010226",
           "attributes": [],
           "tags": [],
           "catalog_id": 40101,
@@ -1378,7 +1659,7 @@ Careem's own scenarios for this tool.
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40101/item/4010225"
+          "superapp_link": "careem://shops/merchant/40101/item/4010226"
         }
       ]
     },
@@ -1386,10 +1667,10 @@ Careem's own scenarios for this tool.
       "name": "biscuits",
       "items": [
         {
-          "id": 4010226,
+          "id": 4010227,
           "item": "Tea Time Butter Biscuits 400g",
           "item_localized": "Tea Time Butter Biscuits 400g",
-          "upc": "6290004010226",
+          "upc": "6290004010227",
           "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_teatime_biscuits_400.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/shops/sku_teatime_biscuits_400.png"
@@ -1407,7 +1688,7 @@ Careem's own scenarios for this tool.
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010226",
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010227",
           "attributes": [],
           "tags": [],
           "catalog_id": 40101,
@@ -1429,7 +1710,7 @@ Careem's own scenarios for this tool.
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40101/item/4010226"
+          "superapp_link": "careem://shops/merchant/40101/item/4010227"
         }
       ]
     },
@@ -1437,10 +1718,10 @@ Careem's own scenarios for this tool.
       "name": "juice",
       "items": [
         {
-          "id": 4010227,
+          "id": 4010228,
           "item": "Sunny Grove Orange Juice 1.5L",
           "item_localized": "Sunny Grove Orange Juice 1.5L",
-          "upc": "6290004010227",
+          "upc": "6290004010228",
           "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_sunny_juice_1500.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/shops/sku_sunny_juice_1500.png"
@@ -1458,7 +1739,7 @@ Careem's own scenarios for this tool.
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010227",
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010228",
           "attributes": [],
           "tags": [],
           "catalog_id": 40101,
@@ -1480,7 +1761,665 @@ Careem's own scenarios for this tool.
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40101/item/4010227"
+          "superapp_link": "careem://shops/merchant/40101/item/4010228"
+        },
+        {
+          "id": 4010237,
+          "item": "Sunny Grove Mango Drink 6x250ml",
+          "item_localized": "Sunny Grove Mango Drink 6x250ml",
+          "upc": "6290004010237",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_mango_drink_6.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_mango_drink_6.png"
+          ],
+          "description": "Sunny Grove Mango Drink 6x250ml (6 x 250 ml)",
+          "description_localized": "Sunny Grove Mango Drink 6x250ml (6 x 250 ml)",
+          "price": {
+            "original": 7.95,
+            "original_formatted": "7.95",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 7.95,
+            "total_formatted": "7.95",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010237",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40101,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_mango_drink_6",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40101/item/4010237"
+        }
+      ]
+    },
+    {
+      "name": "ghee",
+      "items": [
+        {
+          "id": 4010232,
+          "item": "Desi Gold Pure Ghee 1L",
+          "item_localized": "Desi Gold Pure Ghee 1L",
+          "upc": "6290004010232",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_ghee_1l.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_ghee_1l.png"
+          ],
+          "description": "Desi Gold Pure Ghee 1L (1 L)",
+          "description_localized": "Desi Gold Pure Ghee 1L (1 L)",
+          "price": {
+            "original": 29.95,
+            "original_formatted": "29.95",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 29.95,
+            "total_formatted": "29.95",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010232",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40101,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_ghee_1l",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40101/item/4010232"
+        }
+      ]
+    },
+    {
+      "name": "potatoes",
+      "items": [
+        {
+          "id": 4010234,
+          "item": "Potatoes 2kg",
+          "item_localized": "Potatoes 2kg",
+          "upc": "6290004010234",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_potatoes_2kg.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_potatoes_2kg.png"
+          ],
+          "description": "Potatoes 2kg (2 kg)",
+          "description_localized": "Potatoes 2kg (2 kg)",
+          "price": {
+            "original": 5.75,
+            "original_formatted": "5.75",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 5.75,
+            "total_formatted": "5.75",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010234",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40101,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_potatoes_2kg",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40101/item/4010234"
+        }
+      ]
+    },
+    {
+      "name": "diapers",
+      "items": [
+        {
+          "id": 4010236,
+          "item": "TinyCare Baby Diapers Size 4 (44 pcs)",
+          "item_localized": "TinyCare Baby Diapers Size 4 (44 pcs)",
+          "upc": "6290004010236",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_diapers_44.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_diapers_44.png"
+          ],
+          "description": "TinyCare Baby Diapers Size 4 (44 pcs) (44 pcs)",
+          "description_localized": "TinyCare Baby Diapers Size 4 (44 pcs) (44 pcs)",
+          "price": {
+            "original": 49.95,
+            "original_formatted": "49.95",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 49.95,
+            "total_formatted": "49.95",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010236",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40101,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_diapers_44",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40101/item/4010236"
+        }
+      ]
+    },
+    {
+      "name": "sparkling water",
+      "items": [
+        {
+          "id": 4010238,
+          "item": "Alpine Spring Sparkling Water 6x330ml",
+          "item_localized": "Alpine Spring Sparkling Water 6x330ml",
+          "upc": "6290004010238",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_sparkling_water_6.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_sparkling_water_6.png"
+          ],
+          "description": "Alpine Spring Sparkling Water 6x330ml (6 x 330 ml)",
+          "description_localized": "Alpine Spring Sparkling Water 6x330ml (6 x 330 ml)",
+          "price": {
+            "original": 11.5,
+            "original_formatted": "11.50",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 11.5,
+            "total_formatted": "11.50",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010238",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40101,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_sparkling_water_6",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40101/item/4010238"
+        }
+      ]
+    },
+    {
+      "name": "avocados",
+      "items": [
+        {
+          "id": 4010239,
+          "item": "Avocados 2pcs",
+          "item_localized": "Avocados 2pcs",
+          "upc": "6290004010239",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_avocado_2.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_avocado_2.png"
+          ],
+          "description": "Avocados 2pcs (2 pcs)",
+          "description_localized": "Avocados 2pcs (2 pcs)",
+          "price": {
+            "original": 10.5,
+            "original_formatted": "10.50",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 10.5,
+            "total_formatted": "10.50",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010239",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40101,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_avocado_2",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40101/item/4010239"
+        }
+      ]
+    },
+    {
+      "name": "nuts",
+      "items": [
+        {
+          "id": 4010240,
+          "item": "NutriCrunch Mixed Nuts 200g",
+          "item_localized": "NutriCrunch Mixed Nuts 200g",
+          "upc": "6290004010240",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_mixed_nuts_200.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_mixed_nuts_200.png"
+          ],
+          "description": "NutriCrunch Mixed Nuts 200g (200 g)",
+          "description_localized": "NutriCrunch Mixed Nuts 200g (200 g)",
+          "price": {
+            "original": 15.95,
+            "original_formatted": "15.95",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 15.95,
+            "total_formatted": "15.95",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010240",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40101,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_mixed_nuts_200",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40101/item/4010240"
+        }
+      ]
+    },
+    {
+      "name": "protein bars",
+      "items": [
+        {
+          "id": 4010241,
+          "item": "FitFuel Protein Bars 4pk",
+          "item_localized": "FitFuel Protein Bars 4pk",
+          "upc": "6290004010241",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_protein_bars_4.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_protein_bars_4.png"
+          ],
+          "description": "FitFuel Protein Bars 4pk (4 pcs)",
+          "description_localized": "FitFuel Protein Bars 4pk (4 pcs)",
+          "price": {
+            "original": 21,
+            "original_formatted": "21.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 21,
+            "total_formatted": "21.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010241",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40101,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_protein_bars_4",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40101/item/4010241"
+        }
+      ]
+    },
+    {
+      "name": "chicken breast",
+      "items": [
+        {
+          "id": 4010242,
+          "item": "Green Valley Chicken Breast 500g",
+          "item_localized": "Green Valley Chicken Breast 500g",
+          "upc": "6290004010242",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_chicken_breast_500.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_chicken_breast_500.png"
+          ],
+          "description": "Green Valley Chicken Breast 500g (500 g)",
+          "description_localized": "Green Valley Chicken Breast 500g (500 g)",
+          "price": {
+            "original": 16.75,
+            "original_formatted": "16.75",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 16.75,
+            "total_formatted": "16.75",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010242",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40101,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_chicken_breast_500",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40101/item/4010242"
+        }
+      ]
+    },
+    {
+      "name": "brown rice",
+      "items": [
+        {
+          "id": 4010243,
+          "item": "Harvest Brown Rice 2kg",
+          "item_localized": "Harvest Brown Rice 2kg",
+          "upc": "6290004010243",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_brown_rice_2kg.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_brown_rice_2kg.png"
+          ],
+          "description": "Harvest Brown Rice 2kg (2 kg)",
+          "description_localized": "Harvest Brown Rice 2kg (2 kg)",
+          "price": {
+            "original": 14.95,
+            "original_formatted": "14.95",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 14.95,
+            "total_formatted": "14.95",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010243",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40101,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_brown_rice_2kg",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40101/item/4010243"
+        }
+      ]
+    },
+    {
+      "name": "leafy greens",
+      "items": [
+        {
+          "id": 4010244,
+          "item": "Baby Spinach 200g",
+          "item_localized": "Baby Spinach 200g",
+          "upc": "6290004010244",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_spinach_200.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_spinach_200.png"
+          ],
+          "description": "Baby Spinach 200g (200 g)",
+          "description_localized": "Baby Spinach 200g (200 g)",
+          "price": {
+            "original": 7.95,
+            "original_formatted": "7.95",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 7.95,
+            "total_formatted": "7.95",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010244",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40101,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_spinach_200",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40101/item/4010244"
+        }
+      ]
+    },
+    {
+      "name": "instant noodles",
+      "items": [
+        {
+          "id": 4010245,
+          "item": "Quickbowl Instant Noodles 5pk",
+          "item_localized": "Quickbowl Instant Noodles 5pk",
+          "upc": "6290004010245",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_instant_noodles_5.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_instant_noodles_5.png"
+          ],
+          "description": "Quickbowl Instant Noodles 5pk (5 pcs)",
+          "description_localized": "Quickbowl Instant Noodles 5pk (5 pcs)",
+          "price": {
+            "original": 6.5,
+            "original_formatted": "6.50",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 6.5,
+            "total_formatted": "6.50",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010245",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40101,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_instant_noodles_5",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40101/item/4010245"
+        }
+      ]
+    },
+    {
+      "name": "coffee",
+      "items": [
+        {
+          "id": 4010246,
+          "item": "Roastery Arabica Coffee Beans 250g",
+          "item_localized": "Roastery Arabica Coffee Beans 250g",
+          "upc": "6290004010246",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_coffee_beans_250.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_coffee_beans_250.png"
+          ],
+          "description": "Roastery Arabica Coffee Beans 250g (250 g)",
+          "description_localized": "Roastery Arabica Coffee Beans 250g (250 g)",
+          "price": {
+            "original": 30,
+            "original_formatted": "30.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 30,
+            "total_formatted": "30.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010246",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40101,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_coffee_beans_250",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40101/item/4010246"
         }
       ]
     }
@@ -1654,6 +2593,52 @@ Careem's own scenarios for this tool.
           "item_type": "REGULAR",
           "bundle_details": null,
           "superapp_link": "careem://shops/merchant/40201/item/4020203"
+        },
+        {
+          "id": 4020224,
+          "item": "Desi Harvest Chana Dal 1kg",
+          "item_localized": "Desi Harvest Chana Dal 1kg",
+          "upc": "6290004020224",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_chana_dal_1kg.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_chana_dal_1kg.png"
+          ],
+          "description": "Desi Harvest Chana Dal 1kg (1 kg)",
+          "description_localized": "Desi Harvest Chana Dal 1kg (1 kg)",
+          "price": {
+            "original": 10.5,
+            "original_formatted": "10.50",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 10.5,
+            "total_formatted": "10.50",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020224",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40201,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_chana_dal_1kg",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40201/item/4020224"
         }
       ]
     },
@@ -1811,13 +2796,64 @@ Careem's own scenarios for this tool.
       ]
     },
     {
-      "name": "eggs",
+      "name": "plant milk",
       "items": [
         {
           "id": 4020207,
+          "item": "GreenOat Oat Milk 1L",
+          "item_localized": "GreenOat Oat Milk 1L",
+          "upc": "6290004020207",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_greenoat_oat_milk_1l.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_greenoat_oat_milk_1l.png"
+          ],
+          "description": "GreenOat Oat Milk 1L (1 L)",
+          "description_localized": "GreenOat Oat Milk 1L (1 L)",
+          "price": {
+            "original": 9.95,
+            "original_formatted": "9.95",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 9.95,
+            "total_formatted": "9.95",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020207",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40201,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_greenoat_oat_milk_1l",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40201/item/4020207"
+        }
+      ]
+    },
+    {
+      "name": "eggs",
+      "items": [
+        {
+          "id": 4020208,
           "item": "Golden Yolk Eggs Tray 30",
           "item_localized": "Golden Yolk Eggs Tray 30",
-          "upc": "6290004020207",
+          "upc": "6290004020208",
           "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_golden_eggs_30.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/shops/sku_golden_eggs_30.png"
@@ -1835,7 +2871,7 @@ Careem's own scenarios for this tool.
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020207",
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020208",
           "attributes": [],
           "tags": [],
           "catalog_id": 40201,
@@ -1857,7 +2893,7 @@ Careem's own scenarios for this tool.
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40201/item/4020207"
+          "superapp_link": "careem://shops/merchant/40201/item/4020208"
         }
       ]
     },
@@ -1865,10 +2901,10 @@ Careem's own scenarios for this tool.
       "name": "yogurt",
       "items": [
         {
-          "id": 4020208,
+          "id": 4020209,
           "item": "Marmoom Farms Greek Style Yogurt 500g",
           "item_localized": "Marmoom Farms Greek Style Yogurt 500g",
-          "upc": "6290004020208",
+          "upc": "6290004020209",
           "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_yogurt_500.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/shops/sku_yogurt_500.png"
@@ -1886,7 +2922,7 @@ Careem's own scenarios for this tool.
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020208",
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020209",
           "attributes": [],
           "tags": [],
           "catalog_id": 40201,
@@ -1908,7 +2944,53 @@ Careem's own scenarios for this tool.
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40201/item/4020208"
+          "superapp_link": "careem://shops/merchant/40201/item/4020209"
+        },
+        {
+          "id": 4020226,
+          "item": "Marmoom Farms Fresh Yogurt 2kg",
+          "item_localized": "Marmoom Farms Fresh Yogurt 2kg",
+          "upc": "6290004020226",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_laban_yogurt_2kg.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_laban_yogurt_2kg.png"
+          ],
+          "description": "Marmoom Farms Fresh Yogurt 2kg (2 kg)",
+          "description_localized": "Marmoom Farms Fresh Yogurt 2kg (2 kg)",
+          "price": {
+            "original": 17,
+            "original_formatted": "17.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 17,
+            "total_formatted": "17.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020226",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40201,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_laban_yogurt_2kg",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40201/item/4020226"
         }
       ]
     },
@@ -1916,10 +2998,10 @@ Careem's own scenarios for this tool.
       "name": "onions",
       "items": [
         {
-          "id": 4020209,
+          "id": 4020210,
           "item": "Red Onions 1kg",
           "item_localized": "Red Onions 1kg",
-          "upc": "6290004020209",
+          "upc": "6290004020210",
           "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_red_onions_1kg.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/shops/sku_red_onions_1kg.png"
@@ -1937,7 +3019,7 @@ Careem's own scenarios for this tool.
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020209",
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020210",
           "attributes": [],
           "tags": [],
           "catalog_id": 40201,
@@ -1959,7 +3041,7 @@ Careem's own scenarios for this tool.
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40201/item/4020209"
+          "superapp_link": "careem://shops/merchant/40201/item/4020210"
         }
       ]
     },
@@ -1967,10 +3049,10 @@ Careem's own scenarios for this tool.
       "name": "tomatoes",
       "items": [
         {
-          "id": 4020210,
+          "id": 4020211,
           "item": "Tomatoes 1kg",
           "item_localized": "Tomatoes 1kg",
-          "upc": "6290004020210",
+          "upc": "6290004020211",
           "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_tomatoes_1kg.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/shops/sku_tomatoes_1kg.png"
@@ -1988,7 +3070,7 @@ Careem's own scenarios for this tool.
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020210",
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020211",
           "attributes": [],
           "tags": [],
           "catalog_id": 40201,
@@ -2010,7 +3092,7 @@ Careem's own scenarios for this tool.
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40201/item/4020210"
+          "superapp_link": "careem://shops/merchant/40201/item/4020211"
         }
       ]
     },
@@ -2018,10 +3100,10 @@ Careem's own scenarios for this tool.
       "name": "bananas",
       "items": [
         {
-          "id": 4020211,
+          "id": 4020212,
           "item": "Bananas 1kg",
           "item_localized": "Bananas 1kg",
-          "upc": "6290004020211",
+          "upc": "6290004020212",
           "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_bananas_1kg.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/shops/sku_bananas_1kg.png"
@@ -2039,7 +3121,7 @@ Careem's own scenarios for this tool.
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020211",
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020212",
           "attributes": [],
           "tags": [],
           "catalog_id": 40201,
@@ -2061,7 +3143,7 @@ Careem's own scenarios for this tool.
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40201/item/4020211"
+          "superapp_link": "careem://shops/merchant/40201/item/4020212"
         }
       ]
     },
@@ -2069,10 +3151,10 @@ Careem's own scenarios for this tool.
       "name": "arabic bread",
       "items": [
         {
-          "id": 4020212,
+          "id": 4020213,
           "item": "Al Khayma Arabic Bread Large 6pcs",
           "item_localized": "Al Khayma Arabic Bread Large 6pcs",
-          "upc": "6290004020212",
+          "upc": "6290004020213",
           "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_khayma_bread_6.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/shops/sku_khayma_bread_6.png"
@@ -2090,7 +3172,7 @@ Careem's own scenarios for this tool.
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020212",
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020213",
           "attributes": [],
           "tags": [],
           "catalog_id": 40201,
@@ -2112,7 +3194,7 @@ Careem's own scenarios for this tool.
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40201/item/4020212"
+          "superapp_link": "careem://shops/merchant/40201/item/4020213"
         }
       ]
     },
@@ -2120,10 +3202,10 @@ Careem's own scenarios for this tool.
       "name": "fresh chicken",
       "items": [
         {
-          "id": 4020213,
+          "id": 4020214,
           "item": "Green Valley Fresh Whole Chicken 1kg",
           "item_localized": "Green Valley Fresh Whole Chicken 1kg",
-          "upc": "6290004020213",
+          "upc": "6290004020214",
           "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_valley_chicken_1kg.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/shops/sku_valley_chicken_1kg.png"
@@ -2141,7 +3223,7 @@ Careem's own scenarios for this tool.
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020213",
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020214",
           "attributes": [],
           "tags": [],
           "catalog_id": 40201,
@@ -2163,7 +3245,7 @@ Careem's own scenarios for this tool.
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40201/item/4020213"
+          "superapp_link": "careem://shops/merchant/40201/item/4020214"
         }
       ]
     },
@@ -2171,10 +3253,10 @@ Careem's own scenarios for this tool.
       "name": "tea",
       "items": [
         {
-          "id": 4020214,
+          "id": 4020215,
           "item": "Karak Chai Black Tea Bags 100",
           "item_localized": "Karak Chai Black Tea Bags 100",
-          "upc": "6290004020214",
+          "upc": "6290004020215",
           "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_karak_tea_100.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/shops/sku_karak_tea_100.png"
@@ -2192,7 +3274,7 @@ Careem's own scenarios for this tool.
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020214",
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020215",
           "attributes": [],
           "tags": [],
           "catalog_id": 40201,
@@ -2214,7 +3296,53 @@ Careem's own scenarios for this tool.
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40201/item/4020214"
+          "superapp_link": "careem://shops/merchant/40201/item/4020215"
+        },
+        {
+          "id": 4020228,
+          "item": "Chaiwala Strong Tea Dust 900g",
+          "item_localized": "Chaiwala Strong Tea Dust 900g",
+          "upc": "6290004020228",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_tea_dust_900.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_tea_dust_900.png"
+          ],
+          "description": "Chaiwala Strong Tea Dust 900g (900 g)",
+          "description_localized": "Chaiwala Strong Tea Dust 900g (900 g)",
+          "price": {
+            "original": 29,
+            "original_formatted": "29.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 29,
+            "total_formatted": "29.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020228",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40201,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_tea_dust_900",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40201/item/4020228"
         }
       ]
     },
@@ -2222,10 +3350,10 @@ Careem's own scenarios for this tool.
       "name": "dishwashing liquid",
       "items": [
         {
-          "id": 4020215,
+          "id": 4020216,
           "item": "Sparkle Lemon Dishwashing Liquid 750ml",
           "item_localized": "Sparkle Lemon Dishwashing Liquid 750ml",
-          "upc": "6290004020215",
+          "upc": "6290004020216",
           "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_sparkle_dish_750.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/shops/sku_sparkle_dish_750.png"
@@ -2243,7 +3371,7 @@ Careem's own scenarios for this tool.
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020215",
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020216",
           "attributes": [],
           "tags": [],
           "catalog_id": 40201,
@@ -2265,7 +3393,7 @@ Careem's own scenarios for this tool.
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40201/item/4020215"
+          "superapp_link": "careem://shops/merchant/40201/item/4020216"
         }
       ]
     },
@@ -2273,10 +3401,10 @@ Careem's own scenarios for this tool.
       "name": "laundry detergent",
       "items": [
         {
-          "id": 4020216,
+          "id": 4020217,
           "item": "BrightWash Laundry Detergent Liquid 3L",
           "item_localized": "BrightWash Laundry Detergent Liquid 3L",
-          "upc": "6290004020216",
+          "upc": "6290004020217",
           "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_brightwash_3l.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/shops/sku_brightwash_3l.png"
@@ -2294,7 +3422,7 @@ Careem's own scenarios for this tool.
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020216",
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020217",
           "attributes": [],
           "tags": [],
           "catalog_id": 40201,
@@ -2316,7 +3444,7 @@ Careem's own scenarios for this tool.
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40201/item/4020216"
+          "superapp_link": "careem://shops/merchant/40201/item/4020217"
         }
       ]
     },
@@ -2324,10 +3452,10 @@ Careem's own scenarios for this tool.
       "name": "toilet tissue",
       "items": [
         {
-          "id": 4020217,
+          "id": 4020218,
           "item": "SoftCloud Toilet Tissue 12 Rolls",
           "item_localized": "SoftCloud Toilet Tissue 12 Rolls",
-          "upc": "6290004020217",
+          "upc": "6290004020218",
           "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_softcloud_12.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/shops/sku_softcloud_12.png"
@@ -2345,7 +3473,7 @@ Careem's own scenarios for this tool.
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020217",
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020218",
           "attributes": [],
           "tags": [],
           "catalog_id": 40201,
@@ -2367,7 +3495,7 @@ Careem's own scenarios for this tool.
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40201/item/4020217"
+          "superapp_link": "careem://shops/merchant/40201/item/4020218"
         }
       ]
     },
@@ -2375,10 +3503,10 @@ Careem's own scenarios for this tool.
       "name": "potato chips",
       "items": [
         {
-          "id": 4020218,
+          "id": 4020219,
           "item": "Crunchos Salted Potato Chips Family Pack 150g",
           "item_localized": "Crunchos Salted Potato Chips Family Pack 150g",
-          "upc": "6290004020218",
+          "upc": "6290004020219",
           "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_crunchos_150.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/shops/sku_crunchos_150.png"
@@ -2396,7 +3524,7 @@ Careem's own scenarios for this tool.
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020218",
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020219",
           "attributes": [],
           "tags": [],
           "catalog_id": 40201,
@@ -2418,7 +3546,7 @@ Careem's own scenarios for this tool.
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40201/item/4020218"
+          "superapp_link": "careem://shops/merchant/40201/item/4020219"
         }
       ]
     },
@@ -2426,10 +3554,10 @@ Careem's own scenarios for this tool.
       "name": "chocolate",
       "items": [
         {
-          "id": 4020219,
+          "id": 4020220,
           "item": "ChocoJoy Milk Chocolate Bars 4 Pack",
           "item_localized": "ChocoJoy Milk Chocolate Bars 4 Pack",
-          "upc": "6290004020219",
+          "upc": "6290004020220",
           "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_chocojoy_4.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/shops/sku_chocojoy_4.png"
@@ -2447,7 +3575,7 @@ Careem's own scenarios for this tool.
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020219",
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020220",
           "attributes": [],
           "tags": [],
           "catalog_id": 40201,
@@ -2469,7 +3597,7 @@ Careem's own scenarios for this tool.
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40201/item/4020219"
+          "superapp_link": "careem://shops/merchant/40201/item/4020220"
         }
       ]
     },
@@ -2477,10 +3605,10 @@ Careem's own scenarios for this tool.
       "name": "ice cream",
       "items": [
         {
-          "id": 4020220,
+          "id": 4020221,
           "item": "Polar Scoop Vanilla Ice Cream 1L",
           "item_localized": "Polar Scoop Vanilla Ice Cream 1L",
-          "upc": "6290004020220",
+          "upc": "6290004020221",
           "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_polar_icecream_1l.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/shops/sku_polar_icecream_1l.png"
@@ -2498,7 +3626,7 @@ Careem's own scenarios for this tool.
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020220",
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020221",
           "attributes": [],
           "tags": [],
           "catalog_id": 40201,
@@ -2520,7 +3648,7 @@ Careem's own scenarios for this tool.
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40201/item/4020220"
+          "superapp_link": "careem://shops/merchant/40201/item/4020221"
         }
       ]
     },
@@ -2528,10 +3656,10 @@ Careem's own scenarios for this tool.
       "name": "biscuits",
       "items": [
         {
-          "id": 4020221,
+          "id": 4020222,
           "item": "Tea Time Butter Biscuits 400g",
           "item_localized": "Tea Time Butter Biscuits 400g",
-          "upc": "6290004020221",
+          "upc": "6290004020222",
           "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_teatime_biscuits_400.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/shops/sku_teatime_biscuits_400.png"
@@ -2549,7 +3677,7 @@ Careem's own scenarios for this tool.
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020221",
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020222",
           "attributes": [],
           "tags": [],
           "catalog_id": 40201,
@@ -2571,7 +3699,7 @@ Careem's own scenarios for this tool.
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40201/item/4020221"
+          "superapp_link": "careem://shops/merchant/40201/item/4020222"
         }
       ]
     },
@@ -2579,10 +3707,10 @@ Careem's own scenarios for this tool.
       "name": "juice",
       "items": [
         {
-          "id": 4020222,
+          "id": 4020223,
           "item": "Sunny Grove Orange Juice 1.5L",
           "item_localized": "Sunny Grove Orange Juice 1.5L",
-          "upc": "6290004020222",
+          "upc": "6290004020223",
           "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_sunny_juice_1500.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/shops/sku_sunny_juice_1500.png"
@@ -2600,7 +3728,7 @@ Careem's own scenarios for this tool.
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020222",
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020223",
           "attributes": [],
           "tags": [],
           "catalog_id": 40201,
@@ -2622,7 +3750,614 @@ Careem's own scenarios for this tool.
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40201/item/4020222"
+          "superapp_link": "careem://shops/merchant/40201/item/4020223"
+        },
+        {
+          "id": 4020230,
+          "item": "Sunny Grove Mango Drink 6x250ml",
+          "item_localized": "Sunny Grove Mango Drink 6x250ml",
+          "upc": "6290004020230",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_mango_drink_6.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_mango_drink_6.png"
+          ],
+          "description": "Sunny Grove Mango Drink 6x250ml (6 x 250 ml)",
+          "description_localized": "Sunny Grove Mango Drink 6x250ml (6 x 250 ml)",
+          "price": {
+            "original": 11,
+            "original_formatted": "11.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 11,
+            "total_formatted": "11.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020230",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40201,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_mango_drink_6",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40201/item/4020230"
+        }
+      ]
+    },
+    {
+      "name": "ghee",
+      "items": [
+        {
+          "id": 4020225,
+          "item": "Desi Gold Pure Ghee 1L",
+          "item_localized": "Desi Gold Pure Ghee 1L",
+          "upc": "6290004020225",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_ghee_1l.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_ghee_1l.png"
+          ],
+          "description": "Desi Gold Pure Ghee 1L (1 L)",
+          "description_localized": "Desi Gold Pure Ghee 1L (1 L)",
+          "price": {
+            "original": 38,
+            "original_formatted": "38.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 38,
+            "total_formatted": "38.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020225",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40201,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_ghee_1l",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40201/item/4020225"
+        }
+      ]
+    },
+    {
+      "name": "potatoes",
+      "items": [
+        {
+          "id": 4020227,
+          "item": "Potatoes 2kg",
+          "item_localized": "Potatoes 2kg",
+          "upc": "6290004020227",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_potatoes_2kg.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_potatoes_2kg.png"
+          ],
+          "description": "Potatoes 2kg (2 kg)",
+          "description_localized": "Potatoes 2kg (2 kg)",
+          "price": {
+            "original": 9,
+            "original_formatted": "9.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 9,
+            "total_formatted": "9.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020227",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40201,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_potatoes_2kg",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40201/item/4020227"
+        }
+      ]
+    },
+    {
+      "name": "diapers",
+      "items": [
+        {
+          "id": 4020229,
+          "item": "TinyCare Baby Diapers Size 4 (44 pcs)",
+          "item_localized": "TinyCare Baby Diapers Size 4 (44 pcs)",
+          "upc": "6290004020229",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_diapers_44.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_diapers_44.png"
+          ],
+          "description": "TinyCare Baby Diapers Size 4 (44 pcs) (44 pcs)",
+          "description_localized": "TinyCare Baby Diapers Size 4 (44 pcs) (44 pcs)",
+          "price": {
+            "original": 62,
+            "original_formatted": "62.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 62,
+            "total_formatted": "62.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020229",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40201,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_diapers_44",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40201/item/4020229"
+        }
+      ]
+    },
+    {
+      "name": "sparkling water",
+      "items": [
+        {
+          "id": 4020231,
+          "item": "Alpine Spring Sparkling Water 6x330ml",
+          "item_localized": "Alpine Spring Sparkling Water 6x330ml",
+          "upc": "6290004020231",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_sparkling_water_6.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_sparkling_water_6.png"
+          ],
+          "description": "Alpine Spring Sparkling Water 6x330ml (6 x 330 ml)",
+          "description_localized": "Alpine Spring Sparkling Water 6x330ml (6 x 330 ml)",
+          "price": {
+            "original": 10.95,
+            "original_formatted": "10.95",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 10.95,
+            "total_formatted": "10.95",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020231",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40201,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_sparkling_water_6",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40201/item/4020231"
+        }
+      ]
+    },
+    {
+      "name": "avocados",
+      "items": [
+        {
+          "id": 4020232,
+          "item": "Avocados 2pcs",
+          "item_localized": "Avocados 2pcs",
+          "upc": "6290004020232",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_avocado_2.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_avocado_2.png"
+          ],
+          "description": "Avocados 2pcs (2 pcs)",
+          "description_localized": "Avocados 2pcs (2 pcs)",
+          "price": {
+            "original": 9.5,
+            "original_formatted": "9.50",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 9.5,
+            "total_formatted": "9.50",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020232",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40201,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_avocado_2",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40201/item/4020232"
+        }
+      ]
+    },
+    {
+      "name": "nuts",
+      "items": [
+        {
+          "id": 4020233,
+          "item": "NutriCrunch Mixed Nuts 200g",
+          "item_localized": "NutriCrunch Mixed Nuts 200g",
+          "upc": "6290004020233",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_mixed_nuts_200.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_mixed_nuts_200.png"
+          ],
+          "description": "NutriCrunch Mixed Nuts 200g (200 g)",
+          "description_localized": "NutriCrunch Mixed Nuts 200g (200 g)",
+          "price": {
+            "original": 14.5,
+            "original_formatted": "14.50",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 14.5,
+            "total_formatted": "14.50",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020233",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40201,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_mixed_nuts_200",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40201/item/4020233"
+        }
+      ]
+    },
+    {
+      "name": "protein bars",
+      "items": [
+        {
+          "id": 4020234,
+          "item": "FitFuel Protein Bars 4pk",
+          "item_localized": "FitFuel Protein Bars 4pk",
+          "upc": "6290004020234",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_protein_bars_4.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_protein_bars_4.png"
+          ],
+          "description": "FitFuel Protein Bars 4pk (4 pcs)",
+          "description_localized": "FitFuel Protein Bars 4pk (4 pcs)",
+          "price": {
+            "original": 19.5,
+            "original_formatted": "19.50",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 19.5,
+            "total_formatted": "19.50",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020234",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40201,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_protein_bars_4",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40201/item/4020234"
+        }
+      ]
+    },
+    {
+      "name": "chicken breast",
+      "items": [
+        {
+          "id": 4020235,
+          "item": "Green Valley Chicken Breast 500g",
+          "item_localized": "Green Valley Chicken Breast 500g",
+          "upc": "6290004020235",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_chicken_breast_500.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_chicken_breast_500.png"
+          ],
+          "description": "Green Valley Chicken Breast 500g (500 g)",
+          "description_localized": "Green Valley Chicken Breast 500g (500 g)",
+          "price": {
+            "original": 21,
+            "original_formatted": "21.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 21,
+            "total_formatted": "21.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020235",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40201,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_chicken_breast_500",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40201/item/4020235"
+        }
+      ]
+    },
+    {
+      "name": "brown rice",
+      "items": [
+        {
+          "id": 4020236,
+          "item": "Harvest Brown Rice 2kg",
+          "item_localized": "Harvest Brown Rice 2kg",
+          "upc": "6290004020236",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_brown_rice_2kg.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_brown_rice_2kg.png"
+          ],
+          "description": "Harvest Brown Rice 2kg (2 kg)",
+          "description_localized": "Harvest Brown Rice 2kg (2 kg)",
+          "price": {
+            "original": 13.5,
+            "original_formatted": "13.50",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 13.5,
+            "total_formatted": "13.50",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020236",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40201,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_brown_rice_2kg",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40201/item/4020236"
+        }
+      ]
+    },
+    {
+      "name": "leafy greens",
+      "items": [
+        {
+          "id": 4020237,
+          "item": "Baby Spinach 200g",
+          "item_localized": "Baby Spinach 200g",
+          "upc": "6290004020237",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_spinach_200.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_spinach_200.png"
+          ],
+          "description": "Baby Spinach 200g (200 g)",
+          "description_localized": "Baby Spinach 200g (200 g)",
+          "price": {
+            "original": 7.5,
+            "original_formatted": "7.50",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 7.5,
+            "total_formatted": "7.50",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020237",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40201,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_spinach_200",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40201/item/4020237"
+        }
+      ]
+    },
+    {
+      "name": "coffee",
+      "items": [
+        {
+          "id": 4020238,
+          "item": "Roastery Arabica Coffee Beans 250g",
+          "item_localized": "Roastery Arabica Coffee Beans 250g",
+          "upc": "6290004020238",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_coffee_beans_250.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_coffee_beans_250.png"
+          ],
+          "description": "Roastery Arabica Coffee Beans 250g (250 g)",
+          "description_localized": "Roastery Arabica Coffee Beans 250g (250 g)",
+          "price": {
+            "original": 27.5,
+            "original_formatted": "27.50",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 27.5,
+            "total_formatted": "27.50",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020238",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40201,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_coffee_beans_250",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40201/item/4020238"
         }
       ]
     }
@@ -2841,6 +4576,52 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
           "item_type": "REGULAR",
           "bundle_details": null,
           "superapp_link": "careem://shops/merchant/40001/item/4000204"
+        },
+        {
+          "id": 4000229,
+          "item": "Royal Mahal Basmati Rice 10kg",
+          "item_localized": "Royal Mahal Basmati Rice 10kg",
+          "upc": "6290004000229",
+          "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_royal_basmati_10kg.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/quik/sku_royal_basmati_10kg.png"
+          ],
+          "description": "Royal Mahal Basmati Rice 10kg (10 kg)",
+          "description_localized": "Royal Mahal Basmati Rice 10kg (10 kg)",
+          "price": {
+            "original": 79,
+            "original_formatted": "79.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 79,
+            "total_formatted": "79.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000229",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40001,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_royal_basmati_10kg",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40001/item/4000229"
         }
       ]
     },
@@ -2892,6 +4673,52 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
           "item_type": "REGULAR",
           "bundle_details": null,
           "superapp_link": "careem://shops/merchant/40001/item/4000205"
+        },
+        {
+          "id": 4000230,
+          "item": "Chakki Gold Atta Wheat Flour 10kg",
+          "item_localized": "Chakki Gold Atta Wheat Flour 10kg",
+          "upc": "6290004000230",
+          "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_chakki_atta_10kg.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/quik/sku_chakki_atta_10kg.png"
+          ],
+          "description": "Chakki Gold Atta Wheat Flour 10kg (10 kg)",
+          "description_localized": "Chakki Gold Atta Wheat Flour 10kg (10 kg)",
+          "price": {
+            "original": 34,
+            "original_formatted": "34.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 34,
+            "total_formatted": "34.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000230",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40001,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_chakki_atta_10kg",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40001/item/4000230"
         }
       ]
     },
@@ -2994,6 +4821,52 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
           "item_type": "REGULAR",
           "bundle_details": null,
           "superapp_link": "careem://shops/merchant/40001/item/4000207"
+        },
+        {
+          "id": 4000231,
+          "item": "Desi Harvest Chana Dal 1kg",
+          "item_localized": "Desi Harvest Chana Dal 1kg",
+          "upc": "6290004000231",
+          "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_chana_dal_1kg.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/quik/sku_chana_dal_1kg.png"
+          ],
+          "description": "Desi Harvest Chana Dal 1kg (1 kg)",
+          "description_localized": "Desi Harvest Chana Dal 1kg (1 kg)",
+          "price": {
+            "original": 8.75,
+            "original_formatted": "8.75",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 8.75,
+            "total_formatted": "8.75",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000231",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40001,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_chana_dal_1kg",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40001/item/4000231"
         }
       ]
     },
@@ -3197,13 +5070,64 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
       ]
     },
     {
-      "name": "eggs",
+      "name": "plant milk",
       "items": [
         {
           "id": 4000211,
+          "item": "GreenOat Oat Milk 1L",
+          "item_localized": "GreenOat Oat Milk 1L",
+          "upc": "6290004000211",
+          "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_greenoat_oat_milk_1l.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/quik/sku_greenoat_oat_milk_1l.png"
+          ],
+          "description": "GreenOat Oat Milk 1L (1 L)",
+          "description_localized": "GreenOat Oat Milk 1L (1 L)",
+          "price": {
+            "original": 10.5,
+            "original_formatted": "10.50",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 10.5,
+            "total_formatted": "10.50",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000211",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40001,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_greenoat_oat_milk_1l",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40001/item/4000211"
+        }
+      ]
+    },
+    {
+      "name": "eggs",
+      "items": [
+        {
+          "id": 4000212,
           "item": "Golden Yolk Eggs Tray 30",
           "item_localized": "Golden Yolk Eggs Tray 30",
-          "upc": "6290004000211",
+          "upc": "6290004000212",
           "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_golden_eggs_30.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/quik/sku_golden_eggs_30.png"
@@ -3221,7 +5145,7 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000211",
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000212",
           "attributes": [],
           "tags": [],
           "catalog_id": 40001,
@@ -3243,7 +5167,7 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40001/item/4000211"
+          "superapp_link": "careem://shops/merchant/40001/item/4000212"
         },
         {
           "id": 4000102,
@@ -3297,10 +5221,10 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
       "name": "yogurt",
       "items": [
         {
-          "id": 4000212,
+          "id": 4000213,
           "item": "Marmoom Farms Greek Style Yogurt 500g",
           "item_localized": "Marmoom Farms Greek Style Yogurt 500g",
-          "upc": "6290004000212",
+          "upc": "6290004000213",
           "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_yogurt_500.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/quik/sku_yogurt_500.png"
@@ -3318,7 +5242,7 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000212",
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000213",
           "attributes": [],
           "tags": [],
           "catalog_id": 40001,
@@ -3340,7 +5264,53 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40001/item/4000212"
+          "superapp_link": "careem://shops/merchant/40001/item/4000213"
+        },
+        {
+          "id": 4000233,
+          "item": "Marmoom Farms Fresh Yogurt 2kg",
+          "item_localized": "Marmoom Farms Fresh Yogurt 2kg",
+          "upc": "6290004000233",
+          "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_laban_yogurt_2kg.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/quik/sku_laban_yogurt_2kg.png"
+          ],
+          "description": "Marmoom Farms Fresh Yogurt 2kg (2 kg)",
+          "description_localized": "Marmoom Farms Fresh Yogurt 2kg (2 kg)",
+          "price": {
+            "original": 13.5,
+            "original_formatted": "13.50",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 13.5,
+            "total_formatted": "13.50",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000233",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40001,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_laban_yogurt_2kg",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40001/item/4000233"
         }
       ]
     },
@@ -3348,10 +5318,10 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
       "name": "onions",
       "items": [
         {
-          "id": 4000213,
+          "id": 4000214,
           "item": "Red Onions 1kg",
           "item_localized": "Red Onions 1kg",
-          "upc": "6290004000213",
+          "upc": "6290004000214",
           "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_red_onions_1kg.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/quik/sku_red_onions_1kg.png"
@@ -3369,7 +5339,7 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000213",
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000214",
           "attributes": [],
           "tags": [],
           "catalog_id": 40001,
@@ -3391,7 +5361,7 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40001/item/4000213"
+          "superapp_link": "careem://shops/merchant/40001/item/4000214"
         }
       ]
     },
@@ -3399,10 +5369,10 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
       "name": "tomatoes",
       "items": [
         {
-          "id": 4000214,
+          "id": 4000215,
           "item": "Tomatoes 1kg",
           "item_localized": "Tomatoes 1kg",
-          "upc": "6290004000214",
+          "upc": "6290004000215",
           "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_tomatoes_1kg.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/quik/sku_tomatoes_1kg.png"
@@ -3420,7 +5390,7 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000214",
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000215",
           "attributes": [],
           "tags": [],
           "catalog_id": 40001,
@@ -3442,7 +5412,7 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40001/item/4000214"
+          "superapp_link": "careem://shops/merchant/40001/item/4000215"
         }
       ]
     },
@@ -3450,10 +5420,10 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
       "name": "bananas",
       "items": [
         {
-          "id": 4000215,
+          "id": 4000216,
           "item": "Bananas 1kg",
           "item_localized": "Bananas 1kg",
-          "upc": "6290004000215",
+          "upc": "6290004000216",
           "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_bananas_1kg.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/quik/sku_bananas_1kg.png"
@@ -3471,7 +5441,7 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000215",
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000216",
           "attributes": [],
           "tags": [],
           "catalog_id": 40001,
@@ -3493,7 +5463,7 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40001/item/4000215"
+          "superapp_link": "careem://shops/merchant/40001/item/4000216"
         }
       ]
     },
@@ -3501,10 +5471,10 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
       "name": "arabic bread",
       "items": [
         {
-          "id": 4000216,
+          "id": 4000217,
           "item": "Al Khayma Arabic Bread Large 6pcs",
           "item_localized": "Al Khayma Arabic Bread Large 6pcs",
-          "upc": "6290004000216",
+          "upc": "6290004000217",
           "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_khayma_bread_6.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/quik/sku_khayma_bread_6.png"
@@ -3522,7 +5492,7 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000216",
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000217",
           "attributes": [],
           "tags": [],
           "catalog_id": 40001,
@@ -3544,7 +5514,7 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40001/item/4000216"
+          "superapp_link": "careem://shops/merchant/40001/item/4000217"
         }
       ]
     },
@@ -3552,10 +5522,10 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
       "name": "fresh chicken",
       "items": [
         {
-          "id": 4000217,
+          "id": 4000218,
           "item": "Green Valley Fresh Whole Chicken 1kg",
           "item_localized": "Green Valley Fresh Whole Chicken 1kg",
-          "upc": "6290004000217",
+          "upc": "6290004000218",
           "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_valley_chicken_1kg.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/quik/sku_valley_chicken_1kg.png"
@@ -3573,7 +5543,7 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000217",
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000218",
           "attributes": [],
           "tags": [],
           "catalog_id": 40001,
@@ -3595,7 +5565,7 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40001/item/4000217"
+          "superapp_link": "careem://shops/merchant/40001/item/4000218"
         }
       ]
     },
@@ -3603,10 +5573,10 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
       "name": "tea",
       "items": [
         {
-          "id": 4000218,
+          "id": 4000219,
           "item": "Karak Chai Black Tea Bags 100",
           "item_localized": "Karak Chai Black Tea Bags 100",
-          "upc": "6290004000218",
+          "upc": "6290004000219",
           "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_karak_tea_100.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/quik/sku_karak_tea_100.png"
@@ -3624,7 +5594,7 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000218",
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000219",
           "attributes": [],
           "tags": [],
           "catalog_id": 40001,
@@ -3646,7 +5616,53 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40001/item/4000218"
+          "superapp_link": "careem://shops/merchant/40001/item/4000219"
+        },
+        {
+          "id": 4000235,
+          "item": "Chaiwala Strong Tea Dust 900g",
+          "item_localized": "Chaiwala Strong Tea Dust 900g",
+          "upc": "6290004000235",
+          "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_tea_dust_900.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/quik/sku_tea_dust_900.png"
+          ],
+          "description": "Chaiwala Strong Tea Dust 900g (900 g)",
+          "description_localized": "Chaiwala Strong Tea Dust 900g (900 g)",
+          "price": {
+            "original": 24,
+            "original_formatted": "24.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 24,
+            "total_formatted": "24.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000235",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40001,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_tea_dust_900",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40001/item/4000235"
         }
       ]
     },
@@ -3654,10 +5670,10 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
       "name": "dishwashing liquid",
       "items": [
         {
-          "id": 4000219,
+          "id": 4000220,
           "item": "Sparkle Lemon Dishwashing Liquid 750ml",
           "item_localized": "Sparkle Lemon Dishwashing Liquid 750ml",
-          "upc": "6290004000219",
+          "upc": "6290004000220",
           "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_sparkle_dish_750.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/quik/sku_sparkle_dish_750.png"
@@ -3675,7 +5691,7 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000219",
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000220",
           "attributes": [],
           "tags": [],
           "catalog_id": 40001,
@@ -3697,7 +5713,7 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40001/item/4000219"
+          "superapp_link": "careem://shops/merchant/40001/item/4000220"
         }
       ]
     },
@@ -3705,10 +5721,10 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
       "name": "laundry detergent",
       "items": [
         {
-          "id": 4000220,
+          "id": 4000221,
           "item": "BrightWash Laundry Detergent Liquid 3L",
           "item_localized": "BrightWash Laundry Detergent Liquid 3L",
-          "upc": "6290004000220",
+          "upc": "6290004000221",
           "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_brightwash_3l.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/quik/sku_brightwash_3l.png"
@@ -3726,7 +5742,7 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000220",
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000221",
           "attributes": [],
           "tags": [],
           "catalog_id": 40001,
@@ -3748,7 +5764,7 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40001/item/4000220"
+          "superapp_link": "careem://shops/merchant/40001/item/4000221"
         }
       ]
     },
@@ -3756,10 +5772,10 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
       "name": "toilet tissue",
       "items": [
         {
-          "id": 4000221,
+          "id": 4000222,
           "item": "SoftCloud Toilet Tissue 12 Rolls",
           "item_localized": "SoftCloud Toilet Tissue 12 Rolls",
-          "upc": "6290004000221",
+          "upc": "6290004000222",
           "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_softcloud_12.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/quik/sku_softcloud_12.png"
@@ -3777,7 +5793,7 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000221",
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000222",
           "attributes": [],
           "tags": [],
           "catalog_id": 40001,
@@ -3799,7 +5815,7 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40001/item/4000221"
+          "superapp_link": "careem://shops/merchant/40001/item/4000222"
         }
       ]
     },
@@ -3807,10 +5823,10 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
       "name": "potato chips",
       "items": [
         {
-          "id": 4000222,
+          "id": 4000223,
           "item": "Crunchos Salted Potato Chips Family Pack 150g",
           "item_localized": "Crunchos Salted Potato Chips Family Pack 150g",
-          "upc": "6290004000222",
+          "upc": "6290004000223",
           "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_crunchos_150.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/quik/sku_crunchos_150.png"
@@ -3828,7 +5844,7 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000222",
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000223",
           "attributes": [],
           "tags": [],
           "catalog_id": 40001,
@@ -3850,7 +5866,7 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40001/item/4000222"
+          "superapp_link": "careem://shops/merchant/40001/item/4000223"
         }
       ]
     },
@@ -3858,10 +5874,10 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
       "name": "soft drinks",
       "items": [
         {
-          "id": 4000223,
+          "id": 4000224,
           "item": "FizzUp Cola 6x330ml",
           "item_localized": "FizzUp Cola 6x330ml",
-          "upc": "6290004000223",
+          "upc": "6290004000224",
           "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_fizzup_cola_6.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/quik/sku_fizzup_cola_6.png"
@@ -3879,7 +5895,7 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000223",
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000224",
           "attributes": [],
           "tags": [],
           "catalog_id": 40001,
@@ -3901,7 +5917,7 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40001/item/4000223"
+          "superapp_link": "careem://shops/merchant/40001/item/4000224"
         }
       ]
     },
@@ -3909,10 +5925,10 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
       "name": "chocolate",
       "items": [
         {
-          "id": 4000224,
+          "id": 4000225,
           "item": "ChocoJoy Milk Chocolate Bars 4 Pack",
           "item_localized": "ChocoJoy Milk Chocolate Bars 4 Pack",
-          "upc": "6290004000224",
+          "upc": "6290004000225",
           "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_chocojoy_4.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/quik/sku_chocojoy_4.png"
@@ -3930,7 +5946,7 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000224",
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000225",
           "attributes": [],
           "tags": [],
           "catalog_id": 40001,
@@ -3952,7 +5968,7 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40001/item/4000224"
+          "superapp_link": "careem://shops/merchant/40001/item/4000225"
         }
       ]
     },
@@ -3960,10 +5976,10 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
       "name": "ice cream",
       "items": [
         {
-          "id": 4000225,
+          "id": 4000226,
           "item": "Polar Scoop Vanilla Ice Cream 1L",
           "item_localized": "Polar Scoop Vanilla Ice Cream 1L",
-          "upc": "6290004000225",
+          "upc": "6290004000226",
           "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_polar_icecream_1l.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/quik/sku_polar_icecream_1l.png"
@@ -3981,7 +5997,7 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000225",
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000226",
           "attributes": [],
           "tags": [],
           "catalog_id": 40001,
@@ -4003,7 +6019,7 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40001/item/4000225"
+          "superapp_link": "careem://shops/merchant/40001/item/4000226"
         }
       ]
     },
@@ -4011,10 +6027,10 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
       "name": "biscuits",
       "items": [
         {
-          "id": 4000226,
+          "id": 4000227,
           "item": "Tea Time Butter Biscuits 400g",
           "item_localized": "Tea Time Butter Biscuits 400g",
-          "upc": "6290004000226",
+          "upc": "6290004000227",
           "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_teatime_biscuits_400.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/quik/sku_teatime_biscuits_400.png"
@@ -4032,7 +6048,7 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000226",
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000227",
           "attributes": [],
           "tags": [],
           "catalog_id": 40001,
@@ -4054,7 +6070,7 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40001/item/4000226"
+          "superapp_link": "careem://shops/merchant/40001/item/4000227"
         }
       ]
     },
@@ -4062,10 +6078,10 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
       "name": "juice",
       "items": [
         {
-          "id": 4000227,
+          "id": 4000228,
           "item": "Sunny Grove Orange Juice 1.5L",
           "item_localized": "Sunny Grove Orange Juice 1.5L",
-          "upc": "6290004000227",
+          "upc": "6290004000228",
           "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_sunny_juice_1500.png",
           "images_urls": [
             "https://careem-catalog-media.media.careem.com/quik/sku_sunny_juice_1500.png"
@@ -4083,7 +6099,7 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
             "discount_type": null
           },
           "active": true,
-          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000227",
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000228",
           "attributes": [],
           "tags": [],
           "catalog_id": 40001,
@@ -4105,7 +6121,665 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
           "item_badge_localized": null,
           "item_type": "REGULAR",
           "bundle_details": null,
-          "superapp_link": "careem://shops/merchant/40001/item/4000227"
+          "superapp_link": "careem://shops/merchant/40001/item/4000228"
+        },
+        {
+          "id": 4000237,
+          "item": "Sunny Grove Mango Drink 6x250ml",
+          "item_localized": "Sunny Grove Mango Drink 6x250ml",
+          "upc": "6290004000237",
+          "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_mango_drink_6.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/quik/sku_mango_drink_6.png"
+          ],
+          "description": "Sunny Grove Mango Drink 6x250ml (6 x 250 ml)",
+          "description_localized": "Sunny Grove Mango Drink 6x250ml (6 x 250 ml)",
+          "price": {
+            "original": 8.5,
+            "original_formatted": "8.50",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 8.5,
+            "total_formatted": "8.50",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000237",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40001,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_mango_drink_6",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40001/item/4000237"
+        }
+      ]
+    },
+    {
+      "name": "ghee",
+      "items": [
+        {
+          "id": 4000232,
+          "item": "Desi Gold Pure Ghee 1L",
+          "item_localized": "Desi Gold Pure Ghee 1L",
+          "upc": "6290004000232",
+          "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_ghee_1l.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/quik/sku_ghee_1l.png"
+          ],
+          "description": "Desi Gold Pure Ghee 1L (1 L)",
+          "description_localized": "Desi Gold Pure Ghee 1L (1 L)",
+          "price": {
+            "original": 32,
+            "original_formatted": "32.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 32,
+            "total_formatted": "32.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000232",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40001,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_ghee_1l",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40001/item/4000232"
+        }
+      ]
+    },
+    {
+      "name": "potatoes",
+      "items": [
+        {
+          "id": 4000234,
+          "item": "Potatoes 2kg",
+          "item_localized": "Potatoes 2kg",
+          "upc": "6290004000234",
+          "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_potatoes_2kg.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/quik/sku_potatoes_2kg.png"
+          ],
+          "description": "Potatoes 2kg (2 kg)",
+          "description_localized": "Potatoes 2kg (2 kg)",
+          "price": {
+            "original": 6.5,
+            "original_formatted": "6.50",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 6.5,
+            "total_formatted": "6.50",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000234",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40001,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_potatoes_2kg",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40001/item/4000234"
+        }
+      ]
+    },
+    {
+      "name": "diapers",
+      "items": [
+        {
+          "id": 4000236,
+          "item": "TinyCare Baby Diapers Size 4 (44 pcs)",
+          "item_localized": "TinyCare Baby Diapers Size 4 (44 pcs)",
+          "upc": "6290004000236",
+          "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_diapers_44.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/quik/sku_diapers_44.png"
+          ],
+          "description": "TinyCare Baby Diapers Size 4 (44 pcs) (44 pcs)",
+          "description_localized": "TinyCare Baby Diapers Size 4 (44 pcs) (44 pcs)",
+          "price": {
+            "original": 54,
+            "original_formatted": "54.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 54,
+            "total_formatted": "54.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000236",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40001,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_diapers_44",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40001/item/4000236"
+        }
+      ]
+    },
+    {
+      "name": "sparkling water",
+      "items": [
+        {
+          "id": 4000238,
+          "item": "Alpine Spring Sparkling Water 6x330ml",
+          "item_localized": "Alpine Spring Sparkling Water 6x330ml",
+          "upc": "6290004000238",
+          "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_sparkling_water_6.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/quik/sku_sparkling_water_6.png"
+          ],
+          "description": "Alpine Spring Sparkling Water 6x330ml (6 x 330 ml)",
+          "description_localized": "Alpine Spring Sparkling Water 6x330ml (6 x 330 ml)",
+          "price": {
+            "original": 12,
+            "original_formatted": "12.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 12,
+            "total_formatted": "12.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000238",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40001,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_sparkling_water_6",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40001/item/4000238"
+        }
+      ]
+    },
+    {
+      "name": "avocados",
+      "items": [
+        {
+          "id": 4000239,
+          "item": "Avocados 2pcs",
+          "item_localized": "Avocados 2pcs",
+          "upc": "6290004000239",
+          "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_avocado_2.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/quik/sku_avocado_2.png"
+          ],
+          "description": "Avocados 2pcs (2 pcs)",
+          "description_localized": "Avocados 2pcs (2 pcs)",
+          "price": {
+            "original": 11,
+            "original_formatted": "11.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 11,
+            "total_formatted": "11.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000239",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40001,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_avocado_2",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40001/item/4000239"
+        }
+      ]
+    },
+    {
+      "name": "nuts",
+      "items": [
+        {
+          "id": 4000240,
+          "item": "NutriCrunch Mixed Nuts 200g",
+          "item_localized": "NutriCrunch Mixed Nuts 200g",
+          "upc": "6290004000240",
+          "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_mixed_nuts_200.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/quik/sku_mixed_nuts_200.png"
+          ],
+          "description": "NutriCrunch Mixed Nuts 200g (200 g)",
+          "description_localized": "NutriCrunch Mixed Nuts 200g (200 g)",
+          "price": {
+            "original": 16.5,
+            "original_formatted": "16.50",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 16.5,
+            "total_formatted": "16.50",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000240",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40001,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_mixed_nuts_200",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40001/item/4000240"
+        }
+      ]
+    },
+    {
+      "name": "protein bars",
+      "items": [
+        {
+          "id": 4000241,
+          "item": "FitFuel Protein Bars 4pk",
+          "item_localized": "FitFuel Protein Bars 4pk",
+          "upc": "6290004000241",
+          "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_protein_bars_4.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/quik/sku_protein_bars_4.png"
+          ],
+          "description": "FitFuel Protein Bars 4pk (4 pcs)",
+          "description_localized": "FitFuel Protein Bars 4pk (4 pcs)",
+          "price": {
+            "original": 22,
+            "original_formatted": "22.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 22,
+            "total_formatted": "22.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000241",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40001,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_protein_bars_4",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40001/item/4000241"
+        }
+      ]
+    },
+    {
+      "name": "chicken breast",
+      "items": [
+        {
+          "id": 4000242,
+          "item": "Green Valley Chicken Breast 500g",
+          "item_localized": "Green Valley Chicken Breast 500g",
+          "upc": "6290004000242",
+          "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_chicken_breast_500.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/quik/sku_chicken_breast_500.png"
+          ],
+          "description": "Green Valley Chicken Breast 500g (500 g)",
+          "description_localized": "Green Valley Chicken Breast 500g (500 g)",
+          "price": {
+            "original": 17.5,
+            "original_formatted": "17.50",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 17.5,
+            "total_formatted": "17.50",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000242",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40001,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_chicken_breast_500",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40001/item/4000242"
+        }
+      ]
+    },
+    {
+      "name": "brown rice",
+      "items": [
+        {
+          "id": 4000243,
+          "item": "Harvest Brown Rice 2kg",
+          "item_localized": "Harvest Brown Rice 2kg",
+          "upc": "6290004000243",
+          "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_brown_rice_2kg.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/quik/sku_brown_rice_2kg.png"
+          ],
+          "description": "Harvest Brown Rice 2kg (2 kg)",
+          "description_localized": "Harvest Brown Rice 2kg (2 kg)",
+          "price": {
+            "original": 15.5,
+            "original_formatted": "15.50",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 15.5,
+            "total_formatted": "15.50",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000243",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40001,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_brown_rice_2kg",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40001/item/4000243"
+        }
+      ]
+    },
+    {
+      "name": "leafy greens",
+      "items": [
+        {
+          "id": 4000244,
+          "item": "Baby Spinach 200g",
+          "item_localized": "Baby Spinach 200g",
+          "upc": "6290004000244",
+          "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_spinach_200.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/quik/sku_spinach_200.png"
+          ],
+          "description": "Baby Spinach 200g (200 g)",
+          "description_localized": "Baby Spinach 200g (200 g)",
+          "price": {
+            "original": 8.5,
+            "original_formatted": "8.50",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 8.5,
+            "total_formatted": "8.50",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000244",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40001,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_spinach_200",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40001/item/4000244"
+        }
+      ]
+    },
+    {
+      "name": "instant noodles",
+      "items": [
+        {
+          "id": 4000245,
+          "item": "Quickbowl Instant Noodles 5pk",
+          "item_localized": "Quickbowl Instant Noodles 5pk",
+          "upc": "6290004000245",
+          "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_instant_noodles_5.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/quik/sku_instant_noodles_5.png"
+          ],
+          "description": "Quickbowl Instant Noodles 5pk (5 pcs)",
+          "description_localized": "Quickbowl Instant Noodles 5pk (5 pcs)",
+          "price": {
+            "original": 7,
+            "original_formatted": "7.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 7,
+            "total_formatted": "7.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000245",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40001,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_instant_noodles_5",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40001/item/4000245"
+        }
+      ]
+    },
+    {
+      "name": "coffee",
+      "items": [
+        {
+          "id": 4000246,
+          "item": "Roastery Arabica Coffee Beans 250g",
+          "item_localized": "Roastery Arabica Coffee Beans 250g",
+          "upc": "6290004000246",
+          "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_coffee_beans_250.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/quik/sku_coffee_beans_250.png"
+          ],
+          "description": "Roastery Arabica Coffee Beans 250g (250 g)",
+          "description_localized": "Roastery Arabica Coffee Beans 250g (250 g)",
+          "price": {
+            "original": 32,
+            "original_formatted": "32.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 32,
+            "total_formatted": "32.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000246",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40001,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_coffee_beans_250",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40001/item/4000246"
         }
       ]
     }

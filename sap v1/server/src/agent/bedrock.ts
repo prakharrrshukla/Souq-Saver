@@ -18,6 +18,11 @@ export interface ModelAdapter {
   readonly isBedrock: boolean;
   /** One model call. `ref` receives the X-ray step id so tool steps can nest under it. */
   converse(system: string, messages: ChatMessage[], tools: ToolSpec[], ref?: { stepId?: string }): Promise<Turn>;
+  /**
+   * One model call that must answer by calling `tool` (structured output). Used by the AI household
+   * engine (brain/). Only real models implement it; the stub does not, so the engine falls back to rules.
+   */
+  structured?(system: string, messages: ChatMessage[], tool: ToolSpec, label: string): Promise<{ input: any; turn: Turn }>;
 }
 
 export const toTurn = (content: Block[], stopReason: string, modelId: string, usage?: Turn['usage']): Turn => ({
@@ -44,14 +49,17 @@ export class BedrockModel implements ModelAdapter {
     this.client = new BedrockRuntimeClient({ region: options.region ?? process.env.AWS_REGION });
   }
 
-  private async send(modelId: string, system: string, messages: ChatMessage[], tools: ToolSpec[]): Promise<Turn> {
+  private async send(modelId: string, system: string, messages: ChatMessage[], tools: ToolSpec[], force?: string, anyTool = false): Promise<Turn> {
     const response = await this.client.send(new ConverseCommand({
       modelId,
       system: [{ text: system }],
       messages: messages as any,
-      ...(tools.length && { toolConfig: { tools: tools.map((t) => ({ toolSpec: { name: t.name, description: t.description, inputSchema: { json: t.inputSchema as any } } })) } }),
-      inferenceConfig: { maxTokens: 1024, temperature: 0.2 },
-    }), { abortSignal: AbortSignal.timeout(this.timeoutMs) });
+      ...(tools.length && { toolConfig: {
+        tools: tools.map((t) => ({ toolSpec: { name: t.name, description: t.description, inputSchema: { json: t.inputSchema as any } } })),
+        ...(force && { toolChoice: anyTool ? { any: {} } : { tool: { name: force } } }),
+      } }),
+      inferenceConfig: { maxTokens: force ? 8000 : 1024, temperature: force ? 0 : 0.2 },
+    }), { abortSignal: AbortSignal.timeout(force ? Math.max(this.timeoutMs, 120_000) : this.timeoutMs) });
     return toTurn((response.output?.message?.content ?? []) as Block[], response.stopReason ?? 'end_turn', modelId, response.usage);
   }
 
@@ -74,6 +82,35 @@ export class BedrockModel implements ModelAdapter {
         { summary: () => `primary model throttled or timed out, using ${this.fallbackId}` });
       return this.record(this.fallbackId, system, messages, tools, ref);
     }
+  }
+
+  async structured(system: string, messages: ChatMessage[], tool: ToolSpec, label: string): Promise<{ input: any; turn: Turn }> {
+    const call = (modelId: string) => step('model', label, `aws-bedrock:${modelId}`, { modelId, system, messages, tool: tool.name },
+      async () => {
+        // Some models only accept "any tool" rather than a named tool; with one tool both force the same answer.
+        try { return await this.send(modelId, system, messages, [tool], tool.name); } catch (e) {
+          if (!/toolChoice|tool_choice|tool choice/i.test(String((e as Error).message))) throw e;
+          return this.send(modelId, system, messages, [tool], tool.name, true);
+        }
+      }, {
+        summary: (t) => `answered with ${t.toolCalls.map((c) => c.name).join(', ') || 'text'}`,
+        meta: (t) => ({ tokensIn: t.usage?.inputTokens, tokensOut: t.usage?.outputTokens }),
+      });
+    // Up to two tries on the main model (some models occasionally answer in text), then the fallback model.
+    const attempts = [this.id, this.id, ...(this.fallbackId ? [this.fallbackId] : [])];
+    let lastError: Error | undefined;
+    for (const modelId of attempts) {
+      try {
+        const turn = await call(modelId);
+        const hit = turn.toolCalls.find((c) => c.name === tool.name);
+        if (hit) return { input: hit.input, turn };
+        lastError = new Error(`model did not call ${tool.name}`);
+      } catch (e) {
+        lastError = e as Error;
+        if (!RETRY_WITH_FALLBACK.test(`${lastError.name}: ${lastError.message}`)) throw e;
+      }
+    }
+    throw lastError!;
   }
 
   /** Bedrock hello-world: one tiny call, no tools. */
