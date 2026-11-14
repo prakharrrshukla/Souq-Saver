@@ -1,7 +1,7 @@
 // Page layout and state. No business logic here: everything shown comes from the backend.
 import { useCallback, useEffect, useState } from 'react';
-import type { Cart, Config, Health, Language, Plan, SseEvent, TraceEvent, XrayStep } from '../../server/src/contract.ts';
-import { MOCK, approve, chat, getConfig, getHealth, reset } from './api';
+import type { Cart, Config, Health, Language, PersonaInfo, PersonaKey, Plan, SseEvent, TraceEvent, XrayStep } from '../../server/src/contract.ts';
+import { MOCK, approve, chat, getConfig, getHealth, getPersonas, reset, switchPersona } from './api';
 import { DEFAULT_MESSAGE } from './examples';
 import { Basket } from './components/Basket';
 import { CartResult } from './components/CartResult';
@@ -35,12 +35,15 @@ export default function App() {
   const [xrayOpen, setXrayOpen] = useState(false);
   const [xraySteps, setXraySteps] = useState<XrayStep[]>([]);
   const [runId, setRunId] = useState<string | null>(null);
+  const [personas, setPersonas] = useState<PersonaInfo | null>(null);
+  const [switching, setSwitching] = useState(false);
 
   const load = useCallback(async () => {
     try {
       setConfig(await getConfig());
       setUnreachable(false);
       setHealth(await getHealth().catch(() => null));
+      setPersonas(await getPersonas().catch(() => null));
     } catch {
       setUnreachable(true);
     }
@@ -102,6 +105,21 @@ export default function App() {
     setInput(DEFAULT_MESSAGE); setBudget('');
   };
 
+  /** Demo: serve another household from the Careem MCP sandbox, then start a fresh chat. */
+  const onPersona = async (key: PersonaKey) => {
+    if (busy || switching || key === personas?.current) return;
+    setSwitching(true);
+    try {
+      await switchPersona(key);
+      await onReset();
+      setPersonas(await getPersonas().catch(() => personas));
+    } catch (e) {
+      setLines((current) => [...current, { id: newId(), role: 'error', text: (e as Error).message } as ChatLine]);
+    } finally {
+      setSwitching(false);
+    }
+  };
+
   if (unreachable) {
     return (
       <main className="page">
@@ -118,7 +136,8 @@ export default function App() {
 
   return (
     <main className="page">
-      <Header languages={config.languages} language={language} onLanguage={setLanguage} xrayOpen={xrayOpen} onToggleXray={() => setXrayOpen((open) => !open)} onReset={onReset} />
+      <Header languages={config.languages} language={language} onLanguage={setLanguage} xrayOpen={xrayOpen} onToggleXray={() => setXrayOpen((open) => !open)} onReset={onReset}
+        personas={personas} onPersona={onPersona} personaDisabled={busy || switching} />
       <SampleBanner sampleData={config.sampleData} mock={MOCK} />
       <div className="columns">
         <Chat lines={lines} input={input} onInput={setInput} budget={budget} onBudget={setBudget} busy={busy} onSend={send}

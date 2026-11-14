@@ -25,6 +25,10 @@ export type ChatRequest = { sessionId: string; message: string; language?: Langu
 // POST /api/approve (response is Server-Sent Events)
 export type ApproveRequest = { sessionId: string; planId: string; approvalToken: string };
 
+// GET /api/persona, POST /api/persona { persona } (sandbox only): the demo household being served
+export type PersonaKey = 'leonardo' | 'family' | 'single';
+export type PersonaInfo = { current: PersonaKey | null; personas: { key: PersonaKey; label: string; area: string }[]; switchable: boolean };
+
 // POST /api/reset
 export type ResetRequest = { sessionId: string };
 

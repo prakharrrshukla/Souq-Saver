@@ -177,7 +177,7 @@ All invented, all in Careem's response format, all served by the local Careem MC
 | `npm run persona -- family` | The Khan family (6), Al Barsha | New baby (diapers, more milk and eggs), monthly bulk staples at Marina, guest week |
 | `npm run persona -- single` | Joy Dela Cruz, JLT | Switched from noodles, cola and chips to healthy food, coffee beans from JLT Organic Pantry, away one week |
 
-After switching, press Reset in the app. `npm test` always regenerates Leonardo.
+**In the app:** click **Household: Leonardo | Khan family | Joy** in the header (sandbox only). It switches the household and starts a fresh chat. From a terminal, `npm run persona -- <name>` does the same (then press Reset). `npm test` always regenerates Leonardo.
 
 ## AI engine (V2)
 

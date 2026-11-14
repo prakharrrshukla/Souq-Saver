@@ -1,5 +1,5 @@
 // All calls to the backend. The UI holds no business logic: it shows what these return.
-import type { ApproveRequest, ChatRequest, Config, Health, SseEvent, XrayList, XrayRun } from '../../server/src/contract.ts';
+import type { ApproveRequest, ChatRequest, Config, Health, PersonaInfo, PersonaKey, SseEvent, XrayList, XrayRun } from '../../server/src/contract.ts';
 import { mockApprove, mockChat, mockConfig, mockHealth, mockRun, mockRuns } from './mock';
 
 export const API_URL: string = import.meta.env.VITE_API_URL ?? 'http://localhost:8080/api';
@@ -40,6 +40,14 @@ export const chat = (request: ChatRequest, onEvent: (e: SseEvent) => void) => (M
 export const approve = (request: ApproveRequest, onEvent: (e: SseEvent) => void) => (MOCK ? mockApprove(onEvent) : postStream('/approve', request, onEvent));
 export const listRuns = (): Promise<XrayList> => (MOCK ? mockRuns() : getJson('/xray'));
 export const getRun = (runId: string): Promise<XrayRun> => (MOCK ? mockRun(runId) : getJson(`/xray/${encodeURIComponent(runId)}`));
+
+export const getPersonas = (): Promise<PersonaInfo> =>
+  (MOCK ? Promise.resolve({ current: null, personas: [], switchable: false }) : getJson('/persona'));
+
+export async function switchPersona(persona: PersonaKey): Promise<void> {
+  const response = await fetch(`${API_URL}/persona`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ persona }) });
+  if (!response.ok) throw new Error((await response.json().catch(() => ({}))).error ?? `switch failed (${response.status})`);
+}
 
 export async function reset(sessionId: string): Promise<void> {
   if (MOCK) return;

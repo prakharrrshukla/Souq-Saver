@@ -6,7 +6,7 @@
 // (household, products, prices, orders) is invented. See household.config.ts for the story.
 //
 // Run: npm run generate:data
-import { mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { readFileSync } from 'node:fs';
@@ -309,13 +309,15 @@ function toolFile(tool: string, domain: string, scenarios: Scenario[]) {
   return parts.join('\n');
 }
 
-function main() {
-  const flag = process.argv.indexOf('--persona');
-  const key = (flag > 0 ? process.argv[flag + 1] : process.env.PERSONA) ?? 'leonardo';
-  if (!(key in PERSONAS)) { console.error(`unknown persona "${key}": use ${Object.keys(PERSONAS).join(', ')}`); process.exit(1); }
-  const data = build(placeholderTime, key as Persona['key']);
+export const PERSONA_KEYS = Object.keys(PERSONAS) as Persona['key'][];
+
+/**
+ * Writes one household's scenario files to fixtures/out (overwriting, so the running sandbox never sees
+ * a missing file). Used by `npm run persona -- <key>` and by the app's household buttons (POST /api/persona).
+ */
+export function writeFixtures(key: Persona['key']): { persona: Persona['key']; user: string; orders: number; weeks: number; lastWeekTotal: number; files: number } {
+  const data = build(placeholderTime, key);
   const outDir = join(dirname(fileURLToPath(import.meta.url)), 'out');
-  rmSync(outDir, { recursive: true, force: true });
   const { quik, marina, jlt } = STORES;
 
   const files: Record<string, string> = {
@@ -359,7 +361,15 @@ function main() {
     mkdirSync(dirname(join(outDir, path)), { recursive: true });
     writeFileSync(join(outDir, path), content);
   }
-  console.log(`fixtures: ${P.user.given} ${P.user.family} (${P.key}), ${data.orderCount} orders over ${P.weeks} weeks, last week AED ${money(data.lastWeekTotal)}, ${Object.keys(files).length} files in fixtures/out`);
+  return { persona: P.key, user: `${P.user.given} ${P.user.family}`, orders: data.orderCount, weeks: P.weeks, lastWeekTotal: data.lastWeekTotal, files: Object.keys(files).length };
+}
+
+function main() {
+  const flag = process.argv.indexOf('--persona');
+  const key = (flag > 0 ? process.argv[flag + 1] : process.env.PERSONA) ?? 'leonardo';
+  if (!(key in PERSONAS)) { console.error(`unknown persona "${key}": use ${PERSONA_KEYS.join(', ')}`); process.exit(1); }
+  const r = writeFixtures(key as Persona['key']);
+  console.log(`fixtures: ${r.user} (${r.persona}), ${r.orders} orders over ${r.weeks} weeks, last week AED ${money(r.lastWeekTotal)}, ${r.files} files in fixtures/out`);
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) main();

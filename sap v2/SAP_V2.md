@@ -86,7 +86,7 @@ All invented, all in Careem's exact response format, all served by the local Car
 | `npm run persona -- family` | The Khan family (6), Al Barsha, 14 weeks | New baby from week 8 (diapers, more milk and eggs); monthly bulk rice, atta and dal at Marina; guest week with double chicken and cola |
 | `npm run persona -- single` | Joy Dela Cruz, JLT, 12 weeks | Switched from noodles, cola and chips to healthy food in week 7; coffee beans only from JLT Organic Pantry; away in week 9 |
 
-After switching, press Reset in the app. `npm test` always regenerates Leonardo.
+**In the app:** click **Household: Leonardo | Khan family | Joy** in the header (sandbox only). It switches the household and starts a fresh chat. From a terminal, `npm run persona -- <name>` does the same (then press Reset). `npm test` always regenerates Leonardo.
 
 ## Safety, unchanged from v1 and still enforced in code
 

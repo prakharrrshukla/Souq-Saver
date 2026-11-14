@@ -1,7 +1,9 @@
 // HTTP API on localhost:8080, exactly as in FABLE_PROMPT_2_BACKEND.md section 4.
 import Fastify, { type FastifyReply } from 'fastify';
 import cors from '@fastify/cors';
-import type { ApproveRequest, ChatRequest, Config, Health, ResetRequest, SseEvent } from '../contract.ts';
+import { readFileSync } from 'node:fs';
+import type { ApproveRequest, ChatRequest, Config, Health, PersonaInfo, PersonaKey, ResetRequest, SseEvent } from '../contract.ts';
+import { writeFixtures } from '../../../fixtures/generate.ts';
 import { runApprove, runChat } from '../agent/agent.ts';
 import type { ModelAdapter } from '../agent/bedrock.ts';
 import { LANGUAGES } from '../agent/texts.ts';
@@ -95,6 +97,31 @@ export function buildApp(options: AppOptions) {
     sessions.delete(body.sessionId);
     clearTokens(body.sessionId);
     return { ok: true, sampleData };
+  });
+
+  // Demo households (sandbox only): the same as `npm run persona -- <key>`, from a button in the app.
+  const PERSONAS: PersonaInfo['personas'] = [
+    { key: 'leonardo', label: 'Leonardo', area: 'Dubai Marina' },
+    { key: 'family', label: 'Khan family', area: 'Al Barsha' },
+    { key: 'single', label: 'Joy', area: 'JLT' },
+  ];
+  const manifest = new URL('../../../fixtures/out/manifest.json', import.meta.url);
+  const currentPersona = (): PersonaKey | null => {
+    try { return JSON.parse(readFileSync(manifest, 'utf8')).persona ?? 'leonardo'; } catch { return null; }
+  };
+
+  app.get('/api/persona', async (): Promise<PersonaInfo> => ({ current: currentPersona(), personas: PERSONAS, switchable: mcp.mode === 'sandbox' }));
+
+  app.post('/api/persona', async (request, reply) => {
+    const key = ((request.body ?? {}) as { persona?: string }).persona;
+    if (mcp.mode !== 'sandbox') return reply.code(403).send({ error: 'Households can only be switched on the sandbox', sampleData });
+    if (!PERSONAS.some((p) => p.key === key)) return bad(reply, `persona must be one of ${PERSONAS.map((p) => p.key).join(', ')}`);
+    if (busy.size) return reply.code(409).send({ error: 'A request is still running. Try again in a moment.', sampleData });
+    const result = writeFixtures(key as PersonaKey);
+    for (const id of sessions.keys()) clearTokens(id); // a plan for the previous household can no longer be approved
+    sessions.clear();
+    console.log(`[persona] switched to ${result.user} (${result.persona})`);
+    return { ok: true, current: result.persona, user: result.user, sampleData };
   });
 
   app.get('/api/xray', async () => ({ runs: listRuns(), sampleData }));
