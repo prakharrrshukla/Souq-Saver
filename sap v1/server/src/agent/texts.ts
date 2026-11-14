@@ -12,8 +12,9 @@ const TAGALOG = /\b(ang|mga|ng|sa|ko|mo|po|natin|namin|ito|iyon|lang|pero|bawasa
 export function detectLanguage(text: string, hint?: Language): Language {
   if (/[ऀ-ॿ]/.test(text)) return 'hi';
   if (/[؀-ۿ]/.test(text)) return URDU_ONLY.test(text) || hint === 'ur' ? 'ur' : 'ar';
-  if ((text.match(new RegExp(TAGALOG.source, 'gi')) ?? []).length >= 2) return 'tl';
-  if (hint === 'tl' || hint === 'en') return hint;
+  // Latin script: Tagalog only when the words are Tagalog. Typing English with the Tagalog button on gets English.
+  const tagalogWords = (text.match(new RegExp(TAGALOG.source, 'gi')) ?? []).length;
+  if (tagalogWords >= 2 || (hint === 'tl' && tagalogWords >= 1)) return 'tl';
   return 'en';
 }
 

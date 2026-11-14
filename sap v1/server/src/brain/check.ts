@@ -19,12 +19,13 @@ export type BasketDraft = {
   summary: string;
 };
 
-export type Check = { ok: boolean; issues: string[]; itemsTotal: number; estTotal: number };
+/** ok with withinBudget false: every allowed cut is already made, so the remaining shortfall is reported, not hidden. */
+export type Check = { ok: boolean; issues: string[]; itemsTotal: number; estTotal: number; withinBudget: boolean; shortfall: number };
 
 export function checkPlan(draft: BasketDraft, needs: Need[], catalogues: StoreCatalogue[], budgetAed: number): Check {
   const issues: string[] = [];
   const catalogue = catalogues.find((c) => c.merchantId === draft.merchantId);
-  if (!catalogue) return { ok: false, issues: [`merchantId ${draft.merchantId} is not one of the stores`], itemsTotal: 0, estTotal: 0 };
+  if (!catalogue) return { ok: false, issues: [`merchantId ${draft.merchantId} is not one of the stores`], itemsTotal: 0, estTotal: 0, withinBudget: false, shortfall: 0 };
 
   const itemOf = new Map(catalogue.items.map((i) => [i.itemId, i]));
   const needOf = new Map(needs.map((n) => [n.key, n]));
@@ -58,6 +59,17 @@ export function checkPlan(draft: BasketDraft, needs: Need[], catalogues: StoreCa
 
   itemsTotal = r2(itemsTotal);
   const estTotal = r2(itemsTotal + catalogue.deliveryFee + catalogue.serviceFee);
-  if (estTotal > budgetAed) issues.push(`total AED ${estTotal.toFixed(2)} (items ${itemsTotal.toFixed(2)} + delivery ${catalogue.deliveryFee.toFixed(2)} + service ${catalogue.serviceFee.toFixed(2)}) is over the budget of AED ${budgetAed.toFixed(2)} by AED ${r2(estTotal - budgetAed).toFixed(2)}`);
-  return { ok: issues.length === 0, issues, itemsTotal, estTotal };
+  const withinBudget = estTotal <= budgetAed;
+  if (!withinBudget) {
+    // Over budget is only acceptable when nothing allowed is left to cut: every remaining line is
+    // water (T1), a staple (T2) or something the user asked to keep. T3, T4 and T5 may all be cut.
+    const stillCuttable = draft.lines.filter((line) => {
+      const need = needOf.get(line.need);
+      return !!need && !need.pinned && need.tier !== 'T1' && need.tier !== 'T2';
+    }).map((line) => needOf.get(line.need)!.name);
+    if (stillCuttable.length) {
+      issues.push(`total AED ${estTotal.toFixed(2)} (items ${itemsTotal.toFixed(2)} + delivery ${catalogue.deliveryFee.toFixed(2)} + service ${catalogue.serviceFee.toFixed(2)}) is over the budget of AED ${budgetAed.toFixed(2)} by AED ${r2(estTotal - budgetAed).toFixed(2)}; still cuttable: ${stillCuttable.join(', ')}`);
+    }
+  }
+  return { ok: issues.length === 0, issues, itemsTotal, estTotal, withinBudget, shortfall: r2(Math.max(0, estTotal - budgetAed)) };
 }

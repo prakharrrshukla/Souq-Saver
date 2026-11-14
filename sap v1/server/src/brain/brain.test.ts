@@ -131,4 +131,19 @@ describe('V2 AI engine', () => {
     expect(check.issues.join(' ')).toMatch(/loyal/);
     expect(check.issues.join(' ')).toMatch(/cannot be cut/);
   });
+
+  test('calculator: over budget is accepted only once nothing allowed is left to cut, and the shortfall is reported', () => {
+    const marina = catalogues[1];
+    const water: Need = { key: 'water', name: 'Water', category: 'Drinking Water', size: '6 x 1.5 L', sku: 'sku_oasis_water_6x1500', qty: 2, tier: 'T1', loyal: false, pinned: false, reason: '' };
+    const cola: Need = { key: 'cola', name: 'Cola', category: 'Soft Drinks', size: '6 x 330 ml', sku: 'sku_fizzup_cola_6', qty: 1, tier: 'T5', loyal: false, pinned: false, reason: '' };
+    const waterItem = marina.items.find((i) => i.sku === 'sku_oasis_water_6x1500')!;
+    const colaItem = marina.items.find((i) => i.sku === 'sku_fizzup_cola_6')!;
+    const keepsCola = checkPlan({ merchantId: marina.merchantId, lines: [{ need: 'water', itemId: waterItem.itemId, qty: 2, reason: 'kept', note: '' }, { need: 'cola', itemId: colaItem.itemId, qty: 1, reason: 'kept', note: '' }], cuts: [], summary: '' }, [water, cola], catalogues, 10);
+    expect(keepsCola.ok).toBe(false);
+    expect(keepsCola.issues.join(' ')).toMatch(/still cuttable: Cola/);
+    const cutAll = checkPlan({ merchantId: marina.merchantId, lines: [{ need: 'water', itemId: waterItem.itemId, qty: 2, reason: 'kept', note: '' }], cuts: [{ need: 'cola', note: 'treat' }], summary: '' }, [water, cola], catalogues, 10);
+    expect(cutAll).toMatchObject({ ok: true, withinBudget: false });
+    expect(cutAll.shortfall).toBeCloseTo(cutAll.estTotal - 10, 2);
+  });
 });
+

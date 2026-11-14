@@ -169,7 +169,8 @@ Rules, in order:
 3. Delivery and service fees count toward the budget.
 4. To fit the budget: cut T5 treats first (most expensive first), then swap to a cheaper equivalent ONLY where the household is not brand-loyal, then reduce T3 quantities (never below 1), then cut T4, then T3. Never cut T1 or T2. Never cut or reduce a need the user asked to keep.
 5. If some treats still fit after the budget is met, you may keep them.
-6. Do not calculate the final total yourself; our calculator checks every plan and tells you if it is over budget or invalid.
+6. If the budget cannot be met without breaking rule 4, cut everything rule 4 allows, keep the rest, and say in the summary how much it is short and what would close the gap (e.g. a cheaper rice brand). Never break the rules to hit the number.
+7. Do not calculate the final total yourself; our calculator checks every plan and tells you if it is over budget or invalid.
 Answer only by calling basket_plan.`;
 
 type StoreView = {
@@ -223,7 +224,8 @@ export async function buildBasket(model: ModelAdapter, needs: Need[], catalogues
     if (check.ok) return { ...last, attempts: attempt };
     // Send the calculator's findings back so the AI can revise its own plan.
     const toolUse = turn.toolCalls.find((c) => c.name === BASKET_TOOL.name)!;
-    messages.push({ role: 'assistant', content: turn.content });
+    // Only the tool call goes back: some models (gpt-oss) reject their own reasoning blocks when echoed.
+    messages.push({ role: 'assistant', content: turn.content.filter((b) => 'toolUse' in b) });
     messages.push({ role: 'user', content: [
       { toolResult: { toolUseId: toolUse.id, content: [{ json: { accepted: false, itemsTotal: check.itemsTotal, estTotal: check.estTotal, budgetAed, issues: check.issues } }], status: 'error' } },
       { text: 'The calculator rejected this plan. Fix every issue and call basket_plan again.' },
@@ -311,7 +313,7 @@ export async function brainPlan(input: BrainInput): Promise<BrainResult> {
   const avg = weeklySpend(input.orders);
 
   return {
-    lastWeekTotal: input.lastWeekTotal, budget, stores, items, estTotal: check.estTotal, withinBudget: true, shortfall: 0,
+    lastWeekTotal: input.lastWeekTotal, budget, stores, items, estTotal: check.estTotal, withinBudget: check.withinBudget, shortfall: check.shortfall,
     monthlySavingEstimate: r2((avg - check.estTotal) * 4.33), insights: input.insights,
     chosenMerchantId: draft.merchantId, learned, summary: draft.summary, unmatchedAdditions,
   };
