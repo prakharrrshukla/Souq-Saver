@@ -9,6 +9,8 @@ Read this folder first. It is written so a human teammate or a coding agent (Cla
 
 Souq Saver is a budget-aware household grocery agent built on the Careem MCP. It reads a user's Careem order history, models their spend by category, price drift and consumption cycles, then builds a weekly basket that fits a budget. When money is tight it fills the cart by necessity (water and staples first, snacks last) and cuts from the bottom. It picks the cheapest store for the whole basket (Careem Quik or a Careem Shops merchant), reports projected monthly savings, and never charges anything without the user's confirmation. It accepts requests in Arabic, English, Hindi, Urdu and Tagalog, such as "same as last week, cut 15%".
 
+**Building?** The step-by-step build prompt for the coding agent is [../FABLE_BUILD_PROMPT.md](../FABLE_BUILD_PROMPT.md).
+
 ## Files
 
 | File | What it holds |
