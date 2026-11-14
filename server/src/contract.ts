@@ -119,9 +119,12 @@ export type XrayRunSummary = {
   status: XrayStatus;
 };
 
-// GET /api/xray/:runId
+// GET /api/xray
+export type XrayList = { runs: XrayRunSummary[]; sampleData: boolean };
+
+// GET /api/xray/:runId  (all steps of the run: `ordered` is flat by seq, `tree` is nested by parentId)
 export type XrayTreeNode = XrayStep & { children: XrayTreeNode[] };
-export type XrayRun = XrayRunSummary & { ordered: XrayStep[]; tree: XrayTreeNode[] };
+export type XrayRun = XrayRunSummary & { ordered: XrayStep[]; tree: XrayTreeNode[]; sampleData?: boolean };
 
 // Server-Sent Events of /api/chat and /api/approve. Every stream starts with "run" and ends with "done".
 export type TraceEvent = { id: string; tool: string; status: 'running' | 'ok' | 'error'; summary: string; ms?: number };

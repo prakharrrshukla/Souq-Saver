@@ -39,6 +39,15 @@ Questions emailed to the organisers on 7 Nov got no reply; ask in person.
 | 14 Nov | **Kiro dropped** (team decision). Planner built with Claude Code (Opus 5.5); pitch leans on Bedrock and Careem MCP |
 | 14 Nov | Hackathon production client found on the training page; production attempt becomes a real option |
 | 14 Nov | Laith: generate random data inspired by the sandbox fixtures, same file pattern. Real account data not used; build fully on sandbox + generated fixtures |
+| 14 Nov | Sample data is served **through the sandbox**: `fixtures/generate.ts` writes scenario files in Careem's tool-file format to `fixtures/out/tools`, which the sandbox reads as an overlay ahead of Careem's own scenarios. Careem's files are unchanged |
+| 14 Nov | Fixture records do not carry a `sample: true` field: Careem's output schemas reject extra fields and the sandbox must not hint that it is a local copy. Labelling is done by our API (`sampleData: true` on every response, `dataOrigin: sample` in X-ray) and the UI banner |
+| 14 Nov | History is 10 weekly **Quik** orders; the store comparison then shows Marina Fresh Market is cheaper. JLT lacks water, atta and soft drinks |
+| 14 Nov | "Due this week" follows the build prompt (`nextDue <= today + 7`), compared in whole days |
+| 14 Nov | Fit order: cut T5, then cheaper swaps, then reduce T3, then remove T4 and T3. Swaps come before reducing fresh food because a swap loses nothing the household needs |
+| 14 Nov | Tier promotion (in 75% of orders) applies to T3 and T4 only. Treats are never promoted automatically, otherwise weekly cola could not be cut; the user can pin them ("keep the chips") |
+| 14 Nov | Store comparison on screen prices the **final** basket at every store; the store is chosen on this week's full candidate list before fitting |
+| 14 Nov | Sandbox cart is stateless: after approval the subtotal is our planned basket, fees and promo come from `cart_get_basket_price`. Fee estimates before approval use the same read-only call per store |
+| 14 Nov | Bedrock session was expired on the build machine, so a clearly marked rule-based stub model stands in until `aws login`; the backend switches by itself. Tests always use the stub |
 
 ## After the event
 

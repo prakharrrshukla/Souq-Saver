@@ -1,0 +1,207 @@
+# Souq Saver
+
+A budget-aware household grocery agent on the Careem MCP, built at Careem Builders '26 (14 Nov 2026, Dubai).
+
+You say "Same as last week, but cut 15%". Souq Saver reads the household's Careem order history, learns
+price drift and reorder cycles, fills this week's basket by necessity (water and staples first, treats
+last), picks the cheapest store for the whole basket, and waits for your approval. Nothing is ever charged.
+
+> **Sample data.** The demo runs on an invented household in Careem's exact response format, served
+> through the local Careem MCP sandbox. Every API response says `sampleData: true` and the UI shows a banner.
+
+## Run it
+
+Needs Node 23.6 or newer (built on Node 26). Everything runs on localhost.
+
+```bash
+npm install
+npm run dev            # sandbox :8787 + backend :8080 + web :5173  ->  open http://localhost:5173
+npm run dev:backend    # sandbox + backend only
+npm run demo:cli       # the whole demo in the terminal, no UI (starts what it needs)
+npm run demo:cli -- --xray     # same, printing every step with full input and output
+npm run xray -- <runId>        # pretty-print a saved run (no id: the latest)
+npm test               # regenerates the data, then 68 tests
+npm run generate:data  # rewrite fixtures/out from fixtures/household.config.ts (seeded)
+```
+
+### Connecting the model (AWS Bedrock)
+
+The agent's model is Claude on AWS Bedrock (Converse API with tool use). Credentials come from your
+local AWS profile only; nothing secret is in this repo.
+
+```bash
+cp .env.example .env
+aws login --profile <your-profile>          # or: aws sso login
+aws bedrock list-foundation-models --region $AWS_REGION --by-provider anthropic --query "modelSummaries[].modelId"
+aws bedrock list-inference-profiles --region $AWS_REGION --query "inferenceProfileSummaries[].inferenceProfileId"
+# put the Claude Sonnet id (or its inference profile) in BEDROCK_MODEL_ID and Haiku in BEDROCK_FALLBACK_MODEL_ID
+```
+
+`GET /api/config` reports the model id in use, and the UI footer shows it.
+
+**If Bedrock is not reachable** (no credentials, no model id), the backend starts with a clearly marked
+**stub model**: a small rule-based stand-in (`server/src/agent/stub.ts`) that recognises the demo requests
+in the five languages. It is not AI. Config then reports `stub-rule-based (Bedrock not connected)` and
+`GET /api/health` reports `bedrock: false`. The backend retries Bedrock every 30 seconds and switches by
+itself. All numbers come from the engine either way. Tests always use the stub so they never need a network.
+
+## Architecture
+
+```
+ Browser  http://localhost:5173   (web/: React, plain CSS)
+    |  POST /api/chat, /api/approve  (Server-Sent Events)      GET /api/config, /health, /xray
+    v
+ Backend  http://localhost:8080   (server/: Fastify, TypeScript)
+    |-- agent/agent.ts      chat loop ----------------------> AWS Bedrock (Claude, Converse + tool use)
+    |      | the model can call five tools only                 (or the marked stub while access is pending)
+    |      v
+    |-- agent/tools.ts      analyse_history, plan_basket, compare_stores, explain_change, request_approval
+    |      |-- engine/analysis.ts   spend by category, price drift, reorder cycles      (pure, tested)
+    |      |-- engine/planner.ts    tiers, budget, priority filling, monthly saving     (pure, tested)
+    |      |-- engine/stores.ts     Quik vs Shops comparison, cheaper swaps             (pure, tested)
+    |      '-- engine/cart.ts       exact price of the approved cart                    (pure, tested)
+    |-- mcp/approval.ts     one-time approval tokens -> grants for mutating tools
+    |-- mcp/client.ts       the only door to Careem: coordinates, checkout block, approval check, retry rules
+    |      v
+    |   Careem MCP (Streamable HTTP)   http://127.0.0.1:8787/mcp   (sandbox/careem-mcp-ts, built from Careem's spec)
+    |      '-- fixtures/out/tools      generated household scenarios, read by the sandbox
+    '-- xray.ts             every step recorded: streamed, kept in memory, written to .run/xray/<runId>.jsonl
+```
+
+One sentence: a web chat app calls Claude on AWS Bedrock; the model uses our planning tools, which call
+the Careem MCP for history, catalogues and baskets; all the money maths is tested code; and anything that
+touches a cart needs the user's approval.
+
+### What a request does
+
+`"Same as last week, but cut 15%"` produces these real Careem MCP calls, visible live in the UI:
+
+`user_info` → `get_activities` (past groceries, past shops) → `groceries_get_items_details` (batches of 20)
+→ engine analysis → `search_groceries_items` (Quik) → `global_search` → `search_groceries_items` per Shops
+merchant → `cart_get_basket_price` per store (fees) → engine: tiers, candidates, store picker, priority
+fill, monthly saving → plan with a one-time approval token.
+
+Approve: token checked and burned → `create_grocery_cart_with_quantities` → `cart_get_basket_price` →
+exact total. `cart_checkout` and `cart_grocery_checkout` are never called.
+
+### Planner rules
+
+| Tier | Examples | When over budget |
+|---|---|---|
+| T1 Water | drinking water | never cut |
+| T2 Staples | rice, atta, oil, dal, sugar, salt | never cut; may swap to a cheaper equivalent |
+| T3 Fresh essentials | milk, eggs, bread, vegetables | reduce quantity, then remove |
+| T4 Household | dish soap, detergent, tissue | deferred when the cycle says not due |
+| T5 Treats | snacks, soft drinks, chocolate | cut first |
+
+- An item in at least 75% of orders moves up one tier (T4 to T3, T3 to T2). Treats are never promoted
+  automatically; "keep the chips" pins them.
+- Fit order: cut T5 (most expensive first) → cheaper swaps (same category, size within 25%, biggest saving
+  first) → reduce T3 → remove T4, then T3. If it still does not fit, the shortfall is shown.
+- Store choice: whole basket at each store, items + delivery + service fee. A store missing a T1 or T2
+  item is not valid. One store per order.
+- Monthly saving = (average of the last 4 weekly orders − planned week) × 4.33. It is an estimate and
+  is labelled as one (the planned week leaves out items that are not due yet).
+
+### Safety, enforced in code
+
+- **Checkout is blocked** in `mcp/client.ts` for every caller, with or without approval.
+- **Mutating tools need a grant.** A grant only exists after `POST /api/approve` consumed a valid token:
+  one use, 15 minutes, bound to the session and plan. Any tool the server does not mark read-only is
+  treated as mutating. Typing "approve" in chat cannot change a cart.
+- **Mutating calls are never retried.** Read-only calls retry once.
+- **Secrets are redacted** from X-ray; approval tokens show as `tok_…last4`.
+
+## API (base `http://localhost:8080/api`)
+
+Types: [server/src/contract.ts](server/src/contract.ts), shared with the frontend.
+
+| Endpoint | Returns |
+|---|---|
+| `GET /config` | `{ modelId, modelProvider, mcpMode, sampleData, languages, currency }` |
+| `GET /health` | `{ ok, mcp, bedrock }` |
+| `POST /chat` `{ sessionId, message, language?, budgetAed? }` | SSE: `run`, `trace`, `xray`, `message`, `plan`, `error`, `done` |
+| `POST /approve` `{ sessionId, planId, approvalToken }` | SSE: `run`, `trace`, `xray`, `cart`, `error`, `done` |
+| `POST /reset` `{ sessionId }` | `{ ok, sampleData }` |
+| `GET /xray` | `{ runs: [{ runId, startedAt, request, steps, ms, status }], sampleData }` |
+| `GET /xray/:runId` | the run with `ordered` steps and a `tree` |
+
+```bash
+curl -N -X POST localhost:8080/api/chat -H 'content-type: application/json' \
+  -d '{"sessionId":"demo","message":"Same as last week, but cut 15%"}'
+```
+
+## X-ray
+
+Every step the backend takes is recorded once, by one wrapper (`xray.step`): what it was, full input,
+full output, and the source.
+
+| Kind | Source looks like |
+|---|---|
+| `api` | `api:/api/chat` |
+| `model` | `aws-bedrock:<modelId>` (or `stub:…`) |
+| `agent-tool` | `agent:tools.ts#plan_basket` |
+| `mcp` | `careem-mcp:sandbox@127.0.0.1:8787` |
+| `engine` | `engine:analysis.ts#priceDrift` |
+| `data` | `fixtures:seed=20261114` |
+| `approval` | `api:approval-gate` |
+| `guard` | `mcp:guard` (blocked checkout, missing approval, read-only retry, model fallback) |
+
+See it live in the UI (X-ray button), over SSE, at `GET /api/xray/:runId`, in `.run/xray/*.jsonl`, or
+with `npm run demo:cli -- --xray`.
+
+## Sample data
+
+`fixtures/household.config.ts` is the story; `fixtures/generate.ts` (seed 20261114) writes scenario
+files in Careem's tool-file format to `fixtures/out/tools`. The sandbox reads that folder as an overlay
+in front of Careem's own scenarios, so every number on screen is a real MCP response. Careem's files
+in `sandbox/careem-mcp-sandbox` are untouched, and the generated scenarios pass Careem's own
+acceptance checks (output schema, no hint of being a local copy).
+
+The household: 10 weekly Quik orders; rice up 10.5% (38.00 to 42.00); dish soap every 4 weeks and
+bought last week; treats creeping in over the last month; last week AED 186.15.
+
+## Repository
+
+```
+context/                 planning pack
+sandbox/careem-mcp-sandbox   Careem's no-code package (spec only, unchanged)
+sandbox/careem-mcp-ts    the sandbox server built from that spec, with its 12 acceptance tests
+fixtures/                seeded generator, story config, generated scenario files
+server/                  backend: mcp/, engine/, agent/, api/, xray.ts, contract.ts, scripts/, test/
+web/                     frontend (see web/README.md)
+demo/DEMO.md             demo script with the real numbers
+```
+
+Sandbox CLI: `npm run sandbox -- scenarios get_activities`, `npm run sandbox -- scenario <tool> <name>`,
+`npm run sandbox -- reset` (forces outcomes through `.run/overrides.json`, no restart).
+
+## Honest limits
+
+- **Sample data.** Not a real user's history. Production needs only the MCP URL and OAuth (PKCE); not built.
+- **The sandbox cart keeps no state.** `create_grocery_cart_with_quantities` always answers with a fixed
+  basket. So after approval the subtotal is our planned basket, and the fees and promo come from
+  `cart_get_basket_price`. The UI and X-ray say so.
+- **The sandbox search is static.** It returns each store's whole range whatever the search terms; the
+  engine picks what it needs by category.
+- **Fees before approval** are read with `cart_get_basket_price` per store. In production that prices
+  an existing basket, so a fee estimate there would need a different source.
+- **No checkout, ever.** The demo ends at an approved, priced cart.
+- **No voice.** Text in English, Arabic, Hindi, Urdu and Tagalog.
+- **The stub model is not AI.** It covers the demo requests only. With Bedrock connected the model
+  writes the replies; the numbers are the same.
+- **Bedrock was not verified on the build machine** (the AWS session had expired): the adapter is
+  written against the Converse API but its first live call still has to be watched.
+- **Not built:** onboarding for new users, splitting an order across stores, choosing a promo code,
+  sessions that survive a restart (they are in memory).
+- **Kiro was not used** (team decision).
+
+## Judging criteria
+
+| Criterion | Where to look |
+|---|---|
+| Innovation (25) | Priority filling by tier, cycles that defer instead of cut, whole-basket store choice: `server/src/engine/` |
+| Technical execution (30) | Real MCP client and tool calls, Bedrock tool use, approval gate in code, X-ray of every step, 68 tests |
+| Impact (25) | Monthly saving estimate from the household's own history; five languages |
+| UX (10) | One screen, live tool steps, right-to-left replies, "Nothing has been charged" |
+| Pitch (10) | `demo/DEMO.md` |
