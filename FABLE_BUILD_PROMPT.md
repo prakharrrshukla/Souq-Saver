@@ -1,5 +1,11 @@
 # Build Prompt for Fable: Souq Saver
 
+**Repository:** https://github.com/prakharrrshukla/Souq-Saver (branch `main`). Clone it, work in it, and push every phase commit there:
+
+```bash
+git clone https://github.com/prakharrrshukla/Souq-Saver.git
+```
+
 You are building **Souq Saver** for the Careem Builders '26 hackathon (Dubai, 14 Nov 2026). Code freeze is **18:00 GST**. Demo is 3 minutes plus 2 minutes of jury Q&A. Work autonomously through the phases below, commit after each phase, and keep the app runnable at every commit.
 
 **Read first, in this order:** `context/README.md`, `context/02-judging-criteria.md`, `context/03-product-spec.md`, `context/04-careem-mcp-reference.md`, `context/05-architecture-and-build-plan.md`, `context/06-test-data-spec.md`. They are the source of truth. This file is the build order and the rules. If this file and a context file disagree, this file wins.
@@ -79,6 +85,13 @@ README.md                 how to run, architecture, honest limits
 
 ### Phase 2: Generated sample data (target 11:30)
 Laith (Careem, MCP trainer) confirmed: **take the sandbox's fake data and generate random data inspired by it, in the same file pattern.**
+
+**You create your own fake data.** Careem's sandbox data is the *template*, not the data:
+- **Copy from Careem:** the file pattern only: field names, nesting, types, id formats, currency, how scenario files are laid out.
+- **Invent yourself:** the household's order history, products, brands, sizes, prices, dates, quantities, promos and any extra merchants. Make it realistic for a Dubai family (AED prices, products sold in UAE supermarkets) and varied, not a copy of Careem's 8 products and 2 orders.
+- Keep Careem's existing ids where the sandbox depends on them (user, Home LOC-50001 and its coordinates, merchants 40001, 40101, 40201). New items and orders get new ids in the same style.
+- The story below is the minimum the data must contain; add natural noise around it (occasional extra items, small price wobbles, a skipped week) so it looks real.
+
 1. Read `spec/FORMAT.md`, `spec/FIXTURES.md`, and the tool files for `get_activities` (user), `search_groceries_items`, `groceries_get_items_details`, `create_grocery_cart_with_quantities`, `global_search` (all under `spec/tools/groceries/` or `spec/tools/user/`), and `cart_get_basket_price` (`spec/tools/cart/`).
 2. Write `fixtures/generate.ts`, **seeded** (same output every run), that produces responses in exactly those shapes: same field names, nesting, id styles, AED currency, merchant ids 40001 (Quik Dubai Marina), 40101 (Marina Fresh Market), 40201 (JLT Organic Pantry).
 3. Bake in the story from `context/06-test-data-spec.md`: 10 weekly orders; rice drifts ~+10% and has a cheaper store-brand swap; dish soap every 4 weeks, bought last week; cola and chocolate frequent; chips 8 of 10 weeks; JLT lacks atta and water; last week's total ≈ AED 186.
