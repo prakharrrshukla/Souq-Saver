@@ -1,0 +1,11 @@
+{
+  "name": "careem-mcp-ts",
+  "private": true,
+  "type": "module",
+  "description": "Local Careem MCP server built from Careem's no-code package (spec/BUILD.md)",
+  "scripts": { "start": "node src/cli.ts run" },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.0",
+    "ajv": "^8.20.0"
+  }
+}

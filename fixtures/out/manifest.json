@@ -1,0 +1,33 @@
+{
+  "seed": 20261114,
+  "generatedBy": "fixtures/generate.ts",
+  "sampleData": true,
+  "household": "Sample household at Home (LOC-50001), Dubai Marina. Invented data in Careem MCP response format.",
+  "orders": 10,
+  "lastWeekTotal": 186.15,
+  "products": 29,
+  "stores": [
+    {
+      "merchantId": 40001,
+      "name": "Careem Quik Dubai Marina",
+      "items": 26
+    },
+    {
+      "merchantId": 40101,
+      "name": "Marina Fresh Market",
+      "items": 26
+    },
+    {
+      "merchantId": 40201,
+      "name": "JLT Organic Pantry",
+      "items": 19
+    }
+  ],
+  "files": [
+    "tools/user/get_activities.md",
+    "tools/groceries/groceries_get_items_details.md",
+    "tools/groceries/search_groceries_items.md",
+    "tools/groceries/global_search.md",
+    "tools/cart/cart_get_basket_price.md"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "name": "souq-saver",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=23.6" },
+  "workspaces": ["sandbox/careem-mcp-ts", "fixtures", "server", "web"],
+  "scripts": {
+    "dev": "node scripts/dev.mjs sandbox server web",
+    "dev:backend": "node scripts/dev.mjs sandbox server",
+    "test": "npm run generate:data && vitest run",
+    "generate:data": "node fixtures/generate.ts",
+    "demo:cli": "node server/scripts/demo-cli.ts",
+    "xray": "node server/scripts/xray-print.ts",
+    "sandbox": "node sandbox/careem-mcp-ts/src/cli.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.9.0",
+    "vitest": "^3.2.0"
+  }
+}
