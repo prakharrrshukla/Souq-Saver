@@ -4,7 +4,7 @@ SAP V2 keeps the v1 frontend exactly as it was and rebuilds the backend around a
 engine**. In v1 every decision came from fixed rules. In v2 an AI model on AWS Bedrock makes the
 judgements, and a calculator written in code checks every number.
 
-For how to run it, read [README.md](README.md). Everything v1 already had (the web app, the Careem MCP
+For the diagrams in time order, read [FLOWCHART.md](FLOWCHART.md). For how to run it, read [README.md](README.md). Everything v1 already had (the web app, the Careem MCP
 client, the approval gate, X-ray, the local Careem MCP sandbox) is explained in
 [PROJECT_EXPLAINED.md](PROJECT_EXPLAINED.md), which still applies.
 
