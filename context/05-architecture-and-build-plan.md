@@ -103,6 +103,28 @@ Savings projection: (last 4-week average weekly spend - planned weekly spend) x 
 - One page. Left: chat with language picker and budget field. Right: tabs or stacked cards: Tool steps (live), Spend and drift, Store comparison, Basket.
 - Approve button, "nothing charged" line, sample-data banner when fixtures are in use.
 
+## AI model per component
+
+Two different jobs: the model that **writes the code** (in Claude Code or Kiro), and the model that **runs inside the app** (on Bedrock).
+
+| Component | Build with | Why |
+|---|---|---|
+| Careem sandbox (from Careem's zip) | Claude Code, Claude Sonnet 5.5 | Following a written spec; speed matters, logic is simple |
+| Generated sample data (seeded script) | Claude Code, Claude Sonnet 5.5 | Copy Careem's exact file shapes; straightforward |
+| History reader (spend, drift, cycles) | Claude Code, Claude Opus 5.5 | Maths must be right; judges trust these numbers |
+| Basket planner (tiers, budget, swaps) | **Kiro** (spec-driven), checked with Claude Opus 5.5 | Core logic, and the visible Kiro use judges look for |
+| Store picker (Quik vs Shops) | Claude Code, Claude Opus 5.5 | Fees, missing essentials, edge cases |
+| MCP client + Approve lock | Claude Code, Claude Opus 5.5 | Safety-critical: must never place an order without approval |
+| Web chat UI (RTL, trace panel) | Claude Code, Claude Sonnet 5.5 | Fast UI iteration |
+| Tests | Claude Code, Claude Sonnet 5.5 | Encode the 7 demo assertions in 06 |
+
+| Runs inside the app | Model | Why |
+|---|---|---|
+| AI brain on AWS Bedrock | **Claude Sonnet 5.5** | Reliable tool use, strong in all 5 languages, fast enough for a live demo |
+| Fallback if Bedrock is slow | Claude Haiku 5.5 | Faster and cheaper; only 5 simple tools, so it copes |
+
+**[VERIFY at 10:00]** which of these models are enabled in our Bedrock account and region; pick the closest available one. The maths never depends on the model, so swapping models is safe.
+
 ## Suggested repository layout
 
 ```
