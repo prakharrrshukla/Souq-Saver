@@ -1,7 +1,7 @@
 # Souq Saver v2
 
 > **Version 2.** Same frontend as v1; the backend now runs an AI household engine on AWS Bedrock with a
-> calculator that checks every number, and three demo households. What changed: [SAP_V2.md](SAP_V2.md). Flowchart in time order: [FLOWCHART.md](FLOWCHART.md).
+> calculator that checks every number, and three demo households. What changed: [SAP_V2.md](SAP_V2.md). Flowchart in time order: [FLOWCHART.md](FLOWCHART.md). Everything from A to Z: [context.md](context.md).
 
 A budget-aware household grocery agent on the Careem MCP, built at Careem Builders '26 (14 Nov 2026, Dubai).
 
