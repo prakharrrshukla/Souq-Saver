@@ -2,13 +2,15 @@
 import Fastify, { type FastifyReply } from 'fastify';
 import cors from '@fastify/cors';
 import { readFileSync } from 'node:fs';
-import type { ApproveRequest, ChatRequest, Config, Health, PersonaInfo, PersonaKey, ResetRequest, SseEvent } from '../contract.ts';
+import type { ApiErrorBody, ApproveRequest, ChatRequest, Config, ErrorKind, Health, PersonaInfo, PersonaKey, ResetRequest, SseEvent } from '../contract.ts';
 import { writeFixtures } from '../../../fixtures/generate.ts';
 import { runApprove, runChat } from '../agent/agent.ts';
 import type { ModelAdapter } from '../agent/bedrock.ts';
 import { LANGUAGES } from '../agent/texts.ts';
 import { newSession, type Deps, type Session } from '../agent/tools.ts';
+import { limits } from '../limits.ts';
 import { clearTokens } from '../mcp/approval.ts';
+import { checkBudget } from '../validate.ts';
 import type { CareemMcp } from '../mcp/client.ts';
 import { getRun, listRuns, startRun, step } from '../xray.ts';
 
@@ -34,7 +36,10 @@ export function buildApp(options: AppOptions) {
   async function stream(reply: FastifyReply, path: string, body: { sessionId: string }, work: (deps: Deps) => Promise<void>) {
     reply.hijack();
     reply.raw.writeHead(200, { 'content-type': 'text/event-stream; charset=utf-8', 'cache-control': 'no-cache', connection: 'keep-alive', 'access-control-allow-origin': origin });
-    const emit = (e: SseEvent) => { if (!reply.raw.writableEnded) reply.raw.write(`event: ${e.event}\ndata: ${JSON.stringify(e.data)}\n\n`); };
+    const emit = (e: SseEvent) => { if (!reply.raw.writableEnded && !reply.raw.destroyed) reply.raw.write(`event: ${e.event}\ndata: ${JSON.stringify(e.data)}\n\n`); };
+    // The client went away before the answer finished: stop the turn, save nothing half-done.
+    const left = new AbortController();
+    reply.raw.on('close', () => { if (!reply.raw.writableEnded) left.abort(); });
     let id = '';
     try {
       await startRun({ method: 'POST', path, body }, emit, async (runId) => {
@@ -42,10 +47,10 @@ export function buildApp(options: AppOptions) {
         emit({ event: 'run', data: { runId } });
         let events = 0;
         const current = options.model();
-        const deps: Deps = { mcp, sampleData, today: options.today, brain: current.isBedrock ? current : undefined, emit: (e) => { events++; emit(e); } };
+        const deps: Deps = { mcp, sampleData, today: options.today, brain: current.isBedrock ? current : undefined, signal: left.signal, emit: (e) => { events++; emit(e); } };
         await step('api', `POST ${path}`, `api:${path}`, body, async () => {
           if (busy.has(body.sessionId)) {
-            deps.emit({ event: 'error', data: { message: 'The previous request for this session is still running. Please wait a moment.', retryable: true } });
+            deps.emit({ event: 'error', data: { message: 'The previous request for this session is still running. Please wait a moment.', retryable: true, code: 'busy', kind: 'busy' } });
           } else {
             busy.add(body.sessionId);
             try { await work(deps); } finally { busy.delete(body.sessionId); }
@@ -55,14 +60,26 @@ export function buildApp(options: AppOptions) {
       });
     } catch (e) {
       console.error(`[api] ${path} failed:`, e);
-      emit({ event: 'error', data: { message: 'Something went wrong on our side. Nothing was changed. Please try again.', retryable: true } });
+      emit({ event: 'error', data: { message: 'Something went wrong on our side. Nothing was changed. Please try again.', retryable: true, code: 'internal', kind: 'internal' } });
     }
     emit({ event: 'done', data: { runId: id } });
     reply.raw.end();
   }
 
-  const bad = (reply: FastifyReply, message: string) => reply.code(400).send({ error: message, sampleData });
-  const isText = (v: unknown): v is string => typeof v === 'string' && v.trim().length > 0 && v.length <= 4000;
+  const fail = (reply: FastifyReply, status: number, kind: ErrorKind, code: string, message: string, field?: string) =>
+    reply.code(status).send({ error: message, code, kind, ...(field && { field }), sampleData } satisfies ApiErrorBody);
+  const bad = (reply: FastifyReply, code: string, message: string, field?: string) => fail(reply, 400, 'validation', code, message, field);
+  const isObject = (v: unknown): v is Record<string, unknown> => !!v && typeof v === 'object' && !Array.isArray(v);
+  const isId = (v: unknown): v is string => typeof v === 'string' && v.trim().length > 0 && v.length <= 200;
+
+  // Fastify's own errors (malformed JSON, body too large, wrong content type) in the same shape.
+  app.setErrorHandler((error: { statusCode?: number; code?: string; message: string }, _request, reply) => {
+    const status = error.statusCode ?? 500;
+    if (status >= 500) { console.error('[api] unhandled error:', error); return fail(reply, 500, 'internal', 'internal', 'Something went wrong on our side. Nothing was changed.'); }
+    const code = status === 413 ? 'body_too_large' : status === 415 ? 'unsupported_media_type' : error.code === 'FST_ERR_CTP_INVALID_JSON_BODY' || /JSON/i.test(error.message) ? 'invalid_json' : 'bad_request';
+    return fail(reply, status, 'validation', code, status === 413 ? 'The request is too large.' : code === 'invalid_json' ? 'The request body is not valid JSON.' : error.message);
+  });
+  app.setNotFoundHandler((_request, reply) => fail(reply, 404, 'validation', 'not_found', 'There is no such endpoint.'));
 
   app.get('/api/config', async (): Promise<Config> => ({
     modelId: options.model().id, modelProvider: options.model().provider, mcpMode: mcp.mode, sampleData, languages: LANGUAGES, currency: 'AED',
@@ -75,25 +92,31 @@ export function buildApp(options: AppOptions) {
   });
 
   app.post('/api/chat', async (request, reply) => {
-    const body = (request.body ?? {}) as Partial<ChatRequest>;
-    if (!isText(body.sessionId) || !isText(body.message)) return bad(reply, 'sessionId and message are required');
-    if (body.language !== undefined && !LANGUAGES.includes(body.language)) return bad(reply, `language must be one of ${LANGUAGES.join(', ')}`);
-    if (body.budgetAed !== undefined && !(typeof body.budgetAed === 'number' && body.budgetAed > 0 && body.budgetAed < 100000)) return bad(reply, 'budgetAed must be a positive number');
+    const body = (isObject(request.body) ? request.body : {}) as Partial<ChatRequest>;
+    const { maxMessageChars } = limits();
+    if (!isId(body.sessionId)) return bad(reply, 'missing_field', 'sessionId is required.', 'sessionId');
+    if (typeof body.message !== 'string' || !body.message.trim()) return bad(reply, 'missing_field', 'Please type a message.', 'message');
+    if (body.message.length > maxMessageChars) return bad(reply, 'message_too_long', `Messages can be up to ${maxMessageChars} characters; this one has ${body.message.length}. Please shorten it.`, 'message');
+    if (body.language !== undefined && !LANGUAGES.includes(body.language)) return bad(reply, 'invalid_language', `language must be one of ${LANGUAGES.join(', ')}.`, 'language');
+    if (body.budgetAed !== undefined) { const e = checkBudget(body.budgetAed); if (e) return bad(reply, e.code, e.message, e.field); }
     const chat: ChatRequest = { sessionId: body.sessionId, message: body.message.trim(), language: body.language, budgetAed: body.budgetAed };
     if (!sessions.has(chat.sessionId)) sessions.set(chat.sessionId, newSession(chat.sessionId));
     await stream(reply, '/api/chat', chat, (deps) => runChat(sessions.get(chat.sessionId)!, chat, options.model(), deps));
   });
 
   app.post('/api/approve', async (request, reply) => {
-    const body = (request.body ?? {}) as Partial<ApproveRequest>;
-    if (!isText(body.sessionId) || !isText(body.planId) || !isText(body.approvalToken)) return bad(reply, 'sessionId, planId and approvalToken are required');
-    const approve: ApproveRequest = { sessionId: body.sessionId, planId: body.planId, approvalToken: body.approvalToken };
+    const body = (isObject(request.body) ? request.body : {}) as Partial<ApproveRequest>;
+    const { sessionId, planId, approvalToken } = body;
+    if (!isId(sessionId)) return bad(reply, 'missing_field', 'sessionId is required.', 'sessionId');
+    if (!isId(planId)) return bad(reply, 'missing_field', 'planId is required.', 'planId');
+    if (!isId(approvalToken)) return bad(reply, 'missing_field', 'approvalToken is required.', 'approvalToken');
+    const approve: ApproveRequest = { sessionId, planId, approvalToken };
     await stream(reply, '/api/approve', approve, (deps) => runApprove(sessions.get(approve.sessionId), approve, deps));
   });
 
   app.post('/api/reset', async (request, reply) => {
-    const body = (request.body ?? {}) as Partial<ResetRequest>;
-    if (!isText(body.sessionId)) return bad(reply, 'sessionId is required');
+    const body = (isObject(request.body) ? request.body : {}) as Partial<ResetRequest>;
+    if (!isId(body.sessionId)) return bad(reply, 'missing_field', 'sessionId is required.', 'sessionId');
     sessions.delete(body.sessionId);
     clearTokens(body.sessionId);
     return { ok: true, sampleData };
@@ -113,10 +136,10 @@ export function buildApp(options: AppOptions) {
   app.get('/api/persona', async (): Promise<PersonaInfo> => ({ current: currentPersona(), personas: PERSONAS, switchable: mcp.mode === 'sandbox' }));
 
   app.post('/api/persona', async (request, reply) => {
-    const key = ((request.body ?? {}) as { persona?: string }).persona;
-    if (mcp.mode !== 'sandbox') return reply.code(403).send({ error: 'Households can only be switched on the sandbox', sampleData });
-    if (!PERSONAS.some((p) => p.key === key)) return bad(reply, `persona must be one of ${PERSONAS.map((p) => p.key).join(', ')}`);
-    if (busy.size) return reply.code(409).send({ error: 'A request is still running. Try again in a moment.', sampleData });
+    const key = ((isObject(request.body) ? request.body : {}) as { persona?: string }).persona;
+    if (mcp.mode !== 'sandbox') return fail(reply, 403, 'validation', 'not_sandbox', 'Households can only be switched on the sandbox.');
+    if (!PERSONAS.some((p) => p.key === key)) return bad(reply, 'invalid_persona', `persona must be one of ${PERSONAS.map((p) => p.key).join(', ')}.`, 'persona');
+    if (busy.size) return fail(reply, 409, 'busy', 'busy', 'A request is still running. Try again in a moment.');
     const result = writeFixtures(key as PersonaKey);
     for (const id of sessions.keys()) clearTokens(id); // a plan for the previous household can no longer be approved
     sessions.clear();
@@ -128,7 +151,7 @@ export function buildApp(options: AppOptions) {
 
   app.get('/api/xray/:runId', async (request, reply) => {
     const run = getRun((request.params as { runId: string }).runId);
-    return run ? { ...run, sampleData } : reply.code(404).send({ error: 'run not found', sampleData });
+    return run ? { ...run, sampleData } : fail(reply, 404, 'validation', 'not_found', 'run not found');
   });
 
   return app;

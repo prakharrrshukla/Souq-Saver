@@ -115,7 +115,56 @@ exact total. `cart_checkout` and `cart_grocery_checkout` are never called.
   one use, 15 minutes, bound to the session and plan. Any tool the server does not mark read-only is
   treated as mutating. Typing "approve" in chat cannot change a cart.
 - **Mutating calls are never retried.** Read-only calls retry once.
-- **Secrets are redacted** from X-ray; approval tokens show as `tok_…last4`.
+- **Secrets are redacted** from X-ray; approval tokens show as `tok_…last4`, session ids as `…last4`.
+- **Only valid plans can be approved.** A token is issued only when the plan passes `planVerdict`
+  (`mcp/approval.ts`): one store, whole-number quantities within the limits, line totals and the total
+  that add up, and a total within the budget. An over-budget plan shows the shortfall and Approve stays
+  off until the budget changes. The token is bound to a fingerprint of the exact plan, and the plan is
+  re-checked on approval.
+
+### One calculator for every planning path
+
+The AI's basket and the rule-based fallback both go through `checkPlan` (`brain/check.ts`). It decides
+from catalogue data, never from the planner's own claim, whether a product satisfies a need: the same
+product, or the same category with a compatible pack size (water cannot become chips, rice cannot become
+atta). It also rejects a swap of a brand-loyal product, a swap into a product the household stopped
+buying or the user left out, a "kept" label on a different product, two needs on one product, and
+quantities or totals over the limits. Every need ends as kept, swapped, reduced, cut or unavailable;
+items not due are deferred.
+
+If the AI's basket still fails after 3 attempts, the rule planner (`brain/fallback.ts`) builds one from
+the same needs, so the household profile, loyalty, switches and the user's instructions carry over. The
+plan's `engine` field, the chat reply and the basket card say so. Without Bedrock, the household is read
+by plain rules from the order history (`brain/history.ts`), which also validate the AI's reading.
+
+### Limits
+
+Enforced at the API, the tools, the planner, the calculator and approval (`server/src/limits.ts`).
+Requests outside them are refused with a message, never clamped.
+
+| Limit | Default | Variable |
+|---|---|---|
+| Units of one product per line | 20 | `SOUQ_MAX_QTY_PER_LINE` |
+| Products per basket (and additions per request) | 40 | `SOUQ_MAX_DISTINCT_ITEMS` |
+| Basket total, fees included | AED 2,000 | `SOUQ_MAX_BASKET_AED` |
+| Weekly budget | AED 1 to 5,000 | `SOUQ_MIN_BUDGET_AED`, `SOUQ_MAX_BUDGET_AED` |
+| "Cut N%" | 1% to 90% | `SOUQ_MIN_CUT_PERCENT`, `SOUQ_MAX_CUT_PERCENT` |
+| Message length | 4,000 characters | `SOUQ_MAX_MESSAGE_CHARS` |
+| Model turns per request | 8 | `SOUQ_MAX_TOOL_TURNS` |
+| Invalid tool calls the model may correct per request | 3 | `SOUQ_MAX_INVALID_TOOL_CALLS` |
+| Time per chat request | 240 s | `SOUQ_TURN_TIMEOUT_MS` |
+
+Explicit values in the user's words ("cut 150%", "budget -50 AED", "500 bags") are checked before
+planning; the previous budget is kept. The model may only pass a budget the user actually gave.
+
+### The chat loop
+
+Every tool call is validated against a runtime schema (`server/src/validate.ts`) before it runs; a bad
+call gets a structured error back so the model can fix it. The conversation stored for the next turn is
+always valid for Bedrock (user and assistant alternate, every tool use has its result): a turn that
+times out, hits the turn limit or fails keeps only the user's message and the reply they saw. Facts in
+the reply (budget, store, totals, savings, item changes, approval) are rendered from the validated plan
+in the user's language; model prose that cites amounts the plan does not contain is replaced.
 
 ## API (base `http://localhost:8080/api`)
 
@@ -135,6 +184,13 @@ Types: [server/src/contract.ts](server/src/contract.ts), shared with the fronten
 curl -N -X POST localhost:8080/api/chat -H 'content-type: application/json' \
   -d '{"sessionId":"demo","message":"Same as last week, but cut 15%"}'
 ```
+
+Errors: every 4xx/5xx body is `{ error, code, kind, field?, sampleData }` (`ApiErrorBody`), and SSE
+`error` events carry `code` and `kind` too. `kind` is one of `validation`, `model`, `careem`, `timeout`,
+`approval`, `busy`, `internal`; the web app only says "backend not reachable" when the request itself
+could not be sent. Examples: `message_too_long` (field `message`), `budget_out_of_range` (field
+`budgetAed`), `cut_out_of_range`, `quantity_out_of_range`, `tool_loop_exhausted`, `timeout`,
+`approval_invalid`.
 
 ## X-ray
 

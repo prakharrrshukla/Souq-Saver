@@ -23,7 +23,9 @@ comparison, and nothing is charged until you approve.
 The AI engine also writes a short profile of the household, from the orders only, shown in the panel
 "What the AI learned about this household": a two-to-three sentence description ("looks like..."),
 routines, favourites, alternatives tried and dropped, and switches. It never guesses religion,
-ethnicity or income. The panel appears only when the AI engine runs (not on the rule-based backup).
+ethnicity or income. The panel appears whenever the AI learned the household, including when its basket
+failed the checks and the rule-based planner built the basket from that profile (the plan says so).
+Without Bedrock, the household is read by plain rules from the order history and the panel is hidden.
 
 ## Where user data lives
 
@@ -110,8 +112,11 @@ All invented, all in Careem's exact response format, all served by the local Car
 
 ## Tests
 
-`npm test`: 69 pass. Five v1 demo-story tests are skipped on purpose: they check v1's rule engine on its
-old 10-week story, which the v2 AI engine replaces.
+`npm test`: 97 pass. Five v1 demo-story tests are skipped on purpose: they check v1's rule engine on its
+old 10-week story, which the v2 AI engine replaces. `server/test/regressions.test.ts` covers the
+stress-test findings (preferences through fallback, limits and approval, need/product compatibility,
+malformed tool calls, turn limit and timeout recovery with Bedrock message sequencing, structured errors,
+honest budget wording, grounded replies, invalid budgets) with a scripted model.
 
 ## Honest limits
 

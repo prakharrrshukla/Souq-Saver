@@ -31,6 +31,25 @@ export const toTurn = (content: Block[], stopReason: string, modelId: string, us
   toolCalls: content.flatMap((b) => ('toolUse' in b ? [{ id: b.toolUse.toolUseId, name: b.toolUse.name, input: b.toolUse.input ?? {} }] : [])),
 });
 
+/**
+ * What Bedrock Converse rejects with a ValidationException: the first message is not from the user,
+ * two messages in a row have the same role, an empty message, or a toolUse without its toolResult
+ * in the next message (and the reverse).
+ */
+export function conversationProblems(messages: ChatMessage[]): string[] {
+  const problems: string[] = [];
+  const ids = (m: ChatMessage | undefined, kind: 'toolUse' | 'toolResult') =>
+    (m?.content ?? []).flatMap((b) => (kind === 'toolUse' && 'toolUse' in b ? [b.toolUse.toolUseId] : kind === 'toolResult' && 'toolResult' in b ? [b.toolResult.toolUseId] : []));
+  if (messages.length && messages[0].role !== 'user') problems.push('the first message is not from the user');
+  messages.forEach((m, i) => {
+    if (!m.content.length) problems.push(`message ${i} is empty`);
+    if (i > 0 && messages[i - 1].role === m.role) problems.push(`messages ${i - 1} and ${i} are both ${m.role}`);
+    if (m.role === 'assistant') for (const id of ids(m, 'toolUse')) if (!ids(messages[i + 1], 'toolResult').includes(id)) problems.push(`toolUse ${id} has no toolResult`);
+    if (m.role === 'user') for (const id of ids(m, 'toolResult')) if (!ids(messages[i - 1], 'toolUse').includes(id)) problems.push(`toolResult ${id} has no toolUse`);
+  });
+  return problems;
+}
+
 const RETRY_WITH_FALLBACK = /Throttling|TooManyRequests|Timeout|ServiceUnavailable|ModelNotReady|InternalServer|AbortError|ECONNRESET|ETIMEDOUT/i;
 
 export class BedrockModel implements ModelAdapter {
@@ -50,6 +69,8 @@ export class BedrockModel implements ModelAdapter {
   }
 
   private async send(modelId: string, system: string, messages: ChatMessage[], tools: ToolSpec[], force?: string, anyTool = false): Promise<Turn> {
+    const problems = conversationProblems(messages);
+    if (problems.length) throw new Error(`invalid conversation, not sent to Bedrock: ${problems.join('; ')}`);
     const response = await this.client.send(new ConverseCommand({
       modelId,
       system: [{ text: system }],

@@ -5,13 +5,16 @@ import { randomUUID } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import type { Language, Plan, SseEvent } from '../contract.ts';
 import { averageWeeklySpend, categorySpend, cycles, lastWeek, normaliseOrders, priceDrift, type CategorySpend, type Drift, type Order } from '../engine/analysis.ts';
-import { itemHistory, matchScore, planBasket, type Addition, type BudgetRequest, type HistoryItem, type Override, type Runner } from '../engine/planner.ts';
+import { itemHistory, matchScore, type Addition, type BudgetRequest, type HistoryItem, type Override, type Runner } from '../engine/planner.ts';
 import { parseFees, parseSearch, type StoreCatalogue } from '../engine/stores.ts';
-import { issueToken } from '../mcp/approval.ts';
+import { limits } from '../limits.ts';
+import { issueToken, planFingerprint, planVerdict } from '../mcp/approval.ts';
 import { McpToolError, type CareemMcp } from '../mcp/client.ts';
+import { validateToolCall, type ToolCallError } from '../validate.ts';
 import { step } from '../xray.ts';
 import type { ChatMessage, ModelAdapter, ToolSpec } from './bedrock.ts';
-import { brainPlan, type Learned } from '../brain/brain.ts';
+import { brainPlan, PlanInputError, type BrainResult, type Learned } from '../brain/brain.ts';
+import { budgetVerdict } from '../brain/check.ts';
 
 export type Analysis = { orders: Order[]; history: HistoryItem[]; drift: Drift[]; spend: CategorySpend; lastWeekTotal: number; lastWeekDate: string; averageWeeklySpend: number };
 export type Session = {
@@ -22,8 +25,15 @@ export type Session = {
 };
 export const newSession = (id: string): Session => ({ id, language: 'en', messages: [], budget: {}, overrides: [], additions: [] });
 
-/** `brain`: the AI household engine's model (Claude on Bedrock). Without it the rule-based engine runs, labelled as such. */
-export type Deps = { mcp: CareemMcp; emit: (event: SseEvent) => void; sampleData: boolean; today?: () => Date; brain?: ModelAdapter };
+/** Facts about the current chat request that tools check against: the numbers the user actually typed. */
+export type TurnState = { numbers: number[]; rejectedItems: Set<string> };
+
+/**
+ * `brain`: the AI household engine's model on Bedrock. Without it the history rules and the rule
+ * planner run, labelled as such. `signal` aborts when the request times out or the client leaves:
+ * a tool still running then does not save anything to the session.
+ */
+export type Deps = { mcp: CareemMcp; emit: (event: SseEvent) => void; sampleData: boolean; today?: () => Date; brain?: ModelAdapter; turn?: TurnState; signal?: AbortSignal };
 
 const TIER = { type: 'string', enum: ['T1', 'T2', 'T3', 'T4', 'T5'] };
 export const TOOL_SPECS: ToolSpec[] = [
@@ -125,65 +135,77 @@ async function loadCatalogues(terms: string[], mcp: CareemMcp): Promise<StoreCat
 
 const mergeBy = <T extends { item: string }>(existing: T[], incoming: T[] = []) => [...existing.filter((e) => !incoming.some((i) => i.item.toLowerCase() === e.item.toLowerCase())), ...incoming];
 
-async function plan(session: Session, input: any, deps: Deps) {
-  const analysis = session.analysis ?? (await analyse(session, deps));
-  if (typeof input.cutPercent === 'number') session.budget = { cutPercent: input.cutPercent };
-  else if (typeof input.budgetAed === 'number') session.budget = { budgetAed: input.budgetAed };
-  session.overrides = mergeBy(session.overrides, input.overrides);
-  session.additions = mergeBy(session.additions, input.additions);
+/** A tool call the model must fix (or ask the user about). Goes back to the model as a structured error. */
+export class ToolInputError extends Error {
+  readonly error: ToolCallError;
+  constructor(error: ToolCallError) { super(error.issues.map((i) => i.message).join(' ')); this.error = error; }
+}
+const inputError = (code: string, field: string, message: string, hint = 'Do not guess for the user: leave this out, or ask the user.') =>
+  new ToolInputError({ error: code, code, issues: [{ code, field, message }], hint });
 
-  const terms = [...new Set([...analysis.history.map((h) => h.category.toLowerCase()), ...session.additions.map((a) => a.item.toLowerCase())])];
+async function plan(session: Session, rawInput: unknown, deps: Deps) {
+  const checked = validateToolCall('plan_basket', rawInput ?? {});
+  if (!checked.ok) throw new ToolInputError(checked.error);
+  const input = checked.input as { budgetAed?: number; cutPercent?: number; additions?: Addition[]; overrides?: Override[] };
+  // The model may only pass a budget the user actually gave (in this message, the budget field, or earlier).
+  const said = (value: number, earlier?: number) => !deps.turn || value === earlier || deps.turn.numbers.some((n) => Math.abs(n - value) < 0.005);
+  if (input.budgetAed !== undefined && !said(input.budgetAed, session.budget.budgetAed)) throw inputError('ungrounded_budget', 'budgetAed', `The user did not give a budget of AED ${input.budgetAed}.`);
+  if (input.cutPercent !== undefined && !said(input.cutPercent, session.budget.cutPercent)) throw inputError('ungrounded_budget', 'cutPercent', `The user did not ask for a ${input.cutPercent}% cut.`);
+  for (const a of input.additions ?? []) {
+    if (deps.turn?.rejectedItems.has(a.item.toLowerCase())) throw inputError('ask_user_first', 'additions', `The quantity for "${a.item}" was refused in this request; the user must choose a new one.`);
+  }
+
+  // Work on a proposed state; the session only changes once a plan exists.
+  const analysis = session.analysis ?? (await analyse(session, deps));
+  const budget: BudgetRequest = input.cutPercent !== undefined ? { cutPercent: input.cutPercent } : input.budgetAed !== undefined ? { budgetAed: input.budgetAed } : session.budget;
+  const overrides = mergeBy(session.overrides, input.overrides);
+  const additions = mergeBy(session.additions, input.additions);
+  const { maxDistinctItems } = limits();
+  if (overrides.length > maxDistinctItems || additions.length > maxDistinctItems) throw inputError('too_many_items', 'additions', `At most ${maxDistinctItems} additions and ${maxDistinctItems} item instructions.`);
+
+  const terms = [...new Set([...analysis.history.map((h) => h.category.toLowerCase()), ...additions.map((a) => a.item.toLowerCase())])];
   const catalogues = await loadCatalogues(terms, deps.mcp);
-  const insights = {
+  const insights: Plan['insights'] = {
     categorySpend: analysis.spend.categories,
     priceDrift: analysis.history.filter((h) => (h.driftPct ?? 0) > 5).map((h) => ({ name: h.name, driftPct: h.driftPct! })).sort((a, b) => b.driftPct - a.driftPct),
   };
 
-  // V2: the AI household engine decides, the calculator checks. Rules only if the AI is unavailable or fails.
-  let result: { chosenMerchantId: string | null; unmatchedAdditions: string[] } & Omit<Plan, 'planId' | 'approvalToken' | 'sampleData'>;
-  let aiSummary: string | undefined;
-  session.engine = 'rules';
-  if (deps.brain?.structured) {
-    try {
-      const ai = await brainPlan({
-        model: deps.brain, orders: analysis.orders, catalogues, today: deps.today?.() ?? new Date(), lastWeekTotal: analysis.lastWeekTotal,
-        budget: session.budget, overrides: session.overrides, additions: session.additions, insights,
-      });
-      const { learned, summary, ...rest } = ai;
-      rest.insights = { ...rest.insights, household: { summary: learned.persona.summary, routines: learned.persona.routines, likes: learned.likes, dislikes: learned.dislikes, switches: learned.switches, model: deps.brain.id } };
-      session.learned = learned;
-      session.engine = 'ai';
-      aiSummary = summary;
-      result = rest;
-    } catch (e) {
-      await step('guard', 'ai_engine_fallback', 'ai-engine:guard', { reason: (e as Error).message }, () => ({ usingRules: true }),
-        { summary: () => `AI engine unavailable (${(e as Error).message.slice(0, 80)}), using the rule-based engine` });
+  let result: BrainResult;
+  try {
+    result = await brainPlan({ model: deps.brain, orders: analysis.orders, catalogues, today: deps.today?.() ?? new Date(), lastWeekTotal: analysis.lastWeekTotal, budget, overrides, additions, insights });
+  } catch (e) {
+    if (e instanceof PlanInputError) {
+      for (const a of input.additions ?? []) deps.turn?.rejectedItems.add(a.item.toLowerCase());
+      throw inputError(e.code, e.field, e.message);
     }
+    throw e;
   }
-  if (session.engine === 'rules') {
-    const rules = await planBasket({
-      history: analysis.history, lastWeekTotal: analysis.lastWeekTotal, averageWeeklySpend: analysis.averageWeeklySpend, catalogues,
-      budget: session.budget, overrides: session.overrides, additions: session.additions, categorySpend: analysis.spend.categories,
-    }, engine);
-    const { chosen: chosenQuote, actions: _actions, ...shape } = rules;
-    result = { ...shape, chosenMerchantId: chosenQuote?.merchantId ?? null };
-  }
+  if (deps.signal?.aborted) throw new Error('request cancelled before the plan was saved');
 
-  const { chosenMerchantId, unmatchedAdditions, ...shape } = result!;
+  const { chosenMerchantId, unmatchedAdditions, learned, summary: aiSummary, check: _check, engine, ...shape } = result;
+  if (engine.profile === 'ai') {
+    shape.insights = { ...shape.insights, household: { summary: learned.persona.summary, routines: learned.persona.routines, likes: learned.likes, dislikes: learned.dislikes, switches: learned.switches, model: engine.model ?? '' } };
+  }
   const chosen = shape.stores.find((s) => s.merchantId === chosenMerchantId && s.chosen) ?? null;
   const planId = `plan_${randomUUID().slice(0, 8)}`;
-  const approvalToken = chosen ? await issueToken(session.id, planId) : '';
-  session.plan = { planId, sampleData: deps.sampleData, ...shape, approvalToken };
-  deps.emit({ event: 'plan', data: session.plan });
+  const draftPlan: Plan = { planId, sampleData: deps.sampleData, ...shape, approvalToken: '', engine };
+  const approval = await step('approval', 'plan_verdict', 'api:approval-gate', { planId, estTotal: shape.estTotal, budget: shape.budget, withinBudget: shape.withinBudget }, () => planVerdict(draftPlan),
+    { summary: (v) => (v.allowed ? `approvable: ${budgetVerdict({ ok: true, ...shape }, shape.budget.aed)}` : `approval blocked (${v.code}): ${v.message}`) });
+  const approvalToken = approval.allowed ? await issueToken(session.id, planId, planFingerprint(draftPlan)) : '';
+
+  Object.assign(session, { budget, overrides, additions, learned, engine: engine.basket === 'ai' ? 'ai' : 'rules', plan: { ...draftPlan, approvalToken, approval } });
+  deps.emit({ event: 'plan', data: session.plan! });
   return {
-    planId, store: chosen?.name ?? null, estTotal: result!.estTotal, budget: result!.budget, withinBudget: result!.withinBudget, shortfall: result!.shortfall,
-    lastWeekTotal: result!.lastWeekTotal, monthlySavingEstimate: result!.monthlySavingEstimate,
-    items: result!.items.map(({ name, qty, unitPrice, lineTotal, tier, reason, note, replaces, nextDue }) => ({ name, qty, unitPrice, lineTotal, tier, reason, note, replaces, nextDue })),
-    stores: result!.stores.map(({ name, estTotal, itemsTotal, deliveryFee, serviceFee, valid, missing, chosen: isChosen }) => ({ name, estTotal, itemsTotal, deliveryFee, serviceFee, valid, missing, chosen: isChosen })),
-    priceDrift: result!.insights.priceDrift, itemsNotFound: unmatchedAdditions,
-    engine: session.engine === 'ai' ? 'AI household engine (Claude on Bedrock), totals checked by the calculator' : 'rule-based engine',
-    ...(session.learned && session.engine === 'ai' && { learned: { likes: session.learned.likes, dislikes: session.learned.dislikes, switches: session.learned.switches }, aiSummary }),
-    sampleData: deps.sampleData, charged: false, next: 'The app shows this basket with an Approve button. Nothing has been charged.',
+    planId, store: chosen?.name ?? null, estTotal: shape.estTotal, budget: shape.budget, withinBudget: shape.withinBudget, shortfall: shape.shortfall,
+    lastWeekTotal: shape.lastWeekTotal, monthlySavingEstimate: shape.monthlySavingEstimate,
+    items: shape.items.map(({ name, qty, unitPrice, lineTotal, tier, reason, note, replaces, nextDue }) => ({ name, qty, unitPrice, lineTotal, tier, reason, note, replaces, nextDue })),
+    stores: shape.stores.map(({ name, estTotal, itemsTotal, deliveryFee, serviceFee, valid, missing, chosen: isChosen }) => ({ name, estTotal, itemsTotal, deliveryFee, serviceFee, valid, missing, chosen: isChosen })),
+    priceDrift: shape.insights.priceDrift, itemsNotFound: unmatchedAdditions,
+    engine, approval,
+    ...(engine.profile === 'ai' && { learned: { likes: learned.likes, dislikes: learned.dislikes, switches: learned.switches } }),
+    ...(engine.basket === 'ai' && { aiSummary }),
+    sampleData: deps.sampleData, charged: false,
+    next: approval.allowed ? 'The app shows this basket with an Approve button. Nothing has been charged.' : `Approve is turned off: ${approval.message}`,
   };
 }
 
@@ -211,22 +233,26 @@ const HANDLERS: Record<string, (session: Session, input: any, deps: Deps) => Pro
     return { found: true, name, tier, reason, note, qty, unitPrice, nextDue, replaces, budget: session.plan!.budget, estTotal: session.plan!.estTotal };
   },
   request_approval: async (session) => {
-    if (!session.plan?.approvalToken) return { error: 'There is no basket to approve yet.', kind: 'no_plan' };
-    const store = session.plan.stores.find((s) => s.chosen)!;
+    if (!session.plan) return { error: 'There is no basket to approve yet.', kind: 'no_plan' };
+    const store = session.plan.stores.find((s) => s.chosen);
+    if (!session.plan.approval?.allowed || !store) return { status: 'blocked', code: session.plan.approval?.code ?? 'no_store', reason: session.plan.approval?.message, shortfall: session.plan.shortfall, charged: false };
     return { status: 'waiting_for_user', store: store.name, estTotal: session.plan.estTotal, instruction: 'The user must press the Approve button in the app. Chat cannot change the cart. Nothing is charged and nothing is ever checked out.', charged: false };
   },
 };
 
-/** Runs one tool as an X-ray "agent-tool" step. Errors come back as data so the model can explain them. */
-export async function runTool(name: string, input: any, session: Session, deps: Deps): Promise<{ result: any; failed?: 'careem' | 'internal' }> {
+export type ToolFailure = 'validation' | 'careem' | 'internal';
+
+/** Runs one tool as an X-ray "agent-tool" step. Errors come back as data so the model can explain or fix them. */
+export async function runTool(name: string, input: any, session: Session, deps: Deps): Promise<{ result: any; failed?: ToolFailure }> {
   const handler = HANDLERS[name];
-  if (!handler) return { result: { error: `unknown tool ${name}`, kind: 'internal' }, failed: 'internal' };
+  if (!handler) return { result: { error: 'unknown_tool', code: 'unknown_tool', issues: [], hint: `Use one of: ${Object.keys(HANDLERS).join(', ')}.` }, failed: 'validation' };
   try {
     const result = await step('agent-tool', name, `agent:tools.ts#${name}`, input ?? {}, () => handler(session, input ?? {}, deps), {
-      summary: (r: any) => (r?.store ? `basket at ${r.store}, est. AED ${Number(r.estTotal).toFixed(2)}` : r?.error ?? 'ok'),
+      summary: (r: any) => (r?.store ? `basket at ${r.store}, ${budgetVerdict({ ok: true, estTotal: Number(r.estTotal), withinBudget: !!r.withinBudget, shortfall: Number(r.shortfall) }, Number(r.budget?.aed))}` : r?.error ?? 'ok'),
     });
     return { result };
   } catch (e) {
+    if (e instanceof ToolInputError) return { result: e.error, failed: 'validation' };
     const careem = e instanceof McpToolError;
     if (!careem) console.error(`[agent] tool ${name} failed:`, e);
     return { result: { error: careem ? `Careem tool ${e.tool} failed: ${e.message}` : 'internal error', kind: careem ? 'careem' : 'internal', retryable: true, nothingChanged: true }, failed: careem ? 'careem' : 'internal' };

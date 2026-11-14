@@ -3,6 +3,8 @@ import { EXAMPLES } from '../examples';
 import type { Language } from '../../../server/src/contract.ts';
 
 export type ChatLine = { id: string; role: 'user' | 'assistant' | 'error'; text: string; rtl?: boolean };
+/** An input the backend refused, shown next to the field it concerns. */
+export type FormError = { message: string; field?: string };
 
 type Props = {
   lines: ChatLine[];
@@ -13,9 +15,11 @@ type Props = {
   busy: boolean;
   onSend: () => void;
   onExample: (text: string, language?: Language) => void;
+  formError?: FormError | null;
 };
 
-export function Chat({ lines, input, onInput, budget, onBudget, busy, onSend, onExample }: Props) {
+export function Chat({ lines, input, onInput, budget, onBudget, busy, onSend, onExample, formError }: Props) {
+  const budgetError = formError?.field === 'budgetAed';
   const end = useRef<HTMLDivElement>(null);
   useEffect(() => { end.current?.scrollIntoView({ block: 'nearest' }); }, [lines]);
 
@@ -44,13 +48,16 @@ export function Chat({ lines, input, onInput, budget, onBudget, busy, onSend, on
       </div>
 
       <form className="chat-form" onSubmit={(e) => { e.preventDefault(); onSend(); }}>
-        <input className="chat-input" dir="auto" value={input} onChange={(e) => onInput(e.target.value)} placeholder="Type a message" aria-label="Message" />
+        <input className="chat-input" dir="auto" value={input} onChange={(e) => onInput(e.target.value)} placeholder="Type a message" aria-label="Message"
+          aria-invalid={!!formError && !budgetError} aria-describedby={formError ? 'form-error' : undefined} />
         <button className="primary" type="submit" disabled={busy || !input.trim()} aria-label="Send">→</button>
       </form>
+      {formError && <p id="form-error" className="field-error" dir="auto" role="alert">{formError.message}</p>}
       <label className="budget">
         Weekly budget (optional)
         <span className="budget-field">
-          AED <input type="number" min="1" step="1" inputMode="decimal" value={budget} onChange={(e) => onBudget(e.target.value)} placeholder="e.g. 150" />
+          AED <input type="number" min="1" step="1" inputMode="decimal" value={budget} onChange={(e) => onBudget(e.target.value)} placeholder="e.g. 150"
+            aria-invalid={budgetError} aria-describedby={budgetError ? 'form-error' : undefined} />
         </span>
       </label>
     </section>

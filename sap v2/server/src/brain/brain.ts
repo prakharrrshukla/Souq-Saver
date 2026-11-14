@@ -10,9 +10,12 @@ import type { Plan, PlanItem, Tier } from '../contract.ts';
 import type { ChatMessage, ModelAdapter, ToolSpec } from '../agent/bedrock.ts';
 import { isoWeek, r2, type Order } from '../engine/analysis.ts';
 import { matchScore, resolveBudget, type Addition, type BudgetRequest, type Override } from '../engine/planner.ts';
-import { acceptable, compareStores, type CatalogueItem, type StoreCatalogue, type Want } from '../engine/stores.ts';
+import { compareStores, type CatalogueItem, type StoreCatalogue, type Want } from '../engine/stores.ts';
+import { limits } from '../limits.ts';
 import { step } from '../xray.ts';
-import { checkPlan, type BasketDraft, type Need } from './check.ts';
+import { budgetVerdict, checkPlan, compatibleItems, type BasketDraft, type Check, type CheckContext, type Need } from './check.ts';
+import { chooseStore, ruleBasket } from './fallback.ts';
+import { historyProfile, validateLearned, type HistoryProfile } from './history.ts';
 
 const TIER = { type: 'string', enum: ['T1', 'T2', 'T3', 'T4', 'T5'] };
 const MAX_ATTEMPTS = 3;
@@ -115,7 +118,7 @@ function instructionsText(overrides: Override[], additions: Addition[]): string 
   return parts.length ? parts.join('; ') : 'none';
 }
 
-export async function learnHousehold(model: ModelAdapter, products: ProductHistory[], today: string): Promise<Learned> {
+export async function learnHousehold(model: ModelAdapter, products: ProductHistory[], today: string, history: HistoryProfile): Promise<Learned & { corrections: string[] }> {
   // Plain arithmetic from the calculator (gaps and days since last purchase); the AI decides what they mean.
   const dayMs = 86_400_000;
   const payload = products.map((p) => {
@@ -130,16 +133,12 @@ export async function learnHousehold(model: ModelAdapter, products: ProductHisto
   });
   return step('engine', 'learnHousehold', `ai-engine:${model.id}#learnHousehold`, { products: payload.length, today }, async () => {
     const { input } = await model.structured!(learnSystem(today), [{ role: 'user', content: [{ text: JSON.stringify({ today, products: payload }) }] }], LEARN_TOOL, 'AI engine: learn household');
-    const learned = input as Learned;
-    const known = new Set(products.map((p) => p.sku));
-    learned.products = (learned.products ?? []).filter((i) => known.has(i.sku)).map((i) => ({ ...i, qty: Math.max(1, Math.round(i.qty || 1)), nextDue: i.nextDue ?? null }));
-    // Anything the model skipped is treated as occasional, so nothing silently disappears.
-    for (const p of products) if (!learned.products.some((i) => i.sku === p.sku)) learned.products.push({ sku: p.sku, decision: 'occasional', tier: 'T4', qty: 1, nextDue: null, loyal: false, reason: 'Not assessed' });
-    const persona: Persona = { summary: String(learned.persona?.summary ?? '').trim(), routines: (learned.persona?.routines ?? []).map(String).slice(0, 4) };
-    return { products: learned.products, likes: learned.likes ?? [], dislikes: learned.dislikes ?? [], switches: learned.switches ?? [], persona };
+    // The answer is checked against the history before anything uses it.
+    const { learned, corrections } = validateLearned(input, products, history);
+    return { ...learned, corrections };
   }, {
     traceAs: 'ai:learn_household',
-    summary: (l) => `${l.products.filter((p) => p.decision === 'due').length} due, ${l.products.filter((p) => p.decision === 'not_due').length} not due, ${l.products.filter((p) => p.decision === 'stopped').length} stopped · ${[...l.switches, ...l.dislikes].slice(0, 2).join('; ') || 'no switches'}`,
+    summary: (l) => `${l.products.filter((p) => p.decision === 'due').length} due, ${l.products.filter((p) => p.decision === 'not_due').length} not due, ${l.products.filter((p) => p.decision === 'stopped').length} stopped · ${[...l.switches, ...l.dislikes].slice(0, 2).join('; ') || 'no switches'}${l.corrections.length ? ` · ${l.corrections.length} answers corrected from the history` : ''}`,
   });
 }
 
@@ -177,7 +176,7 @@ const basketSystem = `You build this week's grocery basket for a household on Ca
 You get the household's needs (with tier, usual qty, brand loyalty and evidence), the user's instructions, the budget, and for every store: its delivery and service fees, a price check of the whole basket done by our calculator, and the items that store sells for each need.
 Rules, in order:
 1. Pick one store. A store that cannot supply a T1 or T2 need is not allowed. Prefer the store where the basket is cheapest including fees.
-2. Every need appears exactly once: as a line or as a cut. Use only itemIds listed for the chosen store.
+2. Every need appears exactly once: as a line or as a cut. Use only itemIds listed for the chosen store under that need, and only the outcomes listed in the need's "allowed".
 3. Delivery and service fees count toward the budget.
 4. To fit the budget: cut T5 treats first (most expensive first), then swap to a cheaper equivalent ONLY where the household is not brand-loyal, then reduce T3 quantities (never below 1), then cut T4, then T3. Never cut T1 or T2. Never cut or reduce a need the user asked to keep.
 5. If some treats still fit after the budget is met, you may keep them.
@@ -191,15 +190,19 @@ type StoreView = {
   options: Record<string, { itemId: string; name: string; size: string; price: number }[]>;
 };
 
-function storeViews(needs: Need[], catalogues: StoreCatalogue[]): StoreView[] {
+const essential = (tier: Tier) => tier === 'T1' || tier === 'T2';
+
+/** Per store, the products that really satisfy each need (checked by code), same product first. */
+function storeViews(needs: Need[], catalogues: StoreCatalogue[], context: CheckContext): StoreView[] {
   const quotes = compareStores(needs.map(toWant), catalogues);
   return catalogues.map((catalogue) => {
     const quote = quotes.find((q) => q.merchantId === catalogue.merchantId)!;
     const options: StoreView['options'] = {};
     for (const need of needs) {
-      const exact = catalogue.items.filter((i) => i.available && i.sku && i.sku === need.sku);
-      const similar = need.category ? acceptable(need, catalogue) : need.matches?.(catalogue) ?? [];
-      const list = [...new Map([...exact, ...similar].map((i) => [i.itemId, i])).values()].slice(0, 5);
+      const exact = (i: CatalogueItem) => !!need.sku && i.sku === need.sku;
+      const list = compatibleItems(need, catalogue)
+        .filter((i) => exact(i) || (!need.loyal && !(i.sku && context.blockedSkus?.has(i.sku))))
+        .sort((a, b) => Number(exact(b)) - Number(exact(a)) || a.price - b.price).slice(0, 5);
       options[need.key] = list.map((i) => ({ itemId: i.itemId, name: i.name, size: i.size, price: i.price }));
     }
     return {
@@ -210,28 +213,30 @@ function storeViews(needs: Need[], catalogues: StoreCatalogue[]): StoreView[] {
   });
 }
 
+/** What the calculator will accept for each need, so the AI is told the rules as data, not only in prose. */
+function allowedOutcomes(need: Need): string[] {
+  return ['kept', ...(need.loyal ? [] : ['swapped']), ...(!need.pinned && !essential(need.tier) && need.qty > 1 ? ['reduced'] : []), ...(!need.pinned && !essential(need.tier) ? ['cut'] : [])];
+}
+
 const toWant = (n: Need): Want => ({ key: n.key, name: n.name, category: n.category, size: n.size, sku: n.sku, qty: n.qty, tier: n.tier });
 
-export async function buildBasket(model: ModelAdapter, needs: Need[], catalogues: StoreCatalogue[], budgetAed: number, instructions: string): Promise<{ draft: BasketDraft; check: ReturnType<typeof checkPlan>; attempts: number }> {
-  const views = storeViews(needs, catalogues);
+export async function buildBasket(model: ModelAdapter, needs: Need[], catalogues: StoreCatalogue[], budgetAed: number, instructions: string, context: CheckContext = {}): Promise<{ draft: BasketDraft; check: Check; attempts: number }> {
+  const views = storeViews(needs, catalogues, context);
   const brief = {
     budgetAed, instructions,
-    needs: needs.map((n) => ({ key: n.key, name: n.name, tier: n.tier, qty: n.qty, loyal: n.loyal, pinned: n.pinned, evidence: n.reason })),
+    needs: needs.map((n) => ({ key: n.key, name: n.name, tier: n.tier, qty: n.qty, loyal: n.loyal, pinned: n.pinned, allowed: allowedOutcomes(n), evidence: n.reason })),
     stores: views,
   };
   const messages: ChatMessage[] = [{ role: 'user', content: [{ text: JSON.stringify(brief) }] }];
-  let last: { draft: BasketDraft; check: ReturnType<typeof checkPlan> } | undefined;
+  let last: { draft: BasketDraft; check: Check } | undefined;
   for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
     const { input, turn } = await step('engine', 'buildBasket', `ai-engine:${model.id}#buildBasket`, { attempt, budgetAed, needs: needs.length }, () =>
       model.structured!(basketSystem, messages, BASKET_TOOL, `AI engine: build basket (attempt ${attempt})`), {
       traceAs: 'ai:build_basket',
-      summary: (r) => `attempt ${attempt}: ${r.input?.lines?.length ?? 0} lines, ${r.input?.cuts?.length ?? 0} cuts at ${views.find((v) => v.merchantId === String(r.input?.merchantId))?.name ?? r.input?.merchantId}`,
+      summary: (r) => `attempt ${attempt}: ${Array.isArray(r.input?.lines) ? r.input.lines.length : 0} lines, ${Array.isArray(r.input?.cuts) ? r.input.cuts.length : 0} cuts at ${views.find((v) => v.merchantId === String(r.input?.merchantId))?.name ?? r.input?.merchantId}`,
     });
-    const draft: BasketDraft = { merchantId: String(input.merchantId), lines: input.lines ?? [], cuts: input.cuts ?? [], summary: input.summary ?? '' };
-    const check = await step('engine', 'checkPlan', 'calculator:check.ts#checkPlan', { draft, budgetAed }, () => checkPlan(draft, needs, catalogues, budgetAed), {
-      traceAs: 'calculator:check_plan',
-      summary: (c) => (c.ok ? `ok: AED ${c.estTotal.toFixed(2)} within AED ${budgetAed.toFixed(2)}` : `rejected: ${c.issues.slice(0, 2).join('; ')}`),
-    });
+    const draft: BasketDraft = { merchantId: String(input?.merchantId), lines: input?.lines ?? [], cuts: input?.cuts ?? [], summary: String(input?.summary ?? '') };
+    const check = await checkStep(draft, needs, catalogues, budgetAed, context);
     last = { draft, check };
     if (check.ok) return { ...last, attempts: attempt };
     // Send the calculator's findings back so the AI can revise its own plan.
@@ -246,14 +251,32 @@ export async function buildBasket(model: ModelAdapter, needs: Need[], catalogues
   return { ...last!, attempts: MAX_ATTEMPTS };
 }
 
-// ---------- 4. the whole V2 plan ----------
+function checkStep(draft: BasketDraft, needs: Need[], catalogues: StoreCatalogue[], budgetAed: number, context: CheckContext) {
+  return step('engine', 'checkPlan', 'calculator:check.ts#checkPlan', { draft, budgetAed }, () => checkPlan(draft, needs, catalogues, budgetAed, context), {
+    traceAs: 'calculator:check_plan',
+    summary: (c) => (c.ok ? `ok: ${budgetVerdict(c, budgetAed)}` : `rejected (${budgetVerdict(c, budgetAed)}): ${c.issues.slice(0, 2).join('; ')}`),
+  });
+}
+
+// ---------- 4. the whole plan ----------
 
 export type BrainInput = {
-  model: ModelAdapter; orders: Order[]; catalogues: StoreCatalogue[]; today: Date;
+  /** The AI model. Without one (Bedrock off) the household is read by the history rules and the basket by the rule planner. */
+  model?: ModelAdapter; orders: Order[]; catalogues: StoreCatalogue[]; today: Date;
   lastWeekTotal: number; budget: BudgetRequest; overrides: Override[]; additions: Addition[];
   insights: Plan['insights'];
 };
-export type BrainResult = Omit<Plan, 'planId' | 'approvalToken' | 'sampleData'> & { chosenMerchantId: string | null; learned: Learned; summary: string; unmatchedAdditions: string[] };
+export type BrainResult = Omit<Plan, 'planId' | 'approvalToken' | 'sampleData'> & {
+  chosenMerchantId: string | null; learned: Learned; summary: string; unmatchedAdditions: string[];
+  check: Check | null; engine: NonNullable<Plan['engine']>;
+};
+
+/** A request the planner cannot carry out as asked (e.g. a quantity over the limit). Reported to the user, never clamped. */
+export class PlanInputError extends Error {
+  readonly code: string;
+  readonly field: string;
+  constructor(code: string, field: string, message: string) { super(message); this.code = code; this.field = field; }
+}
 
 /** Average spend per calendar week over the latest 4 weeks that have orders (all stores, fees included). */
 export function weeklySpend(orders: Order[], weeks = 4): number {
@@ -263,82 +286,159 @@ export function weeklySpend(orders: Order[], weeks = 4): number {
   return recent.length ? r2(recent.reduce((s, [, t]) => s + t, 0) / recent.length) : 0;
 }
 
-export async function brainPlan(input: BrainInput): Promise<BrainResult> {
-  const today = input.today.toISOString().slice(0, 10);
-  const products = productHistory(input.orders);
-  const learned = await learnHousehold(input.model, products, today);
-  const budget = resolveBudget(input.budget, input.lastWeekTotal);
-
+/** This week's needs from the household profile and the user's instructions; the rest is deferred, cut or unavailable. */
+function needsFor(learned: Learned, products: ProductHistory[], overrides: Override[], additions: Addition[], catalogues: StoreCatalogue[]) {
+  const { maxQtyPerLine } = limits();
   const productOf = new Map(products.map((p) => [p.sku, p]));
-  const matchesOverride = (p: ProductHistory, o: Override) => matchScore(o.item, { name: p.name, category: p.category }) > 0;
+  const matches = (p: { name: string; category: string }, term: string) => matchScore(term, p) > 0;
   const needs: Need[] = [];
   const deferred: PlanItem[] = [];
+  const blockedSkus = new Map<string, string>();
+  const insightOf = new Map(learned.products.map((i) => [i.sku, i]));
   for (const insight of learned.products) {
     const p = productOf.get(insight.sku)!;
     const last = p.purchases[p.purchases.length - 1];
-    const drop = input.overrides.some((o) => o.drop && matchesOverride(p, o));
-    const keep = input.overrides.some((o) => o.keep && matchesOverride(p, o));
-    const tier = input.overrides.find((o) => o.tier && matchesOverride(p, o))?.tier ?? insight.tier;
+    const drop = overrides.some((o) => o.drop && matches(p, o.item));
+    const keep = overrides.some((o) => o.keep && matches(p, o.item));
+    const tier = overrides.find((o) => o.tier && matches(p, o.item))?.tier ?? insight.tier;
     const base = { itemId: insight.sku, name: p.name, qty: insight.qty, unitPrice: last.unitPrice, lineTotal: 0, tier, replaces: null };
-    if (drop) deferred.push({ ...base, reason: 'cut', note: 'Left out because you asked', nextDue: null });
+    if (drop) { deferred.push({ ...base, reason: 'cut', note: 'Left out because you asked', nextDue: null }); blockedSkus.set(p.sku, 'you asked to leave it out'); }
     else if (insight.decision === 'due' || keep) needs.push({ key: insight.sku, name: p.name, category: p.category, size: p.size, sku: p.sku, qty: insight.qty, tier, loyal: insight.loyal, pinned: keep, reason: insight.reason });
     else if (insight.decision === 'not_due') deferred.push({ ...base, reason: 'deferred', note: insight.reason, nextDue: insight.nextDue });
-    else if (insight.decision === 'stopped') deferred.push({ ...base, reason: 'cut', note: `No longer bought: ${insight.reason}`, nextDue: null });
+    else if (insight.decision === 'stopped') { deferred.push({ ...base, reason: 'cut', note: `No longer bought: ${insight.reason}`, nextDue: null }); blockedSkus.set(p.sku, `the household stopped buying it (${insight.reason})`); }
     // occasional: not shown
   }
 
-  // Additions the user asked for this week: matched against what the stores sell.
+  // Additions: an existing need first, then a product from the history, then anything the stores sell.
   const unmatchedAdditions: string[] = [];
-  for (const addition of input.additions) {
-    const existing = needs.find((n) => matchScore(addition.item, { name: n.name, category: n.category }) > 0);
-    if (existing) { existing.qty += Math.max(1, addition.qty ?? 1); existing.pinned = true; continue; }
-    const found = input.catalogues.flatMap((c) => c.items).some((i) => matchScore(addition.item, i) > 0);
-    if (!found) { unmatchedAdditions.push(addition.item); continue; }
-    needs.push({
-      key: `add:${addition.item.toLowerCase()}`, name: addition.item, category: '', size: '', sku: '', qty: Math.max(1, addition.qty ?? 1), tier: 'T3', loyal: false, pinned: true,
-      reason: 'You asked to add this', matches: (c: StoreCatalogue) => c.items.filter((i) => i.available && matchScore(addition.item, i) > 0).sort((a, b) => a.price - b.price),
-    });
+  for (const addition of additions) {
+    const qty = addition.qty ?? 1;
+    const tooMany = (name: string, total: number) => new PlanInputError('quantity_out_of_range', 'qty', `${total} x ${name} is over the limit of ${maxQtyPerLine} per item.`);
+    const existing = needs.find((n) => matches(n, addition.item));
+    if (existing) {
+      if (existing.qty + qty > maxQtyPerLine) throw tooMany(existing.name, existing.qty + qty);
+      existing.qty += qty; existing.pinned = true; existing.reason = 'You asked to add this';
+      continue;
+    }
+    const known = products.find((p) => matches(p, addition.item));
+    if (known) {
+      const index = deferred.findIndex((d) => d.itemId === known.sku);
+      if (index >= 0) deferred.splice(index, 1);
+      blockedSkus.delete(known.sku); // the user asked for it again
+      needs.push({ key: known.sku, name: known.name, category: known.category, size: known.size, sku: known.sku, qty, tier: insightOf.get(known.sku)?.tier ?? 'T3', loyal: false, pinned: true, reason: 'You asked to add this' });
+      continue;
+    }
+    const sold = (c: StoreCatalogue) => c.items.filter((i) => i.available && matchScore(addition.item, i) > 0).sort((a, b) => a.price - b.price);
+    if (!catalogues.some((c) => sold(c).length)) { unmatchedAdditions.push(addition.item); continue; }
+    needs.push({ key: `add:${addition.item.toLowerCase()}`, name: addition.item, category: '', size: '', sku: '', qty, tier: 'T3', loyal: false, pinned: true, reason: 'You asked to add this', matches: sold });
   }
+  return { needs, deferred, blockedSkus, unmatchedAdditions };
+}
 
-  const { draft, check, attempts } = await buildBasket(input.model, needs, input.catalogues, budget.aed, instructionsText(input.overrides, input.additions));
-  if (!check.ok) throw new BrainRejected(check.issues, attempts);
+/**
+ * The whole plan. The household profile comes from the AI (validated against the history) or, without
+ * a model, from the history rules. The basket comes from the AI; if its basket still fails the
+ * calculator after its attempts, the rule planner builds one from the same needs. Both go through
+ * checkPlan, and which one was used is reported in `engine`.
+ */
+export async function brainPlan(input: BrainInput): Promise<BrainResult> {
+  const today = input.today.toISOString().slice(0, 10);
+  const products = productHistory(input.orders);
+  const history = historyProfile(products, today, input.orders.length);
+  const ai = input.model?.structured ? input.model : undefined;
+  let learned: Learned = history.learned;
+  let profile: 'ai' | 'history' = 'history';
+  let fallbackReason = ai ? undefined : 'the AI model is not connected';
+  if (ai) {
+    try {
+      const { corrections: _c, ...validated } = await learnHousehold(ai, products, today, history);
+      learned = validated;
+      profile = 'ai';
+    } catch (e) {
+      fallbackReason = `the AI could not read the household (${(e as Error).message.slice(0, 120)})`;
+    }
+  }
+  const budget = resolveBudget(input.budget, input.lastWeekTotal);
+  const { needs, deferred, blockedSkus, unmatchedAdditions } = needsFor(learned, products, input.overrides, input.additions, input.catalogues);
+  const context: CheckContext = { blockedSkus };
+
+  let draft: BasketDraft | null = null;
+  let check: Check | null = null;
+  let basketBy: 'ai' | 'rules' = 'rules';
+  let summary = '';
+  if (ai && profile === 'ai') {
+    try {
+      const built = await buildBasket(ai, needs, input.catalogues, budget.aed, instructionsText(input.overrides, input.additions), context);
+      if (built.check.ok) { draft = built.draft; check = built.check; basketBy = 'ai'; summary = built.draft.summary; }
+      else fallbackReason = `the AI's basket failed the checks after ${built.attempts} attempts (${built.check.issues[0]})`;
+    } catch (e) {
+      fallbackReason = `the AI could not build a basket (${(e as Error).message.slice(0, 120)})`;
+    }
+  }
+  if (!draft) {
+    await step('guard', 'ai_basket_fallback', 'ai-engine:guard', { reason: fallbackReason, profile }, () => ({ planner: 'rules', profile }),
+      { summary: () => `rule-based planner with the ${profile === 'ai' ? "AI's" : 'history'} household profile: ${fallbackReason}` });
+    const { chosen } = await step('engine', 'compareStores', 'engine:fallback.ts#chooseStore', { needs: needs.map(toWant), stores: input.catalogues.map((c) => c.name) },
+      () => chooseStore(needs, input.catalogues, context), {
+        traceAs: 'engine:store_picker',
+        summary: (r) => r.choices.map((c) => `${c.catalogue.name} AED ${c.total.toFixed(2)}${c.missingEssential ? ' (missing essentials)' : ''}`).join(' · '),
+      });
+    if (chosen) {
+      draft = await step('engine', 'fitBudget', 'engine:fallback.ts#ruleBasket', { store: chosen.catalogue.name, budgetAed: budget.aed }, () => ruleBasket(needs, chosen, budget.aed, context),
+        { traceAs: 'engine:priority_fill', summary: (d) => `${d.lines.length} lines, ${d.cuts.length} cut or unavailable at ${chosen.catalogue.name}` });
+      check = await checkStep(draft, needs, input.catalogues, budget.aed, context);
+      if (!check.ok) {
+        // The limits make this household's essentials impossible: tell the user, do not trim their basket.
+        const overLimit = check.issues.find((i) => /over the (basket )?limit/.test(i));
+        if (overLimit) throw new PlanInputError('basket_limit', 'limits', overLimit);
+        throw new Error(`rule-based basket failed the calculator: ${check.issues.join('; ')}`);
+      }
+    }
+  }
+  const engine: BrainResult['engine'] = { basket: basketBy, profile, ...(profile === 'ai' && { model: ai!.id }), ...(basketBy === 'rules' && { fallbackReason }) };
+  const avg = weeklySpend(input.orders);
+  const tierRank: Record<Tier, number> = { T1: 1, T2: 2, T3: 3, T4: 4, T5: 5 };
+  const sort = (items: PlanItem[]) => items.sort((a, b) => Number(a.lineTotal === 0) - Number(b.lineTotal === 0) || tierRank[a.tier] - tierRank[b.tier] || a.name.localeCompare(b.name));
+  const unavailable = (name: string, qty: number, note: string, tier: Tier = 'T3', itemId = `add:${name.toLowerCase()}`): PlanItem => ({ itemId, name, qty, unitPrice: 0, lineTotal: 0, tier, reason: 'unavailable', note, replaces: null, nextDue: null });
+  const notFound = unmatchedAdditions.map((term) => unavailable(term, input.additions.find((a) => a.item === term)?.qty ?? 1, 'Not sold at any nearby Careem store'));
+
+  if (!draft || !check) {
+    // No store has every essential: say so instead of inventing a basket.
+    const stores = compareStores(needs.map(toWant), input.catalogues).map(({ lines: _l, ...q }) => ({ ...q, chosen: false }));
+    return {
+      lastWeekTotal: input.lastWeekTotal, budget, stores, estTotal: 0, withinBudget: false, shortfall: 0, monthlySavingEstimate: 0, insights: input.insights,
+      items: sort([...needs.map((n) => unavailable(n.name, n.qty, 'No nearby store sells every essential', n.tier, n.sku || n.key)), ...notFound, ...deferred]),
+      chosenMerchantId: null, learned, summary, unmatchedAdditions, check: null, engine,
+    };
+  }
 
   const catalogue = input.catalogues.find((c) => c.merchantId === draft.merchantId)!;
   const itemOf = new Map(catalogue.items.map((i) => [i.itemId, i]));
   const needOf = new Map(needs.map((n) => [n.key, n]));
+  const productOf = new Map(products.map((p) => [p.sku, p]));
   const lines: PlanItem[] = draft.lines.map((l) => {
-    const item = itemOf.get(l.itemId)!;
+    const item = itemOf.get(String(l.itemId))!;
     const need = needOf.get(l.need)!;
     return { itemId: item.itemId, name: item.name, qty: l.qty, unitPrice: item.price, lineTotal: r2(item.price * l.qty), tier: need.tier, reason: l.reason, note: l.note, replaces: l.reason === 'swapped' ? need.name : null, nextDue: null };
   });
   const cuts: PlanItem[] = draft.cuts.map((c) => {
     const need = needOf.get(c.need)!;
+    if (!compatibleItems(need, catalogue).length) return unavailable(need.name, need.qty, `Not sold at ${catalogue.name}`, need.tier, need.sku || need.key);
     const price = catalogue.items.find((i) => i.sku && i.sku === need.sku)?.price ?? productOf.get(need.sku)?.purchases.at(-1)?.unitPrice ?? 0;
     return { itemId: need.sku || need.key, name: need.name, qty: need.qty, unitPrice: price, lineTotal: 0, tier: need.tier, reason: 'cut', note: c.note, replaces: null, nextDue: null };
   });
 
   // Store table for the basket the user will see, priced by the calculator at every store.
-  const finalWants: Want[] = draft.lines.map((l) => { const item = itemOf.get(l.itemId)!; const need = needOf.get(l.need)!; return { key: l.need, name: item.name, category: item.category, size: item.size, sku: item.sku, qty: l.qty, tier: need.tier }; });
+  const finalWants: Want[] = draft.lines.map((l) => { const item = itemOf.get(String(l.itemId))!; const need = needOf.get(l.need)!; return { key: l.need, name: item.name, category: item.category, size: item.size, sku: item.sku, qty: l.qty, tier: need.tier }; });
   const stores = compareStores(finalWants, input.catalogues).map(({ lines: _l, ...q }) => ({ ...q, chosen: q.merchantId === draft.merchantId }));
-  const tierRank: Record<Tier, number> = { T1: 1, T2: 2, T3: 3, T4: 4, T5: 5 };
-  const items = [...lines, ...cuts, ...deferred].sort((a, b) => Number(a.lineTotal === 0) - Number(b.lineTotal === 0) || tierRank[a.tier] - tierRank[b.tier] || a.name.localeCompare(b.name));
-  const avg = weeklySpend(input.orders);
 
   return {
-    lastWeekTotal: input.lastWeekTotal, budget, stores, items, estTotal: check.estTotal, withinBudget: check.withinBudget, shortfall: check.shortfall,
+    lastWeekTotal: input.lastWeekTotal, budget, stores, items: sort([...lines, ...cuts, ...notFound, ...deferred]),
+    estTotal: check.estTotal, withinBudget: check.withinBudget, shortfall: check.shortfall,
     monthlySavingEstimate: r2((avg - check.estTotal) * 4.33), insights: input.insights,
-    chosenMerchantId: draft.merchantId, learned, summary: draft.summary, unmatchedAdditions,
+    chosenMerchantId: draft.merchantId, learned, summary, unmatchedAdditions, check, engine,
   };
 }
 
-export class BrainRejected extends Error {
-  readonly issues: string[];
-  readonly attempts: number;
-  constructor(issues: string[], attempts: number) {
-    super(`AI plan still invalid after ${attempts} attempts: ${issues.join('; ')}`);
-    this.issues = issues;
-    this.attempts = attempts;
-  }
-}
-
 export type { CatalogueItem };
+

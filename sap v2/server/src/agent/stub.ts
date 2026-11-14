@@ -9,6 +9,7 @@
 import type { Language } from '../contract.ts';
 import { step } from '../xray.ts';
 import { toTurn, type Block, type ChatMessage, type ModelAdapter, type ToolSpec, type Turn } from './bedrock.ts';
+import { compose } from './reply.ts';
 import { TEXTS, detectLanguage } from './texts.ts';
 
 export const STUB_MODEL_ID = 'stub-rule-based (Bedrock not connected)';
@@ -58,42 +59,21 @@ export function decide(message: string): Decision {
   const text = westernDigits(message.replace(/\[UI weekly budget:[^\]]*\]/, ''));
   const items = ITEM_WORDS.filter(([, pattern]) => pattern.test(text)).map(([term]) => term);
   const percent = /(\d+(?:\.\d+)?)\s*(?:%|٪|percent|في المئة|بالمئة|प्रतिशत|فیصد|فی صد|porsyento)/i.exec(text);
-  const amount = /(\d+(?:\.\d+)?)\s*(?:aed|dhs?|dirhams?|درهم|दिरहम|درہم)|(?:aed|dhs?)\s*(\d+(?:\.\d+)?)/i.exec(text);
-  const budget: Record<string, unknown> = percent ? { cutPercent: Number(percent[1]) } : amount ? { budgetAed: Number(amount[1] ?? amount[2]) } : {};
+  const amount = /(\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+(?:\.\d+)?)\s*(?:aed|dhs?|dirhams?|درهم|दिरहम|درہم)|(?:aed|dhs?)\s*(\d{1,3}(?:,\d{3})+(?:\.\d+)?|\d+(?:\.\d+)?)/i.exec(text);
+  const budget: Record<string, unknown> = percent ? { cutPercent: Number(percent[1]) } : amount ? { budgetAed: Number((amount[1] ?? amount[2]).replace(/,/g, '')) } : {};
 
   if (INTENT.approve.test(text)) return { tool: { name: 'request_approval', input: {} } };
   if (INTENT.why.test(text) && items.length) return { tool: { name: 'explain_change', input: { item: items[0] } } };
   if (INTENT.stores.test(text)) return { tool: { name: 'compare_stores', input: {} } };
   if (items.length && INTENT.keep.test(text)) return { tool: { name: 'plan_basket', input: { ...budget, overrides: items.map((item) => ({ item, keep: true })) } } };
-  if (items.length && INTENT.add.test(text)) return { tool: { name: 'plan_basket', input: { ...budget, additions: items.map((item) => ({ item, qty: 1 })) } } };
+  // "add 2 kg of bananas": a lone number that is not the budget or the cut is the quantity of a lone item.
+  const counts = (text.replace(percent?.[0] ?? '\u0000', '').replace(amount?.[0] ?? '\u0000', '').match(/\d+/g) ?? []).map(Number).filter((n) => n > 0);
+  const qty = items.length === 1 && counts.length === 1 ? counts[0] : 1;
+  if (items.length && INTENT.add.test(text)) return { tool: { name: 'plan_basket', input: { ...budget, additions: items.map((item) => ({ item, qty })) } } };
   if (items.length && INTENT.drop.test(text)) return { tool: { name: 'plan_basket', input: { ...budget, overrides: items.map((item) => ({ item, drop: true })) } } };
   if (percent || amount || INTENT.plan.test(text)) return { tool: { name: 'plan_basket', input: Object.keys(budget).length ? budget : note ? { budgetAed: Number(note[1]) } : {} } };
   if (INTENT.history.test(text)) return { tool: { name: 'analyse_history', input: {} } };
   return {};
-}
-
-const inBasket = (reason: string) => reason === 'kept' || reason === 'swapped' || reason === 'reduced';
-
-/** Turns a tool result into a short reply, in the user's language, from fixed sentences. */
-export function compose(tool: string, result: any, language: Language): string {
-  const t = TEXTS[language];
-  if (result?.error) return result.kind === 'careem' ? t.careemDown : result.kind === 'no_plan' ? t.needPlan : t.genericError;
-  if (tool === 'plan_basket') {
-    if (!result.store) return t.noStore;
-    const items: any[] = result.items ?? [];
-    return t.plan({
-      store: result.store, total: result.estTotal, budget: result.budget.aed, withinBudget: result.withinBudget, shortfall: result.shortfall,
-      cut: items.filter((i) => i.reason === 'cut').map((i) => i.name),
-      swapped: items.filter((i) => i.reason === 'swapped').map((i) => `${i.replaces} → ${i.name}`),
-      deferred: items.filter((i) => i.reason === 'deferred').map((i) => `${i.name} (${i.nextDue})`),
-      saving: result.monthlySavingEstimate,
-    });
-  }
-  if (tool === 'compare_stores') return t.stores((result.stores ?? []).map((s: any) => ({ name: s.name, total: s.estTotal, valid: s.valid, missing: s.missing, chosen: s.chosen })));
-  if (tool === 'explain_change') return result.found ? t.explain(result.name, `${result.note}${inBasket(result.reason) ? '' : ` (${result.reason})`}`) : t.explainUnknown(result.item);
-  if (tool === 'request_approval') return t.approval(result.store);
-  if (tool === 'analyse_history') return t.analysis(result.orders, result.lastWeekTotal, (result.priceDrift ?? []).filter((d: any) => d.flagged).map((d: any) => `${d.name} +${d.driftPct}%`));
-  return t.help;
 }
 
 const lastUserText = (messages: ChatMessage[]) => {

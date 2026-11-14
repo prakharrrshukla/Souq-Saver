@@ -4,7 +4,13 @@
 
 export type Language = 'en' | 'ar' | 'hi' | 'ur' | 'tl';
 export type Tier = 'T1' | 'T2' | 'T3' | 'T4' | 'T5';
-export type Reason = 'kept' | 'swapped' | 'reduced' | 'deferred' | 'cut';
+/** "unavailable": the user asked for it (or the household needs it) but no nearby store sells a matching product. */
+export type Reason = 'kept' | 'swapped' | 'reduced' | 'deferred' | 'cut' | 'unavailable';
+
+/** What went wrong, so the UI can tell a typo from an outage. Only "network" means the backend could not be reached. */
+export type ErrorKind = 'validation' | 'model' | 'careem' | 'timeout' | 'network' | 'approval' | 'busy' | 'internal';
+/** Body of every 4xx/5xx JSON response. `error` is the human message; `code` is stable; `field` names the bad input. */
+export type ApiErrorBody = { error: string; code: string; kind: ErrorKind; field?: string; sampleData: boolean };
 
 // GET /api/config
 export type Config = {
@@ -76,7 +82,12 @@ export type Plan = {
     /** v2: how the AI engine describes this household, learned from its Careem orders. Absent on the rule-based engine. */
     household?: { summary: string; routines: string[]; likes: string[]; dislikes: string[]; switches: string[]; model: string };
   };
+  /** Empty when approval is not allowed (see `approval`). */
   approvalToken: string;
+  /** Whether this exact plan may be approved, and why not. */
+  approval?: { allowed: boolean; code?: 'over_budget' | 'invalid_plan' | 'no_store' | 'limits'; message?: string };
+  /** Who built the basket. basket "rules" means the AI's basket failed the checks (or Bedrock is off) and the rule-based planner was used. */
+  engine?: { basket: 'ai' | 'rules'; profile: 'ai' | 'history'; model?: string; fallbackReason?: string };
 };
 
 export type Cart = {
@@ -135,7 +146,7 @@ export type XrayRun = XrayRunSummary & { ordered: XrayStep[]; tree: XrayTreeNode
 // Server-Sent Events of /api/chat and /api/approve. Every stream starts with "run" and ends with "done".
 export type TraceEvent = { id: string; tool: string; status: 'running' | 'ok' | 'error'; summary: string; ms?: number };
 export type MessageEvent = { id: string; role: 'assistant'; text: string; language: Language; rtl: boolean };
-export type ErrorEvent = { message: string; retryable: boolean };
+export type ErrorEvent = { message: string; retryable: boolean; code?: string; kind?: ErrorKind; field?: string };
 
 export type SseEvent =
   | { event: 'run'; data: { runId: string } }

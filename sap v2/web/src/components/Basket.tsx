@@ -1,7 +1,7 @@
 import type { Plan, PlanItem } from '../../../server/src/contract.ts';
 import { aed } from '../api';
 
-const CHIP: Record<PlanItem['reason'], string> = { kept: 'Kept', swapped: 'Swapped', reduced: 'Reduced', deferred: 'Not due', cut: 'Cut' };
+const CHIP: Record<PlanItem['reason'], string> = { kept: 'Kept', swapped: 'Swapped', reduced: 'Reduced', deferred: 'Not due', cut: 'Cut', unavailable: 'Not available' };
 
 function chipLabel(item: PlanItem) {
   return item.reason === 'deferred' && item.nextDue ? `Not due till ${item.nextDue}` : CHIP[item.reason];
@@ -35,11 +35,18 @@ export function Basket({ plan, approving, approved, onApprove }: Props) {
         <div><dt>Monthly saving (estimate)</dt><dd>{aed(plan.monthlySavingEstimate)}</dd></div>
       </dl>
       {!plan.withinBudget && plan.shortfall > 0 && (
-        <p className="notice warning">Over budget by {aed(plan.shortfall)}. Water and staples are never cut.</p>
+        <p className="notice warning">Cannot meet this budget: over by {aed(plan.shortfall)} after every allowed cut. Water, staples and items you asked to keep are never cut.</p>
+      )}
+      {plan.engine?.basket === 'rules' && (
+        <p className="notice">
+          {plan.engine.profile === 'ai'
+            ? "Built by the rule-based planner: the AI's basket did not pass the checks. It uses what the AI learned about this household, and every item passed the same checks."
+            : 'Built by the rule-based planner from the order history, because the AI was not available.'}
+        </p>
       )}
 
       <div className="approve">
-        <span className="muted">Nothing is charged. Approve only builds the cart.</span>
+        <span className="muted">{plan.approval && !plan.approval.allowed ? plan.approval.message : 'Nothing is charged. Approve only builds the cart.'}</span>
         <button className="primary" onClick={onApprove} disabled={approving || approved || !plan.approvalToken}>
           {approving ? 'Building cart…' : approved ? 'Cart built' : 'Approve basket'}
         </button>

@@ -28,14 +28,22 @@ export function similarSize(a: string, b: string): boolean {
   return x.unit === y.unit && Math.abs(x.amount - y.amount) / x.amount <= 0.25;
 }
 
-/** Flattens a search_groceries_items response. The group name is the category that was searched. */
+/**
+ * Flattens a search_groceries_items response. The group name is the category that was searched.
+ * The same item listed in two groups is kept once (first group wins); an item without a usable
+ * price is never sellable.
+ */
 export function parseSearch(response: any): { merchantId: string; domain: 'quik' | 'shops'; merchantName?: string; items: CatalogueItem[] } {
   const items: CatalogueItem[] = [];
+  const seen = new Set<string>();
   for (const group of response?.groups ?? []) {
     for (const item of group.items ?? []) {
-      if (item.active === false) continue;
+      if (item.active === false || seen.has(String(item.id))) continue;
+      seen.add(String(item.id));
       const size = /\(([^)]+)\)\s*$/.exec(item.description ?? '')?.[1] ?? '';
-      items.push({ itemId: String(item.id), name: item.item, category: String(group.name).toLowerCase(), sku: item.master_product_id ?? '', price: Number(item.price?.total), size, available: item.is_available !== false });
+      const price = Number(item.price?.total);
+      const priced = Number.isFinite(price) && price > 0;
+      items.push({ itemId: String(item.id), name: item.item, category: String(group.name).toLowerCase(), sku: item.master_product_id ?? '', price: priced ? price : 0, size, available: priced && item.is_available !== false });
     }
   }
   return { merchantId: String(response.merchant_id), domain: response.domain === 'quik' ? 'quik' : 'shops', merchantName: response.merchant_name, items };

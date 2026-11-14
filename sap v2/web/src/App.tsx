@@ -1,11 +1,11 @@
 // Page layout and state. No business logic here: everything shown comes from the backend.
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import type { Cart, Config, Health, Language, PersonaInfo, PersonaKey, Plan, SseEvent, TraceEvent, XrayStep } from '../../server/src/contract.ts';
-import { MOCK, approve, chat, getConfig, getHealth, getPersonas, reset, switchPersona } from './api';
+import { ApiError, MOCK, UNREACHABLE, approve, chat, getConfig, getHealth, getPersonas, reset, switchPersona } from './api';
 import { DEFAULT_MESSAGE } from './examples';
 import { Basket } from './components/Basket';
 import { CartResult } from './components/CartResult';
-import { Chat, type ChatLine } from './components/Chat';
+import { Chat, type ChatLine, type FormError } from './components/Chat';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
 import { HouseholdProfile } from './components/HouseholdProfile';
@@ -37,6 +37,9 @@ export default function App() {
   const [runId, setRunId] = useState<string | null>(null);
   const [personas, setPersonas] = useState<PersonaInfo | null>(null);
   const [switching, setSwitching] = useState(false);
+  const [formError, setFormError] = useState<FormError | null>(null);
+  /** What was just sent, so a rejected message goes back into the box instead of being lost. */
+  const sent = useRef<{ lineId: string; message: string; budget: string } | null>(null);
 
   const load = useCallback(async () => {
     try {
@@ -51,6 +54,20 @@ export default function App() {
   useEffect(() => { load(); }, [load]);
 
   const addError = (text: string) => setLines((current) => [...current, { id: newId(), role: 'error', text }]);
+  /** The input was refused: give the user their text back with the reason next to the field. `notSent`: the request never reached the chat. */
+  const rejectInput = (error: FormError, notSent = false) => {
+    const last = sent.current;
+    if (last) {
+      if (notSent) setLines((current) => current.filter((l) => l.id !== last.lineId));
+      setInput(last.message);
+      setBudget(last.budget);
+    }
+    setFormError(error);
+  };
+  const showFailure = (e: unknown) => {
+    if (e instanceof ApiError && e.kind === 'validation') rejectInput({ message: e.message, field: e.field }, true);
+    else addError(e instanceof ApiError ? e.message : UNREACHABLE);
+  };
 
   const onEvent = (e: SseEvent) => {
     if (e.event === 'run') { setRunId(e.data.runId); setXraySteps([]); }
@@ -65,21 +82,24 @@ export default function App() {
       });
     } else if (e.event === 'plan') { setPlan(e.data); setCart(null); }
     else if (e.event === 'cart') setCart(e.data);
-    else if (e.event === 'error') addError(e.data.message);
+    else if (e.event === 'error') { if (e.data.kind === 'validation') rejectInput({ message: e.data.message, field: e.data.field }); else addError(e.data.message); }
   };
 
   const send = async () => {
     const message = input.trim();
     if (!message || busy) return;
-    setLines((current) => [...current, { id: newId(), role: 'user', text: message }]);
+    const lineId = newId();
+    sent.current = { lineId, message, budget };
+    setLines((current) => [...current, { id: lineId, role: 'user', text: message }]);
     setInput('');
+    setFormError(null);
     setSteps([]);
     setBusy(true);
     try {
-      const budgetAed = Number(budget);
-      await chat({ sessionId, message, language, ...(budgetAed > 0 && { budgetAed }) }, onEvent);
-    } catch {
-      addError('Backend not reachable on localhost:8080. Start it with "npm run dev:backend" and try again.');
+      const budgetAed = budget.trim() === '' ? undefined : Number(budget);
+      await chat({ sessionId, message, language, ...(budgetAed !== undefined && { budgetAed }) }, onEvent);
+    } catch (e) {
+      showFailure(e);
     } finally {
       setBusy(false);
       getHealth().then(setHealth).catch(() => {});
@@ -91,8 +111,8 @@ export default function App() {
     setApproving(true);
     try {
       await approve({ sessionId, planId: plan.planId, approvalToken: plan.approvalToken }, onEvent);
-    } catch {
-      addError('Backend not reachable on localhost:8080. Nothing was changed.');
+    } catch (e) {
+      addError(e instanceof ApiError ? e.message : UNREACHABLE);
     } finally {
       setApproving(false);
     }
@@ -101,7 +121,7 @@ export default function App() {
   const onReset = async () => {
     await reset(sessionId).catch(() => {});
     setSessionId(newId());
-    setLines([]); setSteps([]); setPlan(null); setCart(null); setXraySteps([]); setRunId(null);
+    setLines([]); setSteps([]); setPlan(null); setCart(null); setXraySteps([]); setRunId(null); setFormError(null);
     setInput(DEFAULT_MESSAGE); setBudget('');
   };
 
@@ -140,7 +160,7 @@ export default function App() {
         personas={personas} onPersona={onPersona} personaDisabled={busy || switching} />
       <SampleBanner sampleData={config.sampleData} mock={MOCK} />
       <div className="columns">
-        <Chat lines={lines} input={input} onInput={setInput} budget={budget} onBudget={setBudget} busy={busy} onSend={send}
+        <Chat lines={lines} input={input} onInput={setInput} budget={budget} onBudget={setBudget} busy={busy} onSend={send} formError={formError}
           onExample={(text, exampleLanguage) => { setInput(text); if (exampleLanguage) setLanguage(exampleLanguage); }} />
         <div className="stack">
           <ToolSteps steps={steps} />

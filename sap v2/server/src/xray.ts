@@ -28,12 +28,12 @@ const SECRET_KEY = /authorization|cookie|secret|password|credential|access[-_]?k
 const SECRET_VALUE = /\b(?:AKIA|ASIA)[A-Z0-9]{16}\b|Bearer\s+[\w.~+/-]+=*/g;
 const APPROVAL_TOKEN = /tok_[A-Za-z0-9]{8,}/g;
 
-/** Deep copy with secrets removed. Approval tokens are shown as tok_…last4. */
+/** Deep copy with secrets removed. Approval tokens are shown as tok_…last4, session ids as …last4 (they let anyone act on a chat). */
 export function redact(value: unknown): unknown {
   if (typeof value === 'string') return value.replace(APPROVAL_TOKEN, (t) => `tok_…${t.slice(-4)}`).replace(SECRET_VALUE, '[redacted]');
   if (Array.isArray(value)) return value.map(redact);
   if (value && typeof value === 'object') {
-    return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, SECRET_KEY.test(k) ? '[redacted]' : redact(v)]));
+    return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, SECRET_KEY.test(k) ? '[redacted]' : k === 'sessionId' && typeof v === 'string' ? `…${v.slice(-4)}` : redact(v)]));
   }
   return value;
 }
