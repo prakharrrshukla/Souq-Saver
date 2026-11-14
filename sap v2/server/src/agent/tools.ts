@@ -150,6 +150,7 @@ async function plan(session: Session, input: any, deps: Deps) {
         budget: session.budget, overrides: session.overrides, additions: session.additions, insights,
       });
       const { learned, summary, ...rest } = ai;
+      rest.insights = { ...rest.insights, household: { summary: learned.persona.summary, routines: learned.persona.routines, likes: learned.likes, dislikes: learned.dislikes, switches: learned.switches, model: deps.brain.id } };
       session.learned = learned;
       session.engine = 'ai';
       aiSummary = summary;

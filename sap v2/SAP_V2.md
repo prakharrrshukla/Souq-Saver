@@ -18,6 +18,20 @@ suitable store. The calculator adds up every plan with the stores' real prices a
 problem back, and the AI revises its plan. You see the basket, the reasons for every item and the store
 comparison, and nothing is charged until you approve.
 
+## What the AI learned (shown on screen)
+
+The AI engine also writes a short profile of the household, from the orders only, shown in the panel
+"What the AI learned about this household": a two-to-three sentence description ("looks like..."),
+routines, favourites, alternatives tried and dropped, and switches. It never guesses religion,
+ethnicity or income. The panel appears only when the AI engine runs (not on the rule-based backup).
+
+## Where user data lives
+
+There is no database. Careem is the system of record: on every request the backend reads the history
+from the Careem MCP, the AI learns the household in that request, and the result lives in the server's
+memory for that session only (Reset or a restart clears it). Nothing is used to train a model. The only
+files written are the local X-ray logs in `.run/xray/` (git-ignored), which record each step for review.
+
 ## How a request flows (in order)
 
 | # | Who | What happens |

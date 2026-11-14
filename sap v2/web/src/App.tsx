@@ -8,6 +8,7 @@ import { CartResult } from './components/CartResult';
 import { Chat, type ChatLine } from './components/Chat';
 import { Footer } from './components/Footer';
 import { Header } from './components/Header';
+import { HouseholdProfile } from './components/HouseholdProfile';
 import { Insights } from './components/Insights';
 import { SampleBanner } from './components/SampleBanner';
 import { StoreComparison } from './components/StoreComparison';
@@ -124,6 +125,7 @@ export default function App() {
           onExample={(text, exampleLanguage) => { setInput(text); if (exampleLanguage) setLanguage(exampleLanguage); }} />
         <div className="stack">
           <ToolSteps steps={steps} />
+          {plan && <HouseholdProfile household={plan.insights.household} />}
           {plan && <StoreComparison stores={plan.stores} />}
           {plan && <Basket plan={plan} approving={approving} approved={!!cart} onApprove={onApprove} />}
           {cart && <CartResult cart={cart} />}

@@ -69,6 +69,8 @@ export type Plan = {
   insights: {
     categorySpend: { category: string; weeklyAvg: number }[];
     priceDrift: { name: string; driftPct: number }[];
+    /** v2: how the AI engine describes this household, learned from its Careem orders. Absent on the rule-based engine. */
+    household?: { summary: string; routines: string[]; likes: string[]; dislikes: string[]; switches: string[]; model: string };
   };
   approvalToken: string;
 };

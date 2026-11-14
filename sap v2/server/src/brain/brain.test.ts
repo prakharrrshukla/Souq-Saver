@@ -63,7 +63,7 @@ class ScriptedModel implements ModelAdapter {
     this.shown.push(brief);
     let input: any;
     if (tool.name === 'household_insights') {
-      input = { products: brief.products.map((p: any) => ({ sku: p.sku, reason: 'scripted', loyal: false, nextDue: null, ...(SCRIPT[p.sku] ?? { decision: 'occasional', tier: 'T4', qty: 1 }) })), likes: ['Royal Mahal rice'], dislikes: ['Golden Sella rice'], switches: ['Cow milk to oat milk in week 11'] };
+      input = { products: brief.products.map((p: any) => ({ sku: p.sku, reason: 'scripted', loyal: false, nextDue: null, ...(SCRIPT[p.sku] ?? { decision: 'occasional', tier: 'T4', qty: 1 }) })), likes: ['Royal Mahal rice'], dislikes: ['Golden Sella rice'], switches: ['Cow milk to oat milk in week 11'], persona: { summary: 'Looks like a small household in Dubai Marina that shops weekly at Careem Quik.', routines: ['Weekly Saturday shop at Careem Quik', 'Monthly staples at Marina Fresh Market', 'Extra 1', 'Extra 2', 'Extra 3'] } };
     } else {
       this.basketCalls++;
       const store = brief.stores.find((s: any) => s.name === 'Marina Fresh Market');
@@ -106,6 +106,13 @@ describe('V2 AI engine', () => {
     expect(plan.stores.find((s) => s.chosen)!.name).toBe('Marina Fresh Market');
     const sum = plan.items.reduce((s, i) => s + i.lineTotal, 0) + 7 + 1;
     expect(plan.estTotal).toBeCloseTo(sum, 2);
+  });
+
+  test('the AI writes a household profile for the screen (summary and at most 4 routines)', async () => {
+    const plan = await run(new ScriptedModel());
+    expect(plan.learned.persona.summary).toMatch(/Looks like/);
+    expect(plan.learned.persona.routines).toHaveLength(4);
+    expect(plan.learned.switches[0]).toMatch(/oat milk/);
   });
 
   test('the switch is respected: oat milk in the basket, cow milk shown as no longer bought', async () => {

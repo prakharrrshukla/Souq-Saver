@@ -44,7 +44,9 @@ export type Insight = {
   sku: string; decision: 'due' | 'not_due' | 'stopped' | 'occasional'; tier: Tier; qty: number;
   nextDue: string | null; loyal: boolean; reason: string;
 };
-export type Learned = { products: Insight[]; likes: string[]; dislikes: string[]; switches: string[] };
+/** How the AI describes the household, shown to the user. Written from the order data only. */
+export type Persona = { summary: string; routines: string[] };
+export type Learned = { products: Insight[]; likes: string[]; dislikes: string[]; switches: string[]; persona: Persona };
 
 const LEARN_TOOL: ToolSpec = {
   name: 'household_insights',
@@ -70,10 +72,19 @@ const LEARN_TOOL: ToolSpec = {
         },
       },
       likes: { type: 'array', items: { type: 'string' }, description: 'Short phrases, e.g. "Royal Mahal rice: every 3 weeks, never another brand"' },
-      dislikes: { type: 'array', items: { type: 'string' }, description: 'Products tried and dropped' },
-      switches: { type: 'array', items: { type: 'string' }, description: 'Product A replaced by product B, with when' },
+      dislikes: { type: 'array', items: { type: 'string' }, description: 'Alternatives tried instead of a usual product and dropped, e.g. a cheaper rice brand bought once before going back to the usual one. A one-off purchase of something new is not a dislike.' },
+      switches: { type: 'array', items: { type: 'string' }, description: 'Product A replaced by product B, with when. Also a group of products replaced by another group at the same time, e.g. noodles, cola and chips stopping in the week healthier items start. Products in a switch are not dislikes.' },
+      persona: {
+        type: 'object',
+        description: 'How you would describe this household to a shop assistant, from the orders only',
+        properties: {
+          summary: { type: 'string', description: 'Two or three plain sentences: what kind of household this looks like (size judged from quantities, habits, diet, how they shop, any change over time such as larger orders), each point backed by the orders. Say "looks like" for anything inferred. No names, no guesses about religion, ethnicity or income.' },
+          routines: { type: 'array', items: { type: 'string' }, description: 'Up to 4 short shopping routines, e.g. "Weekly Saturday shop at Careem Quik", "Bulk staples once a month at Marina Fresh Market"' },
+        },
+        required: ['summary', 'routines'],
+      },
     },
-    required: ['products', 'likes', 'dislikes', 'switches'],
+    required: ['products', 'likes', 'dislikes', 'switches', 'persona'],
   },
 };
 
@@ -91,7 +102,7 @@ For each product decide:
 - loyal: true when they always buy this exact product, or tried an alternative and went back to it.
 - Switches: when one product stops being bought around the time a similar product (same parent category, e.g. another kind of milk) starts being bought every order, the old product is "stopped" and the new one continues the habit.
 - For each product you get timesBought, gapsDays between purchases and daysSinceLast, computed for you. A regular product is due when daysSinceLast plus 7 reaches its usual gap.
-Also list likes, dislikes (tried once and dropped) and switches.
+Also list likes, dislikes (tried once and dropped) and switches, and describe the household in persona (what the orders suggest about who they are and how they shop).
 Never calculate money totals. Answer only by calling household_insights.`;
 
 function instructionsText(overrides: Override[], additions: Addition[]): string {
@@ -114,7 +125,7 @@ export async function learnHousehold(model: ModelAdapter, products: ProductHisto
       firstBought: p.purchases[0].date, lastBought: p.purchases[p.purchases.length - 1].date, timesBought: p.purchases.length,
       daysSinceLast: Math.round((Date.parse(`${today}T00:00:00Z`) - t[t.length - 1]) / dayMs),
       gapsDays: t.slice(1).map((v, i) => Math.round((v - t[i]) / dayMs)),
-      purchases: p.purchases,
+      purchases: p.purchases.map((x) => ({ ...x, weekday: new Date(`${x.date}T12:00:00Z`).toLocaleDateString('en-GB', { weekday: 'long', timeZone: 'Asia/Dubai' }) })),
     };
   });
   return step('engine', 'learnHousehold', `ai-engine:${model.id}#learnHousehold`, { products: payload.length, today }, async () => {
@@ -124,7 +135,8 @@ export async function learnHousehold(model: ModelAdapter, products: ProductHisto
     learned.products = (learned.products ?? []).filter((i) => known.has(i.sku)).map((i) => ({ ...i, qty: Math.max(1, Math.round(i.qty || 1)), nextDue: i.nextDue ?? null }));
     // Anything the model skipped is treated as occasional, so nothing silently disappears.
     for (const p of products) if (!learned.products.some((i) => i.sku === p.sku)) learned.products.push({ sku: p.sku, decision: 'occasional', tier: 'T4', qty: 1, nextDue: null, loyal: false, reason: 'Not assessed' });
-    return { products: learned.products, likes: learned.likes ?? [], dislikes: learned.dislikes ?? [], switches: learned.switches ?? [] };
+    const persona: Persona = { summary: String(learned.persona?.summary ?? '').trim(), routines: (learned.persona?.routines ?? []).map(String).slice(0, 4) };
+    return { products: learned.products, likes: learned.likes ?? [], dislikes: learned.dislikes ?? [], switches: learned.switches ?? [], persona };
   }, {
     traceAs: 'ai:learn_household',
     summary: (l) => `${l.products.filter((p) => p.decision === 'due').length} due, ${l.products.filter((p) => p.decision === 'not_due').length} not due, ${l.products.filter((p) => p.decision === 'stopped').length} stopped · ${[...l.switches, ...l.dislikes].slice(0, 2).join('; ') || 'no switches'}`,
