@@ -4,6 +4,15 @@ The Careem sandbox test world has only 2 grocery orders, a Quik store with 8 pro
 
 These fixtures are written during the hackathon, from this spec.
 
+> **Confirmed by Laith (Careem MCP training, 14 Nov):** take the sandbox's fake data and generate random data inspired by it, **in the same file pattern**. We do not use real Careem account data.
+>
+> Source of the pattern:
+> - https://builders.careem.com/sandbox/careem-mcp-sandbox/spec/FIXTURES.md (the test world)
+> - `spec/tools/<domain>/<tool>.md` in the package (exact responses per tool, e.g. `get_activities`, `search_groceries_items`, `global_search`, `groceries_get_items_details`, `cart_get_basket_price`)
+> - `spec/FORMAT.md` (how tool files, match rules and placeholders work)
+>
+> Approach: write a small seeded generator that produces orders and catalogue entries in those exact shapes (same field names, ids style, currency, merchant ids), with the patterns below baked in so the demo story is reliable. Seed it so the same data comes out every run.
+
 ## Household
 
 - Persona: the sandbox user (Leonardo DiCappuccino), Home in Dubai Marina, coordinates 25.0866, 55.1474.
