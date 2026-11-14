@@ -19,7 +19,7 @@ export type BudgetRequest = { budgetAed?: number; cutPercent?: number };
 
 const TIER_RULES: [Tier, RegExp][] = [
   // Treats are checked first so "Water & Beverages > Soft Drinks" is a treat, not water.
-  ['T5', /chips|crisps|snack|soft drink|cola|soda|chocolate|sweets|candy|biscuit|ice cream/],
+  ['T5', /chips|crisps|snack|soft drink|cola|soda|juice|chocolate|sweets|candy|biscuit|ice cream/],
   ['T1', /\bwater\b/],
   ['T2', /rice|atta|flour|\boil\b|dal\b|lentil|pulses|sugar|\bsalt\b/],
   ['T3', /milk|egg|bread|bakery|onion|tomato|vegetable|fruit|dairy|yogurt|chicken|meat|poultry|fish/],

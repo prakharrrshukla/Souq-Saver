@@ -5,22 +5,22 @@
   "household": "Sample household at Home (LOC-50001), Dubai Marina. Invented data in Careem MCP response format.",
   "orders": 10,
   "lastWeekTotal": 186.15,
-  "products": 29,
+  "products": 32,
   "stores": [
     {
       "merchantId": 40001,
       "name": "Careem Quik Dubai Marina",
-      "items": 26
+      "items": 29
     },
     {
       "merchantId": 40101,
       "name": "Marina Fresh Market",
-      "items": 26
+      "items": 29
     },
     {
       "merchantId": 40201,
       "name": "JLT Organic Pantry",
-      "items": 19
+      "items": 22
     }
   ],
   "files": [

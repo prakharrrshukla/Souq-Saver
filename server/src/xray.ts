@@ -71,6 +71,8 @@ export type StepOptions<T> = {
   meta?: (output: T) => XrayStep['meta'];
   /** Label for the short trace event, e.g. "engine:priority_fill". */
   traceAs?: string;
+  /** Receives the step id, so later steps can be nested under this one with under(). */
+  ref?: { stepId?: string };
 };
 
 /** Records one step: what it was, its full input, its full output and where it came from. */
@@ -84,6 +86,7 @@ export async function step<T>(kind: XrayKind, name: string, source: string, inpu
     dataOrigin: options.dataOrigin ?? 'computed', status: 'running', startedAt: new Date(started).toISOString(),
     input: redact(input ?? null), summary: 'running',
   };
+  if (options.ref) options.ref.stepId = record.stepId;
   publish(run, record);
   trace(run, record, options.traceAs);
   const finish = (patch: Partial<XrayStep>) => {
@@ -120,8 +123,11 @@ export async function startRun<T>(request: unknown, emit: Emit, fn: (runId: stri
   }
 }
 
-/** Marks the current run as failed even though no step threw (e.g. a handled tool error). */
-export const currentRunId = () => context.getStore()?.run.runId;
+/** Runs fn with its steps nested under an earlier step (model call -> the agent tools it asked for). */
+export function under<T>(parentId: string | undefined, fn: () => Promise<T>): Promise<T> {
+  const ctx = context.getStore();
+  return ctx && parentId ? context.run({ run: ctx.run, parentId }, fn) : fn();
+}
 
 // ---------- reading ----------
 

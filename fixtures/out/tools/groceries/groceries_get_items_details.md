@@ -992,7 +992,7 @@ Quik items 4000201 to 4000222 (batch 1 of the household's history, ids ascending
 
 ## Scenario: household-items-2
 
-Quik items 4000223 to 4000224 (batch 2 of the household's history, ids ascending).
+Quik items 4000223 to 4000227 (batch 2 of the household's history, ids ascending).
 
 ```json match
 {
@@ -1096,6 +1096,150 @@ Quik items 4000223 to 4000224 (batch 2 of the household's history, ids ascending
         },
         "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_chocojoy_4.png",
         "master_product_id": "sku_chocojoy_4",
+        "is_near_expiry": false,
+        "is_ad": false,
+        "is_available": true,
+        "item_type": "product",
+        "tags": []
+      }
+    },
+    {
+      "item_id": 4000225,
+      "data": {
+        "id": 4000225,
+        "item": "Polar Scoop Vanilla Ice Cream 1L",
+        "item_localized": "Polar Scoop Vanilla Ice Cream 1L",
+        "upc": "6290004000225",
+        "images_urls": [
+          "https://careem-catalog-media.media.careem.com/quik/sku_polar_icecream_1l.png"
+        ],
+        "description": "Polar Scoop Vanilla Ice Cream 1L (1 L)",
+        "description_localized": "Polar Scoop Vanilla Ice Cream 1L (1 L)",
+        "price": {
+          "original": 18.5,
+          "original_formatted": "18.50",
+          "discount": 0,
+          "discount_percentage": 0,
+          "total": 18.5,
+          "total_formatted": "18.50",
+          "tax_percentage": 5
+        },
+        "active": true,
+        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000225",
+        "catalog_id": 40001,
+        "currency": {
+          "label_localized": "AED"
+        },
+        "unit_of_measure": {
+          "value": "1 L",
+          "value_localized": "1 L"
+        },
+        "core_category": {
+          "id": 8223,
+          "name": "Ice Cream",
+          "name_localized": "Ice Cream",
+          "parent_category_id": 8200,
+          "parent_category_name": "Snacks & Sweets",
+          "parent_category_name_localized": "Snacks & Sweets"
+        },
+        "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_polar_icecream_1l.png",
+        "master_product_id": "sku_polar_icecream_1l",
+        "is_near_expiry": false,
+        "is_ad": false,
+        "is_available": true,
+        "item_type": "product",
+        "tags": []
+      }
+    },
+    {
+      "item_id": 4000226,
+      "data": {
+        "id": 4000226,
+        "item": "Tea Time Butter Biscuits 400g",
+        "item_localized": "Tea Time Butter Biscuits 400g",
+        "upc": "6290004000226",
+        "images_urls": [
+          "https://careem-catalog-media.media.careem.com/quik/sku_teatime_biscuits_400.png"
+        ],
+        "description": "Tea Time Butter Biscuits 400g (400 g)",
+        "description_localized": "Tea Time Butter Biscuits 400g (400 g)",
+        "price": {
+          "original": 6.5,
+          "original_formatted": "6.50",
+          "discount": 0,
+          "discount_percentage": 0,
+          "total": 6.5,
+          "total_formatted": "6.50",
+          "tax_percentage": 5
+        },
+        "active": true,
+        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000226",
+        "catalog_id": 40001,
+        "currency": {
+          "label_localized": "AED"
+        },
+        "unit_of_measure": {
+          "value": "400 g",
+          "value_localized": "400 g"
+        },
+        "core_category": {
+          "id": 8224,
+          "name": "Biscuits",
+          "name_localized": "Biscuits",
+          "parent_category_id": 8200,
+          "parent_category_name": "Snacks & Sweets",
+          "parent_category_name_localized": "Snacks & Sweets"
+        },
+        "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_teatime_biscuits_400.png",
+        "master_product_id": "sku_teatime_biscuits_400",
+        "is_near_expiry": false,
+        "is_ad": false,
+        "is_available": true,
+        "item_type": "product",
+        "tags": []
+      }
+    },
+    {
+      "item_id": 4000227,
+      "data": {
+        "id": 4000227,
+        "item": "Sunny Grove Orange Juice 1.5L",
+        "item_localized": "Sunny Grove Orange Juice 1.5L",
+        "upc": "6290004000227",
+        "images_urls": [
+          "https://careem-catalog-media.media.careem.com/quik/sku_sunny_juice_1500.png"
+        ],
+        "description": "Sunny Grove Orange Juice 1.5L (1.5 L)",
+        "description_localized": "Sunny Grove Orange Juice 1.5L (1.5 L)",
+        "price": {
+          "original": 9.5,
+          "original_formatted": "9.50",
+          "discount": 0,
+          "discount_percentage": 0,
+          "total": 9.5,
+          "total_formatted": "9.50",
+          "tax_percentage": 5
+        },
+        "active": true,
+        "link": "https://careem-catalog-media.media.careem.com/quik/items/4000227",
+        "catalog_id": 40001,
+        "currency": {
+          "label_localized": "AED"
+        },
+        "unit_of_measure": {
+          "value": "1.5 L",
+          "value_localized": "1.5 L"
+        },
+        "core_category": {
+          "id": 7325,
+          "name": "Juice",
+          "name_localized": "Juice",
+          "parent_category_id": 7300,
+          "parent_category_name": "Water & Beverages",
+          "parent_category_name_localized": "Water & Beverages"
+        },
+        "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_sunny_juice_1500.png",
+        "master_product_id": "sku_sunny_juice_1500",
         "is_near_expiry": false,
         "is_ad": false,
         "is_available": true,

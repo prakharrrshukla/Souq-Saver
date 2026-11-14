@@ -50,9 +50,9 @@ Kept ahead of the household scenarios so the magic trigger still works.
       "user_id": 900000001,
       "status": "completed",
       "country": "AE",
-      "activity_time": "{{now-169h}}",
-      "created_at": "{{now-169h}}",
-      "updated_at": "{{now-168h}}",
+      "activity_time": "{{now-168h}}",
+      "created_at": "{{now-168h}}",
+      "updated_at": "{{now-167h}}",
       "data": {
         "status": "DELIVERED",
         "basket_id": 6000310,
@@ -62,7 +62,7 @@ Kept ahead of the household scenarios so the magic trigger still works.
         "merchant_type": "ufd",
         "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9310&provider_id=3&partner=shops",
         "payment_type": "CARD",
-        "completed_at": {{unixms-168h}},
+        "completed_at": {{unixms-167h}},
         "items": [
           {
             "item_id": 4000201,
@@ -113,12 +113,6 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "amount": 8.25
           },
           {
-            "item_id": 4000220,
-            "name": "BrightWash Laundry Detergent Liquid 3L",
-            "quantity": 1,
-            "amount": 34.5
-          },
-          {
             "item_id": 4000221,
             "name": "SoftCloud Toilet Tissue 12 Rolls",
             "quantity": 1,
@@ -141,6 +135,24 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "name": "ChocoJoy Milk Chocolate Bars 4 Pack",
             "quantity": 1,
             "amount": 9.75
+          },
+          {
+            "item_id": 4000225,
+            "name": "Polar Scoop Vanilla Ice Cream 1L",
+            "quantity": 1,
+            "amount": 18.5
+          },
+          {
+            "item_id": 4000226,
+            "name": "Tea Time Butter Biscuits 400g",
+            "quantity": 1,
+            "amount": 6.5
+          },
+          {
+            "item_id": 4000227,
+            "name": "Sunny Grove Orange Juice 1.5L",
+            "quantity": 1,
+            "amount": 9.5
           }
         ],
         "order_delivery": {
@@ -183,9 +195,9 @@ Kept ahead of the household scenarios so the magic trigger still works.
       "user_id": 900000001,
       "status": "completed",
       "country": "AE",
-      "activity_time": "{{now-337h}}",
-      "created_at": "{{now-337h}}",
-      "updated_at": "{{now-336h}}",
+      "activity_time": "{{now-334h}}",
+      "created_at": "{{now-334h}}",
+      "updated_at": "{{now-333h}}",
       "data": {
         "status": "DELIVERED",
         "basket_id": 6000309,
@@ -195,7 +207,7 @@ Kept ahead of the household scenarios so the magic trigger still works.
         "merchant_type": "ufd",
         "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9309&provider_id=3&partner=shops",
         "payment_type": "CARD",
-        "completed_at": {{unixms-336h}},
+        "completed_at": {{unixms-333h}},
         "items": [
           {
             "item_id": 4000201,
@@ -246,6 +258,12 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "amount": 6
           },
           {
+            "item_id": 4000220,
+            "name": "BrightWash Laundry Detergent Liquid 3L",
+            "quantity": 1,
+            "amount": 34.5
+          },
+          {
             "item_id": 4000222,
             "name": "Crunchos Salted Potato Chips Family Pack 150g",
             "quantity": 1,
@@ -262,6 +280,24 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "name": "ChocoJoy Milk Chocolate Bars 4 Pack",
             "quantity": 1,
             "amount": 9.75
+          },
+          {
+            "item_id": 4000225,
+            "name": "Polar Scoop Vanilla Ice Cream 1L",
+            "quantity": 1,
+            "amount": 18.5
+          },
+          {
+            "item_id": 4000226,
+            "name": "Tea Time Butter Biscuits 400g",
+            "quantity": 1,
+            "amount": 6.5
+          },
+          {
+            "item_id": 4000227,
+            "name": "Sunny Grove Orange Juice 1.5L",
+            "quantity": 1,
+            "amount": 9.5
           }
         ],
         "order_delivery": {
@@ -285,13 +321,13 @@ Kept ahead of the household scenarios so the magic trigger still works.
       },
       "pricing": {
         "currency": "AED",
-        "total_price": "137.75"
+        "total_price": "206.75"
       },
       "presentation_data": {
         "title": "Careem Quik",
         "subtitle": "Oasis Springs Drinking Water 6x1.5L, Chakki Gold Atta Wheat Flour 5kg, Desi Harvest Toor Dal 1kg",
         "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/quik.png",
-        "trailing": "AED 137.75",
+        "trailing": "AED 206.75",
         "thirdline": "Delivered to Home"
       }
     },
@@ -304,9 +340,9 @@ Kept ahead of the household scenarios so the magic trigger still works.
       "user_id": 900000001,
       "status": "completed",
       "country": "AE",
-      "activity_time": "{{now-506h}}",
-      "created_at": "{{now-506h}}",
-      "updated_at": "{{now-505h}}",
+      "activity_time": "{{now-505h}}",
+      "created_at": "{{now-505h}}",
+      "updated_at": "{{now-504h}}",
       "data": {
         "status": "DELIVERED",
         "basket_id": 6000308,
@@ -316,7 +352,7 @@ Kept ahead of the household scenarios so the magic trigger still works.
         "merchant_type": "ufd",
         "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9308&provider_id=3&partner=shops",
         "payment_type": "CARD",
-        "completed_at": {{unixms-505h}},
+        "completed_at": {{unixms-504h}},
         "items": [
           {
             "item_id": 4000201,
@@ -352,7 +388,7 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "item_id": 4000213,
             "name": "Red Onions 1kg",
             "quantity": 1,
-            "amount": 4.25
+            "amount": 4.5
           },
           {
             "item_id": 4000214,
@@ -383,6 +419,24 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "name": "ChocoJoy Milk Chocolate Bars 4 Pack",
             "quantity": 1,
             "amount": 9.75
+          },
+          {
+            "item_id": 4000225,
+            "name": "Polar Scoop Vanilla Ice Cream 1L",
+            "quantity": 1,
+            "amount": 18.5
+          },
+          {
+            "item_id": 4000226,
+            "name": "Tea Time Butter Biscuits 400g",
+            "quantity": 1,
+            "amount": 6.5
+          },
+          {
+            "item_id": 4000227,
+            "name": "Sunny Grove Orange Juice 1.5L",
+            "quantity": 1,
+            "amount": 9.5
           }
         ],
         "order_delivery": {
@@ -406,13 +460,13 @@ Kept ahead of the household scenarios so the magic trigger still works.
       },
       "pricing": {
         "currency": "AED",
-        "total_price": "169.00"
+        "total_price": "203.75"
       },
       "presentation_data": {
         "title": "Careem Quik",
         "subtitle": "Oasis Springs Drinking Water 6x1.5L, Royal Mahal Basmati Rice 5kg, Noor Al Sahra Sunflower Oil 1.8L",
         "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/quik.png",
-        "trailing": "AED 169.00",
+        "trailing": "AED 203.75",
         "thirdline": "Delivered to Home"
       }
     },
@@ -425,9 +479,9 @@ Kept ahead of the household scenarios so the magic trigger still works.
       "user_id": 900000001,
       "status": "completed",
       "country": "AE",
-      "activity_time": "{{now-669h}}",
-      "created_at": "{{now-669h}}",
-      "updated_at": "{{now-668h}}",
+      "activity_time": "{{now-670h}}",
+      "created_at": "{{now-670h}}",
+      "updated_at": "{{now-669h}}",
       "data": {
         "status": "DELIVERED",
         "basket_id": 6000307,
@@ -437,7 +491,7 @@ Kept ahead of the household scenarios so the magic trigger still works.
         "merchant_type": "ufd",
         "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9307&provider_id=3&partner=shops",
         "payment_type": "CARD",
-        "completed_at": {{unixms-668h}},
+        "completed_at": {{unixms-669h}},
         "items": [
           {
             "item_id": 4000201,
@@ -473,13 +527,13 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "item_id": 4000213,
             "name": "Red Onions 1kg",
             "quantity": 1,
-            "amount": 4
+            "amount": 4.25
           },
           {
             "item_id": 4000214,
             "name": "Tomatoes 1kg",
             "quantity": 1,
-            "amount": 5.25
+            "amount": 5.75
           },
           {
             "item_id": 4000216,
@@ -498,6 +552,24 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "name": "ChocoJoy Milk Chocolate Bars 4 Pack",
             "quantity": 1,
             "amount": 9.75
+          },
+          {
+            "item_id": 4000225,
+            "name": "Polar Scoop Vanilla Ice Cream 1L",
+            "quantity": 1,
+            "amount": 18.5
+          },
+          {
+            "item_id": 4000226,
+            "name": "Tea Time Butter Biscuits 400g",
+            "quantity": 1,
+            "amount": 6.5
+          },
+          {
+            "item_id": 4000227,
+            "name": "Sunny Grove Orange Juice 1.5L",
+            "quantity": 1,
+            "amount": 9.5
           },
           {
             "item_id": 4000218,
@@ -527,13 +599,13 @@ Kept ahead of the household scenarios so the magic trigger still works.
       },
       "pricing": {
         "currency": "AED",
-        "total_price": "145.00"
+        "total_price": "180.25"
       },
       "presentation_data": {
         "title": "Careem Quik",
         "subtitle": "Oasis Springs Drinking Water 6x1.5L, Chakki Gold Atta Wheat Flour 5kg, Desi Harvest Toor Dal 1kg",
         "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/quik.png",
-        "trailing": "AED 145.00",
+        "trailing": "AED 180.25",
         "thirdline": "Delivered to Home"
       }
     },
@@ -546,9 +618,9 @@ Kept ahead of the household scenarios so the magic trigger still works.
       "user_id": 900000001,
       "status": "completed",
       "country": "AE",
-      "activity_time": "{{now-818h}}",
-      "created_at": "{{now-818h}}",
-      "updated_at": "{{now-817h}}",
+      "activity_time": "{{now-817h}}",
+      "created_at": "{{now-817h}}",
+      "updated_at": "{{now-816h}}",
       "data": {
         "status": "DELIVERED",
         "basket_id": 6000306,
@@ -558,7 +630,7 @@ Kept ahead of the household scenarios so the magic trigger still works.
         "merchant_type": "ufd",
         "care_deep_link": "careem://care.careem.com/issueTypes?reference_id=order_9306&provider_id=3&partner=shops",
         "payment_type": "CARD",
-        "completed_at": {{unixms-817h}},
+        "completed_at": {{unixms-816h}},
         "items": [
           {
             "item_id": 4000201,
@@ -582,13 +654,13 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "item_id": 4000213,
             "name": "Red Onions 1kg",
             "quantity": 1,
-            "amount": 3.75
+            "amount": 4.25
           },
           {
             "item_id": 4000214,
             "name": "Tomatoes 1kg",
             "quantity": 1,
-            "amount": 5.5
+            "amount": 5
           },
           {
             "item_id": 4000216,
@@ -613,6 +685,18 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "name": "FizzUp Cola 6x330ml",
             "quantity": 1,
             "amount": 11
+          },
+          {
+            "item_id": 4000225,
+            "name": "Polar Scoop Vanilla Ice Cream 1L",
+            "quantity": 1,
+            "amount": 18.5
+          },
+          {
+            "item_id": 4000227,
+            "name": "Sunny Grove Orange Juice 1.5L",
+            "quantity": 1,
+            "amount": 9.5
           },
           {
             "item_id": 4000212,
@@ -642,13 +726,13 @@ Kept ahead of the household scenarios so the magic trigger still works.
       },
       "pricing": {
         "currency": "AED",
-        "total_price": "118.90"
+        "total_price": "146.90"
       },
       "presentation_data": {
         "title": "Careem Quik",
         "subtitle": "Oasis Springs Drinking Water 6x1.5L, Marmoom Farms Fresh Milk Full Cream 2L, Golden Yolk Eggs Tray 30",
         "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/quik.png",
-        "trailing": "AED 118.90",
+        "trailing": "AED 146.90",
         "thirdline": "Delivered to Home"
       }
     },
@@ -758,6 +842,12 @@ Kept ahead of the household scenarios so the magic trigger still works.
             "name": "ChocoJoy Milk Chocolate Bars 4 Pack",
             "quantity": 1,
             "amount": 9.75
+          },
+          {
+            "item_id": 4000226,
+            "name": "Tea Time Butter Biscuits 400g",
+            "quantity": 1,
+            "amount": 6.5
           }
         ],
         "order_delivery": {
@@ -781,13 +871,13 @@ Kept ahead of the household scenarios so the magic trigger still works.
       },
       "pricing": {
         "currency": "AED",
-        "total_price": "200.65"
+        "total_price": "207.15"
       },
       "presentation_data": {
         "title": "Careem Quik",
         "subtitle": "Oasis Springs Drinking Water 6x1.5L, Royal Mahal Basmati Rice 5kg, Chakki Gold Atta Wheat Flour 5kg",
         "main_icon_url": "https://careem-catalog-media.media.careem.com/icons/quik.png",
-        "trailing": "AED 200.65",
+        "trailing": "AED 207.15",
         "thirdline": "Delivered to Home"
       }
     },

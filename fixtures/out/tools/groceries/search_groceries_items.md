@@ -1330,6 +1330,159 @@ Careem's own scenarios for this tool.
           "superapp_link": "careem://shops/merchant/40101/item/4010224"
         }
       ]
+    },
+    {
+      "name": "ice cream",
+      "items": [
+        {
+          "id": 4010225,
+          "item": "Polar Scoop Vanilla Ice Cream 1L",
+          "item_localized": "Polar Scoop Vanilla Ice Cream 1L",
+          "upc": "6290004010225",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_polar_icecream_1l.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_polar_icecream_1l.png"
+          ],
+          "description": "Polar Scoop Vanilla Ice Cream 1L (1 L)",
+          "description_localized": "Polar Scoop Vanilla Ice Cream 1L (1 L)",
+          "price": {
+            "original": 17.5,
+            "original_formatted": "17.50",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 17.5,
+            "total_formatted": "17.50",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010225",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40101,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_polar_icecream_1l",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40101/item/4010225"
+        }
+      ]
+    },
+    {
+      "name": "biscuits",
+      "items": [
+        {
+          "id": 4010226,
+          "item": "Tea Time Butter Biscuits 400g",
+          "item_localized": "Tea Time Butter Biscuits 400g",
+          "upc": "6290004010226",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_teatime_biscuits_400.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_teatime_biscuits_400.png"
+          ],
+          "description": "Tea Time Butter Biscuits 400g (400 g)",
+          "description_localized": "Tea Time Butter Biscuits 400g (400 g)",
+          "price": {
+            "original": 5.95,
+            "original_formatted": "5.95",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 5.95,
+            "total_formatted": "5.95",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010226",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40101,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_teatime_biscuits_400",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40101/item/4010226"
+        }
+      ]
+    },
+    {
+      "name": "juice",
+      "items": [
+        {
+          "id": 4010227,
+          "item": "Sunny Grove Orange Juice 1.5L",
+          "item_localized": "Sunny Grove Orange Juice 1.5L",
+          "upc": "6290004010227",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_sunny_juice_1500.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_sunny_juice_1500.png"
+          ],
+          "description": "Sunny Grove Orange Juice 1.5L (1.5 L)",
+          "description_localized": "Sunny Grove Orange Juice 1.5L (1.5 L)",
+          "price": {
+            "original": 8.95,
+            "original_formatted": "8.95",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 8.95,
+            "total_formatted": "8.95",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4010227",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40101,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_sunny_juice_1500",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40101/item/4010227"
+        }
+      ]
     }
   ]
 }
@@ -2317,6 +2470,159 @@ Careem's own scenarios for this tool.
           "item_type": "REGULAR",
           "bundle_details": null,
           "superapp_link": "careem://shops/merchant/40201/item/4020219"
+        }
+      ]
+    },
+    {
+      "name": "ice cream",
+      "items": [
+        {
+          "id": 4020220,
+          "item": "Polar Scoop Vanilla Ice Cream 1L",
+          "item_localized": "Polar Scoop Vanilla Ice Cream 1L",
+          "upc": "6290004020220",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_polar_icecream_1l.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_polar_icecream_1l.png"
+          ],
+          "description": "Polar Scoop Vanilla Ice Cream 1L (1 L)",
+          "description_localized": "Polar Scoop Vanilla Ice Cream 1L (1 L)",
+          "price": {
+            "original": 24,
+            "original_formatted": "24.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 24,
+            "total_formatted": "24.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020220",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40201,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_polar_icecream_1l",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40201/item/4020220"
+        }
+      ]
+    },
+    {
+      "name": "biscuits",
+      "items": [
+        {
+          "id": 4020221,
+          "item": "Tea Time Butter Biscuits 400g",
+          "item_localized": "Tea Time Butter Biscuits 400g",
+          "upc": "6290004020221",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_teatime_biscuits_400.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_teatime_biscuits_400.png"
+          ],
+          "description": "Tea Time Butter Biscuits 400g (400 g)",
+          "description_localized": "Tea Time Butter Biscuits 400g (400 g)",
+          "price": {
+            "original": 8,
+            "original_formatted": "8.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 8,
+            "total_formatted": "8.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020221",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40201,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_teatime_biscuits_400",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40201/item/4020221"
+        }
+      ]
+    },
+    {
+      "name": "juice",
+      "items": [
+        {
+          "id": 4020222,
+          "item": "Sunny Grove Orange Juice 1.5L",
+          "item_localized": "Sunny Grove Orange Juice 1.5L",
+          "upc": "6290004020222",
+          "image_url": "https://careem-catalog-media.media.careem.com/shops/sku_sunny_juice_1500.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/shops/sku_sunny_juice_1500.png"
+          ],
+          "description": "Sunny Grove Orange Juice 1.5L (1.5 L)",
+          "description_localized": "Sunny Grove Orange Juice 1.5L (1.5 L)",
+          "price": {
+            "original": 13,
+            "original_formatted": "13.00",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 13,
+            "total_formatted": "13.00",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/shops/items/4020222",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40201,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_sunny_juice_1500",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40201/item/4020222"
         }
       ]
     }
@@ -3647,6 +3953,159 @@ A term containing `water` without a Shops merchant: the Quik range, one group pe
           "item_type": "REGULAR",
           "bundle_details": null,
           "superapp_link": "careem://shops/merchant/40001/item/4000224"
+        }
+      ]
+    },
+    {
+      "name": "ice cream",
+      "items": [
+        {
+          "id": 4000225,
+          "item": "Polar Scoop Vanilla Ice Cream 1L",
+          "item_localized": "Polar Scoop Vanilla Ice Cream 1L",
+          "upc": "6290004000225",
+          "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_polar_icecream_1l.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/quik/sku_polar_icecream_1l.png"
+          ],
+          "description": "Polar Scoop Vanilla Ice Cream 1L (1 L)",
+          "description_localized": "Polar Scoop Vanilla Ice Cream 1L (1 L)",
+          "price": {
+            "original": 18.5,
+            "original_formatted": "18.50",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 18.5,
+            "total_formatted": "18.50",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000225",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40001,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_polar_icecream_1l",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40001/item/4000225"
+        }
+      ]
+    },
+    {
+      "name": "biscuits",
+      "items": [
+        {
+          "id": 4000226,
+          "item": "Tea Time Butter Biscuits 400g",
+          "item_localized": "Tea Time Butter Biscuits 400g",
+          "upc": "6290004000226",
+          "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_teatime_biscuits_400.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/quik/sku_teatime_biscuits_400.png"
+          ],
+          "description": "Tea Time Butter Biscuits 400g (400 g)",
+          "description_localized": "Tea Time Butter Biscuits 400g (400 g)",
+          "price": {
+            "original": 6.5,
+            "original_formatted": "6.50",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 6.5,
+            "total_formatted": "6.50",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000226",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40001,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_teatime_biscuits_400",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40001/item/4000226"
+        }
+      ]
+    },
+    {
+      "name": "juice",
+      "items": [
+        {
+          "id": 4000227,
+          "item": "Sunny Grove Orange Juice 1.5L",
+          "item_localized": "Sunny Grove Orange Juice 1.5L",
+          "upc": "6290004000227",
+          "image_url": "https://careem-catalog-media.media.careem.com/quik/sku_sunny_juice_1500.png",
+          "images_urls": [
+            "https://careem-catalog-media.media.careem.com/quik/sku_sunny_juice_1500.png"
+          ],
+          "description": "Sunny Grove Orange Juice 1.5L (1.5 L)",
+          "description_localized": "Sunny Grove Orange Juice 1.5L (1.5 L)",
+          "price": {
+            "original": 9.5,
+            "original_formatted": "9.50",
+            "discount": 0,
+            "discount_percentage": 0,
+            "total": 9.5,
+            "total_formatted": "9.50",
+            "tax_percentage": 5,
+            "discount_type": null
+          },
+          "active": true,
+          "link": "https://careem-catalog-media.media.careem.com/quik/items/4000227",
+          "attributes": [],
+          "tags": [],
+          "catalog_id": 40001,
+          "view_only_promotion": null,
+          "currency": {
+            "code": "AED",
+            "decimals": 2,
+            "label": "AED"
+          },
+          "item_location": null,
+          "master_product_id": "sku_sunny_juice_1500",
+          "is_near_expiry": false,
+          "is_ad": false,
+          "ad_details": null,
+          "is_available": true,
+          "timing": null,
+          "groups": [],
+          "item_promotion": null,
+          "item_badge_localized": null,
+          "item_type": "REGULAR",
+          "bundle_details": null,
+          "superapp_link": "careem://shops/merchant/40001/item/4000227"
         }
       ]
     }

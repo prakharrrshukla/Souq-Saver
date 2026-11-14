@@ -72,6 +72,9 @@ export const PRODUCTS: Product[] = [
   p('sku_crunchos_150', 'Crunchos Salted Potato Chips Family Pack 150g', '150 g', 'Potato Chips', 'Snacks & Sweets', 7.5, 6.95, 9.0),
   p('sku_fizzup_cola_6', 'FizzUp Cola 6x330ml', '6 x 330 ml', 'Soft Drinks', 'Water & Beverages', 11.0, 10.5),
   p('sku_chocojoy_4', 'ChocoJoy Milk Chocolate Bars 4 Pack', '4 pcs', 'Chocolate', 'Snacks & Sweets', 9.75, 9.25, 14.0),
+  p('sku_polar_icecream_1l', 'Polar Scoop Vanilla Ice Cream 1L', '1 L', 'Ice Cream', 'Snacks & Sweets', 18.5, 17.5, 24.0),
+  p('sku_teatime_biscuits_400', 'Tea Time Butter Biscuits 400g', '400 g', 'Biscuits', 'Snacks & Sweets', 6.5, 5.95, 8.0),
+  p('sku_sunny_juice_1500', 'Sunny Grove Orange Juice 1.5L', '1.5 L', 'Juice', 'Water & Beverages', 9.5, 8.95, 13.0),
 ];
 
 export const WEEKS = 10; // week 1 is the oldest order, week 10 was placed 7 days ago
@@ -97,11 +100,15 @@ export const HISTORY: { sku: string; weeks: number[]; qty?: number; prices?: Rec
   { sku: 'sku_tomatoes_1kg', weeks: every, wobble: 0.5 },
   { sku: 'sku_khayma_bread_6', weeks: every, qty: 2 },
   { sku: 'sku_sparkle_dish_750', weeks: [2, 6, 10] }, // every 4 weeks, bought last week: not due
-  { sku: 'sku_brightwash_3l', weeks: [3, 10] },
+  { sku: 'sku_brightwash_3l', weeks: [3, 9] },
   { sku: 'sku_softcloud_12', weeks: [4, 10] },
   { sku: 'sku_crunchos_150', weeks: except(3, 7) }, // 8 of 10 weeks
   { sku: 'sku_fizzup_cola_6', weeks: every },
   { sku: 'sku_chocojoy_4', weeks: [3, 5, 7, 8, 9, 10] }, // 6 of 10 weeks
+  // Treats that crept into the weekly shop over the last month: this is where the budget went.
+  { sku: 'sku_polar_icecream_1l', weeks: [6, 7, 8, 9, 10] },
+  { sku: 'sku_teatime_biscuits_400', weeks: [5, 7, 8, 9, 10] },
+  { sku: 'sku_sunny_juice_1500', weeks: [6, 7, 8, 9, 10] },
   // One-off purchases: natural noise, no cycle can be learned from a single order.
   { sku: 'sku_sea_salt_1kg', weeks: [1] },
   { sku: 'sku_bananas_1kg', weeks: [3] },
