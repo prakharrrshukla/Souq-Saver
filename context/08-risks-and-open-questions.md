@@ -22,7 +22,6 @@
 | Can we use the hackathon production client for real order history, and is placing a cart (no checkout) acceptable? | Laith at MCP training, 09:30 | **Answered:** use the sandbox's fake data and generate random data inspired by it, in the same file pattern |
 | Which sandbox should judges see: local, hosted or production? | Organisers | Open |
 | Bedrock region, model access and credit limits | AWS team | Open |
-| Is Kiro use expected to be visible in the repo? | Organisers / AWS | Open |
 | Can the repo be public during and after the event (T&C 6.3)? | Organisers | Open |
 | What exactly must be submitted at code freeze (repo link, video, slides)? | Organisers | Open |
 
@@ -37,6 +36,7 @@ Questions emailed to the organisers on 7 Nov got no reply; ask in person.
 | 12 Nov | Voice cut; checkout not on stage; promo advisor and split orders out |
 | 12 Nov | Build on local sandbox with labelled fixtures; production only if access works |
 | 14 Nov | Judging sheet received: 30 points for technical execution incl. Bedrock, Kiro, Careem MCP integration; plan updated to show all three |
+| 14 Nov | **Kiro dropped** (team decision). Planner built with Claude Code (Opus 5.5); pitch leans on Bedrock and Careem MCP |
 | 14 Nov | Hackathon production client found on the training page; production attempt becomes a real option |
 | 14 Nov | Laith: generate random data inspired by the sandbox fixtures, same file pattern. Real account data not used; build fully on sandbox + generated fixtures |
 

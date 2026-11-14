@@ -12,7 +12,7 @@ Format: 3 minutes of demo, then 2 minutes of jury Q&A. Scored mainly under Pitch
 | 1:30 to 2:10 | Speaker 2 | Store comparison: Marina Fresh Market cheapest, Quik close, JLT missing essentials. Basket: water and staples kept, rice swapped to store brand, dish soap not due, cola and chocolate cut. "Why did you drop the chocolate?" (optional, one line). |
 | 2:10 to 2:30 | Speaker 2 | Click **Approve**. `create_grocery_cart_with_quantities`, then `cart_get_basket_price` with promo. "Cart ready, AED X. Nothing has been charged; checkout always needs the user." |
 | 2:30 to 2:45 | Speaker 1 | Same request in Arabic (pre-typed). Reply in Arabic, right-to-left. "Arabic, English, Hindi, Urdu, Tagalog." |
-| 2:45 to 3:00 | Speaker 1 | **Close.** "Built today on Careem MCP, AWS Bedrock and Kiro. About AED 190 a month saved for this household. Works for every Careem user from day one." |
+| 2:45 to 3:00 | Speaker 1 | **Close.** "Built today on Careem MCP and AWS Bedrock. About AED 190 a month saved for this household. Works for every Careem user from day one." |
 
 Fallback: if anything fails live, switch to the backup video at the same timestamp and keep talking.
 
@@ -25,7 +25,7 @@ Fallback: if anything fails live, switch to the backup video at the same timesta
 | Criterion | Line to say |
 |---|---|
 | Innovation (25) | "It doesn't just list groceries. It solves the budget: necessities first, cheapest store for the whole basket, cuts from the bottom." |
-| Technical (30) | "Every step you saw was a real Careem MCP tool call. The model runs on Bedrock. Kiro generated our planner from a spec." |
+| Technical (30) | "Every step you saw was a real Careem MCP tool call. The model runs on Bedrock, and all the money maths is tested code." |
 | Impact (25) | "Groceries are weekly for millions of Careem users. Useful on day one, fully personalised in about two months." |
 | UX (10) | "One screen, your language, and nothing happens without your approval." |
 | Pitch (10) | Stay on time. One flow, one number, one close. |
@@ -59,8 +59,8 @@ Analysis is per household and cheap: up to 105 orders, simple statistics. The mo
 **How do you make money for Careem?**
 Higher retention and basket frequency for budget-sensitive users; store choice drives volume to Shops merchants as well as Quik.
 
-**What did Kiro do?**
-Name the module and show the spec file. **[fill in on the day]**
+**Why didn't you use Kiro?**
+We built with Claude Code to move fastest in one day. The product itself runs on AWS Bedrock and the Careem MCP, which is where the integration matters.
 
 ## Backup video
 

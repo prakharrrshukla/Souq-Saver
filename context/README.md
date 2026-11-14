@@ -1,7 +1,7 @@
 # Souq Saver: Project Context Pack
 
 Context for **Careem Builders '26: Hack To The Future (powered by AWS)**, 14 Nov 2026, Dubai.
-Read this folder first. It is written so a human teammate or a coding agent (Claude Code, Kiro) can pick up the project cold.
+Read this folder first. It is written so a human teammate or a coding agent (Claude Code, Fable) can pick up the project cold.
 
 > Status: planning context, written before the build. Anything marked **[VERIFY]** is unconfirmed and must be checked on the day.
 
@@ -28,7 +28,7 @@ Souq Saver is a budget-aware household grocery agent built on the Careem MCP. It
 2. **Nothing is charged without confirmation.** Every mutating tool call needs an explicit user yes. Never retry a mutating call blindly.
 3. **Price before checkout, always.** Use `cart_get_basket_price`. The demo stops at an approved, priced cart. No checkout on stage.
 4. **Be honest about data.** Sample or fixture data is labelled as sample. Voice is not built and we say so.
-5. **Show the three suggested tools.** Judges score integration of AWS Bedrock, Kiro and Careem MCP (30 points). Each must be visibly used.
+5. **Show the tools we use.** Judges score integration of the suggested tools (AWS Bedrock, Kiro, Careem MCP; 30 points). **We do not use Kiro (team decision, 14 Nov).** Bedrock and Careem MCP must be deep and visibly used to make up for it.
 
 ## Glossary
 

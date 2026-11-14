@@ -36,7 +36,6 @@ Optional: host the agent on Amazon Bedrock AgentCore if time allows; otherwise r
 |---|---|---|
 | Careem MCP | MCP client, every data call | Live trace panel with real tool names |
 | AWS Bedrock | Agent loop model | Model id in the UI footer and the architecture slide |
-| Kiro | Spec-driven generation of a module (suggested: planner or UI) | `.kiro/` spec files committed; one line in the pitch |
 | Claude Code | Building the sandbox and glue code | Mention only if asked |
 
 ## Components
@@ -105,14 +104,14 @@ Savings projection: (last 4-week average weekly spend - planned weekly spend) x 
 
 ## AI model per component
 
-Two different jobs: the model that **writes the code** (in Claude Code or Kiro), and the model that **runs inside the app** (on Bedrock).
+Two different jobs: the model that **writes the code** (in Claude Code), and the model that **runs inside the app** (on Bedrock).
 
 | Component | Build with | Why |
 |---|---|---|
 | Careem sandbox (from Careem's zip) | Claude Code, Claude Sonnet 5.5 | Following a written spec; speed matters, logic is simple |
 | Generated sample data (seeded script) | Claude Code, Claude Sonnet 5.5 | Copy Careem's exact file shapes; straightforward |
 | History reader (spend, drift, cycles) | Claude Code, Claude Opus 5.5 | Maths must be right; judges trust these numbers |
-| Basket planner (tiers, budget, swaps) | **Kiro** (spec-driven), checked with Claude Opus 5.5 | Core logic, and the visible Kiro use judges look for |
+| Basket planner (tiers, budget, swaps) | Claude Code, Claude Opus 5.5 | Core logic; must be correct and tested |
 | Store picker (Quik vs Shops) | Claude Code, Claude Opus 5.5 | Fees, missing essentials, edge cases |
 | MCP client + Approve lock | Claude Code, Claude Opus 5.5 | Safety-critical: must never place an order without approval |
 | Web chat UI (RTL, trace panel) | Claude Code, Claude Sonnet 5.5 | Fast UI iteration |
@@ -137,7 +136,6 @@ Two different jobs: the model that **writes the code** (in Claude Code or Kiro),
    agent/           Bedrock loop, system prompt, tool definitions
    api/             HTTP + SSE endpoints
 /web                chat UI
-/.kiro              Kiro specs
 /demo               script, backup video link
 README.md
 ```
@@ -151,7 +149,7 @@ README.md
 | 12:00 to 13:30 | Planner: tiers, budget fit, swaps, store comparison | "Cut 15%" returns a planned basket with reasons |
 | 13:30 to 14:30 | Agent loop with high-level tools; minimal chat UI | Full flow works end to end in English |
 | 14:30 to 15:30 | Approve gate, cart creation, basket price; trace panel | Demo flow complete |
-| 15:30 to 16:30 | Five languages, RTL, UI polish, Kiro spec committed | Arabic request works |
+| 15:30 to 16:30 | Five languages, RTL, UI polish | Arabic request works |
 | 16:30 to 17:15 | Production attempt (optional), tests, bug fixes | |
 | 17:15 to 17:45 | Record backup video; rehearse demo twice | Video saved locally |
 | 17:45 to 18:00 | Freeze, push, final check | Code freeze |

@@ -14,7 +14,7 @@ Source: the printed evaluation sheet handed to judges ("Judging Criteria: Hackat
 ## Reading the sheet
 
 - **55 of 100 points** sit in Technical Execution (30) and Impact (25). Build effort should follow that weighting.
-- **Technical Execution names three tools.** A judge reading "effective integration of AWS Bedrock, Kiro, Careem MCP" will look for each one. Missing any costs points under the biggest criterion.
+- **Technical Execution names three tools.** A judge reading "effective integration of AWS Bedrock, Kiro, Careem MCP" will look for each one. **We do not use Kiro (team decision, 14 Nov)**, so we may lose a little here; we make up for it with deep, visible use of Bedrock and Careem MCP and clean architecture.
 - **"Regional problem in a new way"** and **"merely replicate existing products"** warn against a generic grocery list app. Our regional angle is the Gulf household: multilingual (Arabic, English, Hindi, Urdu, Tagalog), price-sensitive, shopping across Quik and supermarket merchants.
 - **"Functional prototype"** beats a polished mock. A real tool-call trace running live against the Careem MCP is worth more than slides.
 - **UX is only 10** and pitch only 10. Do not let polish eat build time, but both are cheap wins: a clean chat UI, readable tool-step panel, a rehearsed 3-minute demo.
@@ -31,7 +31,7 @@ Source: the printed evaluation sheet handed to judges ("Judging Criteria: Hackat
 ### 2. Technical Execution and Integration (30)
 - **Careem MCP:** a real MCP client calls the real tool surface (`get_activities`, `groceries_get_items_details`, `global_search`, `search_groceries_items`, `cart_get_basket_price`, `create_grocery_cart_with_quantities`). Show every call live in a trace panel.
 - **AWS Bedrock:** the reasoning model runs on Bedrock (Claude), including tool use. Show the model id in the demo. Mention AgentCore if used for hosting or memory. **[VERIFY credits and model access on the day]**
-- **Kiro:** use Kiro for spec-driven build of at least one module and say so, with the spec files in the repo. Judges are told to look for Kiro.
+- **Kiro:** not used (team decision). If asked: "We built with Claude Code so we could move fastest in one day; the product itself runs on Bedrock and Careem MCP."
 - **Code quality and architecture:** a small, clear layering: MCP client, analysis engine, planner, API, UI. Deterministic maths in code (not in the model), the model only for language understanding and explanation. Tests for the planner.
 - **Honest limits:** fixtures are labelled; the confirmation gate is enforced in code, not only in the prompt.
 
@@ -55,7 +55,7 @@ Source: the printed evaluation sheet handed to judges ("Judging Criteria: Hackat
 Ask each of these. If any answer is no, fix it before polish.
 1. Does a live run call Careem MCP tools and show them on screen?
 2. Is Bedrock visibly the model provider?
-3. Can we name what Kiro generated?
+3. Is the architecture clear enough to explain in one sentence?
 4. Is there a number for savings that we can defend?
 5. Does the demo end at a priced cart that waits for approval?
 6. Is there a backup video?
